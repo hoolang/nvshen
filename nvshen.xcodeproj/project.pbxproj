@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E0D922621AFC9C5A00AE9948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D922611AFC9C5A00AE9948 /* main.m */; };
-		E0D922651AFC9C5A00AE9948 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D922641AFC9C5A00AE9948 /* AppDelegate.m */; };
-		E0D922681AFC9C5A00AE9948 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D922671AFC9C5A00AE9948 /* ViewController.m */; };
+		E0A789A51AFE241D004F3511 /* HLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789A41AFE241D004F3511 /* HLNavigationController.m */; };
+		E0A789A81AFE24BD004F3511 /* HLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789A71AFE24BD004F3511 /* HLTabBarViewController.m */; };
+		E0A789AE1AFE2822004F3511 /* HLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789AD1AFE2822004F3511 /* HLHomeViewController.m */; };
+		E0A789B71AFE2A50004F3511 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789B61AFE2A50004F3511 /* UIView+Extension.m */; };
+		E0A789BB1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789BA1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m */; };
 		E0D9226B1AFC9C5A00AE9948 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0D922691AFC9C5A00AE9948 /* Main.storyboard */; };
 		E0D9226D1AFC9C5A00AE9948 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0D9226C1AFC9C5A00AE9948 /* Images.xcassets */; };
 		E0D922701AFC9C5A00AE9948 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0D9226E1AFC9C5A00AE9948 /* LaunchScreen.xib */; };
 		E0D9227C1AFC9C5A00AE9948 /* nvshenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9227B1AFC9C5A00AE9948 /* nvshenTests.m */; };
+		E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229C1AFCA97000AE9948 /* AppDelegate.m */; };
+		E0D922A41AFCA97000AE9948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229D1AFCA97000AE9948 /* main.m */; };
+		E0D922A51AFCA97000AE9948 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D922A01AFCA97000AE9948 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +32,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E0A789A31AFE241D004F3511 /* HLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLNavigationController.h; path = nvshen/HLNavigationController.h; sourceTree = SOURCE_ROOT; };
+		E0A789A41AFE241D004F3511 /* HLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLNavigationController.m; path = nvshen/HLNavigationController.m; sourceTree = SOURCE_ROOT; };
+		E0A789A61AFE24BD004F3511 /* HLTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLTabBarViewController.h; path = nvshen/HLTabBarViewController.h; sourceTree = SOURCE_ROOT; };
+		E0A789A71AFE24BD004F3511 /* HLTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLTabBarViewController.m; path = nvshen/HLTabBarViewController.m; sourceTree = SOURCE_ROOT; };
+		E0A789AC1AFE2822004F3511 /* HLHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHomeViewController.h; sourceTree = "<group>"; };
+		E0A789AD1AFE2822004F3511 /* HLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHomeViewController.m; sourceTree = "<group>"; };
+		E0A789B51AFE2A50004F3511 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		E0A789B61AFE2A50004F3511 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		E0A789B91AFE2F6F004F3511 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
+		E0A789BA1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		E0D9225C1AFC9C5A00AE9948 /* nvshen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nvshen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D922601AFC9C5A00AE9948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E0D922611AFC9C5A00AE9948 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E0D922631AFC9C5A00AE9948 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E0D922641AFC9C5A00AE9948 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E0D922661AFC9C5A00AE9948 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E0D922671AFC9C5A00AE9948 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E0D9226A1AFC9C5A00AE9948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E0D9226C1AFC9C5A00AE9948 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E0D9226F1AFC9C5A00AE9948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E0D922751AFC9C5A00AE9948 /* nvshenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nvshenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D9227A1AFC9C5A00AE9948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0D9227B1AFC9C5A00AE9948 /* nvshenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nvshenTests.m; sourceTree = "<group>"; };
+		E0D9229B1AFCA97000AE9948 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E0D9229C1AFCA97000AE9948 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E0D9229D1AFCA97000AE9948 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E0D9229F1AFCA97000AE9948 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E0D922A01AFCA97000AE9948 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E0D922AF1AFCAE7000AE9948 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +76,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E0A789A91AFE276A004F3511 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E0A789AC1AFE2822004F3511 /* HLHomeViewController.h */,
+				E0A789AD1AFE2822004F3511 /* HLHomeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E0A789AA1AFE276A004F3511 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E0A789AB1AFE276A004F3511 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E0D922531AFC9C5A00AE9948 = {
 			isa = PBXGroup;
 			children = (
@@ -81,12 +120,8 @@
 		E0D9225E1AFC9C5A00AE9948 /* nvshen */ = {
 			isa = PBXGroup;
 			children = (
-				E0D922631AFC9C5A00AE9948 /* AppDelegate.h */,
-				E0D922641AFC9C5A00AE9948 /* AppDelegate.m */,
-				E0D922661AFC9C5A00AE9948 /* ViewController.h */,
-				E0D922671AFC9C5A00AE9948 /* ViewController.m */,
+				E0D922901AFCA97000AE9948 /* classes */,
 				E0D922691AFC9C5A00AE9948 /* Main.storyboard */,
-				E0D9226C1AFC9C5A00AE9948 /* Images.xcassets */,
 				E0D9226E1AFC9C5A00AE9948 /* LaunchScreen.xib */,
 				E0D9225F1AFC9C5A00AE9948 /* Supporting Files */,
 			);
@@ -96,8 +131,9 @@
 		E0D9225F1AFC9C5A00AE9948 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0D9226C1AFC9C5A00AE9948 /* Images.xcassets */,
 				E0D922601AFC9C5A00AE9948 /* Info.plist */,
-				E0D922611AFC9C5A00AE9948 /* main.m */,
+				E0D922AF1AFCAE7000AE9948 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -117,6 +153,157 @@
 				E0D9227A1AFC9C5A00AE9948 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E0D922901AFCA97000AE9948 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				E0D922911AFCA97000AE9948 /* Add */,
+				E0D922921AFCA97000AE9948 /* Discover */,
+				E0D922931AFCA97000AE9948 /* Home */,
+				E0D922941AFCA97000AE9948 /* List */,
+				E0D922951AFCA97000AE9948 /* Main */,
+				E0D922A11AFCA97000AE9948 /* Profile */,
+				E0D922A21AFCA97000AE9948 /* Temp */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+		E0D922911AFCA97000AE9948 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		E0D922921AFCA97000AE9948 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		E0D922931AFCA97000AE9948 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E0A789A91AFE276A004F3511 /* Controller */,
+				E0A789AA1AFE276A004F3511 /* Model */,
+				E0A789AB1AFE276A004F3511 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E0D922941AFCA97000AE9948 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				E0FF06C21AFE567C007B9544 /* Controller */,
+				E0FF06C31AFE567C007B9544 /* Model */,
+				E0FF06C41AFE567C007B9544 /* View */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		E0D922951AFCA97000AE9948 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E0D922961AFCA97000AE9948 /* Category */,
+				E0D922971AFCA97000AE9948 /* Controller */,
+				E0D922981AFCA97000AE9948 /* Lib */,
+				E0D922991AFCA97000AE9948 /* Model */,
+				E0D9229A1AFCA97000AE9948 /* Other */,
+				E0D9229E1AFCA97000AE9948 /* View */,
+				E0D9229F1AFCA97000AE9948 /* ViewController.h */,
+				E0D922A01AFCA97000AE9948 /* ViewController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E0D922961AFCA97000AE9948 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				E0A789B91AFE2F6F004F3511 /* UIBarButtonItem+Extension.h */,
+				E0A789BA1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m */,
+				E0A789B51AFE2A50004F3511 /* UIView+Extension.h */,
+				E0A789B61AFE2A50004F3511 /* UIView+Extension.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		E0D922971AFCA97000AE9948 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E0A789A31AFE241D004F3511 /* HLNavigationController.h */,
+				E0A789A41AFE241D004F3511 /* HLNavigationController.m */,
+				E0A789A61AFE24BD004F3511 /* HLTabBarViewController.h */,
+				E0A789A71AFE24BD004F3511 /* HLTabBarViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E0D922981AFCA97000AE9948 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		E0D922991AFCA97000AE9948 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E0D9229A1AFCA97000AE9948 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				E0D9229B1AFCA97000AE9948 /* AppDelegate.h */,
+				E0D9229C1AFCA97000AE9948 /* AppDelegate.m */,
+				E0D9229D1AFCA97000AE9948 /* main.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		E0D9229E1AFCA97000AE9948 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0D922A11AFCA97000AE9948 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E0D922A21AFCA97000AE9948 /* Temp */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Temp;
+			sourceTree = "<group>";
+		};
+		E0FF06C21AFE567C007B9544 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E0FF06C31AFE567C007B9544 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E0FF06C41AFE567C007B9544 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,11 +350,13 @@
 		E0D922541AFC9C5A00AE9948 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = HL;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Hoolang;
 				TargetAttributes = {
 					E0D9225B1AFC9C5A00AE9948 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 38MM8ME8F4;
 					};
 					E0D922741AFC9C5A00AE9948 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -219,9 +408,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0D922681AFC9C5A00AE9948 /* ViewController.m in Sources */,
-				E0D922651AFC9C5A00AE9948 /* AppDelegate.m in Sources */,
-				E0D922621AFC9C5A00AE9948 /* main.m in Sources */,
+				E0D922A51AFCA97000AE9948 /* ViewController.m in Sources */,
+				E0A789A81AFE24BD004F3511 /* HLTabBarViewController.m in Sources */,
+				E0D922A41AFCA97000AE9948 /* main.m in Sources */,
+				E0A789B71AFE2A50004F3511 /* UIView+Extension.m in Sources */,
+				E0A789BB1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m in Sources */,
+				E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */,
+				E0A789A51AFE241D004F3511 /* HLNavigationController.m in Sources */,
+				E0A789AE1AFE2822004F3511 /* HLHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,9 +541,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/nvshen/PrefixHeader.pch";
 				INFOPLIST_FILE = nvshen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -357,9 +557,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/nvshen/PrefixHeader.pch";
 				INFOPLIST_FILE = nvshen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -416,6 +622,7 @@
 				E0D922811AFC9C5A00AE9948 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E0D922821AFC9C5A00AE9948 /* Build configuration list for PBXNativeTarget "nvshenTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +631,7 @@
 				E0D922841AFC9C5A00AE9948 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
