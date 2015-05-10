@@ -9,6 +9,9 @@
 #import "HLTabBarViewController.h"
 #import "HLHomeViewController.h"
 #import "HLNavigationController.h"
+#import "HLListViewController.h"
+#import "HLProfileViewController.h"
+#import "HLDiscoverViewController.h"
 
 @interface HLTabBarViewController ()
 
@@ -21,6 +24,15 @@
     // 1.初始化子控制器
     HLHomeViewController *home = [[HLHomeViewController alloc] init];
     [self addChildVc:home title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+    
+    HLListViewController *list = [[HLListViewController alloc] init];
+    [self addChildVc:list title:@"排行榜" image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
+    
+    HLDiscoverViewController *discover = [[HLDiscoverViewController alloc] init];
+    [self addChildVc:discover title:@"发现" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];
+    
+    HLProfileViewController *profile = [[HLProfileViewController alloc] init];
+    [self addChildVc:profile title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
 
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E09DCE761AFEEA5E00C5145E /* HLProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E09DCE751AFEEA5E00C5145E /* HLProfileViewController.m */; };
+		E09DCE7C1AFEEE7900C5145E /* HLDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E09DCE7B1AFEEE7900C5145E /* HLDiscoverViewController.m */; };
 		E0A789A51AFE241D004F3511 /* HLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789A41AFE241D004F3511 /* HLNavigationController.m */; };
 		E0A789A81AFE24BD004F3511 /* HLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789A71AFE24BD004F3511 /* HLTabBarViewController.m */; };
 		E0A789AE1AFE2822004F3511 /* HLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789AD1AFE2822004F3511 /* HLHomeViewController.m */; };
@@ -19,6 +21,7 @@
 		E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229C1AFCA97000AE9948 /* AppDelegate.m */; };
 		E0D922A41AFCA97000AE9948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229D1AFCA97000AE9948 /* main.m */; };
 		E0D922A51AFCA97000AE9948 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D922A01AFCA97000AE9948 /* ViewController.m */; };
+		E0FF06C81AFE5743007B9544 /* HLListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0FF06C71AFE5743007B9544 /* HLListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E09DCE741AFEEA5E00C5145E /* HLProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLProfileViewController.h; sourceTree = "<group>"; };
+		E09DCE751AFEEA5E00C5145E /* HLProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLProfileViewController.m; sourceTree = "<group>"; };
+		E09DCE7A1AFEEE7900C5145E /* HLDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLDiscoverViewController.h; sourceTree = "<group>"; };
+		E09DCE7B1AFEEE7900C5145E /* HLDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLDiscoverViewController.m; sourceTree = "<group>"; };
 		E0A789A31AFE241D004F3511 /* HLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLNavigationController.h; path = nvshen/HLNavigationController.h; sourceTree = SOURCE_ROOT; };
 		E0A789A41AFE241D004F3511 /* HLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLNavigationController.m; path = nvshen/HLNavigationController.m; sourceTree = SOURCE_ROOT; };
 		E0A789A61AFE24BD004F3511 /* HLTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLTabBarViewController.h; path = nvshen/HLTabBarViewController.h; sourceTree = SOURCE_ROOT; };
@@ -56,6 +63,8 @@
 		E0D9229F1AFCA97000AE9948 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		E0D922A01AFCA97000AE9948 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E0D922AF1AFCAE7000AE9948 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		E0FF06C61AFE5743007B9544 /* HLListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLListViewController.h; sourceTree = "<group>"; };
+		E0FF06C71AFE5743007B9544 /* HLListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +85,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E09DCE711AFEE94300C5145E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E09DCE741AFEEA5E00C5145E /* HLProfileViewController.h */,
+				E09DCE751AFEEA5E00C5145E /* HLProfileViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E09DCE721AFEE94300C5145E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E09DCE731AFEE94300C5145E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E09DCE771AFEEE5900C5145E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E09DCE7A1AFEEE7900C5145E /* HLDiscoverViewController.h */,
+				E09DCE7B1AFEEE7900C5145E /* HLDiscoverViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E09DCE781AFEEE5900C5145E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E09DCE791AFEEE5900C5145E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E0A789A91AFE276A004F3511 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +234,9 @@
 		E0D922921AFCA97000AE9948 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				E09DCE771AFEEE5900C5145E /* Controller */,
+				E09DCE781AFEEE5900C5145E /* Model */,
+				E09DCE791AFEEE5900C5145E /* View */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -274,6 +332,9 @@
 		E0D922A11AFCA97000AE9948 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E09DCE711AFEE94300C5145E /* Controller */,
+				E09DCE721AFEE94300C5145E /* Model */,
+				E09DCE731AFEE94300C5145E /* View */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -288,6 +349,8 @@
 		E0FF06C21AFE567C007B9544 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E0FF06C61AFE5743007B9544 /* HLListViewController.h */,
+				E0FF06C71AFE5743007B9544 /* HLListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -411,11 +474,14 @@
 				E0D922A51AFCA97000AE9948 /* ViewController.m in Sources */,
 				E0A789A81AFE24BD004F3511 /* HLTabBarViewController.m in Sources */,
 				E0D922A41AFCA97000AE9948 /* main.m in Sources */,
+				E09DCE7C1AFEEE7900C5145E /* HLDiscoverViewController.m in Sources */,
 				E0A789B71AFE2A50004F3511 /* UIView+Extension.m in Sources */,
 				E0A789BB1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m in Sources */,
 				E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */,
+				E09DCE761AFEEA5E00C5145E /* HLProfileViewController.m in Sources */,
 				E0A789A51AFE241D004F3511 /* HLNavigationController.m in Sources */,
 				E0A789AE1AFE2822004F3511 /* HLHomeViewController.m in Sources */,
+				E0FF06C81AFE5743007B9544 /* HLListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
