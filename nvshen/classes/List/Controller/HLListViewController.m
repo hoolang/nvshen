@@ -32,7 +32,7 @@
     // 这个item不能点击(目前放在viewWillAppear就能显示disable下的主题)
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
-    HLLog(@"HLListViewController-viewDidLoad");
+    //HLLog(@"HLListViewController-viewDidLoad");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +61,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"test-message-%d", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"test-message-%ld", (long)indexPath.row];
     
     return cell;
 }

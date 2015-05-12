@@ -12,8 +12,10 @@
 #import "HLListViewController.h"
 #import "HLProfileViewController.h"
 #import "HLDiscoverViewController.h"
+#import "HLTabBar.h"
+#import "HLComposeViewController.h"
 
-@interface HLTabBarViewController ()
+@interface HLTabBarViewController ()<HLTabBarDelegate>
 
 @end
 
@@ -33,7 +35,12 @@
     
     HLProfileViewController *profile = [[HLProfileViewController alloc] init];
     [self addChildVc:profile title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
-
+    
+    // 2.更换系统自带的tabbar
+    HLTabBar *tabBar = [[HLTabBar alloc] init];
+    tabBar.delegate = self;
+    [self setValue:tabBar forKeyPath:@"tabBar"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,4 +83,21 @@
     [self addChildViewController:nav];
 }
 
+#pragma mark - HLTabBarDelegate 代理方法
+- (void)tabBarDidClickPlusButton:(HLTabBar *)tabBar{
+    
+    HLComposeViewController *compose = [[HLComposeViewController alloc] init];
+    
+    HLNavigationController *nav = [[HLNavigationController alloc] initWithRootViewController:compose];
+    [self presentViewController:nav animated:YES completion:nil];
+    
+
+//    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) return;
+//    
+//    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+//    ipc.sourceType = type;
+//    ipc.delegate = self;
+//    [self presentViewController:ipc animated:YES completion:nil];
+    
+}
 @end

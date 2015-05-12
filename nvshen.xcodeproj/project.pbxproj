@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E09DCE761AFEEA5E00C5145E /* HLProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E09DCE751AFEEA5E00C5145E /* HLProfileViewController.m */; };
 		E09DCE7C1AFEEE7900C5145E /* HLDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E09DCE7B1AFEEE7900C5145E /* HLDiscoverViewController.m */; };
+		E09DCE7F1AFF022300C5145E /* HLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E09DCE7E1AFF022300C5145E /* HLTabBar.m */; };
 		E0A789A51AFE241D004F3511 /* HLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789A41AFE241D004F3511 /* HLNavigationController.m */; };
 		E0A789A81AFE24BD004F3511 /* HLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789A71AFE24BD004F3511 /* HLTabBarViewController.m */; };
 		E0A789AE1AFE2822004F3511 /* HLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789AD1AFE2822004F3511 /* HLHomeViewController.m */; };
@@ -21,6 +22,7 @@
 		E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229C1AFCA97000AE9948 /* AppDelegate.m */; };
 		E0D922A41AFCA97000AE9948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229D1AFCA97000AE9948 /* main.m */; };
 		E0D922A51AFCA97000AE9948 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D922A01AFCA97000AE9948 /* ViewController.m */; };
+		E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E75ABD1B00353400D60497 /* HLComposeViewController.m */; };
 		E0FF06C81AFE5743007B9544 /* HLListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0FF06C71AFE5743007B9544 /* HLListViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		E09DCE751AFEEA5E00C5145E /* HLProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLProfileViewController.m; sourceTree = "<group>"; };
 		E09DCE7A1AFEEE7900C5145E /* HLDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLDiscoverViewController.h; sourceTree = "<group>"; };
 		E09DCE7B1AFEEE7900C5145E /* HLDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLDiscoverViewController.m; sourceTree = "<group>"; };
+		E09DCE7D1AFF022300C5145E /* HLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTabBar.h; sourceTree = "<group>"; };
+		E09DCE7E1AFF022300C5145E /* HLTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTabBar.m; sourceTree = "<group>"; };
 		E0A789A31AFE241D004F3511 /* HLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLNavigationController.h; path = nvshen/HLNavigationController.h; sourceTree = SOURCE_ROOT; };
 		E0A789A41AFE241D004F3511 /* HLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLNavigationController.m; path = nvshen/HLNavigationController.m; sourceTree = SOURCE_ROOT; };
 		E0A789A61AFE24BD004F3511 /* HLTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLTabBarViewController.h; path = nvshen/HLTabBarViewController.h; sourceTree = SOURCE_ROOT; };
@@ -63,6 +67,8 @@
 		E0D9229F1AFCA97000AE9948 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		E0D922A01AFCA97000AE9948 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E0D922AF1AFCAE7000AE9948 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		E0E75ABC1B00353400D60497 /* HLComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLComposeViewController.h; sourceTree = "<group>"; };
+		E0E75ABD1B00353400D60497 /* HLComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLComposeViewController.m; sourceTree = "<group>"; };
 		E0FF06C61AFE5743007B9544 /* HLListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLListViewController.h; sourceTree = "<group>"; };
 		E0FF06C71AFE5743007B9544 /* HLListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +131,30 @@
 			sourceTree = "<group>";
 		};
 		E09DCE791AFEEE5900C5145E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E09DCE841AFF0A1300C5145E /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				E0E75ABB1B0034C300D60497 /* Controller */,
+				E09DCE861AFF0A1300C5145E /* Model */,
+				E09DCE871AFF0A1300C5145E /* View */,
+			);
+			path = Compose;
+			sourceTree = "<group>";
+		};
+		E09DCE861AFF0A1300C5145E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E09DCE871AFF0A1300C5145E /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -213,22 +243,15 @@
 		E0D922901AFCA97000AE9948 /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				E0D922911AFCA97000AE9948 /* Add */,
+				E09DCE841AFF0A1300C5145E /* Compose */,
 				E0D922921AFCA97000AE9948 /* Discover */,
 				E0D922931AFCA97000AE9948 /* Home */,
 				E0D922941AFCA97000AE9948 /* List */,
-				E0D922951AFCA97000AE9948 /* Main */,
+				E0D922951AFCA97000AE9948 /* Main(主要) */,
 				E0D922A11AFCA97000AE9948 /* Profile */,
 				E0D922A21AFCA97000AE9948 /* Temp */,
 			);
 			path = classes;
-			sourceTree = "<group>";
-		};
-		E0D922911AFCA97000AE9948 /* Add */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Add;
 			sourceTree = "<group>";
 		};
 		E0D922921AFCA97000AE9948 /* Discover */ = {
@@ -261,7 +284,7 @@
 			path = List;
 			sourceTree = "<group>";
 		};
-		E0D922951AFCA97000AE9948 /* Main */ = {
+		E0D922951AFCA97000AE9948 /* Main(主要) */ = {
 			isa = PBXGroup;
 			children = (
 				E0D922961AFCA97000AE9948 /* Category */,
@@ -271,8 +294,11 @@
 				E0D9229A1AFCA97000AE9948 /* Other */,
 				E0D9229E1AFCA97000AE9948 /* View */,
 				E0D9229F1AFCA97000AE9948 /* ViewController.h */,
+				E09DCE7D1AFF022300C5145E /* HLTabBar.h */,
+				E09DCE7E1AFF022300C5145E /* HLTabBar.m */,
 				E0D922A01AFCA97000AE9948 /* ViewController.m */,
 			);
+			name = "Main(主要)";
 			path = Main;
 			sourceTree = "<group>";
 		};
@@ -344,6 +370,15 @@
 			children = (
 			);
 			path = Temp;
+			sourceTree = "<group>";
+		};
+		E0E75ABB1B0034C300D60497 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E0E75ABC1B00353400D60497 /* HLComposeViewController.h */,
+				E0E75ABD1B00353400D60497 /* HLComposeViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		E0FF06C21AFE567C007B9544 /* Controller */ = {
@@ -476,11 +511,13 @@
 				E0D922A41AFCA97000AE9948 /* main.m in Sources */,
 				E09DCE7C1AFEEE7900C5145E /* HLDiscoverViewController.m in Sources */,
 				E0A789B71AFE2A50004F3511 /* UIView+Extension.m in Sources */,
+				E09DCE7F1AFF022300C5145E /* HLTabBar.m in Sources */,
 				E0A789BB1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m in Sources */,
 				E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */,
 				E09DCE761AFEEA5E00C5145E /* HLProfileViewController.m in Sources */,
 				E0A789A51AFE241D004F3511 /* HLNavigationController.m in Sources */,
 				E0A789AE1AFE2822004F3511 /* HLHomeViewController.m in Sources */,
+				E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */,
 				E0FF06C81AFE5743007B9544 /* HLListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

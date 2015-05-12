@@ -50,7 +50,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"test %d", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"test %ld", indexPath.row];
     return  cell;
 }
 
