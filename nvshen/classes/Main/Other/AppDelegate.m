@@ -24,6 +24,7 @@
     
     // 2.设置根控制器
     self.window.rootViewController = [[HLTabBarViewController alloc] init];
+
     
     // 4.显示窗口
     [self.window makeKeyAndVisible];

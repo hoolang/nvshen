@@ -7,23 +7,16 @@
 //
 
 #import "HLComposeViewController.h"
+#import "DoImagePickerController.h"
+@import Photos;
+
+
 
 @interface HLComposeViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @end
 
 @implementation HLComposeViewController
-
-
-+ (void)initialize{
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    self.view.backgroundColor = [UIColor whiteColor];
-    //添加相册
-    [self openAlbum];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,10 +25,13 @@
     
     //self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏
-    //[self setupNav];
-
+    [self setupNav];
     
+    [self setAlum];
 
+    //添加相册
+    //[self openAlbum];
+    
 
 }
 
@@ -101,5 +97,30 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)setAlum{
+    
+    DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
+    cont.delegate = self;
+    cont.nResultType = DO_PICKER_RESULT_UIIMAGE;
+    cont.nMaxCount = 1;
+    //    if (_sgMaxCount.selectedSegmentIndex == 0)
+    //        cont.nMaxCount = 1;
+    //    else if (_sgMaxCount.selectedSegmentIndex == 1)
+    //        cont.nMaxCount = 4;
+    //    else if (_sgMaxCount.selectedSegmentIndex == 2)
+    //    {
+    //        cont.nMaxCount = DO_NO_LIMIT_SELECT;
+    //        cont.nResultType = DO_PICKER_RESULT_ASSET;  // if you want to get lots photos, you'd better use this mode for memory!!!
+    //    }
+    
+    //cont.nColumnCount = _sgColumnCount.selectedSegmentIndex + 2;
+    cont.nColumnCount = 3;
+    [self presentViewController:cont animated:YES completion:nil];
+    
+
+}
+
+
 
 @end

@@ -14,6 +14,7 @@
 #import "HLDiscoverViewController.h"
 #import "HLTabBar.h"
 #import "HLComposeViewController.h"
+#import "DoImagePickerController.h"
 
 @interface HLTabBarViewController ()<HLTabBarDelegate>
 
@@ -86,10 +87,36 @@
 #pragma mark - HLTabBarDelegate 代理方法
 - (void)tabBarDidClickPlusButton:(HLTabBar *)tabBar{
     
-    HLComposeViewController *compose = [[HLComposeViewController alloc] init];
+    //HLComposeViewController *compose = [[HLComposeViewController alloc] init];
     
-    HLNavigationController *nav = [[HLNavigationController alloc] initWithRootViewController:compose];
+
+    
+    DoImagePickerController *ipc = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
+    ipc.delegate = self;
+    ipc.nResultType = DO_PICKER_RESULT_UIIMAGE;
+    ipc.nMaxCount = 1;
+    //    if (_sgMaxCount.selectedSegmentIndex == 0)
+    //        cont.nMaxCount = 1;
+    //    else if (_sgMaxCount.selectedSegmentIndex == 1)
+    //        cont.nMaxCount = 4;
+    //    else if (_sgMaxCount.selectedSegmentIndex == 2)
+    //    {
+    //        cont.nMaxCount = DO_NO_LIMIT_SELECT;
+    //        cont.nResultType = DO_PICKER_RESULT_ASSET;  // if you want to get lots photos, you'd better use this mode for memory!!!
+    //    }
+    
+    //cont.nColumnCount = _sgColumnCount.selectedSegmentIndex + 2;
+    ipc.nColumnCount = 3;
+    
+    HLNavigationController *nav = [[HLNavigationController alloc] initWithRootViewController:ipc];
+    
+    
+    
+
+    
     [self presentViewController:nav animated:YES completion:nil];
+    
+    
     
 
 //    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) return;

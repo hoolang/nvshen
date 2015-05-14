@@ -15,6 +15,27 @@
 		E0A789AE1AFE2822004F3511 /* HLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789AD1AFE2822004F3511 /* HLHomeViewController.m */; };
 		E0A789B71AFE2A50004F3511 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789B61AFE2A50004F3511 /* UIView+Extension.m */; };
 		E0A789BB1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789BA1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m */; };
+		E0ADF9AE1B04E57300732E3C /* HLEditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ADF9AC1B04E57300732E3C /* HLEditPhotoViewController.m */; };
+		E0ADF9AF1B04E57300732E3C /* HLEditPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0ADF9AD1B04E57300732E3C /* HLEditPhotoViewController.xib */; };
+		E0B5EA2E1B04A1CB0086BC03 /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B5EA241B04A1CB0086BC03 /* AssetHelper.m */; };
+		E0B5EA2F1B04A1CB0086BC03 /* DoAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B5EA261B04A1CB0086BC03 /* DoAlbumCell.m */; };
+		E0B5EA301B04A1CB0086BC03 /* DoAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA271B04A1CB0086BC03 /* DoAlbumCell.xib */; };
+		E0B5EA311B04A1CB0086BC03 /* DoImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B5EA291B04A1CB0086BC03 /* DoImagePickerController.m */; };
+		E0B5EA321B04A1CB0086BC03 /* DoImagePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA2A1B04A1CB0086BC03 /* DoImagePickerController.xib */; };
+		E0B5EA331B04A1CB0086BC03 /* DoPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B5EA2C1B04A1CB0086BC03 /* DoPhotoCell.m */; };
+		E0B5EA341B04A1CB0086BC03 /* DoPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA2D1B04A1CB0086BC03 /* DoPhotoCell.xib */; };
+		E0B5EA421B04A1E20086BC03 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA371B04A1E20086BC03 /* check.png */; };
+		E0B5EA431B04A1E20086BC03 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA381B04A1E20086BC03 /* check@2x.png */; };
+		E0B5EA441B04A1E20086BC03 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA391B04A1E20086BC03 /* close.png */; };
+		E0B5EA451B04A1E20086BC03 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA3A1B04A1E20086BC03 /* close@2x.png */; };
+		E0B5EA461B04A1E20086BC03 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA3B1B04A1E20086BC03 /* down.png */; };
+		E0B5EA471B04A1E20086BC03 /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA3C1B04A1E20086BC03 /* down@2x.png */; };
+		E0B5EA481B04A1E20086BC03 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA3D1B04A1E20086BC03 /* line@2x.png */; };
+		E0B5EA491B04A1E20086BC03 /* show.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA3E1B04A1E20086BC03 /* show.png */; };
+		E0B5EA4A1B04A1E20086BC03 /* show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA3F1B04A1E20086BC03 /* show@2x.png */; };
+		E0B5EA4B1B04A1E20086BC03 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA401B04A1E20086BC03 /* up.png */; };
+		E0B5EA4C1B04A1E20086BC03 /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA411B04A1E20086BC03 /* up@2x.png */; };
+		E0B5EA4E1B04A2640086BC03 /* Main副本.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA4D1B04A2640086BC03 /* Main副本.storyboard */; };
 		E0D9226B1AFC9C5A00AE9948 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0D922691AFC9C5A00AE9948 /* Main.storyboard */; };
 		E0D9226D1AFC9C5A00AE9948 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0D9226C1AFC9C5A00AE9948 /* Images.xcassets */; };
 		E0D922701AFC9C5A00AE9948 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0D9226E1AFC9C5A00AE9948 /* LaunchScreen.xib */; };
@@ -53,6 +74,32 @@
 		E0A789B61AFE2A50004F3511 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		E0A789B91AFE2F6F004F3511 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		E0A789BA1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
+		E0ADF9AB1B04E57300732E3C /* HLEditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditPhotoViewController.h; sourceTree = "<group>"; };
+		E0ADF9AC1B04E57300732E3C /* HLEditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditPhotoViewController.m; sourceTree = "<group>"; };
+		E0ADF9AD1B04E57300732E3C /* HLEditPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLEditPhotoViewController.xib; sourceTree = "<group>"; };
+		E0B5EA231B04A1CB0086BC03 /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
+		E0B5EA241B04A1CB0086BC03 /* AssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetHelper.m; sourceTree = "<group>"; };
+		E0B5EA251B04A1CB0086BC03 /* DoAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoAlbumCell.h; sourceTree = "<group>"; };
+		E0B5EA261B04A1CB0086BC03 /* DoAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoAlbumCell.m; sourceTree = "<group>"; };
+		E0B5EA271B04A1CB0086BC03 /* DoAlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoAlbumCell.xib; sourceTree = "<group>"; };
+		E0B5EA281B04A1CB0086BC03 /* DoImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoImagePickerController.h; sourceTree = "<group>"; };
+		E0B5EA291B04A1CB0086BC03 /* DoImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoImagePickerController.m; sourceTree = "<group>"; };
+		E0B5EA2A1B04A1CB0086BC03 /* DoImagePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoImagePickerController.xib; sourceTree = "<group>"; };
+		E0B5EA2B1B04A1CB0086BC03 /* DoPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoPhotoCell.h; sourceTree = "<group>"; };
+		E0B5EA2C1B04A1CB0086BC03 /* DoPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoPhotoCell.m; sourceTree = "<group>"; };
+		E0B5EA2D1B04A1CB0086BC03 /* DoPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoPhotoCell.xib; sourceTree = "<group>"; };
+		E0B5EA371B04A1E20086BC03 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		E0B5EA381B04A1E20086BC03 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		E0B5EA391B04A1E20086BC03 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		E0B5EA3A1B04A1E20086BC03 /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x.png"; sourceTree = "<group>"; };
+		E0B5EA3B1B04A1E20086BC03 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		E0B5EA3C1B04A1E20086BC03 /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@2x.png"; sourceTree = "<group>"; };
+		E0B5EA3D1B04A1E20086BC03 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
+		E0B5EA3E1B04A1E20086BC03 /* show.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show.png; sourceTree = "<group>"; };
+		E0B5EA3F1B04A1E20086BC03 /* show@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show@2x.png"; sourceTree = "<group>"; };
+		E0B5EA401B04A1E20086BC03 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
+		E0B5EA411B04A1E20086BC03 /* up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up@2x.png"; sourceTree = "<group>"; };
+		E0B5EA4D1B04A2640086BC03 /* Main副本.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main副本.storyboard"; sourceTree = "<group>"; };
 		E0D9225C1AFC9C5A00AE9948 /* nvshen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nvshen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D922601AFC9C5A00AE9948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0D9226A1AFC9C5A00AE9948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,6 +138,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E081D6F21B021612005E42F1 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				E0B5EA221B04A1CB0086BC03 /* DoImagePicker */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
 		E09DCE711AFEE94300C5145E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +195,7 @@
 		E09DCE841AFF0A1300C5145E /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				E081D6F21B021612005E42F1 /* Lib */,
 				E0E75ABB1B0034C300D60497 /* Controller */,
 				E09DCE861AFF0A1300C5145E /* Model */,
 				E09DCE871AFF0A1300C5145E /* View */,
@@ -182,6 +238,52 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E0B5EA221B04A1CB0086BC03 /* DoImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				E0B5EA351B04A1E20086BC03 /* Resources */,
+				E0B5EA231B04A1CB0086BC03 /* AssetHelper.h */,
+				E0B5EA241B04A1CB0086BC03 /* AssetHelper.m */,
+				E0B5EA251B04A1CB0086BC03 /* DoAlbumCell.h */,
+				E0B5EA4D1B04A2640086BC03 /* Main副本.storyboard */,
+				E0B5EA261B04A1CB0086BC03 /* DoAlbumCell.m */,
+				E0B5EA271B04A1CB0086BC03 /* DoAlbumCell.xib */,
+				E0B5EA281B04A1CB0086BC03 /* DoImagePickerController.h */,
+				E0B5EA291B04A1CB0086BC03 /* DoImagePickerController.m */,
+				E0B5EA2A1B04A1CB0086BC03 /* DoImagePickerController.xib */,
+				E0B5EA2B1B04A1CB0086BC03 /* DoPhotoCell.h */,
+				E0B5EA2C1B04A1CB0086BC03 /* DoPhotoCell.m */,
+				E0B5EA2D1B04A1CB0086BC03 /* DoPhotoCell.xib */,
+			);
+			path = DoImagePicker;
+			sourceTree = "<group>";
+		};
+		E0B5EA351B04A1E20086BC03 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E0B5EA361B04A1E20086BC03 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E0B5EA361B04A1E20086BC03 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E0B5EA371B04A1E20086BC03 /* check.png */,
+				E0B5EA381B04A1E20086BC03 /* check@2x.png */,
+				E0B5EA391B04A1E20086BC03 /* close.png */,
+				E0B5EA3A1B04A1E20086BC03 /* close@2x.png */,
+				E0B5EA3B1B04A1E20086BC03 /* down.png */,
+				E0B5EA3C1B04A1E20086BC03 /* down@2x.png */,
+				E0B5EA3D1B04A1E20086BC03 /* line@2x.png */,
+				E0B5EA3E1B04A1E20086BC03 /* show.png */,
+				E0B5EA3F1B04A1E20086BC03 /* show@2x.png */,
+				E0B5EA401B04A1E20086BC03 /* up.png */,
+				E0B5EA411B04A1E20086BC03 /* up@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		E0D922531AFC9C5A00AE9948 = {
@@ -377,6 +479,9 @@
 			children = (
 				E0E75ABC1B00353400D60497 /* HLComposeViewController.h */,
 				E0E75ABD1B00353400D60497 /* HLComposeViewController.m */,
+				E0ADF9AB1B04E57300732E3C /* HLEditPhotoViewController.h */,
+				E0ADF9AC1B04E57300732E3C /* HLEditPhotoViewController.m */,
+				E0ADF9AD1B04E57300732E3C /* HLEditPhotoViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -486,9 +591,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B5EA4A1B04A1E20086BC03 /* show@2x.png in Resources */,
+				E0B5EA491B04A1E20086BC03 /* show.png in Resources */,
+				E0B5EA441B04A1E20086BC03 /* close.png in Resources */,
+				E0B5EA4C1B04A1E20086BC03 /* up@2x.png in Resources */,
+				E0B5EA321B04A1CB0086BC03 /* DoImagePickerController.xib in Resources */,
+				E0B5EA301B04A1CB0086BC03 /* DoAlbumCell.xib in Resources */,
+				E0B5EA421B04A1E20086BC03 /* check.png in Resources */,
 				E0D9226B1AFC9C5A00AE9948 /* Main.storyboard in Resources */,
+				E0B5EA4E1B04A2640086BC03 /* Main副本.storyboard in Resources */,
+				E0B5EA481B04A1E20086BC03 /* line@2x.png in Resources */,
+				E0B5EA461B04A1E20086BC03 /* down.png in Resources */,
+				E0B5EA451B04A1E20086BC03 /* close@2x.png in Resources */,
+				E0ADF9AF1B04E57300732E3C /* HLEditPhotoViewController.xib in Resources */,
+				E0B5EA341B04A1CB0086BC03 /* DoPhotoCell.xib in Resources */,
+				E0B5EA471B04A1E20086BC03 /* down@2x.png in Resources */,
 				E0D922701AFC9C5A00AE9948 /* LaunchScreen.xib in Resources */,
 				E0D9226D1AFC9C5A00AE9948 /* Images.xcassets in Resources */,
+				E0B5EA4B1B04A1E20086BC03 /* up.png in Resources */,
+				E0B5EA431B04A1E20086BC03 /* check@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,15 +631,20 @@
 				E0A789A81AFE24BD004F3511 /* HLTabBarViewController.m in Sources */,
 				E0D922A41AFCA97000AE9948 /* main.m in Sources */,
 				E09DCE7C1AFEEE7900C5145E /* HLDiscoverViewController.m in Sources */,
+				E0B5EA2E1B04A1CB0086BC03 /* AssetHelper.m in Sources */,
 				E0A789B71AFE2A50004F3511 /* UIView+Extension.m in Sources */,
 				E09DCE7F1AFF022300C5145E /* HLTabBar.m in Sources */,
 				E0A789BB1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m in Sources */,
 				E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */,
+				E0B5EA331B04A1CB0086BC03 /* DoPhotoCell.m in Sources */,
 				E09DCE761AFEEA5E00C5145E /* HLProfileViewController.m in Sources */,
 				E0A789A51AFE241D004F3511 /* HLNavigationController.m in Sources */,
 				E0A789AE1AFE2822004F3511 /* HLHomeViewController.m in Sources */,
+				E0B5EA311B04A1CB0086BC03 /* DoImagePickerController.m in Sources */,
 				E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */,
 				E0FF06C81AFE5743007B9544 /* HLListViewController.m in Sources */,
+				E0B5EA2F1B04A1CB0086BC03 /* DoAlbumCell.m in Sources */,
+				E0ADF9AE1B04E57300732E3C /* HLEditPhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +770,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -660,6 +787,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
