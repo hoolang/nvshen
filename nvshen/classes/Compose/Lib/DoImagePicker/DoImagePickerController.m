@@ -11,6 +11,7 @@
 #import "DoAlbumCell.h"
 #import "DoPhotoCell.h"
 #import "HLEditPhotoViewController.h"
+#import "MLImageCrop.h"
 
 @implementation DoImagePickerController
 
@@ -59,13 +60,19 @@
                                                  name: UIApplicationWillEnterForegroundNotification
                                                object: nil];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
+    HLLog(@"view Wil Appear");
+}
 
+// 隐藏的时候调用
 - (void)viewDidDisappear:(BOOL)animated
 {
-    if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
-        [ASSETHELPER clearData];
+    HLLog(@"viewDidDisappear");
+    //if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
+     //   [ASSETHELPER clearData];
     
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
+	//[[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)handleEnterForeground:(NSNotification*)notification
@@ -163,7 +170,21 @@
         _lbSelectCount.textColor = DO_BOTTOM_TEXT_COLOR;
     }
 }
+#pragma -mark 通过拍照获得图片
+- (void)onSelectCamera:(id)sender{
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+    }
+    
+    [self presentModalViewController:picker animated:YES];
 
+
+}
+
+#pragma -mark 通过相册获取图片
 - (IBAction)onSelectPhoto:(id)sender
 {
     NSMutableArray *aResult = [[NSMutableArray alloc] initWithCapacity:_dSelected.count];
@@ -171,6 +192,7 @@
 
     if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
     {
+        HLLog(@"onSelectPhoto");
         for (int i = 0; i < _dSelected.count; i++)
         {
             UIImage *iSelected = [ASSETHELPER getImageAtIndex:[aKeys[i] integerValue] type:ASSET_PHOTO_SCREEN_SIZE];
@@ -189,7 +211,9 @@
 
 - (IBAction)onCancel:(id)sender
 {
-    [_delegate didCancelDoImagePickerController];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //[_delegate didCancelDoImagePickerController];
 }
 
 - (IBAction)onSelectAlbum:(id)sender
@@ -268,6 +292,68 @@
     [self hideBottomMenu];
 }
 
+#pragma -mark 拍照选择照片协议方法
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    NSData *data;
+    
+    if ([mediaType isEqualToString:@"public.image"]){
+        
+        //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
+        UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
+        //图片压缩，因为原图都是很大的，不必要传原图
+        UIImage *scaleImage = [self scaleImage:originImage toScale:0.3];
+        
+        //以下这两步都是比较耗时的操作，最好开一个HUD提示用户，这样体验会好些，不至于阻塞界面
+        if (UIImagePNGRepresentation(scaleImage) == nil) {
+            //将图片转换为JPG格式的二进制数据
+            data = UIImageJPEGRepresentation(scaleImage, 1);
+        } else {
+            //将图片转换为PNG格式的二进制数据
+            data = UIImagePNGRepresentation(scaleImage);
+        }
+        
+        //将二进制数据生成UIImage
+        UIImage *image = [UIImage imageWithData:data];
+        
+        HLLog(@"拍照选择照片协议方法");
+        
+        
+        MLImageCrop *imageCrop = [[MLImageCrop alloc]init];
+        //imageCrop.delegate = editPhotoVC;
+        imageCrop.ratioOfWidthAndHeight = 800.0f/800.0f;// 更改这个比例可以控制图片的形状
+        imageCrop.image = image;
+
+        
+        
+        //[imageCrop showWithAnimation:YES];
+        HLLog(@"相机");
+        [picker pushViewController:imageCrop animated:YES];
+        //[picker.navigationController pushViewController:imageCrop animated:YES];
+        
+    }
+}
+
+-(void)back{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark- 相机：缩放图片
+-(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
+{
+    UIGraphicsBeginImageContext(CGSizeMake(image.size.width*scaleSize,image.size.height*scaleSize));
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height *scaleSize)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
+}
+
+
 - (void)hideBottomMenu
 {
     [UIView animateWithDuration:0.2 animations:^(void) {
@@ -310,51 +396,81 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    HLEditPhotoViewController *editPhotoVC = [[HLEditPhotoViewController alloc] initWithNibName:@"HLEditPhotoViewController" bundle:nil];
-    HLLog(@"%ld",(long)indexPath.row);
-    UIImage *iimage = [UIImage imageWithContentsOfFile:@"check"];
-
-    editPhotoVC.title = @"编辑";
-
+    MLImageCrop *imageCrop = [[MLImageCrop alloc]init];
+    //imageCrop.delegate = editPhotoVC;
+    imageCrop.ratioOfWidthAndHeight = 800.0f/800.0f;
+    imageCrop.image = [ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_FULL_RESOLUTION];
 
 
-    [self.navigationController pushViewController:editPhotoVC animated:YES];
-    HLLog(@"%@",self.navigationController);
+    //[imageCrop showWithAnimation:YES];
+    [self.navigationController pushViewController:imageCrop animated:YES];
     
-    //[self presentViewController:editPhotoVC animated:YES completion:nil];
 
     
-    return;
+   // return;
     
-    if (_nMaxCount > 1 || _nMaxCount == DO_NO_LIMIT_SELECT)
-    {
-		DoPhotoCell *cell = (DoPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        
-		if ((_dSelected[@(indexPath.row)] == nil) && (_nMaxCount > _dSelected.count))
-		{
-			// select
-			_dSelected[@(indexPath.row)] = @(_dSelected.count);
-			[cell setSelectMode:YES];
-		}
-		else
-		{
-			// unselect
-			[_dSelected removeObjectForKey:@(indexPath.row)];
-			[cell setSelectMode:NO];
-		}
-        
-        if (_nMaxCount == DO_NO_LIMIT_SELECT)
-            _lbSelectCount.text = [NSString stringWithFormat:@"(%d)", (int)_dSelected.count];
-        else
-            _lbSelectCount.text = [NSString stringWithFormat:@"(%d/%d)", (int)_dSelected.count, (int)_nMaxCount];
-    }
-    else
-    {
-        if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
-            [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_SCREEN_SIZE]]];
-        else
-            [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getAssetAtIndex:indexPath.row]]];
-    }
+    
+//    HLLog(@"%ld",(long)indexPath.row);
+//    
+//    UIImage *iSelected = [ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_FULL_RESOLUTION];
+// 
+//    HLLog(@"iSelected %@", iSelected);
+//    
+//    editPhotoVC.ImageShow.frame = CGRectMake(0, 120, 100, 100);
+//    editPhotoVC.ImageShow.image = iSelected;
+//    self.delegate = editPhotoVC;
+//
+//    
+//    
+////    HLLog(@"editPhotoVC.ImageShow.image %@ ", editPhotoVC.ImageShow.image);
+//
+//
+//    editPhotoVC.title = @"编辑";
+//    
+//    if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
+//        [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_SCREEN_SIZE]]];
+//    else
+//        [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getAssetAtIndex:indexPath.row]]];
+//
+//    //self.navigationController.navigationBar.hidden = NO;
+//
+//    [self.navigationController pushViewController:editPhotoVC animated:YES];
+//    HLLog(@"%@",self.navigationController);
+    
+//    [self presentViewController:editPhotoVC animated:YES completion:nil];
+
+    
+//    return;
+//    
+//    if (_nMaxCount > 1 || _nMaxCount == DO_NO_LIMIT_SELECT)
+//    {
+//		DoPhotoCell *cell = (DoPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
+//        
+//		if ((_dSelected[@(indexPath.row)] == nil) && (_nMaxCount > _dSelected.count))
+//		{
+//			// select
+//			_dSelected[@(indexPath.row)] = @(_dSelected.count);
+//			[cell setSelectMode:YES];
+//		}
+//		else
+//		{
+//			// unselect
+//			[_dSelected removeObjectForKey:@(indexPath.row)];
+//			[cell setSelectMode:NO];
+//		}
+//        
+//        if (_nMaxCount == DO_NO_LIMIT_SELECT)
+//            _lbSelectCount.text = [NSString stringWithFormat:@"(%d)", (int)_dSelected.count];
+//        else
+//            _lbSelectCount.text = [NSString stringWithFormat:@"(%d/%d)", (int)_dSelected.count, (int)_nMaxCount];
+//    }
+//    else
+//    {
+//        if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
+//            [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_SCREEN_SIZE]]];
+//        else
+//            [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getAssetAtIndex:indexPath.row]]];
+//    }
 }
 #pragma -mark 设置每一行列数
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -622,6 +738,9 @@
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+- (void)dealloc{
+    HLLog(@"ipc dealloc");
 }
 
 @end

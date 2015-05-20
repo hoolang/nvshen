@@ -111,7 +111,7 @@
     HLNavigationController *nav = [[HLNavigationController alloc] initWithRootViewController:ipc];
     
     
-    
+    nav.navigationBar.hidden = YES;
 
     
     [self presentViewController:nav animated:YES completion:nil];

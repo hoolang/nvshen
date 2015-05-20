@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DoImagePickerController.h"
 
-@interface HLEditPhotoViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *imageEdit;
+@interface HLEditPhotoViewController : UIViewController 
+
+@property (strong, nonatomic) IBOutlet UIImageView *ImageShow;
+@property (strong, nonatomic) NSArray *images;
 
 @end

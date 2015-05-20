@@ -15,7 +15,21 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "UIView+Extension.h"
+#import "UITextView+Extension.h"
+#import "NSString+Emoji.h"
 #import "UIBarButtonItem+Extension.h"
+#import "UMSocial.h" //友盟
+
+//友盟
+#define UmengAppkey @"555bf86967e58ea877004d2d"
+// 通知中心
+#define HLNotificationCenter [NSNotificationCenter defaultCenter]
+// 通知
+// 表情选中的通知
+#define HWEmotionDidSelectNotification @"HWEmotionDidSelectNotification"
+#define HWSelectEmotionKey @"HWSelectEmotionKey"
+// 删除文字的通知
+#define HWEmotionDidDeleteNotification @"HWEmotionDidDeleteNotification"
 
 #ifdef DEBUG // 处于开发阶段
 #define HLLog(...) NSLog(__VA_ARGS__)
@@ -29,3 +43,6 @@
 // 随机色
 #define HLRandomColor HLColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 #endif
+
+
+

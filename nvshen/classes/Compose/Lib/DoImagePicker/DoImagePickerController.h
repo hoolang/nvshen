@@ -56,6 +56,7 @@
 - (IBAction)onSelectPhoto:(id)sender;
 - (IBAction)onCancel:(id)sender;
 - (IBAction)onSelectAlbum:(id)sender;
+- (IBAction)onSelectCamera:(id)sender;
 - (void)hideBottomMenu;
 
 

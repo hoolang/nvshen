@@ -17,6 +17,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //设置友盟社会化组件appkey
+    [UMSocialData setAppKey:UmengAppkey];
+    
+    //打开调试log的开关
+    [UMSocialData openLog:YES];
     
     // 1.创建窗口
     self.window = [[UIWindow alloc] init];
