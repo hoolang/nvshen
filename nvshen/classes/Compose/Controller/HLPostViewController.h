@@ -10,6 +10,10 @@
 #import "HLEmotionTextView.h"
 
 @interface HLPostViewController : UIViewController
+<
+UITextViewDelegate,
+UMSocialUIDelegate
+>
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
 
 @property (strong, nonatomic) UIImage *image;

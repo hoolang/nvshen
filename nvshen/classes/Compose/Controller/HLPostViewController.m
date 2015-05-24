@@ -9,23 +9,22 @@
 #import "HLPostViewController.h"
 #import "HLEmotionTextView.h"
 #import "HLEmotion.h"
+#import "AFNetworking.h"
+#import "MBProgressHUD+MJ.h"
+
 
 @interface HLPostViewController ()<UITextViewDelegate>
 /** 输入控件 */
 @property (nonatomic, weak) HLEmotionTextView *textView;
-@property (nonatomic, weak) HLEmotionTextView *textView2;
 
-
-@property (strong, nonatomic) IBOutlet HLEmotionTextView *postText;
 @end
 
 @implementation HLPostViewController
-@synthesize postText;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(submit) image:@"navigationbar_back" highImage:@"navigationbar_back_highlighted"];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(send) image:@"navigationbar_back" highImage:@"navigationbar_back_highlighted"];
   
     HLEmotionTextView *textView = [[HLEmotionTextView alloc] init];
     // 垂直方向上可以拖拽
@@ -36,17 +35,16 @@
                                 );
     textView.font = [UIFont systemFontOfSize:13];
     textView.delegate = self;
-    textView.placeholder = @"秀秀我的态度";
+    textView.placeholder = @"秀一秀我的态度";
     [textView becomeFirstResponder];
-    
-    //_postText.placeholder = textView.placeholder;
 
     _postImageView.image = _image;
+    self.textView = textView;
     
     [self.view addSubview:textView];
     
     // 文字改变的通知
-    [HLNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:postText];
+    [HLNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:textView];
     
 //    // 键盘通知
 //    // 键盘的frame发生改变时发出的通知（位置和尺寸）
@@ -65,11 +63,119 @@
  */
 - (void)emotionDidDelete
 {
-    [self.postText deleteBackward];
+    [self.textView deleteBackward];
 }
 
--(void)submit{
-    HLLog(@"submit");
+-(void)QQ{
+    HLLog(@"QQ");
+//    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
+//    
+//    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+//        
+//        //          获取微博用户名、uid、token等
+//        
+//        if (response.responseCode == UMSResponseCodeSuccess) {
+//            
+//            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToQQ];
+//            
+//            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+//            
+//        }});
+    
+    
+    
+}
+
+- (void)send {
+    HLLog(@"send");
+    HLLog(@"send %@",_image);
+    [self sendWithImage];
+//    if (_image) {
+//        [self sendWithImage];
+//    } else {
+//        [self sendWithoutImage];
+//    }
+    // dismiss
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/**
+ * 发布带有图片的微博
+ */
+- (void)sendWithImage
+{
+    
+    HLLog(@"sendWithImage=======================");
+    // URL: https://upload.api.weibo.com/2/statuses/upload.json
+    // 参数:
+    /**	status true string 要发布的微博文本内容，必须做URLencode，内容不超过140个汉字。*/
+    /**	access_token true string*/
+    /**	pic true binary 微博的配图。*/
+    
+    // 1.请求管理者
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];//设置相应内容类型
+    
+    // 2.拼接请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    //params[@"access_token"] = [HWAccountTool account].access_token;
+    HLLog(@"self.postText.text==========%@", self.textView.text);
+    params[@"post.content"] = self.textView.text;
+    
+    
+    // 3.发送请求
+    [mgr POST:@"http://192.168.168.101:8008/nvshen/addPost.action" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        // 拼接文件数据
+        UIImage *image = _image;
+        HLLog(@"%@",_image);
+        NSData *data = UIImageJPEGRepresentation(image, 1.0);
+        [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
+    } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        [MBProgressHUD showSuccess:@"发送成功"];
+        HLLog(@"responseObject ::::%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD showError:@"发送失败"];
+        HLLog(@"responseObject ::::%@",error);
+    }];
+}
+
+/**
+ * 发布没有图片的微博
+ */
+- (void)sendWithoutImage
+{
+    // URL: https://api.weibo.com/2/statuses/update.json
+    // 参数:
+    /**	status true string 要发布的微博文本内容，必须做URLencode，内容不超过140个汉字。*/
+    /**	access_token true string*/
+    // 1.请求管理者
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    // 2.拼接请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    params[@"access_token"] = [HWAccountTool account].access_token;
+//    params[@"status"] = self.textView.fullText;
+    
+    // 3.发送请求
+//    [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+//        [MBProgressHUD showSuccess:@"发送成功"];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [MBProgressHUD showError:@"发送失败"];
+//    }];
+    
+    [mgr POST:@"http://192.168.168.101:8008/nvshen/addPost.action" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        // 拼接文件数据
+        UIImage *image = _image;
+        HLLog(@"%@",_image);
+        NSData *data = UIImageJPEGRepresentation(image, 1.0);
+        [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
+    } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        NSLog(@"operation showSuccess %@", operation);
+        [MBProgressHUD showSuccess:@"发送成功"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"operation showError %@ error %@", operation, error);
+        [MBProgressHUD showError:@"发送失败"];
+    }];
 }
 -(void)textDidChange{
     HLLog(@"textDidChange");
