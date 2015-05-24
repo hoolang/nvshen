@@ -104,8 +104,7 @@
  */
 - (void)sendWithImage
 {
-    
-    HLLog(@"sendWithImage=======================");
+
     // URL: https://upload.api.weibo.com/2/statuses/upload.json
     // 参数:
     /**	status true string 要发布的微博文本内容，必须做URLencode，内容不超过140个汉字。*/
@@ -114,12 +113,12 @@
     
     // 1.请求管理者
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];//设置相应内容类型
+    //设置响应内容类型
+    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     // 2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     //params[@"access_token"] = [HWAccountTool account].access_token;
-    HLLog(@"self.postText.text==========%@", self.textView.text);
     params[@"post.content"] = self.textView.text;
     
     
@@ -127,15 +126,12 @@
     [mgr POST:@"http://192.168.168.101:8008/nvshen/addPost.action" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
         UIImage *image = _image;
-        HLLog(@"%@",_image);
         NSData *data = UIImageJPEGRepresentation(image, 1.0);
         [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         [MBProgressHUD showSuccess:@"发送成功"];
-        HLLog(@"responseObject ::::%@",responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD showError:@"发送失败"];
-        HLLog(@"responseObject ::::%@",error);
     }];
 }
 
@@ -166,19 +162,16 @@
     [mgr POST:@"http://192.168.168.101:8008/nvshen/addPost.action" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
         UIImage *image = _image;
-        HLLog(@"%@",_image);
         NSData *data = UIImageJPEGRepresentation(image, 1.0);
         [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-        NSLog(@"operation showSuccess %@", operation);
         [MBProgressHUD showSuccess:@"发送成功"];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"operation showError %@ error %@", operation, error);
         [MBProgressHUD showError:@"发送失败"];
     }];
 }
 -(void)textDidChange{
-    HLLog(@"textDidChange");
+    //HLLog(@"textDidChange");
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

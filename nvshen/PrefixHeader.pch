@@ -18,7 +18,7 @@
 #import "UITextView+Extension.h"
 #import "NSString+Emoji.h"
 #import "UIBarButtonItem+Extension.h"
-#import "UMSocial.h" //友盟
+
 
 //友盟
 #define UmengAppkey @"555bf86967e58ea877004d2d"

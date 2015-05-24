@@ -11,8 +11,7 @@
 
 @interface HLPostViewController : UIViewController
 <
-UITextViewDelegate,
-UMSocialUIDelegate
+UITextViewDelegate
 >
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
 

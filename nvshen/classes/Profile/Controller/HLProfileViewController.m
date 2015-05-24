@@ -7,6 +7,7 @@
 //
 
 #import "HLProfileViewController.h"
+#import "HLSettingTableViewController.h"
 
 @interface HLProfileViewController ()
 
@@ -16,12 +17,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem =
+    // style : 这个参数是用来设置背景的，在iOS7之前效果比较明显, iOS7中没有任何效果
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(setting)];
+    // 这个item不能点击(目前放在viewWillAppear就能显示disable下的主题)
+    //self.navigationItem.rightBarButtonItem.enabled = NO;
+}
+
+- (void) setting{
+    // 创建设置口控制器
+    HLSettingTableViewController *settingVc = [[HLSettingTableViewController alloc] init];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // 跳转到设置界面
+    [self.navigationController pushViewController:settingVc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,13 +42,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 20;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 10;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -50,7 +58,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"test %ld", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"test999 %ld", indexPath.row];
     return  cell;
 }
 

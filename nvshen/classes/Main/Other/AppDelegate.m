@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "HLTabBarViewController.h"
 
-#import "UMSocialQQHandler.h"
 
 @interface AppDelegate ()
 
@@ -20,11 +19,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //设置友盟社会化组件appkey
-    [UMSocialData setAppKey:UmengAppkey];
-    [UMSocialQQHandler setQQWithAppId:@"1104653034" appKey:@"H6WMgzXsRf5k7zig" url:@"http://www.umeng.com/social"];
+    //[UMSocialData setAppKey:UmengAppkey];
+    //[UMSocialQQHandler setQQWithAppId:@"1104653034" appKey:@"H6WMgzXsRf5k7zig" url:@"http://www.umeng.com/social"];
     
     //打开调试log的开关
-    [UMSocialData openLog:YES];
+    //[UMSocialData openLog:YES];
     
     // 1.创建窗口
     self.window = [[UIWindow alloc] init];
