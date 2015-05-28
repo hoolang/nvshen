@@ -23,7 +23,6 @@
 @implementation HLScoreNoticeViewController
 
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

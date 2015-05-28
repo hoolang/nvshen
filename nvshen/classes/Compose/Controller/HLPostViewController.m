@@ -38,7 +38,8 @@
     textView.placeholder = @"秀一秀我的态度";
     [textView becomeFirstResponder];
 
-    _postImageView.image = _image;
+
+    self.postImageView.image = _image;
     self.textView = textView;
     
     [self.view addSubview:textView];
@@ -123,7 +124,7 @@
     
     
     // 3.发送请求
-    [mgr POST:@"http://192.168.168.101:8008/nvshen/addPost.action" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [mgr POST:HLPOST parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
         UIImage *image = _image;
         NSData *data = UIImageJPEGRepresentation(image, 1.0);
@@ -159,7 +160,7 @@
 //        [MBProgressHUD showError:@"发送失败"];
 //    }];
     
-    [mgr POST:@"http://192.168.168.101:8008/nvshen/addPost.action" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [mgr POST:@"http://192.168.168.100:8008/nvshen/addPost.action" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
         UIImage *image = _image;
         NSData *data = UIImageJPEGRepresentation(image, 1.0);

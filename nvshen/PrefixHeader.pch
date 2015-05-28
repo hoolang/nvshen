@@ -17,11 +17,18 @@
 #import "UIView+Extension.h"
 #import "UITextView+Extension.h"
 #import "NSString+Emoji.h"
+#import "NSString+Extension.h"
 #import "UIBarButtonItem+Extension.h"
+#import "NSDate+Extension.h"
 
-
+//版本>=IOS7
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 //友盟
 #define UmengAppkey @"555bf86967e58ea877004d2d"
+
+//发表一篇秀秀
+#define HLPOST @"http://192.168.168.100:8008/nvshen/addPost.action"
+
 // 通知中心
 #define HLNotificationCenter [NSNotificationCenter defaultCenter]
 // 通知
