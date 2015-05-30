@@ -40,9 +40,10 @@
 - (void)setPhoto:(HLPhoto *)photo
 {
     _photo = photo;
-    
+    HLLog(@"photo.thumbnail_pic %@",photo.thumbnail_pic);
+
     // 设置图片                                       //@"http://192.168.168.100:8008/nvshen/photos/1432729264571.jpg"
-    [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+    [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic ] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     
     // 显示\隐藏gif控件
     // 判断是够以gif或者GIF结尾

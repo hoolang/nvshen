@@ -53,6 +53,7 @@
     CGFloat timeY = CGRectGetMaxY(self.nameLabelF) + HLStatusCellBorderW;
     CGSize timeSize = [posts.created_at sizeWithFont:HLStatusCellTimeFont];
     self.timeLabelF = (CGRect){{timeX, timeY}, timeSize};
+
     
 //    /** 来源 */
 //    CGFloat sourceX = CGRectGetMaxX(self.timeLabelF) + HWStatusCellBorderW;

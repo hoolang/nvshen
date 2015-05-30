@@ -40,7 +40,11 @@
     _user = user;
     
     // 1.下载图片
-    [self sd_setImageWithURL:[NSURL URLWithString:user.icon] placeholderImage:[UIImage imageNamed:@"avatar_default_small"]];
+    NSMutableString *mstr = [NSMutableString stringWithString:USER_ICON_URL];
+    [mstr appendString:user.icon];
+    
+    HLLog(@"mstr %@",mstr);
+    [self sd_setImageWithURL:[NSURL URLWithString:mstr] placeholderImage:[UIImage imageNamed:@"avatar_default_small"]];
     
     // 2.设置加V图片
     switch (user.verified_type) {

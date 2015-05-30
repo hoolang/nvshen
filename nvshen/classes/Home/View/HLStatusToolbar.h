@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
 @class HLStatus;
+
 @interface HLStatusToolbar : UIView
 + (instancetype)toolbar;
+
 @property (nonatomic, strong) HLStatus *status;
+
 @end

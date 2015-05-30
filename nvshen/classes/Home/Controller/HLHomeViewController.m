@@ -15,10 +15,12 @@
 #import "HLStatusCell.h"
 #import "MJExtension.h"
 #import "MJRefresh.h"
+#import "HLPosts.h"
+#import "HLStatusToolbar.h"
+#import "HLAddCommentViewController.h"
 
-@interface HLHomeViewController ()
-/**
- *  微博数组（里面放的都是HWStatusFrame模型，一个HWStatusFrame对象就代表一条微博）
+@interface HLHomeViewController ()/**
+ *  show数组（里面放的都是HLStatusFrame模型，一个HLStatusFrame对象就代表一条show）
  */
 @property (nonatomic, strong) NSMutableArray *statusFrames;
 @end
@@ -35,17 +37,58 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   //设置导航栏
+    //设置导航栏
     [self setNav];
-    [self loadNewPosts];
+    // 集成下拉刷新控件
+    [self setupDownRefresh];
+    
+    // 集成上拉刷新控件
+    [self setupUpRefresh];
+    
+    //注册通知
+    [HLNotificationCenter addObserver:self selector:@selector(changelikeStatus:) name:@"addLikeNotification" object:nil];
+    [HLNotificationCenter addObserver:self selector:@selector(clickCommentBtn:) name:@"clickCommentBtnNotification" object:nil];
+
+    [HLNotificationCenter addObserver:self selector:@selector(changeCommentStatus:) name:@"DoneCommentNotification" object:nil];
+
+
 }
 
+/**
+ *  集成上拉刷新控件
+ */
+- (void)setupUpRefresh
+{
+    //    [self.tableView addFooterWithCallback:^{
+    //        HWLog(@"进入上拉刷新状态");
+    //    }];
+    [self.tableView addFooterWithTarget:self action:@selector(loadMoreStatus)];
+}
+/**
+ *  集成下拉刷新控件
+ */
+- (void)setupDownRefresh
+{
+    // 1.添加刷新控件
+    [self.tableView addHeaderWithTarget:self action:@selector(loadNewPosts)];
+    
+    // 2.进入刷新状态
+    [self.tableView headerBeginRefreshing];
+}
 - (void)loadNewPosts{
+    HLLog(@"loadNewPosts->>");
 
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    HLStatusFrame *firstStatusF = [self.statusFrames firstObject];
+    if (firstStatusF) {
+        // 若指定此参数，则返回ID比maxid大的show（即比maxid时间晚的show），默认为0
+        params[@"maxid"] = firstStatusF.status.posts.pid;
+        HLLog(@"params[@maxid] %@",params[@"maxid"]);
+    }
     // 2.发送请求
-    [HLHttpTool get:@"http://192.168.168.100:8008/nvshen/nsjson/listPosts.json" params:params success:^(id json) {
-        // 将 "微博字典"数组 转为 "微博模型"数组
+    [HLHttpTool get:HL_LATEST_POSTS_URL
+             params:params success:^(id json) {
+        // 将 "show（posts）字典"数组 转为 "微博模型"数组
         NSArray *newStatuses = [HLStatus objectArrayWithKeyValuesArray:json[@"status"]];
         
         
@@ -93,9 +136,9 @@
     
     // 2.设置其他属性
     if (count == 0) {
-        label.text = @"没有新的微博数据，稍后再试";
+        label.text = @"还没有新的show，稍后再试";
     } else {
-        label.text = [NSString stringWithFormat:@"共有%zd条新的微博数据", count];
+        label.text = [NSString stringWithFormat:@"共有%zd条新show，么么哒", count];
     }
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
@@ -125,6 +168,53 @@
     // 如果某个动画执行完毕后，又要回到动画执行前的状态，建议使用transform来做动画
 }
 
+
+/**
+ *  加载更多的微博数据
+ */
+- (void)loadMoreStatus
+{
+    HLLog(@"loadMoreStatus->>>");
+    // 1.拼接请求参数
+//    HWAccount *account = [HLAccountTool account];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    params[@"access_token"] = account.access_token;
+    
+    // 取出最后面的微博（最新的微博，ID最大的微博）
+    HLStatusFrame *lastStatusF = [self.statusFrames lastObject];
+    if (lastStatusF) {
+        // 若指定此参数，则返回ID小于或等于max_id的微博，默认为0。
+        // id这种数据一般都是比较大的，一般转成整数的话，最好是long long类型
+
+        long long minId = lastStatusF.status.posts.pid.longLongValue;
+        params[@"minid"] = @(minId);
+         HLLog(@"params[@minid] %@",params[@"maxid"]);
+    }
+    
+    // 2.发送请求
+    [HLHttpTool get:HL_OLDER_POSTS_URL params:params success:^(id json) {
+        // 将 "微博字典"数组 转为 "微博模型"数组
+        NSArray *newStatuses = [HLStatus objectArrayWithKeyValuesArray:json[@"status"]];
+        
+        // 将 HWStatus数组 转为 HWStatusFrame数组
+        NSArray *newFrames = [self stausFramesWithStatuses:newStatuses];
+        
+        // 将更多的微博数据，添加到总数组的最后面
+        [self.statusFrames addObjectsFromArray:newFrames];
+        
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 结束刷新(隐藏footer)
+        [self.tableView footerEndRefreshing];
+    } failure:^(NSError *error) {
+        HLLog(@"请求失败-%@", error);
+        
+        // 结束刷新
+        [self.tableView footerEndRefreshing];
+    }];
+}
+
 - (void)setNav{
     /* 设置导航栏上面的内容 */
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
@@ -149,7 +239,7 @@
     titleButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 40);
     
     // 监听标题点击
-    [titleButton addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
+    [titleButton addTarget:self action:@selector(titleClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.titleView = titleButton;
     // 如果图片的某个方向上不规则，比如有突起，那么这个方向就不能拉伸
@@ -208,4 +298,46 @@
 {
     //    HWLog(@"didSelectRowAtIndexPath---%@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
 }
+
+
+
+#pragma mark - status通知
+- (void)clickCommentBtn:(NSNotification *)comment{
+    // 刷新表格
+    HLLog(@"changeCommentStatus pid %@",comment.userInfo[@"pid"]);
+    HLAddCommentViewController *addCommentVC = [[HLAddCommentViewController alloc] init];
+    addCommentVC.pid = comment.userInfo[@"pid"];
+
+    [self.navigationController pushViewController:addCommentVC animated:YES];
+}
+
+#pragma mark - 点赞之后重新加载数据
+- (void)changelikeStatus:(NSNotification *)like{
+    NSLog(@"pid: %@",like.userInfo[@"pid"]);
+    
+    for( int i=0; i< self.statusFrames.count; i++){
+        HLStatusFrame *statusFrames = self.statusFrames[i];
+
+        if(statusFrames.status.posts.pid == like.userInfo[@"pid"]){
+            if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
+                statusFrames.status.likes_count -= 1;
+            }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
+                statusFrames.status.likes_count += 1;
+            }
+        }
+    }
+    [self.tableView reloadData];
+}
+
+#pragma mark - 添加评论之后重新加载数据
+- (void)changeCommentStatus:(NSNotification *)doneComment{
+    for( int i = 0; i< self.statusFrames.count; i++){
+        HLStatusFrame *statusFrames = self.statusFrames[i];
+        if(statusFrames.status.posts.pid == doneComment.userInfo[@"pid"]){
+            statusFrames.status.comments_count += 1;
+        }
+    }
+    [self.tableView reloadData];
+}
+
 @end

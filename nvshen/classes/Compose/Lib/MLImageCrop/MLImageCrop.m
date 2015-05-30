@@ -228,8 +228,6 @@
 - (void)disappear
 {
     //退出
-    
-
     if(self.actionWindow){
         [UIView animateWithDuration:0.35f animations:^{
             self.actionWindow.layer.opacity = 0.01f;
@@ -276,8 +274,6 @@
     CGRect cropRect = CGRectMake(startPoint.x*wRatio, startPoint.y*hRatio, (endPoint.x-startPoint.x)*wRatio, (endPoint.y-startPoint.y)*hRatio);
     
 //    _pr(cropRect);
-    
-
     
     
     HLEditPhotoViewController *editPhotoVC = [[HLEditPhotoViewController alloc] init];

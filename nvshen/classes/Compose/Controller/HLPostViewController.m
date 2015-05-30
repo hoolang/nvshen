@@ -121,13 +121,15 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     //params[@"access_token"] = [HWAccountTool account].access_token;
     params[@"post.content"] = self.textView.text;
+    HLLog(@"self.textView.text - %@",self.textView.text);
     
     
     // 3.发送请求
     [mgr POST:HLPOST parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
         UIImage *image = _image;
-        NSData *data = UIImageJPEGRepresentation(image, 1.0);
+        //
+        NSData *data = UIImageJPEGRepresentation(image, 0.6);
         [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         [MBProgressHUD showSuccess:@"发送成功"];
@@ -163,7 +165,7 @@
     [mgr POST:@"http://192.168.168.100:8008/nvshen/addPost.action" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
         UIImage *image = _image;
-        NSData *data = UIImageJPEGRepresentation(image, 1.0);
+        NSData *data = UIImageJPEGRepresentation(image, 0.7);
         [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         [MBProgressHUD showSuccess:@"发送成功"];

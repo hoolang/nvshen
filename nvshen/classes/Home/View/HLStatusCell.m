@@ -171,18 +171,19 @@
 {
     _statusFrame = statusFrame;
     
-    HLStatus *status = statusFrame.status;
-    HLPosts *posts = status.posts;
-    HLUser *user = posts.user;
+//    HLStatus *status = statusFrame.status;
+//    HLPosts *posts = status.posts;
+//    HLUser *user = posts.user;
     
-    HLLog(@"USER: %@", user);
+//    HLLog(@"USER: %@", user);
     
     /** 原创微博整体 */
     self.originalView.frame = statusFrame.originalViewF;
     
     /** 头像 */
     self.iconView.frame = statusFrame.iconViewF;
-    self.iconView.user = user;
+    self.iconView.user = statusFrame.status.posts.user;
+    HLLog(@"statusFrame.status.posts.user %@",statusFrame.status.posts.user.icon);
     
     /** 会员图标 */
 //    if (user.isVip) {
@@ -203,7 +204,7 @@
    
     
     HLPhoto *poto = [[HLPhoto alloc] init];
-    poto.thumbnail_pic = posts.photo;
+    poto.thumbnail_pic = statusFrame.status.posts.photo;
     NSArray *arr = [[NSArray alloc]initWithObjects:poto, nil];
     
     self.photosView.photos = arr;
@@ -218,13 +219,13 @@
 //    }
     
     /** 昵称 */
-    self.nameLabel.text = user.name;
+    self.nameLabel.text = statusFrame.status.posts.user.name;
     HLLog(@"self.nameLabel.text %@",self.nameLabel.text);
     self.nameLabel.frame = statusFrame.nameLabelF;
     
     /** 时间 */
-    NSString *time = posts.created_at;
-    HLLog(@"status.created_at %@", posts.created_at);
+    NSString *time = statusFrame.status.posts.created_at;
+    HLLog(@"status.created_at %@", statusFrame.status.posts.created_at);
     CGFloat timeX = statusFrame.nameLabelF.origin.x;
     CGFloat timeY = CGRectGetMaxY(statusFrame.nameLabelF) + HLStatusCellBorderW;
     CGSize timeSize = [time sizeWithFont:HLStatusCellTimeFont];
@@ -233,13 +234,13 @@
     
     
     /** 正文 */
-    self.contentLabel.text = posts.content;
+    self.contentLabel.text = statusFrame.status.posts.content;
     self.contentLabel.frame = statusFrame.contentLabelF;
-    HLLog(@"self.contentLabel.text %@", posts.content);
+    HLLog(@"self.contentLabel.text %@", statusFrame.status.posts.content);
     
     /** 工具条 */
     self.toolbar.frame = statusFrame.toolbarF;
-    self.toolbar.status = status;
+    self.toolbar.status = statusFrame.status;
 }
 
 @end

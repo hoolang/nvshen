@@ -32,6 +32,7 @@
 		E0038E991B12346800E4924F /* HLProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0038E931B12346800E4924F /* HLProductCell.m */; };
 		E0038E9A1B12346800E4924F /* HLProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0038E941B12346800E4924F /* HLProductCell.xib */; };
 		E0038E9B1B12346800E4924F /* HLSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0038E961B12346800E4924F /* HLSettingCell.m */; };
+		E003C4C71B19D3D9006BDEDE /* HLAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E003C4C61B19D3D9006BDEDE /* HLAddCommentViewController.m */; };
 		E0072E981B123B7900AAC6F5 /* HLPushNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0072E951B123B7900AAC6F5 /* HLPushNoticeController.m */; };
 		E0072E991B123B7900AAC6F5 /* HLScoreNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0072E971B123B7900AAC6F5 /* HLScoreNoticeViewController.m */; };
 		E0072EAE1B123B8F00AAC6F5 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E0072E9C1B123B8F00AAC6F5 /* AFHTTPRequestOperation.m */; };
@@ -238,6 +239,8 @@
 		E0038E941B12346800E4924F /* HLProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLProductCell.xib; sourceTree = "<group>"; };
 		E0038E951B12346800E4924F /* HLSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSettingCell.h; sourceTree = "<group>"; };
 		E0038E961B12346800E4924F /* HLSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSettingCell.m; sourceTree = "<group>"; };
+		E003C4C51B19D3D9006BDEDE /* HLAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLAddCommentViewController.h; sourceTree = "<group>"; };
+		E003C4C61B19D3D9006BDEDE /* HLAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLAddCommentViewController.m; sourceTree = "<group>"; };
 		E0072E941B123B7900AAC6F5 /* HLPushNoticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLPushNoticeController.h; sourceTree = "<group>"; };
 		E0072E951B123B7900AAC6F5 /* HLPushNoticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLPushNoticeController.m; sourceTree = "<group>"; };
 		E0072E961B123B7900AAC6F5 /* HLScoreNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLScoreNoticeViewController.h; sourceTree = "<group>"; };
@@ -904,6 +907,8 @@
 			children = (
 				E0A789AC1AFE2822004F3511 /* HLHomeViewController.h */,
 				E0A789AD1AFE2822004F3511 /* HLHomeViewController.m */,
+				E003C4C51B19D3D9006BDEDE /* HLAddCommentViewController.h */,
+				E003C4C61B19D3D9006BDEDE /* HLAddCommentViewController.m */,
 				E0038E251B12325000E4924F /* setting.plist */,
 			);
 			path = Controller;
@@ -1517,6 +1522,7 @@
 				E0ABA5761B136DC500C5CE4C /* HLHttpTool.m in Sources */,
 				E0B5EA311B04A1CB0086BC03 /* DoImagePickerController.m in Sources */,
 				E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */,
+				E003C4C71B19D3D9006BDEDE /* HLAddCommentViewController.m in Sources */,
 				E0FF06C81AFE5743007B9544 /* HLListViewController.m in Sources */,
 				E095D57B1B16EDE7002B07E2 /* HLStatusToolbar.m in Sources */,
 				E095D5971B17196E002B07E2 /* MJRefreshBaseView.m in Sources */,

@@ -8,13 +8,17 @@
 
 #import "HLStatusToolbar.h"
 #import "HLStatus.h"
+#import "HLPosts.h"
+#import "HLUser.h"
+#import "AFNetworking.h"
+#import "MBProgressHUD+MJ.h"
 @interface HLStatusToolbar()
 /** 里面存放所有的按钮 */
 @property (nonatomic, strong) NSMutableArray *btns;
 /** 里面存放所有的分割线 */
 @property (nonatomic, strong) NSMutableArray *dividers;
 
-@property (nonatomic, weak) UIButton *repostBtn;
+@property (nonatomic, weak) UIButton *chatBtn;
 @property (nonatomic, weak) UIButton *commentBtn;
 @property (nonatomic, weak) UIButton *attitudeBtn;
 @end
@@ -49,15 +53,72 @@
         self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
         
         // 添加按钮
-        self.repostBtn = [self setupBtn:@"转发" icon:@"timeline_icon_retweet"];
-        self.commentBtn = [self setupBtn:@"评论" icon:@"timeline_icon_comment"];
-        self.attitudeBtn = [self setupBtn:@"赞" icon:@"timeline_icon_unlike"];
+        self.chatBtn = [self setupBtn:@"转发" icon:@"timeline_icon_retweet" action:@selector(chat)];
+
+        self.commentBtn = [self setupBtn:@"评论" icon:@"timeline_icon_comment" action:@selector(clickCommentBtn)];
+
+        self.attitudeBtn = [self setupBtn:@"赞" icon:@"timeline_icon_unlike" action:@selector(addLike:)];
         
         // 添加分割线
         [self setupDivider];
         [self setupDivider];
     }
     return self;
+}
+/**
+ 聊天
+ */
+- (void) chat{
+    HLLog(@"chat %@",_status.posts.pid);
+    
+}
+/**
+ 点击评论按钮
+ */
+- (void) clickCommentBtn{
+    HLLog(@"addComment^66666");
+    NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status.posts.pid, @"pid", nil];
+    
+    NSNotification *notification =[NSNotification notificationWithName:@"clickCommentBtnNotification" object:nil userInfo:dict];
+    //通过通知中心发送通知
+    [HLNotificationCenter postNotification:notification];
+}
+/**
+ 点击喜欢
+ */
+- (void)addLike:(UIButton *) btn{
+    HLLog(@"btn.titlelabe.text: %@",btn.titleLabel.text);
+    HLLog(@"addLike^66666");
+
+    // 1.请求管理者
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    // 2.拼接请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"post.pid"] = _status.posts.pid;
+    params[@"user.uid"] = _status.posts.user.uid;
+    
+    
+    [mgr POST:HL_ADD_LIKE parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        // 拼接文件数据
+        //UIImage *image = _image;
+        //NSData *data = UIImageJPEGRepresentation(image, 0.7);
+        //[formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
+        
+    } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        
+        NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status.posts.pid, @"pid",responseObject, @"response", nil];
+        
+        NSNotification *notification =[NSNotification notificationWithName:@"addLikeNotification" object:nil userInfo:dict];
+        //通过通知中心发送通知
+        [HLNotificationCenter postNotification:notification];
+        
+        //[MBProgressHUD showSuccess:@"谢谢点赞"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD showError:@"网络不稳定，请稍微再试"];
+    }];
+
 }
 /**
  * 添加分割线
@@ -76,7 +137,7 @@
  * @param title : 按钮文字
  * @param icon : 按钮图标
  */
-- (UIButton *)setupBtn:(NSString *)title icon:(NSString *)icon
+- (UIButton *)setupBtn:(NSString *)title icon:(NSString *)icon action:(SEL) action
 {
     UIButton *btn = [[UIButton alloc] init];
     [btn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
@@ -85,6 +146,8 @@
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"timeline_card_bottom_background_highlighted"] forState:UIControlStateHighlighted];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+
     [self addSubview:btn];
     
     [self.btns addObject:btn];
@@ -127,7 +190,7 @@
     //    status.attitudes_count = 604; // 604
     
     // 转发
-    [self setupBtnCount:0 btn:self.repostBtn title:@"私聊"];
+    [self setupBtnCount:0 btn:self.chatBtn title:@"私聊"];
     // 评论
     [self setupBtnCount:status.comments_count btn:self.commentBtn title:@"评论"];
     // 赞
@@ -147,6 +210,9 @@
         }
     }
     [btn setTitle:title forState:UIControlStateNormal];
+    //强转long 可能以后会出错
+    //HLLog(@"强转long 可能以后会出错");
+    //[btn setTag:(NSInteger)_status.posts.pid];
 }
 
 
