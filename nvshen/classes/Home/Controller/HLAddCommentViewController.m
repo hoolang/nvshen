@@ -16,6 +16,9 @@
 #import "HLUser.h"
 #import "HLCommentCell.h"
 #import "HLCommentView.h"
+#import "HLHttpTool.h"
+#import "MJExtension.h"
+#import "MJRefresh.h"
 
 @interface HLAddCommentViewController ()
 /** 输入控件 */
@@ -24,17 +27,17 @@
 /**
 *  show数组（里面放的都是HLStatusFrame模型，一个HLStatusFrame对象就代表一条show）
 */
-@property (nonatomic, strong) NSMutableArray *statusFrames;
+@property (nonatomic, strong) NSMutableArray *commentsFrames;
 @end
 
 @implementation HLAddCommentViewController
 
-- (NSMutableArray *)statusFrames
+- (NSMutableArray *)commentsFrames
 {
-    if (!_statusFrames) {
-        self.statusFrames = [NSMutableArray array];
+    if (!_commentsFrames) {
+        self.commentsFrames = [NSMutableArray array];
     }
-    return _statusFrames;
+    return _commentsFrames;
 }
 
 - (void)viewDidLoad {
@@ -62,41 +65,73 @@
     [self.tableView insertSubview:self.commentView atIndex:0];
     // 注册通知
     
-    // 集成下拉刷新控件
-    [self loadPost];
+    // 集成上拉刷新控件
+    //[self setupDownRefresh];
     [HLNotificationCenter addObserver:self selector:@selector(changelikeStatus:) name:@"addLikeInCommentViewNotification" object:nil];
     
 }
-- (void)loadPost{
-    HLLog(@"loadNewPosts->>");
+/**
+ *  集成下拉刷新控件
+ */
+- (void)setupDownRefresh
+{
+    // 1.添加刷新控件
+    [self.tableView addHeaderWithTarget:self action:@selector(loadComments)];
     
-    // 将 "show（posts）字典"数组 转为 "微博模型"数组
-    NSArray *newStatuses = [[NSArray alloc] initWithObjects:_status, nil];
+    // 2.进入刷新状态
+    [self.tableView headerBeginRefreshing];
+}
+- (void)loadComments{
     
-    HLLog(@"_status.posts.photo: %@",_status.posts.photo);
-    
-    // 将 HWStatus数组 转为 HWStatusFrame数组
-    NSArray *newFrames = [self stausFramesWithStatuses:newStatuses];
-    
-    // 将最新的微博数据，添加到总数组的最前面
-    NSRange range = NSMakeRange(0, newFrames.count);
-    NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
-    
-    [self.statusFrames insertObjects:newFrames atIndexes:set];
+    HLLog(@"loadMoreComments->>>");
+    // 1.拼接请求参数
 
-    // 刷新表格
-    [self.tableView reloadData];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
+    params[@"pid"] = _status.posts.pid;
+    // 取出最后面的评论（最新的评论，ID最大的评论）
+    HLCommentsFrame *lastCommentF = [self.commentsFrames lastObject];
+    if (lastCommentF) {
+        // 若指定此参数，则返回ID小于或等于max_id的微博，默认为0。
+        // id这种数据一般都是比较大的，一般转成整数的话，最好是long long类型
+        
+        long long minId = lastCommentF.comments.cid.longLongValue;
+        params[@"minid"] = @(minId);
+        HLLog(@"params[@minid] %@",params[@"maxid"]);
+    }
+    
+    // 2.发送请求
+    [HLHttpTool get:HL_LOAD_COMMENT params:params success:^(id json) {
+        // 将 "评论字典"数组 转为 "评论模型"数组
+        NSArray *newComments = [HLComments objectArrayWithKeyValuesArray:json[@"comments"]];
+        
+        // 将 HLComments数组 转为 HLCommentsFrame数组
+        NSArray *newFrames = [self commentsFramesWithStatuses:newComments];
+        
+        // 将更多的评论数据，添加到总数组的最后面
+        [self.commentsFrames addObjectsFromArray:newFrames];
+        
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 结束刷新(隐藏footer)
+        [self.tableView footerEndRefreshing];
+    } failure:^(NSError *error) {
+        HLLog(@"请求失败-%@", error);
+        
+        // 结束刷新
+        [self.tableView footerEndRefreshing];
+    }];
 }
 /**
  *  将HLStatus模型转为HLStatusFrame模型
  */
-- (NSArray *)stausFramesWithStatuses:(NSArray *)statuses
+- (NSArray *)commentsFramesWithStatuses:(NSArray *)comments
 {
     NSMutableArray *frames = [NSMutableArray array];
-    for (HLStatus *status in statuses) {
-        HLStatusFrame *f = [[HLStatusFrame alloc] init];
-        f.status = status;
+    for (HLComments *comment in comments) {
+        HLCommentsFrame *f = [[HLCommentsFrame alloc] init];
+        f.comments = comment;
         [frames addObject:f];
     }
     return frames;
@@ -126,20 +161,20 @@
 }
 #pragma mark - 点赞之后重新加载数据
 - (void)changelikeStatus:(NSNotification *)like{
-    NSLog(@"pid: %@",like.userInfo[@"pid"]);
-    
-    for( int i=0; i< self.statusFrames.count; i++){
-        HLStatusFrame *statusFrames = self.statusFrames[i];
-        
-        if(statusFrames.status.posts.pid == like.userInfo[@"pid"]){
-            if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
-                statusFrames.status.likes_count -= 1;
-            }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
-                statusFrames.status.likes_count += 1;
-            }
-        }
-    }
-    [self.tableView reloadData];
+//    NSLog(@"pid: %@",like.userInfo[@"pid"]);
+//    
+//    for( int i=0; i< self.statusFrames.count; i++){
+//        HLStatusFrame *statusFrames = self.statusFrames[i];
+//        
+//        if(statusFrames.status.posts.pid == like.userInfo[@"pid"]){
+//            if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
+//                statusFrames.status.likes_count -= 1;
+//            }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
+//                statusFrames.status.likes_count += 1;
+//            }
+//        }
+//    }
+//    [self.tableView reloadData];
 }
 - (void)doComment{
     // 1.请求管理者
@@ -198,27 +233,25 @@
 #pragma mark - 数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.commentsFrames.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
+    // 获得cell
+    HLCommentCell *cell = [HLCommentCell cellWithTableView:tableView];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"测试数据---%ld", (long)indexPath.row];
+    // 给cell传递模型数据
+    cell.commentsFrame = self.commentsFrames[indexPath.row];
     
     return cell;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    //HLStatusFrame *frame = self.statusFrames[indexPath.row];
-//    return 10;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HLCommentsFrame *frame = self.commentsFrames[indexPath.row];
+    return frame.cellHeight;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

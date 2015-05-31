@@ -18,6 +18,7 @@
 #import "UITextView+Extension.h"
 #import "NSString+Emoji.h"
 #import "NSString+Extension.h"
+#import "NSString+Date.h"
 #import "UIBarButtonItem+Extension.h"
 #import "NSDate+Extension.h"
 
@@ -33,6 +34,8 @@
 
 // 评论
 #define HL_ADD_COMMENT @"http://192.168.168.188:8008/nvshen/nsjson/addComment.json"
+// 获取一个show的评论
+#define HL_LOAD_COMMENT @"http://192.168.168.188:8008/nvshen/nsjson/listComments.json"
 // 点赞
 #define HL_ADD_LIKE @"http://192.168.168.188:8008/nvshen/nsjson/addLike.json"
 // 最新show的获取地址

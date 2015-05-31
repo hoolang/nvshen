@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "HLCommonCell.h"
-@class HLStatusFrame;
+#import "HLCommentsFrame.h"
 @interface HLCommentCell : HLCommonCell
+/** 原创微博整体 */
+@property (nonatomic, weak) UIView *originalView;
+
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
+- (void)setupOriginal;
+
+@property (nonatomic, strong) HLCommentsFrame *commentsFrame;
 @end

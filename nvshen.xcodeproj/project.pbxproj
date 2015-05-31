@@ -110,6 +110,9 @@
 		E0072F551B124C4C00AAC6F5 /* y11_howto.html in Resources */ = {isa = PBXBuildFile; fileRef = E0072F351B124C4C00AAC6F5 /* y11_howto.html */; };
 		E0072F561B124C4C00AAC6F5 /* znzh.html in Resources */ = {isa = PBXBuildFile; fileRef = E0072F361B124C4C00AAC6F5 /* znzh.html */; };
 		E0784ED81B1B3B5100453294 /* HLCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784ED71B1B3B5100453294 /* HLCommentView.m */; };
+		E0784EDB1B1B881200453294 /* HLComments.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784EDA1B1B881200453294 /* HLComments.m */; };
+		E0784EDE1B1B8B1500453294 /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784EDD1B1B8B1500453294 /* NSString+Date.m */; };
+		E0784EE11B1B919D00453294 /* HLCommentsFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784EE01B1B919D00453294 /* HLCommentsFrame.m */; };
 		E0813CCC1B09CBC200008083 /* HLPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0813CCA1B09CBC200008083 /* HLPostViewController.m */; };
 		E0813CCD1B09CBC200008083 /* HLPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0813CCB1B09CBC200008083 /* HLPostViewController.xib */; };
 		E095D5691B16D0E5002B07E2 /* HLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E095D5681B16D0E5002B07E2 /* HLUser.m */; };
@@ -369,6 +372,12 @@
 		E0072F361B124C4C00AAC6F5 /* znzh.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = znzh.html; sourceTree = "<group>"; };
 		E0784ED61B1B3B5100453294 /* HLCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommentView.h; sourceTree = "<group>"; };
 		E0784ED71B1B3B5100453294 /* HLCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommentView.m; sourceTree = "<group>"; };
+		E0784ED91B1B881200453294 /* HLComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLComments.h; sourceTree = "<group>"; };
+		E0784EDA1B1B881200453294 /* HLComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLComments.m; sourceTree = "<group>"; };
+		E0784EDC1B1B8B1500453294 /* NSString+Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Date.h"; sourceTree = "<group>"; };
+		E0784EDD1B1B8B1500453294 /* NSString+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Date.m"; sourceTree = "<group>"; };
+		E0784EDF1B1B919D00453294 /* HLCommentsFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommentsFrame.h; sourceTree = "<group>"; };
+		E0784EE01B1B919D00453294 /* HLCommentsFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommentsFrame.m; sourceTree = "<group>"; };
 		E0813CC91B09CBC200008083 /* HLPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLPostViewController.h; sourceTree = "<group>"; };
 		E0813CCA1B09CBC200008083 /* HLPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLPostViewController.m; sourceTree = "<group>"; };
 		E0813CCB1B09CBC200008083 /* HLPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLPostViewController.xib; sourceTree = "<group>"; };
@@ -933,6 +942,10 @@
 				E095D59F1B173E79002B07E2 /* HLPosts.m */,
 				E095D5671B16D0E5002B07E2 /* HLUser.h */,
 				E095D5681B16D0E5002B07E2 /* HLUser.m */,
+				E0784ED91B1B881200453294 /* HLComments.h */,
+				E0784EDA1B1B881200453294 /* HLComments.m */,
+				E0784EDF1B1B919D00453294 /* HLCommentsFrame.h */,
+				E0784EE01B1B919D00453294 /* HLCommentsFrame.m */,
 				E095D56A1B16E21A002B07E2 /* HLStatus.h */,
 				E095D56B1B16E21A002B07E2 /* HLStatus.m */,
 				E095D56D1B16E518002B07E2 /* HLStatusFrame.h */,
@@ -1165,6 +1178,8 @@
 				E095D5A21B177390002B07E2 /* NSDate+Extension.m */,
 				E095D57C1B16F303002B07E2 /* NSString+Extension.h */,
 				E095D57D1B16F303002B07E2 /* NSString+Extension.m */,
+				E0784EDC1B1B8B1500453294 /* NSString+Date.h */,
+				E0784EDD1B1B8B1500453294 /* NSString+Date.m */,
 				E0A065911B0B2CDA00CE4728 /* NSString+Emoji.h */,
 				E0A065921B0B2CDA00CE4728 /* NSString+Emoji.m */,
 				E0A0658E1B0B2B0400CE4728 /* UITextView+Extension.h */,
@@ -1472,6 +1487,8 @@
 				E0A789A81AFE24BD004F3511 /* HLTabBarViewController.m in Sources */,
 				E0072EDE1B123BA100AAC6F5 /* MJType.m in Sources */,
 				E095D5981B17196E002B07E2 /* MJRefreshConst.m in Sources */,
+				E0784EDB1B1B881200453294 /* HLComments.m in Sources */,
+				E0784EDE1B1B8B1500453294 /* NSString+Date.m in Sources */,
 				E0038E881B12345500E4924F /* HLSettingLabelItem.m in Sources */,
 				E0038E871B12345500E4924F /* HLSettingItem.m in Sources */,
 				E0A065671B0B286C00CE4728 /* HLEmotionAttachment.m in Sources */,
@@ -1554,6 +1571,7 @@
 				E0072EB21B123B8F00AAC6F5 /* AFSecurityPolicy.m in Sources */,
 				E0072EAF1B123B8F00AAC6F5 /* AFHTTPRequestOperationManager.m in Sources */,
 				E0072EB31B123B8F00AAC6F5 /* AFURLConnectionOperation.m in Sources */,
+				E0784EE11B1B919D00453294 /* HLCommentsFrame.m in Sources */,
 				E0B5EA2F1B04A1CB0086BC03 /* DoAlbumCell.m in Sources */,
 				E0ADF9AE1B04E57300732E3C /* HLEditPhotoViewController.m in Sources */,
 			);
