@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 Hoolang. All rights reserved.
 //
 
-#import "HLStatusToolbar.h"
+#import "HLCommentToolbar.h"
 #import "HLStatus.h"
 #import "HLPosts.h"
 #import "HLUser.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD+MJ.h"
-@interface HLStatusToolbar()
+@interface HLCommentToolbar()
 /** 里面存放所有的按钮 */
 @property (nonatomic, strong) NSMutableArray *btns;
 /** 里面存放所有的分割线 */
@@ -23,7 +23,7 @@
 @property (nonatomic, weak) UIButton *attitudeBtn;
 @end
 
-@implementation HLStatusToolbar
+@implementation HLCommentToolbar
 
 - (NSMutableArray *)btns
 {
@@ -53,10 +53,8 @@
         self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
         
         // 添加按钮
-        self.chatBtn = [self setupBtn:@"转发" icon:@"timeline_icon_retweet" action:@selector(chat)];
-
-        self.commentBtn = [self setupBtn:@"评论" icon:@"timeline_icon_comment" action:@selector(clickCommentBtn)];
-
+        self.chatBtn = [self setupBtn:@"私聊" icon:@"timeline_icon_retweet" action:@selector(chat)];
+        
         self.attitudeBtn = [self setupBtn:@"赞" icon:@"timeline_icon_unlike" action:@selector(addLike:)];
         
         // 添加分割线
@@ -72,25 +70,14 @@
     HLLog(@"chat %@",_status.posts.pid);
     
 }
-/**
- 点击评论按钮
- */
-- (void) clickCommentBtn{
-    HLLog(@"addComment^66666");
-    //NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status.posts.pid, @"pid", nil];
-    NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status, @"status", nil];
-    
-    NSNotification *notification =[NSNotification notificationWithName:@"clickCommentBtnNotification" object:nil userInfo:dict];
-    //通过通知中心发送通知
-    [HLNotificationCenter postNotification:notification];
-}
+
 /**
  点击喜欢
  */
 - (void)addLike:(UIButton *) btn{
     HLLog(@"btn.titlelabe.text: %@",btn.titleLabel.text);
     HLLog(@"addLike^66666");
-
+    
     // 1.请求管理者
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -111,7 +98,7 @@
         
         NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status.posts.pid, @"pid",responseObject, @"response", nil];
         
-        NSNotification *notification =[NSNotification notificationWithName:@"addLikeNotification" object:nil userInfo:dict];
+        NSNotification *notification =[NSNotification notificationWithName:@"addLikeInCommentViewNotification" object:nil userInfo:dict];
         //通过通知中心发送通知
         [HLNotificationCenter postNotification:notification];
         
@@ -119,7 +106,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD showError:@"网络不稳定，请稍微再试"];
     }];
-
+    
 }
 /**
  * 添加分割线
@@ -148,7 +135,7 @@
     [btn setBackgroundImage:[UIImage imageNamed:@"timeline_card_bottom_background_highlighted"] forState:UIControlStateHighlighted];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
     [btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-
+    
     [self addSubview:btn];
     
     [self.btns addObject:btn];
@@ -192,8 +179,7 @@
     
     // 转发
     [self setupBtnCount:0 btn:self.chatBtn title:@"私聊"];
-    // 评论
-    [self setupBtnCount:status.comments_count btn:self.commentBtn title:@"评论"];
+
     // 赞
     [self setupBtnCount:status.likes_count btn:self.attitudeBtn title:@"赞"];
 }

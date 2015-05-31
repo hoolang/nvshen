@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HLStatus.h"
 
-@interface HLAddCommentViewController : UIViewController<UITextViewDelegate>
+@interface HLAddCommentViewController : UITableViewController<UITextViewDelegate>
 @property (nonatomic, assign) NSString *pid;
+@property (nonatomic, strong) HLStatus *status;
 @end

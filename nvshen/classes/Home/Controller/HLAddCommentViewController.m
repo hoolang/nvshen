@@ -11,10 +11,16 @@
 #import "AFNetworking.h"
 #import "MBProgressHUD+MJ.h"
 #import "HLStatusFrame.h"
+#import "HLStatus.h"
+#import "HLPosts.h"
+#import "HLUser.h"
+#import "HLCommentCell.h"
+#import "HLCommentView.h"
 
 @interface HLAddCommentViewController ()
 /** 输入控件 */
 @property (nonatomic, weak) HLEmotionTextView *textView;
+@property (nonatomic, weak) UIView *commentView;
 /**
 *  show数组（里面放的都是HLStatusFrame模型，一个HLStatusFrame对象就代表一条show）
 */
@@ -35,48 +41,65 @@
     [super viewDidLoad];
     
     //设置导航栏
-    [self setNav];
-    // 集成下拉刷新控件
-    [self loadNewPosts];
+    //[self setNav];
+    
+    HLCommentView *commentView = [[HLCommentView alloc] init];
+    self.commentView = commentView;
 
+    HLStatusFrame *statusF = [[HLStatusFrame alloc] init];
+
+    statusF.status = _status;
+
+    commentView.statusFrame = statusF;
+    
+    
+    CGFloat width = commentView.frame.size.width;
+    CGFloat height = commentView.frame.size.height;
+
+    commentView.frame = CGRectMake(0, -statusF.cellHeight, width, height);
+
+    self.tableView.contentInset = UIEdgeInsetsMake(statusF.cellHeight, 0, 0, 0);
+    [self.tableView insertSubview:self.commentView atIndex:0];
+    // 注册通知
+    
+    // 集成下拉刷新控件
+    [self loadPost];
+    [HLNotificationCenter addObserver:self selector:@selector(changelikeStatus:) name:@"addLikeInCommentViewNotification" object:nil];
+    
 }
-- (void)loadNewPosts{
+- (void)loadPost{
     HLLog(@"loadNewPosts->>");
     
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    HLStatusFrame *firstStatusF = [self.statusFrames firstObject];
+    // 将 "show（posts）字典"数组 转为 "微博模型"数组
+    NSArray *newStatuses = [[NSArray alloc] initWithObjects:_status, nil];
+    
+    HLLog(@"_status.posts.photo: %@",_status.posts.photo);
+    
+    // 将 HWStatus数组 转为 HWStatusFrame数组
+    NSArray *newFrames = [self stausFramesWithStatuses:newStatuses];
+    
+    // 将最新的微博数据，添加到总数组的最前面
+    NSRange range = NSMakeRange(0, newFrames.count);
+    NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
+    
+    [self.statusFrames insertObjects:newFrames atIndexes:set];
 
-    // 2.发送请求
-    [HLHttpTool get:HL_LATEST_POSTS_URL
-             params:params success:^(id json) {
-                 // 将 "show（posts）字典"数组 转为 "微博模型"数组
-                 NSArray *newStatuses = [HLStatus objectArrayWithKeyValuesArray:json[@"status"]];
-                 
-                 
-                 // 将 HWStatus数组 转为 HWStatusFrame数组
-                 NSArray *newFrames = [self stausFramesWithStatuses:newStatuses];
-                 
-                 // 将最新的微博数据，添加到总数组的最前面
-                 NSRange range = NSMakeRange(0, newFrames.count);
-                 NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
-                 [self.statusFrames insertObjects:newFrames atIndexes:set];
-                 
-                 // 刷新表格
-                 [self.tableView reloadData];
-                 
-                 
-                 // 结束刷新
-                 [self.tableView headerEndRefreshing];
-                 
-                 // 显示最新微博的数量
-                 [self showNewStatusCount:newStatuses.count];
-                 HLLog(@"%@", json);
-             } failure:^(NSError *error) {
-                 HLLog(@"请求失败-%@", error);
-                 
-                 // 结束刷新刷新
-                 //[self.tableView headerEndRefreshing];
-             }];
+    // 刷新表格
+    [self.tableView reloadData];
+
+}
+/**
+ *  将HLStatus模型转为HLStatusFrame模型
+ */
+- (NSArray *)stausFramesWithStatuses:(NSArray *)statuses
+{
+    NSMutableArray *frames = [NSMutableArray array];
+    for (HLStatus *status in statuses) {
+        HLStatusFrame *f = [[HLStatusFrame alloc] init];
+        f.status = status;
+        [frames addObject:f];
+    }
+    return frames;
 }
 
 - (void)setNav{
@@ -99,7 +122,24 @@
     
     self.textView = textView;
     
-    [self.view addSubview:textView];
+    //[self.view addSubview:textView];
+}
+#pragma mark - 点赞之后重新加载数据
+- (void)changelikeStatus:(NSNotification *)like{
+    NSLog(@"pid: %@",like.userInfo[@"pid"]);
+    
+    for( int i=0; i< self.statusFrames.count; i++){
+        HLStatusFrame *statusFrames = self.statusFrames[i];
+        
+        if(statusFrames.status.posts.pid == like.userInfo[@"pid"]){
+            if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
+                statusFrames.status.likes_count -= 1;
+            }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
+                statusFrames.status.likes_count += 1;
+            }
+        }
+    }
+    [self.tableView reloadData];
 }
 - (void)doComment{
     // 1.请求管理者
@@ -154,4 +194,34 @@
     [self.view endEditing:YES];
 }
 
+
+#pragma mark - 数据源方法
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *ID = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"测试数据---%ld", (long)indexPath.row];
+    
+    return cell;
+}
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    //HLStatusFrame *frame = self.statusFrames[indexPath.row];
+//    return 10;
+//}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    HWLog(@"didSelectRowAtIndexPath---%@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
+}
 @end

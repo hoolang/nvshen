@@ -33,6 +33,9 @@
 		E0038E9A1B12346800E4924F /* HLProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0038E941B12346800E4924F /* HLProductCell.xib */; };
 		E0038E9B1B12346800E4924F /* HLSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0038E961B12346800E4924F /* HLSettingCell.m */; };
 		E003C4C71B19D3D9006BDEDE /* HLAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E003C4C61B19D3D9006BDEDE /* HLAddCommentViewController.m */; };
+		E003C4CA1B1A15E6006BDEDE /* HLCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E003C4C91B1A15E6006BDEDE /* HLCommonCell.m */; };
+		E003C4CD1B1A180A006BDEDE /* HLCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E003C4CC1B1A180A006BDEDE /* HLCommentCell.m */; };
+		E003C4D01B1A19AE006BDEDE /* HLCommentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = E003C4CF1B1A19AE006BDEDE /* HLCommentToolbar.m */; };
 		E0072E981B123B7900AAC6F5 /* HLPushNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0072E951B123B7900AAC6F5 /* HLPushNoticeController.m */; };
 		E0072E991B123B7900AAC6F5 /* HLScoreNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0072E971B123B7900AAC6F5 /* HLScoreNoticeViewController.m */; };
 		E0072EAE1B123B8F00AAC6F5 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E0072E9C1B123B8F00AAC6F5 /* AFHTTPRequestOperation.m */; };
@@ -106,6 +109,7 @@
 		E0072F541B124C4C00AAC6F5 /* x3d_howto.html in Resources */ = {isa = PBXBuildFile; fileRef = E0072F341B124C4C00AAC6F5 /* x3d_howto.html */; };
 		E0072F551B124C4C00AAC6F5 /* y11_howto.html in Resources */ = {isa = PBXBuildFile; fileRef = E0072F351B124C4C00AAC6F5 /* y11_howto.html */; };
 		E0072F561B124C4C00AAC6F5 /* znzh.html in Resources */ = {isa = PBXBuildFile; fileRef = E0072F361B124C4C00AAC6F5 /* znzh.html */; };
+		E0784ED81B1B3B5100453294 /* HLCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784ED71B1B3B5100453294 /* HLCommentView.m */; };
 		E0813CCC1B09CBC200008083 /* HLPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0813CCA1B09CBC200008083 /* HLPostViewController.m */; };
 		E0813CCD1B09CBC200008083 /* HLPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0813CCB1B09CBC200008083 /* HLPostViewController.xib */; };
 		E095D5691B16D0E5002B07E2 /* HLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E095D5681B16D0E5002B07E2 /* HLUser.m */; };
@@ -241,6 +245,12 @@
 		E0038E961B12346800E4924F /* HLSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSettingCell.m; sourceTree = "<group>"; };
 		E003C4C51B19D3D9006BDEDE /* HLAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLAddCommentViewController.h; sourceTree = "<group>"; };
 		E003C4C61B19D3D9006BDEDE /* HLAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLAddCommentViewController.m; sourceTree = "<group>"; };
+		E003C4C81B1A15E6006BDEDE /* HLCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommonCell.h; sourceTree = "<group>"; };
+		E003C4C91B1A15E6006BDEDE /* HLCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommonCell.m; sourceTree = "<group>"; };
+		E003C4CB1B1A180A006BDEDE /* HLCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommentCell.h; sourceTree = "<group>"; };
+		E003C4CC1B1A180A006BDEDE /* HLCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommentCell.m; sourceTree = "<group>"; };
+		E003C4CE1B1A19AE006BDEDE /* HLCommentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommentToolbar.h; sourceTree = "<group>"; };
+		E003C4CF1B1A19AE006BDEDE /* HLCommentToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommentToolbar.m; sourceTree = "<group>"; };
 		E0072E941B123B7900AAC6F5 /* HLPushNoticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLPushNoticeController.h; sourceTree = "<group>"; };
 		E0072E951B123B7900AAC6F5 /* HLPushNoticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLPushNoticeController.m; sourceTree = "<group>"; };
 		E0072E961B123B7900AAC6F5 /* HLScoreNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLScoreNoticeViewController.h; sourceTree = "<group>"; };
@@ -357,6 +367,8 @@
 		E0072F341B124C4C00AAC6F5 /* x3d_howto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = x3d_howto.html; sourceTree = "<group>"; };
 		E0072F351B124C4C00AAC6F5 /* y11_howto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = y11_howto.html; sourceTree = "<group>"; };
 		E0072F361B124C4C00AAC6F5 /* znzh.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = znzh.html; sourceTree = "<group>"; };
+		E0784ED61B1B3B5100453294 /* HLCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommentView.h; sourceTree = "<group>"; };
+		E0784ED71B1B3B5100453294 /* HLCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommentView.m; sourceTree = "<group>"; };
 		E0813CC91B09CBC200008083 /* HLPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLPostViewController.h; sourceTree = "<group>"; };
 		E0813CCA1B09CBC200008083 /* HLPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLPostViewController.m; sourceTree = "<group>"; };
 		E0813CCB1B09CBC200008083 /* HLPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLPostViewController.xib; sourceTree = "<group>"; };
@@ -934,10 +946,18 @@
 		E0A789AB1AFE276A004F3511 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E003C4C81B1A15E6006BDEDE /* HLCommonCell.h */,
+				E003C4C91B1A15E6006BDEDE /* HLCommonCell.m */,
 				E095D5791B16EDE7002B07E2 /* HLStatusToolbar.h */,
 				E095D57A1B16EDE7002B07E2 /* HLStatusToolbar.m */,
+				E003C4CE1B1A19AE006BDEDE /* HLCommentToolbar.h */,
+				E003C4CF1B1A19AE006BDEDE /* HLCommentToolbar.m */,
 				E095D57F1B16FC5E002B07E2 /* HLStatusCell.h */,
 				E095D5801B16FC5E002B07E2 /* HLStatusCell.m */,
+				E003C4CB1B1A180A006BDEDE /* HLCommentCell.h */,
+				E003C4CC1B1A180A006BDEDE /* HLCommentCell.m */,
+				E0784ED61B1B3B5100453294 /* HLCommentView.h */,
+				E0784ED71B1B3B5100453294 /* HLCommentView.m */,
 				E095D5731B16E8E7002B07E2 /* HLStatusPhotoView.h */,
 				E095D5741B16E8E7002B07E2 /* HLStatusPhotoView.m */,
 				E095D5761B16EAC3002B07E2 /* HLStatusPhotosView.h */,
@@ -1471,6 +1491,7 @@
 				E0038E651B12342F00E4924F /* HLAboutViewController.m in Sources */,
 				E09DCE7F1AFF022300C5145E /* HLTabBar.m in Sources */,
 				E095D59C1B17196E002B07E2 /* UIScrollView+MJRefresh.m in Sources */,
+				E003C4D01B1A19AE006BDEDE /* HLCommentToolbar.m in Sources */,
 				E0072EDD1B123BA100AAC6F5 /* MJMethod.m in Sources */,
 				E0072EDF1B123BA100AAC6F5 /* MJTypeEncoding.m in Sources */,
 				E095D5721B16E878002B07E2 /* HLPhoto.m in Sources */,
@@ -1479,6 +1500,7 @@
 				E0072EE21B123BA100AAC6F5 /* NSObject+MJMember.m in Sources */,
 				E095D59D1B17196E002B07E2 /* UIView+MJExtension.m in Sources */,
 				E0A789BB1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m in Sources */,
+				E003C4CD1B1A180A006BDEDE /* HLCommentCell.m in Sources */,
 				E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */,
 				E0B5EA331B04A1CB0086BC03 /* DoPhotoCell.m in Sources */,
 				E0072EB41B123B8F00AAC6F5 /* AFURLRequestSerialization.m in Sources */,
@@ -1486,6 +1508,7 @@
 				E0038E6A1B12342F00E4924F /* HLSettingTableViewController.m in Sources */,
 				E0072EB11B123B8F00AAC6F5 /* AFNetworkReachabilityManager.m in Sources */,
 				E0072E981B123B7900AAC6F5 /* HLPushNoticeController.m in Sources */,
+				E0784ED81B1B3B5100453294 /* HLCommentView.m in Sources */,
 				E0072ED91B123BA100AAC6F5 /* MJConst.m in Sources */,
 				E09DCE761AFEEA5E00C5145E /* HLProfileViewController.m in Sources */,
 				E095D56C1B16E21A002B07E2 /* HLStatus.m in Sources */,
@@ -1514,6 +1537,7 @@
 				E0038E851B12345500E4924F /* HLSettingArrowItem.m in Sources */,
 				E0A065931B0B2CDA00CE4728 /* NSString+Emoji.m in Sources */,
 				E0813CCC1B09CBC200008083 /* HLPostViewController.m in Sources */,
+				E003C4CA1B1A15E6006BDEDE /* HLCommonCell.m in Sources */,
 				E0038E841B12345500E4924F /* HLProduct.m in Sources */,
 				E0038E661B12342F00E4924F /* HLHelpViewController.m in Sources */,
 				E0072F0A1B123BA800AAC6F5 /* SDWebImageDownloader.m in Sources */,

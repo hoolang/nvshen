@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HLCommonCell.h"
 @class HLStatusFrame;
+@interface HLCommonCell : UITableViewCell
+/** 原创微博整体 */
+@property (nonatomic, weak) UIView *originalView;
 
-@interface HLStatusCell : HLCommonCell
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
+- (void)setupOriginal;
+
+- (UIView *)returnOriginalView;
+
+@property (nonatomic, strong) HLStatusFrame *statusFrame;
 @end

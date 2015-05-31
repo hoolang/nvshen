@@ -11,7 +11,7 @@
 #import "HLPhoto.h"
 #import "HLStatusPhotoView.h"
 
-#define HLStatusPhotoWH 320
+#define HLStatusPhotoWH [UIScreen mainScreen].bounds.size.width
 #define HLStatusPhotoMargin 10
 #define HLStatusPhotoMaxCol(count) 1//((count==4)?2:3)
 

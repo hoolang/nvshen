@@ -51,6 +51,7 @@
 
     [HLNotificationCenter addObserver:self selector:@selector(changeCommentStatus:) name:@"DoneCommentNotification" object:nil];
 
+    [self.tableView reloadData];
 
 }
 
@@ -304,30 +305,14 @@
 #pragma mark - status通知
 - (void)clickCommentBtn:(NSNotification *)comment{
     // 刷新表格
-    HLLog(@"changeCommentStatus pid %@",comment.userInfo[@"pid"]);
+    HLLog(@"changeCommentStatus status %@",comment.userInfo[@"status"]);
     HLAddCommentViewController *addCommentVC = [[HLAddCommentViewController alloc] init];
-    addCommentVC.pid = comment.userInfo[@"pid"];
+    addCommentVC.status = comment.userInfo[@"status"];
+    
 
     [self.navigationController pushViewController:addCommentVC animated:YES];
 }
 
-#pragma mark - 点赞之后重新加载数据
-- (void)changelikeStatus:(NSNotification *)like{
-    NSLog(@"pid: %@",like.userInfo[@"pid"]);
-    
-    for( int i=0; i< self.statusFrames.count; i++){
-        HLStatusFrame *statusFrames = self.statusFrames[i];
-
-        if(statusFrames.status.posts.pid == like.userInfo[@"pid"]){
-            if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
-                statusFrames.status.likes_count -= 1;
-            }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
-                statusFrames.status.likes_count += 1;
-            }
-        }
-    }
-    [self.tableView reloadData];
-}
 
 #pragma mark - 添加评论之后重新加载数据
 - (void)changeCommentStatus:(NSNotification *)doneComment{
@@ -335,6 +320,25 @@
         HLStatusFrame *statusFrames = self.statusFrames[i];
         if(statusFrames.status.posts.pid == doneComment.userInfo[@"pid"]){
             statusFrames.status.comments_count += 1;
+        }
+    }
+    [self.tableView reloadData];
+}
+
+
+#pragma mark - 点赞之后重新加载数据
+- (void)changelikeStatus:(NSNotification *)like{
+    NSLog(@"pid: %@",like.userInfo[@"pid"]);
+    
+    for( int i=0; i< self.statusFrames.count; i++){
+        HLStatusFrame *statusFrames = self.statusFrames[i];
+        
+        if(statusFrames.status.posts.pid == like.userInfo[@"pid"]){
+            if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
+                statusFrames.status.likes_count -= 1;
+            }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
+                statusFrames.status.likes_count += 1;
+            }
         }
     }
     [self.tableView reloadData];

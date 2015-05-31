@@ -18,8 +18,8 @@
 - (void)setStatus:(HLStatus *)status
 {
     _status = status;
-    HLPosts *posts = status.posts;
-    HLUser *user = posts.user;
+
+
     HLLog(@"status %@", status);
     
     // cell的宽度
@@ -36,7 +36,7 @@
     /** 昵称 */
     CGFloat nameX = CGRectGetMaxX(self.iconViewF) + HLStatusCellBorderW;
     CGFloat nameY = iconY;
-    CGSize nameSize = [user.name sizeWithFont:HLStatusCellNameFont];
+    CGSize nameSize = [status.posts.user.name sizeWithFont:HLStatusCellNameFont];
     self.nameLabelF = (CGRect){{nameX, nameY}, nameSize};
     
 //    /** 会员图标 */
@@ -51,7 +51,7 @@
     /** 时间 */
     CGFloat timeX = nameX;
     CGFloat timeY = CGRectGetMaxY(self.nameLabelF) + HLStatusCellBorderW;
-    CGSize timeSize = [posts.created_at sizeWithFont:HLStatusCellTimeFont];
+    CGSize timeSize = [status.posts.created_at sizeWithFont:HLStatusCellTimeFont];
     self.timeLabelF = (CGRect){{timeX, timeY}, timeSize};
 
     
@@ -77,7 +77,7 @@
     CGFloat contentX = iconX;
     CGFloat contentY = MAX(CGRectGetMaxY(self.photosViewF), CGRectGetMaxY(self.timeLabelF)) + HLStatusCellBorderW;
     CGFloat maxW = cellW - 2 * contentX;
-    CGSize contentSize = [posts.content sizeWithFont:HLStatusCellContentFont maxW:maxW];
+    CGSize contentSize = [status.posts.content sizeWithFont:HLStatusCellContentFont maxW:maxW];
     self.contentLabelF = (CGRect){{contentX, contentY}, contentSize};
     
     originalH = CGRectGetMaxY(self.contentLabelF) + HLStatusCellBorderW;
