@@ -34,8 +34,10 @@
 
 // 评论
 #define HL_ADD_COMMENT @"http://192.168.168.188:8008/nvshen/nsjson/addComment.json"
-// 获取一个show的评论
-#define HL_LOAD_COMMENT @"http://192.168.168.188:8008/nvshen/nsjson/listComments.json"
+// 获取一个show的最新评论
+#define HL_LATEST_COMMENT_URL @"http://192.168.168.188:8008/nvshen/nsjson/latest_comments.json"
+// 获取一个show的旧评论
+#define HL_OLDER_COMMENT_URL @"http://192.168.168.188:8008/nvshen/nsjson/older_comments.json"
 // 点赞
 #define HL_ADD_LIKE @"http://192.168.168.188:8008/nvshen/nsjson/addLike.json"
 // 最新show的获取地址
@@ -47,10 +49,10 @@
 #define HLNotificationCenter [NSNotificationCenter defaultCenter]
 // 通知
 // 表情选中的通知
-#define HWEmotionDidSelectNotification @"HWEmotionDidSelectNotification"
-#define HWSelectEmotionKey @"HWSelectEmotionKey"
+#define HLEmotionDidSelectNotification @"HLEmotionDidSelectNotification"
+#define HLSelectEmotionKey @"HLSelectEmotionKey"
 // 删除文字的通知
-#define HWEmotionDidDeleteNotification @"HWEmotionDidDeleteNotification"
+#define HLEmotionDidDeleteNotification @"HLEmotionDidDeleteNotification"
 
 #ifdef DEBUG // 处于开发阶段
 #define HLLog(...) NSLog(__VA_ARGS__)

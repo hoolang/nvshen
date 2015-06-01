@@ -113,16 +113,16 @@
 /**
  * 初始化原创微博
  */
-- (void)setupOriginal
-{
-       [self.contentView addSubview:[self returnOriginalView]];
-}
+//- (void)setupOriginal
+//{
+//    
+//}
 
-- (UIView *)returnOriginalView{
+- (void)setupOriginal{
     /** 原创微博整体 */
     UIView *originalView = [[UIView alloc] init];
     originalView.backgroundColor = [UIColor whiteColor];
-
+    [self.contentView addSubview:originalView];
     self.originalView = originalView;
     
     /** 头像 */
@@ -150,25 +150,19 @@
     /** 时间 */
     UILabel *timeLabel = [[UILabel alloc] init];
     timeLabel.font = HLStatusCellTimeFont;
-    timeLabel.textColor = [UIColor orangeColor];
+    timeLabel.textColor = HLStatusCellContentColor;
     [originalView addSubview:timeLabel];
     self.timeLabel = timeLabel;
-    
-    /** 来源 */
-    UILabel *sourceLabel = [[UILabel alloc] init];
-    sourceLabel.font = HLStatusCellSourceFont;
-    [originalView addSubview:sourceLabel];
-    self.sourceLabel = sourceLabel;
+
     
     /** 正文 */
+
     UILabel *contentLabel = [[UILabel alloc] init];
     contentLabel.font = HLStatusCellContentFont;
+    contentLabel.textColor = HLStatusCellContentColor;
     contentLabel.numberOfLines = 0;
     [originalView addSubview:contentLabel];
     self.contentLabel = contentLabel;
-    HLLog(@"%@", self.contentLabel.text);
-    
-    return originalView;
 }
 - (void)setStatusFrame:(HLStatusFrame *)statusFrame
 {
@@ -225,7 +219,7 @@
     NSString *time = statusFrame.status.posts.created_at;
     HLLog(@"status.created_at %@", statusFrame.status.posts.created_at);
     CGFloat timeX = statusFrame.nameLabelF.origin.x;
-    CGFloat timeY = CGRectGetMaxY(statusFrame.nameLabelF) + HLStatusCellBorderW;
+    CGFloat timeY = CGRectGetMaxY(statusFrame.nameLabelF) + HLStatusCellBorderW*0.5;
     CGSize timeSize = [time sizeWithFont:HLStatusCellTimeFont];
     self.timeLabel.frame = (CGRect){{timeX, timeY}, timeSize};
     self.timeLabel.text = time;
@@ -235,6 +229,11 @@
     self.contentLabel.text = statusFrame.status.posts.content;
     self.contentLabel.frame = statusFrame.contentLabelF;
     HLLog(@"self.contentLabel.text %@", statusFrame.status.posts.content);
+    if (self.contentLabel.text == nil || self.contentLabel.text ==  NULL) {
+        self.contentLabel.hidden = YES;
+    }else{
+        self.contentLabel.hidden = NO;
+    }
     
     /** 工具条 */
     self.toolbar.frame = statusFrame.toolbarF;

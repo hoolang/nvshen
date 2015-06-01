@@ -9,19 +9,16 @@
 #import <Foundation/Foundation.h>
 @class HLStatus;
 // 昵称字体
-#define HLStatusCellNameFont [UIFont systemFontOfSize:15]
+#define HLStatusCellNameFont [UIFont systemFontOfSize:13]
 // 时间字体
 #define HLStatusCellTimeFont [UIFont systemFontOfSize:12]
-// 来源字体
-#define HLStatusCellSourceFont HLStatusCellTimeFont
 // 正文字体
-#define HLStatusCellContentFont [UIFont systemFontOfSize:14]
-
-// 被转发微博的正文字体
-#define HLStatusCellRetweetContentFont [UIFont systemFontOfSize:13]
+#define HLStatusCellContentFont [UIFont systemFontOfSize:12]
+//正文字体颜色
+#define HLStatusCellContentColor [UIColor grayColor];
 
 // cell之间的间距
-#define HLStatusCellMargin 15
+#define HLStatusCellMargin 10
 #define HLStatusCellBorderW 10
 @interface HLStatusFrame : NSObject
 @property (nonatomic, strong) HLStatus *status;

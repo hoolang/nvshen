@@ -7,20 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HLComments.h"
+@class HLComments;
 // 昵称字体
-#define HLStatusCellNameFont [UIFont systemFontOfSize:15]
+#define HLCommentCellNameFont [UIFont systemFontOfSize:12]
 // 时间字体
-#define HLStatusCellTimeFont [UIFont systemFontOfSize:12]
+#define HLCommentCellTimeFont [UIFont systemFontOfSize:11]
 // 来源字体
-#define HLStatusCellSourceFont HLStatusCellTimeFont
+#define HLCommentCellSourceFont HLStatusCellTimeFont
 // 正文字体
-#define HLStatusCellContentFont [UIFont systemFontOfSize:14]
+#define HLCommentCellContentFont [UIFont systemFontOfSize:12]
 
+#define HLCommentCellContentColor [UIColor grayColor]
 // cell之间的间距
-#define HLStatusCellMargin 15
-#define HLStatusCellBorderW 10
+#define HLCommentCellMargin 1
+#define HLCommentCellBorderW 10
 @interface HLCommentsFrame : NSObject
+
 @property (nonatomic, strong) HLComments *comments;
 
 /** Show整体 */

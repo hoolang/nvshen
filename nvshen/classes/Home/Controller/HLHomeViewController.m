@@ -328,7 +328,7 @@
 
 #pragma mark - 点赞之后重新加载数据
 - (void)changelikeStatus:(NSNotification *)like{
-    NSLog(@"pid: %@",like.userInfo[@"pid"]);
+    NSLog(@"changelikeStatus pid: %@",like.userInfo[@"pid"]);
     
     for( int i=0; i< self.statusFrames.count; i++){
         HLStatusFrame *statusFrames = self.statusFrames[i];

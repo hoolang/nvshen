@@ -11,12 +11,16 @@
 #import "HLEmotion.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD+MJ.h"
+#import "HLComposeToolbar.h"
 
 
 @interface HLPostViewController ()<UITextViewDelegate>
 /** 输入控件 */
 @property (nonatomic, weak) HLEmotionTextView *textView;
-
+/** 是否正在切换键盘 */
+@property (nonatomic, assign) BOOL switchingKeybaord;
+/** 键盘顶部的工具条 */
+@property (nonatomic, weak) HLComposeToolbar *toolbar;
 @end
 
 @implementation HLPostViewController
@@ -47,25 +51,60 @@
     // 文字改变的通知
     [HLNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:textView];
     
-//    // 键盘通知
-//    // 键盘的frame发生改变时发出的通知（位置和尺寸）
-//    [HLNotificationCenter addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-//    
-//    // 表情选中的通知
-//    [HLNotificationCenter addObserver:self selector:@selector(emotionDidSelect:) name:HWEmotionDidSelectNotification object:nil];
-//    
-//    // 删除文字的通知
-//    [HLNotificationCenter addObserver:self selector:@selector(emotionDidDelete) name:HWEmotionDidDeleteNotification object:nil];
+    // 键盘通知
+    // 键盘的frame发生改变时发出的通知（位置和尺寸）
+    [HLNotificationCenter addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    // 表情选中的通知
+    [HLNotificationCenter addObserver:self selector:@selector(emotionDidSelect:) name:HLEmotionDidSelectNotification object:nil];
+    
+    // 删除文字的通知
+    [HLNotificationCenter addObserver:self selector:@selector(emotionDidDelete) name:HLEmotionDidDeleteNotification object:nil];
 }
 
 #pragma mark - 监听方法
 /**
- *  删除文字
- */
+*  删除文字
+*/
 - (void)emotionDidDelete
 {
     [self.textView deleteBackward];
 }
+
+/**
+ *  表情被选中了
+ */
+- (void)emotionDidSelect:(NSNotification *)notification
+{
+    HLEmotion *emotion = notification.userInfo[HLSelectEmotionKey];
+    [self.textView insertEmotion:emotion];
+}
+
+/**
+ * 键盘的frame发生改变时调用（显示、隐藏等）
+ */
+- (void)keyboardWillChangeFrame:(NSNotification *)notification
+{
+    // 如果正在切换键盘，就不要执行后面的代码
+    if (self.switchingKeybaord) return;
+    
+    NSDictionary *userInfo = notification.userInfo;
+    // 动画的持续时间
+    double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    // 键盘的frame
+    CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    // 执行动画
+    [UIView animateWithDuration:duration animations:^{
+        // 工具条的Y值 == 键盘的Y值 - 工具条的高度
+        if (keyboardF.origin.y > self.view.height) { // 键盘的Y值已经远远超过了控制器view的高度
+            self.toolbar.y = self.view.height - self.toolbar.height;
+        } else {
+            self.toolbar.y = keyboardF.origin.y - self.toolbar.height;
+        }
+    }];
+}
+
 
 -(void)QQ{
     HLLog(@"QQ");

@@ -37,6 +37,10 @@
 /** 正文 */
 @property (nonatomic, weak) UILabel *contentLabel;
 
+@property (nonatomic, weak) UIButton *btn;
+
+@property (nonatomic, weak) UITextView *textView;
+
 /* 转发微博 */
 /** 转发微博整体 */
 @property (nonatomic, weak) UIView *retweetView;
@@ -98,29 +102,26 @@
     [originalView addSubview:timeLabel];
     self.timeLabel = timeLabel;
     
-    /** 来源 */
-    UILabel *sourceLabel = [[UILabel alloc] init];
-    sourceLabel.font = HLStatusCellSourceFont;
-    [originalView addSubview:sourceLabel];
-    self.sourceLabel = sourceLabel;
-    
     /** 正文 */
     UILabel *contentLabel = [[UILabel alloc] init];
     contentLabel.font = HLStatusCellContentFont;
+    contentLabel.textColor = HLStatusCellContentColor;
     contentLabel.numberOfLines = 0;
     [originalView addSubview:contentLabel];
     self.contentLabel = contentLabel;
     HLLog(@"%@", self.contentLabel.text);
-
 }
 
+- (void)onClick{
+    HLLog(@"btn click");
+}
 - (void)setStatusFrame:(HLStatusFrame *)statusFrame
 {
     _statusFrame = statusFrame;
     
     HLLog(@"setStatusFrame =》》》》》%@",statusFrame);
     
-    /** 原创微博整体 */
+    /** show的整体 */
     self.originalView.frame = statusFrame.originalViewF;
     
     /** 头像 */
@@ -171,9 +172,10 @@
     NSString *time = statusFrame.status.posts.created_at;
     HLLog(@"status.created_at >>>>%@", statusFrame.status.posts.created_at);
     CGFloat timeX = statusFrame.nameLabelF.origin.x;
-    CGFloat timeY = CGRectGetMaxY(statusFrame.nameLabelF) + HLStatusCellBorderW;
+    CGFloat timeY = CGRectGetMaxY(statusFrame.nameLabelF) + HLStatusCellBorderW * 0.5;
     CGSize timeSize = [time sizeWithFont:HLStatusCellTimeFont];
     self.timeLabel.frame = (CGRect){{timeX, timeY}, timeSize};
+    self.timeLabel.textColor = HLStatusCellContentColor;
     self.timeLabel.text = time;
     
     

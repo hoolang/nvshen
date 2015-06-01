@@ -50,16 +50,9 @@
     
     /** 时间 */
     CGFloat timeX = nameX;
-    CGFloat timeY = CGRectGetMaxY(self.nameLabelF) + HLStatusCellBorderW;
+    CGFloat timeY = CGRectGetMaxY(self.nameLabelF)-2;
     CGSize timeSize = [status.posts.created_at sizeWithFont:HLStatusCellTimeFont];
     self.timeLabelF = (CGRect){{timeX, timeY}, timeSize};
-
-    
-//    /** 来源 */
-//    CGFloat sourceX = CGRectGetMaxX(self.timeLabelF) + HWStatusCellBorderW;
-//    CGFloat sourceY = timeY;
-//    CGSize sourceSize = [status.source sizeWithFont:HWStatusCellSourceFont];
-//    self.sourceLabelF = (CGRect){{sourceX, sourceY}, sourceSize};
     
     
     /** 配图 */

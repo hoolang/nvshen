@@ -44,21 +44,46 @@
     return cell;
 }
 
-- (id)initWithFrame:(CGRect)frame
+//- (id)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        [self setupOriginal];
+//    }
+//    return self;
+//}
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithFrame:frame];
+    HLLog(@"initWithStyle SSSS");
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
+        // 点击cell的时候不要变色
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        // 设置选中时的背景为蓝色
+        //        UIView *bg = [[UIView alloc] init];
+        //        bg.backgroundColor = [UIColor blueColor];
+        //        self.selectedBackgroundView = bg;
+        
+        // 这个做法不行
+        //        self.selectedBackgroundView.backgroundColor = [UIColor blueColor];
+        
+        // 初始化评论
         [self setupOriginal];
+        
+        // 初始化工具条
+
     }
     return self;
 }
+
 - (void)setupOriginal{
-    /** 原创微博整体 */
+    /** 评论整体 */
     UIView *originalView = [[UIView alloc] init];
     originalView.backgroundColor = [UIColor whiteColor];
-    
-    [originalView setUserInteractionEnabled:YES];
-    [self addSubview:originalView];
+    [self.contentView addSubview:originalView];
     
     self.originalView = originalView;
     
@@ -76,38 +101,34 @@
     
     /** 昵称 */
     UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.font = HLStatusCellNameFont;
+    nameLabel.font = HLCommentCellNameFont;
     [originalView addSubview:nameLabel];
     self.nameLabel = nameLabel;
     
     /** 时间 */
     UILabel *timeLabel = [[UILabel alloc] init];
-    timeLabel.font = HLStatusCellTimeFont;
-    timeLabel.textColor = [UIColor orangeColor];
+    timeLabel.font = HLCommentCellTimeFont;
+    timeLabel.textColor = HLCommentCellContentColor;
     [originalView addSubview:timeLabel];
     self.timeLabel = timeLabel;
     
-    /** 来源 */
-    UILabel *sourceLabel = [[UILabel alloc] init];
-    sourceLabel.font = HLStatusCellSourceFont;
-    [originalView addSubview:sourceLabel];
-    self.sourceLabel = sourceLabel;
-    
     /** 正文 */
     UILabel *contentLabel = [[UILabel alloc] init];
-    contentLabel.font = HLStatusCellContentFont;
+    contentLabel.font = HLCommentCellContentFont;
+    contentLabel.textColor = HLCommentCellContentColor;
     contentLabel.numberOfLines = 0;
+    
     [originalView addSubview:contentLabel];
     self.contentLabel = contentLabel;
-    HLLog(@"%@", self.contentLabel.text);
+    HLLog(@"self.contentLabel.text%@", self.contentLabel.text);
     
 }
 
-- (void)setStatusFrame:(HLCommentsFrame *)commentsFrame
+- (void)setCommentsFrame:(HLCommentsFrame *)commentsFrame
 {
     _commentsFrame = commentsFrame;
     
-    HLLog(@"setStatusFrame =》》》》》%@",commentsFrame);
+    HLLog(@"commentsFrame =》》》》》%@",commentsFrame);
     
     /** 原创微博整体 */
     self.originalView.frame = commentsFrame.originalViewF;
@@ -134,7 +155,7 @@
     
     /** 昵称 */
     self.nameLabel.text = commentsFrame.comments.user.name;
-    HLLog(@"statusFrame.status.posts.user >>> %@",commentsFrame.comments.user.icon);
+    HLLog(@"commentsFrame.comments.user.icon >>> %@",commentsFrame.comments.user.icon);
     self.nameLabel.frame = commentsFrame.nameLabelF;
     
     /** 时间 */
@@ -150,7 +171,7 @@
     /** 正文 */
     self.contentLabel.text = commentsFrame.comments.comment;
     self.contentLabel.frame = commentsFrame.contentLabelF;
-    HLLog(@"self.contentLabel.text>>>> %@", commentsFrame.comments.comment);
+    HLLog(@"commentsFrame.comments.comment>>>> %@", commentsFrame.comments.comment);
     
 }
 

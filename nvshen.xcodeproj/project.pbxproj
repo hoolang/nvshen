@@ -152,6 +152,17 @@
 		E0A304451B0D9AE0001BBEF8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0A304441B0D9AE0001BBEF8 /* CoreTelephony.framework */; };
 		E0A304471B0D9AEF001BBEF8 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0A304461B0D9AEF001BBEF8 /* libstdc++.dylib */; };
 		E0A304491B0D9AFF001BBEF8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0A304481B0D9AFF001BBEF8 /* libz.dylib */; };
+		E0A53ED21B1C61E9007321CD /* HLEmotionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A53ED11B1C61E9007321CD /* HLEmotionTool.m */; };
+		E0A53EE61B1C6215007321CD /* HLComposePhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A53ED41B1C6215007321CD /* HLComposePhotosView.m */; };
+		E0A53EE71B1C6215007321CD /* HLComposeToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A53ED61B1C6215007321CD /* HLComposeToolbar.m */; };
+		E0A53EE81B1C6215007321CD /* HLEmotionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A53ED81B1C6215007321CD /* HLEmotionButton.m */; };
+		E0A53EE91B1C6215007321CD /* HLEmotionKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A53EDA1B1C6215007321CD /* HLEmotionKeyboard.m */; };
+		E0A53EEA1B1C6215007321CD /* HLEmotionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A53EDC1B1C6215007321CD /* HLEmotionListView.m */; };
+		E0A53EEB1B1C6215007321CD /* HLEmotionPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A53EDE1B1C6215007321CD /* HLEmotionPageView.m */; };
+		E0A53EEC1B1C6215007321CD /* HLEmotionPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A53EE01B1C6215007321CD /* HLEmotionPopView.m */; };
+		E0A53EED1B1C6215007321CD /* HLEmotionPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A53EE11B1C6215007321CD /* HLEmotionPopView.xib */; };
+		E0A53EEE1B1C6215007321CD /* HLEmotionTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A53EE31B1C6215007321CD /* HLEmotionTabBar.m */; };
+		E0A53EEF1B1C6215007321CD /* HLEmotionTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A53EE51B1C6215007321CD /* HLEmotionTabBarButton.m */; };
 		E0A789A51AFE241D004F3511 /* HLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789A41AFE241D004F3511 /* HLNavigationController.m */; };
 		E0A789A81AFE24BD004F3511 /* HLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789A71AFE24BD004F3511 /* HLTabBarViewController.m */; };
 		E0A789AE1AFE2822004F3511 /* HLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A789AD1AFE2822004F3511 /* HLHomeViewController.m */; };
@@ -447,6 +458,27 @@
 		E0A304441B0D9AE0001BBEF8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E0A304461B0D9AEF001BBEF8 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		E0A304481B0D9AFF001BBEF8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E0A53ED01B1C61E9007321CD /* HLEmotionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEmotionTool.h; sourceTree = "<group>"; };
+		E0A53ED11B1C61E9007321CD /* HLEmotionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEmotionTool.m; sourceTree = "<group>"; };
+		E0A53ED31B1C6215007321CD /* HLComposePhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLComposePhotosView.h; sourceTree = "<group>"; };
+		E0A53ED41B1C6215007321CD /* HLComposePhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLComposePhotosView.m; sourceTree = "<group>"; };
+		E0A53ED51B1C6215007321CD /* HLComposeToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLComposeToolbar.h; sourceTree = "<group>"; };
+		E0A53ED61B1C6215007321CD /* HLComposeToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLComposeToolbar.m; sourceTree = "<group>"; };
+		E0A53ED71B1C6215007321CD /* HLEmotionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEmotionButton.h; sourceTree = "<group>"; };
+		E0A53ED81B1C6215007321CD /* HLEmotionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEmotionButton.m; sourceTree = "<group>"; };
+		E0A53ED91B1C6215007321CD /* HLEmotionKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEmotionKeyboard.h; sourceTree = "<group>"; };
+		E0A53EDA1B1C6215007321CD /* HLEmotionKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEmotionKeyboard.m; sourceTree = "<group>"; };
+		E0A53EDB1B1C6215007321CD /* HLEmotionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEmotionListView.h; sourceTree = "<group>"; };
+		E0A53EDC1B1C6215007321CD /* HLEmotionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEmotionListView.m; sourceTree = "<group>"; };
+		E0A53EDD1B1C6215007321CD /* HLEmotionPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEmotionPageView.h; sourceTree = "<group>"; };
+		E0A53EDE1B1C6215007321CD /* HLEmotionPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEmotionPageView.m; sourceTree = "<group>"; };
+		E0A53EDF1B1C6215007321CD /* HLEmotionPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEmotionPopView.h; sourceTree = "<group>"; };
+		E0A53EE01B1C6215007321CD /* HLEmotionPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEmotionPopView.m; sourceTree = "<group>"; };
+		E0A53EE11B1C6215007321CD /* HLEmotionPopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLEmotionPopView.xib; sourceTree = "<group>"; };
+		E0A53EE21B1C6215007321CD /* HLEmotionTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEmotionTabBar.h; sourceTree = "<group>"; };
+		E0A53EE31B1C6215007321CD /* HLEmotionTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEmotionTabBar.m; sourceTree = "<group>"; };
+		E0A53EE41B1C6215007321CD /* HLEmotionTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEmotionTabBarButton.h; sourceTree = "<group>"; };
+		E0A53EE51B1C6215007321CD /* HLEmotionTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEmotionTabBarButton.m; sourceTree = "<group>"; };
 		E0A789A31AFE241D004F3511 /* HLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLNavigationController.h; path = nvshen/HLNavigationController.h; sourceTree = SOURCE_ROOT; };
 		E0A789A41AFE241D004F3511 /* HLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLNavigationController.m; path = nvshen/HLNavigationController.m; sourceTree = SOURCE_ROOT; };
 		E0A789A61AFE24BD004F3511 /* HLTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLTabBarViewController.h; path = nvshen/HLTabBarViewController.h; sourceTree = SOURCE_ROOT; };
@@ -895,6 +927,7 @@
 		E09DCE841AFF0A1300C5145E /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				E0A53ECF1B1C61E9007321CD /* Tool */,
 				E081D6F21B021612005E42F1 /* Lib */,
 				E0E75ABB1B0034C300D60497 /* Controller */,
 				E09DCE861AFF0A1300C5145E /* Model */,
@@ -917,10 +950,38 @@
 		E09DCE871AFF0A1300C5145E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E0A53ED31B1C6215007321CD /* HLComposePhotosView.h */,
+				E0A53ED41B1C6215007321CD /* HLComposePhotosView.m */,
+				E0A53ED51B1C6215007321CD /* HLComposeToolbar.h */,
+				E0A53ED61B1C6215007321CD /* HLComposeToolbar.m */,
+				E0A53ED71B1C6215007321CD /* HLEmotionButton.h */,
+				E0A53ED81B1C6215007321CD /* HLEmotionButton.m */,
+				E0A53ED91B1C6215007321CD /* HLEmotionKeyboard.h */,
+				E0A53EDA1B1C6215007321CD /* HLEmotionKeyboard.m */,
+				E0A53EDB1B1C6215007321CD /* HLEmotionListView.h */,
+				E0A53EDC1B1C6215007321CD /* HLEmotionListView.m */,
+				E0A53EDD1B1C6215007321CD /* HLEmotionPageView.h */,
+				E0A53EDE1B1C6215007321CD /* HLEmotionPageView.m */,
+				E0A53EDF1B1C6215007321CD /* HLEmotionPopView.h */,
+				E0A53EE01B1C6215007321CD /* HLEmotionPopView.m */,
+				E0A53EE11B1C6215007321CD /* HLEmotionPopView.xib */,
+				E0A53EE21B1C6215007321CD /* HLEmotionTabBar.h */,
+				E0A53EE31B1C6215007321CD /* HLEmotionTabBar.m */,
+				E0A53EE41B1C6215007321CD /* HLEmotionTabBarButton.h */,
+				E0A53EE51B1C6215007321CD /* HLEmotionTabBarButton.m */,
 				E0A0658B1B0B2A2A00CE4728 /* HLEmotionTextView.h */,
 				E0A0658C1B0B2A2A00CE4728 /* HLEmotionTextView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E0A53ECF1B1C61E9007321CD /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				E0A53ED01B1C61E9007321CD /* HLEmotionTool.h */,
+				E0A53ED11B1C61E9007321CD /* HLEmotionTool.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		E0A789A91AFE276A004F3511 /* Controller */ = {
@@ -1394,6 +1455,7 @@
 				E0072F431B124C4C00AAC6F5 /* jclq_howto.html in Resources */,
 				E0B5EA441B04A1E20086BC03 /* close.png in Resources */,
 				E0072F401B124C4C00AAC6F5 /* group_record.html in Resources */,
+				E0A53EED1B1C6215007321CD /* HLEmotionPopView.xib in Resources */,
 				E0072F491B124C4C00AAC6F5 /* kl8_howto.html in Resources */,
 				E0038E9A1B12346800E4924F /* HLProductCell.xib in Resources */,
 				E0B5EA4C1B04A1E20086BC03 /* up@2x.png in Resources */,
@@ -1465,6 +1527,7 @@
 				E0072F0C1B123BA800AAC6F5 /* SDWebImageManager.m in Sources */,
 				E0D922A51AFCA97000AE9948 /* ViewController.m in Sources */,
 				E0072F0D1B123BA800AAC6F5 /* SDWebImagePrefetcher.m in Sources */,
+				E0A53EE61B1C6215007321CD /* HLComposePhotosView.m in Sources */,
 				E0038E991B12346800E4924F /* HLProductCell.m in Sources */,
 				E0A065611B0B1C2300CE4728 /* HLTextView.m in Sources */,
 				E095D59A1B17196E002B07E2 /* MJRefreshHeaderView.m in Sources */,
@@ -1477,6 +1540,7 @@
 				E0072EDA1B123BA100AAC6F5 /* MJFoundation.m in Sources */,
 				E0072EDB1B123BA100AAC6F5 /* MJIvar.m in Sources */,
 				E0072F081B123BA800AAC6F5 /* SDWebImageCompat.m in Sources */,
+				E0A53EE71B1C6215007321CD /* HLComposeToolbar.m in Sources */,
 				E0038E831B12345500E4924F /* HLHtml.m in Sources */,
 				E0A065661B0B286C00CE4728 /* HLEmotion.m in Sources */,
 				E0038E8D1B12345A00E4924F /* HLSaveTool.m in Sources */,
@@ -1491,6 +1555,7 @@
 				E0784EDE1B1B8B1500453294 /* NSString+Date.m in Sources */,
 				E0038E881B12345500E4924F /* HLSettingLabelItem.m in Sources */,
 				E0038E871B12345500E4924F /* HLSettingItem.m in Sources */,
+				E0A53ED21B1C61E9007321CD /* HLEmotionTool.m in Sources */,
 				E0A065671B0B286C00CE4728 /* HLEmotionAttachment.m in Sources */,
 				E0072F0B1B123BA800AAC6F5 /* SDWebImageDownloaderOperation.m in Sources */,
 				E0038E891B12345500E4924F /* HLSettingSwitchItem.m in Sources */,
@@ -1505,8 +1570,10 @@
 				E0038E711B12342F00E4924F /* HLShareViewController.m in Sources */,
 				E095D5811B16FC5E002B07E2 /* HLStatusCell.m in Sources */,
 				E0A789B71AFE2A50004F3511 /* UIView+Extension.m in Sources */,
+				E0A53EEF1B1C6215007321CD /* HLEmotionTabBarButton.m in Sources */,
 				E0038E651B12342F00E4924F /* HLAboutViewController.m in Sources */,
 				E09DCE7F1AFF022300C5145E /* HLTabBar.m in Sources */,
+				E0A53EE91B1C6215007321CD /* HLEmotionKeyboard.m in Sources */,
 				E095D59C1B17196E002B07E2 /* UIScrollView+MJRefresh.m in Sources */,
 				E003C4D01B1A19AE006BDEDE /* HLCommentToolbar.m in Sources */,
 				E0072EDD1B123BA100AAC6F5 /* MJMethod.m in Sources */,
@@ -1523,11 +1590,13 @@
 				E0072EB41B123B8F00AAC6F5 /* AFURLRequestSerialization.m in Sources */,
 				E095D5A31B177390002B07E2 /* NSDate+Extension.m in Sources */,
 				E0038E6A1B12342F00E4924F /* HLSettingTableViewController.m in Sources */,
+				E0A53EE81B1C6215007321CD /* HLEmotionButton.m in Sources */,
 				E0072EB11B123B8F00AAC6F5 /* AFNetworkReachabilityManager.m in Sources */,
 				E0072E981B123B7900AAC6F5 /* HLPushNoticeController.m in Sources */,
 				E0784ED81B1B3B5100453294 /* HLCommentView.m in Sources */,
 				E0072ED91B123BA100AAC6F5 /* MJConst.m in Sources */,
 				E09DCE761AFEEA5E00C5145E /* HLProfileViewController.m in Sources */,
+				E0A53EEE1B1C6215007321CD /* HLEmotionTabBar.m in Sources */,
 				E095D56C1B16E21A002B07E2 /* HLStatus.m in Sources */,
 				E0038E9B1B12346800E4924F /* HLSettingCell.m in Sources */,
 				E0072E991B123B7900AAC6F5 /* HLScoreNoticeViewController.m in Sources */,
@@ -1552,6 +1621,7 @@
 				E0072F121B123BA800AAC6F5 /* UIImageView+HighlightedWebCache.m in Sources */,
 				E0072EB01B123B8F00AAC6F5 /* AFHTTPSessionManager.m in Sources */,
 				E0038E851B12345500E4924F /* HLSettingArrowItem.m in Sources */,
+				E0A53EEB1B1C6215007321CD /* HLEmotionPageView.m in Sources */,
 				E0A065931B0B2CDA00CE4728 /* NSString+Emoji.m in Sources */,
 				E0813CCC1B09CBC200008083 /* HLPostViewController.m in Sources */,
 				E003C4CA1B1A15E6006BDEDE /* HLCommonCell.m in Sources */,
@@ -1570,10 +1640,12 @@
 				E0A0658D1B0B2A2A00CE4728 /* HLEmotionTextView.m in Sources */,
 				E0072EB21B123B8F00AAC6F5 /* AFSecurityPolicy.m in Sources */,
 				E0072EAF1B123B8F00AAC6F5 /* AFHTTPRequestOperationManager.m in Sources */,
+				E0A53EEA1B1C6215007321CD /* HLEmotionListView.m in Sources */,
 				E0072EB31B123B8F00AAC6F5 /* AFURLConnectionOperation.m in Sources */,
 				E0784EE11B1B919D00453294 /* HLCommentsFrame.m in Sources */,
 				E0B5EA2F1B04A1CB0086BC03 /* DoAlbumCell.m in Sources */,
 				E0ADF9AE1B04E57300732E3C /* HLEditPhotoViewController.m in Sources */,
+				E0A53EEC1B1C6215007321CD /* HLEmotionPopView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1706,6 +1778,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/nvshen/PrefixHeader.pch";
 				INFOPLIST_FILE = nvshen/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				New_Setting = "";
@@ -1725,6 +1798,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/nvshen/PrefixHeader.pch";
 				INFOPLIST_FILE = nvshen/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				New_Setting = "";

@@ -16,7 +16,5 @@
 
 - (void)setupOriginal;
 
-- (UIView *)returnOriginalView;
-
 @property (nonatomic, strong) HLStatusFrame *statusFrame;
 @end

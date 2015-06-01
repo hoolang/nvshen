@@ -19,11 +19,25 @@
 #import "HLHttpTool.h"
 #import "MJExtension.h"
 #import "MJRefresh.h"
+#import "HLComposeToolbar.h"
+#import "HLEmotionKeyboard.h"
 
 @interface HLAddCommentViewController ()
+<
+UITextViewDelegate,
+HLComposeToolbarDelegate,
+UINavigationControllerDelegate
+>
 /** 输入控件 */
 @property (nonatomic, weak) HLEmotionTextView *textView;
 @property (nonatomic, weak) UIView *commentView;
+/** 键盘顶部的工具条 */
+@property (nonatomic, weak) HLComposeToolbar *toolbar;
+#warning 一定要用strong
+/** 表情键盘 */
+@property (nonatomic, strong) HLEmotionKeyboard *emotionKeyboard;
+/** 是否正在切换键盘 */
+@property (nonatomic, assign) BOOL switchingKeybaord;
 /**
 *  show数组（里面放的都是HLStatusFrame模型，一个HLStatusFrame对象就代表一条show）
 */
@@ -40,35 +54,80 @@
     return _commentsFrames;
 }
 
+#pragma mark - 懒加载
+- (HLEmotionKeyboard *)emotionKeyboard
+{
+    if (!_emotionKeyboard) {
+        self.emotionKeyboard = [[HLEmotionKeyboard alloc] init];
+        // 键盘的宽度
+        self.emotionKeyboard.width = self.view.width;
+        self.emotionKeyboard.height = 216;
+    }
+    return _emotionKeyboard;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     //设置导航栏
-    //[self setNav];
+    [self setNav];
     
-    HLCommentView *commentView = [[HLCommentView alloc] init];
-    self.commentView = commentView;
-
-    HLStatusFrame *statusF = [[HLStatusFrame alloc] init];
-
-    statusF.status = _status;
-
-    commentView.statusFrame = statusF;
-    
-    
-    CGFloat width = commentView.frame.size.width;
-    CGFloat height = commentView.frame.size.height;
-
-    commentView.frame = CGRectMake(0, -statusF.cellHeight, width, height);
-
-    self.tableView.contentInset = UIEdgeInsetsMake(statusF.cellHeight, 0, 0, 0);
-    [self.tableView insertSubview:self.commentView atIndex:0];
-    // 注册通知
+    // 设置Show的显示
+    [self setupShow];
     
     // 集成上拉刷新控件
     //[self setupDownRefresh];
+    [self loadNewComments];
+    
+    // 集成上拉刷新控件
+    [self setupUpRefresh];
+    
+    // 添加工具条
+    [self setupToolbar];
+    
+    // 注册通知
     [HLNotificationCenter addObserver:self selector:@selector(changelikeStatus:) name:@"addLikeInCommentViewNotification" object:nil];
     
+}
+/**
+ *  设置Show
+ */
+- (void)setupShow{
+    HLCommentView *topView = [[HLCommentView alloc] init];
+    HLStatusFrame *statusF = [[HLStatusFrame alloc] init];
+    
+    statusF.status = _status;
+    topView.statusFrame = statusF;
+
+    // show的宽度
+    CGFloat width = [[UIScreen mainScreen] bounds].size.width;
+    // 设置frame
+    topView.frame = CGRectMake(0, -statusF.cellHeight, width, statusF.cellHeight);
+    
+    self.commentView = topView;
+    // 设置table距离顶部的距离
+    self.tableView.contentInset = UIEdgeInsetsMake(statusF.cellHeight, 0, 0, 0);
+    // 把commentView添加到顶部
+    [self.tableView insertSubview:self.commentView atIndex:0];
+}
+/**
+ * 添加工具条
+ */
+- (void)setupToolbar
+{
+    HLComposeToolbar *toolbar = [[HLComposeToolbar alloc] init];
+    toolbar.width = self.view.width;
+    toolbar.height = 44;
+    toolbar.y = self.view.height - toolbar.height;
+    toolbar.delegate = self;
+    [self.commentView addSubview:toolbar];
+    self.toolbar = toolbar;
+}
+/**
+ 集成上拉刷新控件
+ */
+- (void)setupUpRefresh{
+    [self.tableView addFooterWithTarget:self action:@selector(loadMoreComments)];
 }
 /**
  *  集成下拉刷新控件
@@ -76,19 +135,67 @@
 - (void)setupDownRefresh
 {
     // 1.添加刷新控件
-    [self.tableView addHeaderWithTarget:self action:@selector(loadComments)];
+    [self.tableView addHeaderWithTarget:self action:@selector(loadNewComments)];
     
     // 2.进入刷新状态
     [self.tableView headerBeginRefreshing];
 }
-- (void)loadComments{
+#pragma mark -加载最新评论
+- (void)loadNewComments{
+    HLLog(@"loadNewComments->>");
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"pid"] = _status.posts.pid;
+    HLCommentsFrame *firstCommentF = [self.commentsFrames firstObject];
+    
+    if (firstCommentF) {
+        // 若指定此参数，则返回ID比maxid大的show（即比maxid时间晚的show），默认为0
+        params[@"maxid"] = firstCommentF.comments.cid;
+        HLLog(@"params[@maxid] %@",params[@"maxid"]);
+    }
+    
+    // 2.发送请求
+    [HLHttpTool get:HL_LATEST_COMMENT_URL
+             params:params success:^(id json) {
+     // 将 "show（posts）字典"数组 转为 "show模型"数组
+     NSArray *newComments = [HLComments objectArrayWithKeyValuesArray:json[@"comments"]];
+     
+     
+     // 将 HWStatus数组 转为 HWStatusFrame数组
+     NSArray *newFrames = [self commentsFramesWithComments:newComments];
+     
+     // 将最新的微博数据，添加到总数组的最前面
+     NSRange range = NSMakeRange(0, newFrames.count);
+     NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
+     [self.commentsFrames insertObjects:newFrames atIndexes:set];
+     
+     // 刷新表格
+     [self.tableView reloadData];
+     
+     // 结束刷新
+     [self.tableView headerEndRefreshing];
+     
+     // 显示最新评论的数量
+     //[self showNewStatusCount:newComments.count];
+     HLLog(@"%@", json);
+ } failure:^(NSError *error) {
+     HLLog(@"请求失败-%@", error);
+     
+     // 结束刷新刷新
+     [self.tableView headerEndRefreshing];
+ }];
+
+}
+#pragma mark -加载更多评论
+- (void)loadMoreComments{
     
     HLLog(@"loadMoreComments->>>");
+    
     // 1.拼接请求参数
-
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
     params[@"pid"] = _status.posts.pid;
+    
     // 取出最后面的评论（最新的评论，ID最大的评论）
     HLCommentsFrame *lastCommentF = [self.commentsFrames lastObject];
     if (lastCommentF) {
@@ -101,12 +208,12 @@
     }
     
     // 2.发送请求
-    [HLHttpTool get:HL_LOAD_COMMENT params:params success:^(id json) {
+    [HLHttpTool get:HL_OLDER_COMMENT_URL params:params success:^(id json) {
         // 将 "评论字典"数组 转为 "评论模型"数组
         NSArray *newComments = [HLComments objectArrayWithKeyValuesArray:json[@"comments"]];
         
         // 将 HLComments数组 转为 HLCommentsFrame数组
-        NSArray *newFrames = [self commentsFramesWithStatuses:newComments];
+        NSArray *newFrames = [self commentsFramesWithComments:newComments];
         
         // 将更多的评论数据，添加到总数组的最后面
         [self.commentsFrames addObjectsFromArray:newFrames];
@@ -126,7 +233,7 @@
 /**
  *  将HLStatus模型转为HLStatusFrame模型
  */
-- (NSArray *)commentsFramesWithStatuses:(NSArray *)comments
+- (NSArray *)commentsFramesWithComments:(NSArray *)comments
 {
     NSMutableArray *frames = [NSMutableArray array];
     for (HLComments *comment in comments) {
@@ -141,13 +248,13 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(doComment)];
     self.view.backgroundColor = HLColor(239, 239, 239);
-    HLLog(@"pid %@",self.pid);
+
     HLEmotionTextView *textView = [[HLEmotionTextView alloc] init];
     // 垂直方向上可以拖拽
     textView.alwaysBounceVertical = YES;
     CGFloat screen = [UIScreen mainScreen].bounds.size.width;
     
-    textView.frame = CGRectMake(0, 0, screen ,160);
+    textView.frame = CGRectMake(0, 0, screen ,360);
     textView.font = [UIFont systemFontOfSize:13];
     textView.delegate = self;
     textView.placeholder = @"秀一秀我的态度2";
@@ -161,20 +268,17 @@
 }
 #pragma mark - 点赞之后重新加载数据
 - (void)changelikeStatus:(NSNotification *)like{
-//    NSLog(@"pid: %@",like.userInfo[@"pid"]);
-//    
-//    for( int i=0; i< self.statusFrames.count; i++){
-//        HLStatusFrame *statusFrames = self.statusFrames[i];
-//        
-//        if(statusFrames.status.posts.pid == like.userInfo[@"pid"]){
-//            if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
-//                statusFrames.status.likes_count -= 1;
-//            }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
-//                statusFrames.status.likes_count += 1;
-//            }
-//        }
-//    }
-//    [self.tableView reloadData];
+    NSLog(@"pid: %@",like.userInfo[@"pid"]);
+
+    if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
+        NSLog(@"cancel: %@",like.userInfo[@"pid"]);
+        _status.likes_count -= 1;
+    }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
+        NSLog(@"done: %@",like.userInfo[@"pid"]);
+        _status.likes_count += 1;
+    }
+
+    [self.tableView reloadData];
 }
 - (void)doComment{
     // 1.请求管理者
@@ -188,7 +292,7 @@
     //params[@"access_token"] = [HWAccountTool account].access_token;
     params[@"comments.content"] = self.textView.text;
     params[@"user.uid"] = @1;
-    params[@"post.pid"] = _pid;
+    params[@"post.pid"] = _status.posts.pid;
     
     
     // 3.发送请求
@@ -200,7 +304,7 @@
 //        [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
-        NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_pid, @"pid", nil];
+        NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status.posts.pid, @"pid", nil];
         
         NSNotification *notification =[NSNotification notificationWithName:@"DoneCommentNotification" object:nil userInfo:dict];
         //通过通知中心发送通知
@@ -223,13 +327,95 @@
 {
     [self.textView deleteBackward];
 }
+/**
+ *  表情被选中了
+ */
+- (void)emotionDidSelect:(NSNotification *)notification
+{
+    HLEmotion *emotion = notification.userInfo[HLSelectEmotionKey];
+    [self.textView insertEmotion:emotion];
+}
+
+/**
+ * 键盘的frame发生改变时调用（显示、隐藏等）
+ */
+- (void)keyboardWillChangeFrame:(NSNotification *)notification
+{
+    // 如果正在切换键盘，就不要执行后面的代码
+    if (self.switchingKeybaord) return;
+    
+    NSDictionary *userInfo = notification.userInfo;
+    // 动画的持续时间
+    double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    // 键盘的frame
+    CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    // 执行动画
+    [UIView animateWithDuration:duration animations:^{
+        // 工具条的Y值 == 键盘的Y值 - 工具条的高度
+        if (keyboardF.origin.y > self.view.height) { // 键盘的Y值已经远远超过了控制器view的高度
+            self.toolbar.y = self.view.height - self.toolbar.height;
+        } else {
+            self.toolbar.y = keyboardF.origin.y - self.toolbar.height;
+        }
+    }];
+}
 #pragma mark - UITextViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
 }
-
-
+#pragma mark - HLComposeToolbarDelegate
+- (void)composeToolbar:(HLComposeToolbar *)toolbar didClickButton:(HLComposeToolbarButtonType)buttonType
+{
+    switch (buttonType) {
+            
+        case HLComposeToolbarButtonTypeMention: // @
+            HLLog(@"--- @");
+            break;
+            
+        case HLComposeToolbarButtonTypeTrend: // #
+            HLLog(@"--- #");
+            break;
+            
+        case HLComposeToolbarButtonTypeEmotion: // 表情\键盘
+            [self switchKeyboard];
+            break;
+    }
+}
+#pragma mark - 其他方法
+/**
+ *  切换键盘
+ */
+- (void)switchKeyboard
+{
+    // self.textView.inputView == nil : 使用的是系统自带的键盘
+    if (self.textView.inputView == nil) { // 切换为自定义的表情键盘
+        self.textView.inputView = self.emotionKeyboard;
+        
+        // 显示键盘按钮
+        self.toolbar.showKeyboardButton = YES;
+    } else { // 切换为系统自带的键盘
+        self.textView.inputView = nil;
+        
+        // 显示表情按钮
+        self.toolbar.showKeyboardButton = NO;
+    }
+    
+    // 开始切换键盘
+    self.switchingKeybaord = YES;
+    
+    // 退出键盘
+    [self.textView endEditing:YES];
+    
+    // 结束切换键盘
+    self.switchingKeybaord = NO;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 弹出键盘
+        [self.textView becomeFirstResponder];
+    });
+}
 #pragma mark - 数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -244,11 +430,15 @@
     // 给cell传递模型数据
     cell.commentsFrame = self.commentsFrames[indexPath.row];
     
+    
+    HLLog(@"cell.commentsFrame %@",cell.commentsFrame);
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    HLLog(@"indexPath.row======%ld",indexPath.row);
     HLCommentsFrame *frame = self.commentsFrames[indexPath.row];
     return frame.cellHeight;
 }
@@ -256,5 +446,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //    HWLog(@"didSelectRowAtIndexPath---%@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
+}
+
+- (void)dealloc
+{
+    [HLNotificationCenter removeObserver:self];
 }
 @end

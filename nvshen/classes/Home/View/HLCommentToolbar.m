@@ -75,7 +75,7 @@
  点击喜欢
  */
 - (void)addLike:(UIButton *) btn{
-    HLLog(@"btn.titlelabe.text: %@",btn.titleLabel.text);
+
     HLLog(@"addLike^66666");
     
     // 1.请求管理者
@@ -102,7 +102,7 @@
         //通过通知中心发送通知
         [HLNotificationCenter postNotification:notification];
         
-        //[MBProgressHUD showSuccess:@"谢谢点赞"];
+        [MBProgressHUD showSuccess:@"谢谢点赞"];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD showError:@"网络不稳定，请稍微再试"];
     }];
