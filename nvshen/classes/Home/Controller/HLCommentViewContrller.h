@@ -1,16 +1,15 @@
 //
-//  HLAddCommentViewController.h
+//  HLCommentViewContrller.h
 //  nvshen
 //
-//  Created by hoolang on 15/5/30.
+//  Created by hoolang on 15/6/2.
 //  Copyright (c) 2015年 Hoolang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "HLComments.h"
-#import "HLStatus.h"
-@interface HLAddCommentViewController : UITableViewController
-
+@class HLComments;
+@class HLStatus;
+@interface HLCommentViewContrller : UIViewController
 @property (nonatomic, strong) HLComments *comments;
 @property (nonatomic, strong) HLStatus *status;
 @end

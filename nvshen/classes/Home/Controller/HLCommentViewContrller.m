@@ -1,12 +1,13 @@
 //
-//  HLAddCommentViewController.m
+//  HLCommentViewContrller.m
 //  nvshen
 //
-//  Created by hoolang on 15/5/30.
+//  Created by hoolang on 15/6/2.
 //  Copyright (c) 2015年 Hoolang. All rights reserved.
 //
 
-#import "HLAddCommentViewController.h"
+#import "HLCommentViewContrller.h"
+#import "HLOneCommentViewController.h"
 #import "HLEmotionTextView.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD+MJ.h"
@@ -21,13 +22,14 @@
 #import "MJRefresh.h"
 #import "HLComposeToolbar.h"
 #import "HLEmotionKeyboard.h"
-
-@interface HLAddCommentViewController ()
+@interface HLCommentViewContrller()
 <
 UITextViewDelegate,
 HLComposeToolbarDelegate,
-UINavigationControllerDelegate
+UITableViewDelegate,
+UITableViewDataSource
 >
+@property (nonatomic, strong) UITableView *tableView;
 /** 输入控件 */
 @property (nonatomic, weak) HLEmotionTextView *textView;
 @property (nonatomic, weak) UIView *commentView;
@@ -39,21 +41,14 @@ UINavigationControllerDelegate
 /** 是否正在切换键盘 */
 @property (nonatomic, assign) BOOL switchingKeybaord;
 /**
-*  show数组（里面放的都是HLStatusFrame模型，一个HLStatusFrame对象就代表一条show）
-*/
+ *  show数组（里面放的都是HLStatusFrame模型，一个HLStatusFrame对象就代表一条show）
+ */
 @property (nonatomic, strong) NSMutableArray *commentsFrames;
+
 @end
 
-@implementation HLAddCommentViewController
 
-- (NSMutableArray *)commentsFrames
-{
-    if (!_commentsFrames) {
-        self.commentsFrames = [NSMutableArray array];
-    }
-    return _commentsFrames;
-}
-
+@implementation HLCommentViewContrller
 #pragma mark - 懒加载
 - (HLEmotionKeyboard *)emotionKeyboard
 {
@@ -65,18 +60,34 @@ UINavigationControllerDelegate
     }
     return _emotionKeyboard;
 }
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        self.tableView = [[UITableView alloc] init];
+    }
+    return _tableView;
+}
 
-- (void)viewDidLoad {
+- (NSMutableArray *)commentsFrames
+{
+    if (!_commentsFrames) {
+        self.commentsFrames = [NSMutableArray array];
+    }
+    return _commentsFrames;
+}
+-(void)viewDidLoad{
     [super viewDidLoad];
-    
+    // 初始化tableView
+    [self setupView];
     //设置导航栏
     [self setNav];
     
     // 设置Show的显示
     [self setupShow];
     
-    // 集成上拉刷新控件
+    // 集成下拉刷新控件
     //[self setupDownRefresh];
+    
     [self loadNewComments];
     
     // 集成上拉刷新控件
@@ -87,18 +98,31 @@ UINavigationControllerDelegate
     
     // 注册通知
     [HLNotificationCenter addObserver:self selector:@selector(changelikeStatus:) name:@"addLikeInCommentViewNotification" object:nil];
-    
 }
 /**
- *  设置Show
+ 初始化tableview
  */
+- (void)setupView{
+    HLOneCommentViewController *oneCommentVC = [[HLOneCommentViewController alloc] init];
+    [self addChildViewController:oneCommentVC];
+    
+    self.view.backgroundColor = [UIColor grayColor];
+    _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
+}
+
+/**
+  *  设置Show
+  */
 - (void)setupShow{
     HLCommentView *topView = [[HLCommentView alloc] init];
     HLStatusFrame *statusF = [[HLStatusFrame alloc] init];
     
     statusF.status = _status;
     topView.statusFrame = statusF;
-
+    
     // show的宽度
     CGFloat width = [[UIScreen mainScreen] bounds].size.width;
     // 设置frame
@@ -108,7 +132,7 @@ UINavigationControllerDelegate
     // 设置table距离顶部的距离
     self.tableView.contentInset = UIEdgeInsetsMake(statusF.cellHeight, 0, 0, 0);
     // 把commentView添加到顶部
-    [self.tableView insertSubview:self.commentView atIndex:0];
+    [self.tableView insertSubview:self.commentView atIndex:1];
 }
 /**
  * 添加工具条
@@ -120,7 +144,7 @@ UINavigationControllerDelegate
     toolbar.height = 44;
     toolbar.y = self.view.height - toolbar.height;
     toolbar.delegate = self;
-    [self.commentView addSubview:toolbar];
+    [self.view addSubview:toolbar];
     self.toolbar = toolbar;
 }
 /**
@@ -157,34 +181,34 @@ UINavigationControllerDelegate
     // 2.发送请求
     [HLHttpTool get:HL_LATEST_COMMENT_URL
              params:params success:^(id json) {
-     // 将 "show（posts）字典"数组 转为 "show模型"数组
-     NSArray *newComments = [HLComments objectArrayWithKeyValuesArray:json[@"comments"]];
-     
-     
-     // 将 HWStatus数组 转为 HWStatusFrame数组
-     NSArray *newFrames = [self commentsFramesWithComments:newComments];
-     
-     // 将最新的微博数据，添加到总数组的最前面
-     NSRange range = NSMakeRange(0, newFrames.count);
-     NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
-     [self.commentsFrames insertObjects:newFrames atIndexes:set];
-     
-     // 刷新表格
-     [self.tableView reloadData];
-     
-     // 结束刷新
-     [self.tableView headerEndRefreshing];
-     
-     // 显示最新评论的数量
-     //[self showNewStatusCount:newComments.count];
-     HLLog(@"%@", json);
- } failure:^(NSError *error) {
-     HLLog(@"请求失败-%@", error);
-     
-     // 结束刷新刷新
-     [self.tableView headerEndRefreshing];
- }];
-
+                 // 将 "show（posts）字典"数组 转为 "show模型"数组
+                 NSArray *newComments = [HLComments objectArrayWithKeyValuesArray:json[@"comments"]];
+                 
+                 
+                 // 将 HWStatus数组 转为 HWStatusFrame数组
+                 NSArray *newFrames = [self commentsFramesWithComments:newComments];
+                 
+                 // 将最新的微博数据，添加到总数组的最前面
+                 NSRange range = NSMakeRange(0, newFrames.count);
+                 NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
+                 [self.commentsFrames insertObjects:newFrames atIndexes:set];
+                 
+                 // 刷新表格
+                 [self.tableView reloadData];
+                 
+                 // 结束刷新
+                 [self.tableView headerEndRefreshing];
+                 
+                 // 显示最新评论的数量
+                 //[self showNewStatusCount:newComments.count];
+                 HLLog(@"%@", json);
+             } failure:^(NSError *error) {
+                 HLLog(@"请求失败-%@", error);
+                 
+                 // 结束刷新刷新
+                 [self.tableView headerEndRefreshing];
+             }];
+    
 }
 #pragma mark -加载更多评论
 - (void)loadMoreComments{
@@ -193,7 +217,7 @@ UINavigationControllerDelegate
     
     // 1.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-
+    
     params[@"pid"] = _status.posts.pid;
     
     // 取出最后面的评论（最新的评论，ID最大的评论）
@@ -248,7 +272,7 @@ UINavigationControllerDelegate
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(doComment)];
     self.view.backgroundColor = HLColor(239, 239, 239);
-
+    
     HLEmotionTextView *textView = [[HLEmotionTextView alloc] init];
     // 垂直方向上可以拖拽
     textView.alwaysBounceVertical = YES;
@@ -269,7 +293,7 @@ UINavigationControllerDelegate
 #pragma mark - 点赞之后重新加载数据
 - (void)changelikeStatus:(NSNotification *)like{
     NSLog(@"pid: %@",like.userInfo[@"pid"]);
-
+    
     if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
         NSLog(@"cancel: %@",like.userInfo[@"pid"]);
         _status.likes_count -= 1;
@@ -277,7 +301,7 @@ UINavigationControllerDelegate
         NSLog(@"done: %@",like.userInfo[@"pid"]);
         _status.likes_count += 1;
     }
-
+    
     [self.tableView reloadData];
 }
 - (void)doComment{
@@ -298,10 +322,10 @@ UINavigationControllerDelegate
     // 3.发送请求
     [mgr POST:HL_ADD_COMMENT parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
-//        UIImage *image = _image;
-//        //
-//        NSData *data = UIImageJPEGRepresentation(image, 0.6);
-//        [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
+        //        UIImage *image = _image;
+        //        //
+        //        NSData *data = UIImageJPEGRepresentation(image, 0.6);
+        //        [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
         NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status.posts.pid, @"pid", nil];

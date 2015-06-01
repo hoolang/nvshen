@@ -17,7 +17,8 @@
 #import "MJRefresh.h"
 #import "HLPosts.h"
 #import "HLStatusToolbar.h"
-#import "HLAddCommentViewController.h"
+#import "HLOneCommentViewController.h"
+#import "HLCommentViewContrller.h"
 
 @interface HLHomeViewController ()/**
  *  show数组（里面放的都是HLStatusFrame模型，一个HLStatusFrame对象就代表一条show）
@@ -305,12 +306,14 @@
 #pragma mark - status通知
 - (void)clickCommentBtn:(NSNotification *)comment{
     // 刷新表格
-    HLLog(@"changeCommentStatus status %@",comment.userInfo[@"status"]);
-    HLAddCommentViewController *addCommentVC = [[HLAddCommentViewController alloc] init];
-    addCommentVC.status = comment.userInfo[@"status"];
+//    HLLog(@"changeCommentStatus status %@",comment.userInfo[@"status"]);
+//    HLAddCommentViewController *addCommentVC = [[HLAddCommentViewController alloc] init];
+//    addCommentVC.status = comment.userInfo[@"status"];
+//    [self.navigationController pushViewController:addCommentVC animated:YES];
     
-
-    [self.navigationController pushViewController:addCommentVC animated:YES];
+    HLCommentViewContrller *commentVC = [[HLCommentViewContrller alloc] init];
+    commentVC.status = comment.userInfo[@"status"];
+    [self.navigationController pushViewController:commentVC animated:YES];
 }
 
 
