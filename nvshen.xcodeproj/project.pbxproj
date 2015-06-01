@@ -32,7 +32,6 @@
 		E0038E991B12346800E4924F /* HLProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0038E931B12346800E4924F /* HLProductCell.m */; };
 		E0038E9A1B12346800E4924F /* HLProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0038E941B12346800E4924F /* HLProductCell.xib */; };
 		E0038E9B1B12346800E4924F /* HLSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0038E961B12346800E4924F /* HLSettingCell.m */; };
-		E003C4C71B19D3D9006BDEDE /* HLOneCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E003C4C61B19D3D9006BDEDE /* HLOneCommentViewController.m */; };
 		E003C4CA1B1A15E6006BDEDE /* HLCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E003C4C91B1A15E6006BDEDE /* HLCommonCell.m */; };
 		E003C4CD1B1A180A006BDEDE /* HLCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E003C4CC1B1A180A006BDEDE /* HLCommentCell.m */; };
 		E003C4D01B1A19AE006BDEDE /* HLCommentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = E003C4CF1B1A19AE006BDEDE /* HLCommentToolbar.m */; };
@@ -258,8 +257,6 @@
 		E0038E941B12346800E4924F /* HLProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLProductCell.xib; sourceTree = "<group>"; };
 		E0038E951B12346800E4924F /* HLSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSettingCell.h; sourceTree = "<group>"; };
 		E0038E961B12346800E4924F /* HLSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSettingCell.m; sourceTree = "<group>"; };
-		E003C4C51B19D3D9006BDEDE /* HLOneCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLOneCommentViewController.h; sourceTree = "<group>"; };
-		E003C4C61B19D3D9006BDEDE /* HLOneCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLOneCommentViewController.m; sourceTree = "<group>"; };
 		E003C4C81B1A15E6006BDEDE /* HLCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommonCell.h; sourceTree = "<group>"; };
 		E003C4C91B1A15E6006BDEDE /* HLCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommonCell.m; sourceTree = "<group>"; };
 		E003C4CB1B1A180A006BDEDE /* HLCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommentCell.h; sourceTree = "<group>"; };
@@ -992,8 +989,6 @@
 			children = (
 				E0A789AC1AFE2822004F3511 /* HLHomeViewController.h */,
 				E0A789AD1AFE2822004F3511 /* HLHomeViewController.m */,
-				E003C4C51B19D3D9006BDEDE /* HLOneCommentViewController.h */,
-				E003C4C61B19D3D9006BDEDE /* HLOneCommentViewController.m */,
 				E0A53EF01B1CCC18007321CD /* HLCommentViewContrller.h */,
 				E0A53EF11B1CCC18007321CD /* HLCommentViewContrller.m */,
 				E0038E251B12325000E4924F /* setting.plist */,
@@ -1639,7 +1634,6 @@
 				E0ABA5761B136DC500C5CE4C /* HLHttpTool.m in Sources */,
 				E0B5EA311B04A1CB0086BC03 /* DoImagePickerController.m in Sources */,
 				E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */,
-				E003C4C71B19D3D9006BDEDE /* HLOneCommentViewController.m in Sources */,
 				E0FF06C81AFE5743007B9544 /* HLListViewController.m in Sources */,
 				E095D57B1B16EDE7002B07E2 /* HLStatusToolbar.m in Sources */,
 				E095D5971B17196E002B07E2 /* MJRefreshBaseView.m in Sources */,

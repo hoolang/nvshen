@@ -17,7 +17,6 @@
 #import "MJRefresh.h"
 #import "HLPosts.h"
 #import "HLStatusToolbar.h"
-#import "HLOneCommentViewController.h"
 #import "HLCommentViewContrller.h"
 
 @interface HLHomeViewController ()/**

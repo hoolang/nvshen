@@ -7,7 +7,6 @@
 //
 
 #import "HLCommentViewContrller.h"
-#import "HLOneCommentViewController.h"
 #import "HLEmotionTextView.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD+MJ.h"
@@ -15,6 +14,7 @@
 #import "HLStatus.h"
 #import "HLPosts.h"
 #import "HLUser.h"
+#import "HLComments.h"
 #import "HLCommentCell.h"
 #import "HLCommentView.h"
 #import "HLHttpTool.h"
@@ -103,8 +103,6 @@ UITableViewDataSource
  初始化tableview
  */
 - (void)setupView{
-    HLOneCommentViewController *oneCommentVC = [[HLOneCommentViewController alloc] init];
-    [self addChildViewController:oneCommentVC];
     
     self.view.backgroundColor = [UIColor grayColor];
     _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
