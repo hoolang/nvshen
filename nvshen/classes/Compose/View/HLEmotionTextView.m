@@ -20,6 +20,7 @@
 
 - (void)insertEmotion:(HLEmotion *)emotion
 {
+    HLLog(@"insertEmotion");
     if (emotion.code) {
         // insertText : 将文字插入到光标所在的位置
         [self insertText:emotion.code.emoji];

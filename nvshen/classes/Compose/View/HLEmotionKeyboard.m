@@ -18,9 +18,9 @@
 @property (nonatomic, weak) HLEmotionListView *showingListView;
 /** 表情内容 */
 @property (nonatomic, strong) HLEmotionListView *recentListView;
-@property (nonatomic, strong) HLEmotionListView *defaultListView;
+//@property (nonatomic, strong) HLEmotionListView *defaultListView;
 @property (nonatomic, strong) HLEmotionListView *emojiListView;
-@property (nonatomic, strong) HLEmotionListView *lxhListView;
+//@property (nonatomic, strong) HLEmotionListView *lxhListView;
 /** tabbar */
 @property (nonatomic, weak) HLEmotionTabBar *tabBar;
 @end
@@ -38,15 +38,15 @@
     return _recentListView;
 }
 
-- (HLEmotionListView *)defaultListView
-{
-    if (!_defaultListView) {
-        self.defaultListView = [[HLEmotionListView alloc] init];
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"EmotionIcons/default/info.plist" ofType:nil];
-        self.defaultListView.emotions = [HLEmotion objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:path]];
-    }
-    return _defaultListView;
-}
+//- (HLEmotionListView *)defaultListView
+//{
+//    if (!_defaultListView) {
+//        self.defaultListView = [[HLEmotionListView alloc] init];
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"EmotionIcons/default/info.plist" ofType:nil];
+//        self.defaultListView.emotions = [HLEmotion objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:path]];
+//    }
+//    return _defaultListView;
+//}
 
 - (HLEmotionListView *)emojiListView
 {
@@ -58,15 +58,15 @@
     return _emojiListView;
 }
 
-- (HLEmotionListView *)lxhListView
-{
-    if (!_lxhListView) {
-        self.lxhListView = [[HLEmotionListView alloc] init];
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"EmotionIcons/lxh/info.plist" ofType:nil];
-        self.lxhListView.emotions = [HLEmotion objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:path]];
-    }
-    return _lxhListView;
-}
+//- (HLEmotionListView *)lxhListView
+//{
+//    if (!_lxhListView) {
+//        self.lxhListView = [[HLEmotionListView alloc] init];
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"EmotionIcons/lxh/info.plist" ofType:nil];
+//        self.lxhListView.emotions = [HLEmotion objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:path]];
+//    }
+//    return _lxhListView;
+//}
 
 #pragma mark - 初始化
 - (id)initWithFrame:(CGRect)frame
@@ -127,7 +127,7 @@
         }
             
         case HLEmotionTabBarButtonTypeDefault: { // 默认
-            [self addSubview:self.defaultListView];
+            //[self addSubview:self.defaultListView];
             break;
         }
             
@@ -137,7 +137,7 @@
         }
             
         case HLEmotionTabBarButtonTypeLxh: { // Lxh
-            [self addSubview:self.lxhListView];
+            //[self addSubview:self.lxhListView];
             break;
         }
     }

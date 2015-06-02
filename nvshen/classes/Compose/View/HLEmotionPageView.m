@@ -7,26 +7,26 @@
 
 #import "HLEmotionPageView.h"
 #import "HLEmotion.h"
-#import "HLEmotionPopView.h"
+//#import "HLEmotionPopView.h"
 #import "HLEmotionButton.h"
 #import "HLEmotionTool.h"
 
 @interface HLEmotionPageView()
 /** 点击表情后弹出的放大镜 */
-@property (nonatomic, strong) HLEmotionPopView *popView;
+//@property (nonatomic, strong) HLEmotionPopView *popView;
 /** 删除按钮 */
 @property (nonatomic, weak) UIButton *deleteButton;
 @end
 
 @implementation HLEmotionPageView
 
-- (HLEmotionPopView *)popView
-{
-    if (!_popView) {
-        self.popView = [HLEmotionPopView popView];
-    }
-    return _popView;
-}
+//- (HLEmotionPopView *)popView
+//{
+//    if (!_popView) {
+//        self.popView = [HLEmotionPopView popView];
+//    }
+//    return _popView;
+//}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -76,7 +76,7 @@
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded: // 手指已经不再触摸pageView
             // 移除popView
-            [self.popView removeFromSuperview];
+            //[self.popView removeFromSuperview];
             
             // 如果手指还在表情按钮上
             if (btn) {
@@ -87,7 +87,7 @@
             
         case UIGestureRecognizerStateBegan: // 手势开始（刚检测到长按）
         case UIGestureRecognizerStateChanged: { // 手势改变（手指的位置改变）
-            [self.popView showFrom:btn];
+            //[self.popView showFrom:btn];
             break;
         }
             
@@ -121,7 +121,7 @@
     [super layoutSubviews];
     
     // 内边距(四周)
-    CGFloat inset = 20;
+    CGFloat inset = 5;
     NSUInteger count = self.emotions.count;
     CGFloat btnW = (self.width - 2 * inset) / HLEmotionMaxCols;
     CGFloat btnH = (self.height - inset) / HLEmotionMaxRows;
@@ -156,12 +156,12 @@
 - (void)btnClick:(HLEmotionButton *)btn
 {
     // 显示popView
-    [self.popView showFrom:btn];
-    
-    // 等会让popView自动消失
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.popView removeFromSuperview];
-    });
+//    [self.popView showFrom:btn];
+//    
+//    // 等会让popView自动消失
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self.popView removeFromSuperview];
+//    });
     
     // 发出通知
     [self selectEmotion:btn.emotion];

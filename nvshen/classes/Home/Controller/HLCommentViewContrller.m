@@ -101,7 +101,7 @@ UITableViewDataSource
     [HLNotificationCenter addObserver:self selector:@selector(changelikeStatus:) name:@"addLikeInCommentViewNotification" object:nil];
     
     // 文字改变的通知
-    //[HLNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:textView];
+    //[HLNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:self.toolbar.textView];
     
 
     // 键盘的frame发生改变时发出的通知（位置和尺寸）
@@ -364,7 +364,7 @@ UITableViewDataSource
  */
 - (void)emotionDidDelete
 {
-    [self.textView deleteBackward];
+    [self.toolbar.textView deleteBackward];
 }
 /**
  *  表情被选中了
@@ -372,7 +372,7 @@ UITableViewDataSource
 - (void)emotionDidSelect:(NSNotification *)notification
 {
     HLEmotion *emotion = notification.userInfo[HLSelectEmotionKey];
-    [self.textView insertEmotion:emotion];
+    [self.toolbar.textView insertEmotion:emotion];
 }
 
 /**

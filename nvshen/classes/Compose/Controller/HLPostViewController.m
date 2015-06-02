@@ -77,7 +77,7 @@
 - (void)emotionDidSelect:(NSNotification *)notification
 {
     HLEmotion *emotion = notification.userInfo[HLSelectEmotionKey];
-    [self.textView insertEmotion:emotion];
+    [self.toolbar.textView insertEmotion:emotion];
 }
 
 /**

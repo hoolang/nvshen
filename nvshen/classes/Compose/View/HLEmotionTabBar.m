@@ -19,10 +19,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setupBtn:@"最近" buttonType:HLEmotionTabBarButtonTypeRecent];
-        [self setupBtn:@"默认" buttonType:HLEmotionTabBarButtonTypeDefault];
+        //[self setupBtn:@"默认" buttonType:HLEmotionTabBarButtonTypeDefault];
 //        [self btnClick:[self setupBtn:@"默认" buttonType:HWEmotionTabBarButtonTypeDefault]];
         [self setupBtn:@"Emoji" buttonType:HLEmotionTabBarButtonTypeEmoji];
-        [self setupBtn:@"浪小花" buttonType:HLEmotionTabBarButtonTypeLxh];
+        //[self setupBtn:@"浪小花" buttonType:HLEmotionTabBarButtonTypeLxh];
     }
     return self;
 }
