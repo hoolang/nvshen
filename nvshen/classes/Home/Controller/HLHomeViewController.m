@@ -19,7 +19,8 @@
 #import "HLStatusToolbar.h"
 #import "HLCommentViewContrller.h"
 
-@interface HLHomeViewController ()/**
+@interface HLHomeViewController ()
+/**
  *  show数组（里面放的都是HLStatusFrame模型，一个HLStatusFrame对象就代表一条show）
  */
 @property (nonatomic, strong) NSMutableArray *statusFrames;

@@ -24,6 +24,8 @@
 
 //版本>=IOS7
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+// 系统屏幕宽度
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
 //友盟
 #define UmengAppkey @"555bf86967e58ea877004d2d"
 

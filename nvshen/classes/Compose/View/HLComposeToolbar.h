@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    HLComposeToolbarButtonTypeCamera, // 拍照
-    HLComposeToolbarButtonTypePicture, // 相册
-    HLComposeToolbarButtonTypeMention, // @
-    HLComposeToolbarButtonTypeTrend, // #
-    HLComposeToolbarButtonTypeEmotion // 表情
+    HLComposeToolbarTypeCamera, // 拍照
+    HLComposeToolbarTypePicture, // 相册
+    HLComposeToolbarTypeMention, // @
+    HLComposeToolbarTypeTrend, // #
+    HLComposeToolbarTypeSend,    //发送
+    HLComposeToolbarTypeEmotion // 表情
 } HLComposeToolbarButtonType;
 
 @class HLComposeToolbar;
@@ -21,6 +22,7 @@ typedef enum {
 @protocol HLComposeToolbarDelegate <NSObject>
 @optional
 - (void)composeToolbar:(HLComposeToolbar *)toolbar didClickButton:(HLComposeToolbarButtonType)buttonType;
+- (void)composeToolbar:(HLComposeToolbar *)toolbar refreshToolbarFrame:(CGFloat)diffrence;
 @end
 
 @interface HLComposeToolbar : UIView

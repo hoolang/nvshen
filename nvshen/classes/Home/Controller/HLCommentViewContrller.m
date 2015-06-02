@@ -34,7 +34,7 @@ UITableViewDataSource
 @property (nonatomic, weak) HLEmotionTextView *textView;
 @property (nonatomic, weak) UIView *commentView;
 /** 键盘顶部的工具条 */
-@property (nonatomic, weak) HLComposeToolbar *toolbar;
+@property (nonatomic, strong) HLComposeToolbar *toolbar;
 #warning 一定要用strong
 /** 表情键盘 */
 @property (nonatomic, strong) HLEmotionKeyboard *emotionKeyboard;
@@ -98,6 +98,19 @@ UITableViewDataSource
     
     // 注册通知
     [HLNotificationCenter addObserver:self selector:@selector(changelikeStatus:) name:@"addLikeInCommentViewNotification" object:nil];
+    
+    // 文字改变的通知
+    //[HLNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:textView];
+    
+    // 键盘通知
+    // 键盘的frame发生改变时发出的通知（位置和尺寸）
+    [HLNotificationCenter addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    // 表情选中的通知
+    [HLNotificationCenter addObserver:self selector:@selector(emotionDidSelect:) name:HLEmotionDidSelectNotification object:nil];
+    
+    // 删除文字的通知
+    [HLNotificationCenter addObserver:self selector:@selector(emotionDidDelete) name:HLEmotionDidDeleteNotification object:nil];
 }
 /**
  初始化tableview
@@ -106,6 +119,7 @@ UITableViewDataSource
     
     self.view.backgroundColor = [UIColor grayColor];
     _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView.frame = CGRectMake (0,0,self.view.frame.size.width,self.view.bounds.size.height-44);
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
@@ -130,7 +144,7 @@ UITableViewDataSource
     // 设置table距离顶部的距离
     self.tableView.contentInset = UIEdgeInsetsMake(statusF.cellHeight, 0, 0, 0);
     // 把commentView添加到顶部
-    [self.tableView insertSubview:self.commentView atIndex:1];
+    [self.tableView insertSubview:self.commentView atIndex:0];
 }
 /**
  * 添加工具条
@@ -144,6 +158,7 @@ UITableViewDataSource
     toolbar.delegate = self;
     [self.view addSubview:toolbar];
     self.toolbar = toolbar;
+
 }
 /**
  集成上拉刷新控件
@@ -162,6 +177,7 @@ UITableViewDataSource
     // 2.进入刷新状态
     [self.tableView headerBeginRefreshing];
 }
+
 #pragma mark -加载最新评论
 - (void)loadNewComments{
     HLLog(@"loadNewComments->>");
@@ -268,23 +284,23 @@ UITableViewDataSource
 
 - (void)setNav{
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(doComment)];
-    self.view.backgroundColor = HLColor(239, 239, 239);
+    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(doComment)];
+    //self.view.backgroundColor = HLColor(239, 239, 239);
     
-    HLEmotionTextView *textView = [[HLEmotionTextView alloc] init];
-    // 垂直方向上可以拖拽
-    textView.alwaysBounceVertical = YES;
-    CGFloat screen = [UIScreen mainScreen].bounds.size.width;
+//    HLEmotionTextView *textView = [[HLEmotionTextView alloc] init];
+//    // 垂直方向上可以拖拽
+//    textView.alwaysBounceVertical = YES;
+//    CGFloat screen = [UIScreen mainScreen].bounds.size.width;
+//    
+//    textView.frame = CGRectMake(0, 0, screen ,360);
+//    textView.font = [UIFont systemFontOfSize:13];
+//    textView.delegate = self;
+//    textView.placeholder = @"秀一秀我的态度2";
+//    [textView becomeFirstResponder];
+//    
+//    HLLog(@"self.textView.text%@",textView.text);
     
-    textView.frame = CGRectMake(0, 0, screen ,360);
-    textView.font = [UIFont systemFontOfSize:13];
-    textView.delegate = self;
-    textView.placeholder = @"秀一秀我的态度2";
-    [textView becomeFirstResponder];
-    
-    HLLog(@"self.textView.text%@",textView.text);
-    
-    self.textView = textView;
+    //self.textView = textView;
     
     //[self.view addSubview:textView];
 }
@@ -302,7 +318,7 @@ UITableViewDataSource
     
     [self.tableView reloadData];
 }
-- (void)doComment{
+- (void)sendComment{
     // 1.请求管理者
     
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
@@ -391,19 +407,30 @@ UITableViewDataSource
 - (void)composeToolbar:(HLComposeToolbar *)toolbar didClickButton:(HLComposeToolbarButtonType)buttonType
 {
     switch (buttonType) {
+        case HLComposeToolbarTypeSend:
+            HLLog(@"发送");
+            [self sendComment];
+            break;
             
-        case HLComposeToolbarButtonTypeMention: // @
+        case HLComposeToolbarTypeEmotion: // 表情\键盘
+            HLLog(@"表情键盘");
+            [self switchKeyboard];
+            break;
+            
+        case HLComposeToolbarTypeMention: // @
             HLLog(@"--- @");
             break;
             
-        case HLComposeToolbarButtonTypeTrend: // #
+        case HLComposeToolbarTypeTrend: // #
             HLLog(@"--- #");
             break;
-            
-        case HLComposeToolbarButtonTypeEmotion: // 表情\键盘
-            [self switchKeyboard];
-            break;
     }
+}
+
+- (void)composeToolbar:(HLComposeToolbar *)toolbar refreshToolbarFrame:(CGFloat)difference{
+        HLLog(@"_toolbar.y %f",_toolbar.y);
+        _toolbar.y =  _toolbar.y - difference;
+        
 }
 #pragma mark - 其他方法
 /**
@@ -472,6 +499,7 @@ UITableViewDataSource
 
 - (void)dealloc
 {
+    HLLog(@"HLCommentViewContrller dealloc");
     [HLNotificationCenter removeObserver:self];
 }
 @end
