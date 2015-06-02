@@ -10,7 +10,7 @@
 #import "HLEmotionTextView.h"
 @interface HLComposeToolbar()<UITextViewDelegate>
 @property (nonatomic, weak) UIButton *emotionButton;
-@property (nonatomic, weak) HLEmotionTextView *textView;
+
 @property (nonatomic, weak) UIButton *sendButton;
 @end
 

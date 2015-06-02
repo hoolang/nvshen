@@ -18,6 +18,7 @@ typedef enum {
 } HLComposeToolbarButtonType;
 
 @class HLComposeToolbar;
+@class HLEmotionTextView;
 
 @protocol HLComposeToolbarDelegate <NSObject>
 @optional
@@ -27,6 +28,8 @@ typedef enum {
 
 @interface HLComposeToolbar : UIView
 @property (nonatomic, weak) id<HLComposeToolbarDelegate> delegate;
+/** 输入控件 */
+@property (nonatomic, weak) HLEmotionTextView *textView;
 /** 是否要显示键盘按钮  */
 @property (nonatomic, assign) BOOL showKeyboardButton;
 @end

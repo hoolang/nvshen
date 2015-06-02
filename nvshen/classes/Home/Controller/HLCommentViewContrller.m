@@ -32,6 +32,7 @@ UITableViewDataSource
 @property (nonatomic, strong) UITableView *tableView;
 /** 输入控件 */
 @property (nonatomic, weak) HLEmotionTextView *textView;
+/** show展示 */
 @property (nonatomic, weak) UIView *commentView;
 /** 键盘顶部的工具条 */
 @property (nonatomic, strong) HLComposeToolbar *toolbar;
@@ -102,7 +103,7 @@ UITableViewDataSource
     // 文字改变的通知
     //[HLNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:textView];
     
-    // 键盘通知
+
     // 键盘的frame发生改变时发出的通知（位置和尺寸）
     [HLNotificationCenter addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
@@ -379,6 +380,8 @@ UITableViewDataSource
  */
 - (void)keyboardWillChangeFrame:(NSNotification *)notification
 {
+    
+    HLLog(@"keyboardWillChangeFrame");
     // 如果正在切换键盘，就不要执行后面的代码
     if (self.switchingKeybaord) return;
     
@@ -426,7 +429,9 @@ UITableViewDataSource
             break;
     }
 }
-
+/**
+ *  刷新ToolBar的y值
+ */
 - (void)composeToolbar:(HLComposeToolbar *)toolbar refreshToolbarFrame:(CGFloat)difference{
         HLLog(@"_toolbar.y %f",_toolbar.y);
         _toolbar.y =  _toolbar.y - difference;
@@ -439,13 +444,13 @@ UITableViewDataSource
 - (void)switchKeyboard
 {
     // self.textView.inputView == nil : 使用的是系统自带的键盘
-    if (self.textView.inputView == nil) { // 切换为自定义的表情键盘
-        self.textView.inputView = self.emotionKeyboard;
+    if (self.toolbar.textView.inputView == nil) { // 切换为自定义的表情键盘
+        self.toolbar.textView.inputView = self.emotionKeyboard;
         
         // 显示键盘按钮
         self.toolbar.showKeyboardButton = YES;
     } else { // 切换为系统自带的键盘
-        self.textView.inputView = nil;
+        self.toolbar.textView.inputView = nil;
         
         // 显示表情按钮
         self.toolbar.showKeyboardButton = NO;
@@ -455,14 +460,14 @@ UITableViewDataSource
     self.switchingKeybaord = YES;
     
     // 退出键盘
-    [self.textView endEditing:YES];
+    [self.toolbar.textView endEditing:YES];
     
     // 结束切换键盘
     self.switchingKeybaord = NO;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 弹出键盘
-        [self.textView becomeFirstResponder];
+        [self.toolbar.textView becomeFirstResponder];
     });
 }
 #pragma mark - 数据源方法

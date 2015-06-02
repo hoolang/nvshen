@@ -53,7 +53,7 @@
     
     // 键盘通知
     // 键盘的frame发生改变时发出的通知（位置和尺寸）
-    [HLNotificationCenter addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+//    [HLNotificationCenter addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     // 表情选中的通知
     [HLNotificationCenter addObserver:self selector:@selector(emotionDidSelect:) name:HLEmotionDidSelectNotification object:nil];
@@ -158,7 +158,7 @@
     
     // 2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    //params[@"access_token"] = [HWAccountTool account].access_token;
+
     params[@"post.content"] = self.textView.text;
     HLLog(@"self.textView.text - %@",self.textView.text);
     
