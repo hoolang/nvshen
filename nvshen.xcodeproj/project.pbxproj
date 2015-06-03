@@ -200,7 +200,7 @@
 		E0D922A41AFCA97000AE9948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229D1AFCA97000AE9948 /* main.m */; };
 		E0D922A51AFCA97000AE9948 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D922A01AFCA97000AE9948 /* ViewController.m */; };
 		E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E75ABD1B00353400D60497 /* HLComposeViewController.m */; };
-		E0FF06C81AFE5743007B9544 /* HLListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0FF06C71AFE5743007B9544 /* HLListViewController.m */; };
+		E0FF06C81AFE5743007B9544 /* HLTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0FF06C71AFE5743007B9544 /* HLTopViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -537,8 +537,8 @@
 		E0D922AF1AFCAE7000AE9948 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		E0E75ABC1B00353400D60497 /* HLComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLComposeViewController.h; sourceTree = "<group>"; };
 		E0E75ABD1B00353400D60497 /* HLComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLComposeViewController.m; sourceTree = "<group>"; };
-		E0FF06C61AFE5743007B9544 /* HLListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLListViewController.h; sourceTree = "<group>"; };
-		E0FF06C71AFE5743007B9544 /* HLListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLListViewController.m; sourceTree = "<group>"; };
+		E0FF06C61AFE5743007B9544 /* HLTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopViewController.h; sourceTree = "<group>"; };
+		E0FF06C71AFE5743007B9544 /* HLTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1345,8 +1345,8 @@
 		E0FF06C21AFE567C007B9544 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E0FF06C61AFE5743007B9544 /* HLListViewController.h */,
-				E0FF06C71AFE5743007B9544 /* HLListViewController.m */,
+				E0FF06C61AFE5743007B9544 /* HLTopViewController.h */,
+				E0FF06C71AFE5743007B9544 /* HLTopViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1638,7 +1638,7 @@
 				E0ABA5761B136DC500C5CE4C /* HLHttpTool.m in Sources */,
 				E0B5EA311B04A1CB0086BC03 /* DoImagePickerController.m in Sources */,
 				E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */,
-				E0FF06C81AFE5743007B9544 /* HLListViewController.m in Sources */,
+				E0FF06C81AFE5743007B9544 /* HLTopViewController.m in Sources */,
 				E095D57B1B16EDE7002B07E2 /* HLStatusToolbar.m in Sources */,
 				E095D5971B17196E002B07E2 /* MJRefreshBaseView.m in Sources */,
 				E0A0658D1B0B2A2A00CE4728 /* HLEmotionTextView.m in Sources */,

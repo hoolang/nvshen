@@ -298,22 +298,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    HWLog(@"didSelectRowAtIndexPath---%@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
+    HLStatusFrame *frame = self.statusFrames[indexPath.row];
+    HLStatus *status = frame.status;
+    [self pushToCommentViewContrller:status];
 }
 
-
+- (void)pushToCommentViewContrller:(HLStatus *) status{
+    HLCommentViewContrller *commentVC = [[HLCommentViewContrller alloc] init];
+    commentVC.status = status;
+    [self.navigationController pushViewController:commentVC animated:YES];
+}
 
 #pragma mark - status通知
 - (void)clickCommentBtn:(NSNotification *)comment{
     // 刷新表格
-//    HLLog(@"changeCommentStatus status %@",comment.userInfo[@"status"]);
-//    HLAddCommentViewController *addCommentVC = [[HLAddCommentViewController alloc] init];
-//    addCommentVC.status = comment.userInfo[@"status"];
-//    [self.navigationController pushViewController:addCommentVC animated:YES];
-    
-    HLCommentViewContrller *commentVC = [[HLCommentViewContrller alloc] init];
-    commentVC.status = comment.userInfo[@"status"];
-    [self.navigationController pushViewController:commentVC animated:YES];
+    [self pushToCommentViewContrller:comment.userInfo[@"status"]];
 }
 
 
@@ -323,8 +322,10 @@
         HLStatusFrame *statusFrames = self.statusFrames[i];
         if(statusFrames.status.posts.pid == doneComment.userInfo[@"pid"]){
             statusFrames.status.comments_count += 1;
+            return;
         }
     }
+    
     [self.tableView reloadData];
 }
 
@@ -335,13 +336,13 @@
     
     for( int i=0; i< self.statusFrames.count; i++){
         HLStatusFrame *statusFrames = self.statusFrames[i];
-        
         if(statusFrames.status.posts.pid == like.userInfo[@"pid"]){
             if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
                 statusFrames.status.likes_count -= 1;
             }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
                 statusFrames.status.likes_count += 1;
             }
+            return;
         }
     }
     [self.tableView reloadData];

@@ -203,7 +203,7 @@ UITableViewDataSource
                  // 将 HWStatus数组 转为 HWStatusFrame数组
                  NSArray *newFrames = [self commentsFramesWithComments:newComments];
                  
-                 // 将最新的微博数据，添加到总数组的最前面
+                 // 将最新的评论数据，添加到总数组的最前面
                  NSRange range = NSMakeRange(0, newFrames.count);
                  NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
                  [self.commentsFrames insertObjects:newFrames atIndexes:set];
@@ -317,11 +317,11 @@ UITableViewDataSource
         _status.likes_count += 1;
     }
     
-    [self.tableView reloadData];
+    [self.view setNeedsDisplay];
 }
 - (void)sendComment{
     // 1.请求管理者
-    
+    HLLog(@"sendComment");
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     //设置响应内容类型
     mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -329,11 +329,11 @@ UITableViewDataSource
     // 2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     //params[@"access_token"] = [HWAccountTool account].access_token;
-    params[@"comments.content"] = self.textView.text;
-    params[@"user.uid"] = @1;
+    params[@"comments.comment"] = self.toolbar.textView.text;
+    params[@"user.uid"] = @2;
     params[@"post.pid"] = _status.posts.pid;
     
-    
+    HLLog(@"self.toolbar.textView.text %@", self.toolbar.textView.text);
     // 3.发送请求
     [mgr POST:HL_ADD_COMMENT parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
@@ -348,6 +348,20 @@ UITableViewDataSource
         NSNotification *notification =[NSNotification notificationWithName:@"DoneCommentNotification" object:nil userInfo:dict];
         //通过通知中心发送通知
         [HLNotificationCenter postNotification:notification];
+        self.toolbar.textView.text = nil;
+        [self.toolbar.textView resignFirstResponder];
+        
+        
+//        HLCommentsFrame *newCommentF = [[HLCommentsFrame alloc] init];
+//        newCommentF.comments.ci
+//        // 将刚刚添加的评论数据，添加到总数组的最前面
+//        NSRange range = NSMakeRange(0, _commentsFrames.count);
+//        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
+//        [self.commentsFrames insertObjects:_commentsFrames atIndexes:set];
+//        
+//        // 刷新表格
+//        [self.tableView reloadData];
+        
         [MBProgressHUD showSuccess:@"发送成功"];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD showError:@"网络异常，请稍后再试！"];

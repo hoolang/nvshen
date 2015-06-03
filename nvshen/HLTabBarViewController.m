@@ -9,7 +9,7 @@
 #import "HLTabBarViewController.h"
 #import "HLHomeViewController.h"
 #import "HLNavigationController.h"
-#import "HLListViewController.h"
+#import "HLTopViewController.h"
 #import "HLProfileViewController.h"
 #import "HLDiscoverViewController.h"
 #import "HLTabBar.h"
@@ -28,7 +28,7 @@
     HLHomeViewController *home = [[HLHomeViewController alloc] init];
     [self addChildVc:home title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     
-    HLListViewController *list = [[HLListViewController alloc] init];
+    HLTopViewController *list = [[HLTopViewController alloc] init];
     [self addChildVc:list title:@"排行榜" image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
     
     HLDiscoverViewController *discover = [[HLDiscoverViewController alloc] init];

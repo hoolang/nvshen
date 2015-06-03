@@ -50,7 +50,7 @@
         [sendButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         sendButton.tag = HLComposeToolbarTypeSend;
         sendButton.enabled = NO;
-        
+        [sendButton addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
 
         self.sendButton = sendButton;
         [self addSubview:sendButton];
@@ -146,12 +146,10 @@
     self.textView.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, size.height);
     self.height = selfNewHeight;
     self.sendButton.enabled = self.textView.hasText;
-    
+    HLLog(@"self.sendButton.enabled %d",self.sendButton.enabled);
     if ([self.delegate respondsToSelector:@selector(composeToolbar:refreshToolbarFrame:)]) {
         [self.delegate composeToolbar:self refreshToolbarFrame:difference];
     }
-
-    HLLog(@"size.x %f", self.x);
 
 }
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HLListViewController : UITableViewController
+@interface HLTopViewController : UIViewController
 
 @end
