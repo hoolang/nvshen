@@ -318,21 +318,22 @@
 
 #pragma mark - 添加评论之后重新加载数据
 - (void)changeCommentStatus:(NSNotification *)doneComment{
+    HLLog(@"changeCommentStatus:");
     for( int i = 0; i< self.statusFrames.count; i++){
         HLStatusFrame *statusFrames = self.statusFrames[i];
         if(statusFrames.status.posts.pid == doneComment.userInfo[@"pid"]){
             statusFrames.status.comments_count += 1;
+            [self.tableView reloadData];
             return;
         }
     }
     
-    [self.tableView reloadData];
 }
 
 
 #pragma mark - 点赞之后重新加载数据
 - (void)changelikeStatus:(NSNotification *)like{
-    NSLog(@"changelikeStatus pid: %@",like.userInfo[@"pid"]);
+    NSLog(@"Home changelikeStatus pid: %@",like.userInfo[@"pid"]);
     
     for( int i=0; i< self.statusFrames.count; i++){
         HLStatusFrame *statusFrames = self.statusFrames[i];
@@ -342,10 +343,11 @@
             }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
                 statusFrames.status.likes_count += 1;
             }
+            [self.tableView reloadData];
             return;
         }
     }
-    [self.tableView reloadData];
+    
 }
 
 @end
