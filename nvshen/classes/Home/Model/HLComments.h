@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class HLUser;
+@class HLPosts;
 @interface HLComments : UIView
 /**
  "cid": 1,
@@ -23,5 +24,7 @@
 @property (nonatomic, copy) NSString *commentDate;
 //评论的用户
 @property (nonatomic, strong) HLUser *user;
+//评论的Post
+@property (nonatomic, strong) HLPosts *post;
 
 @end

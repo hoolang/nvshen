@@ -71,6 +71,7 @@
         photoView.width = HLStatusPhotoWH;
         photoView.height = HLStatusPhotoWH;
     }
+
 }
 
 + (CGSize)sizeWithCount:(NSUInteger)count

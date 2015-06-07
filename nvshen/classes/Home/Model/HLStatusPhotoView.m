@@ -45,8 +45,7 @@
     // 设置图片                                       //@"http://192.168.168.100:8008/nvshen/photos/1432729264571.jpg"
     [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic ] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     
-    // 显示\隐藏gif控件
-    // 判断是够以gif或者GIF结尾
+    // 显示\隐藏gif控件_thumbnail_pic	__NSCFString *	@"http://192.168.168.188:8008/nvshen/photos/1433251444499.jpg"	0x00007f8573da0f40    // 判断是够以gif或者GIF结尾
     //self.gifView.hidden = ![photo.thumbnail_pic.lowercaseString hasSuffix:@"gif"];
 }
 

@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 1.初始化子控制器
+//    // 1.初始化子控制器
     HLHomeViewController *home = [[HLHomeViewController alloc] init];
     [self addChildVc:home title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     
@@ -42,7 +42,6 @@
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
     //self.tabBar.hidden = YES;
-    
 }
 
 - (void)didReceiveMemoryWarning {

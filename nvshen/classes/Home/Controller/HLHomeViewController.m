@@ -93,8 +93,7 @@
         // 将 "show（posts）字典"数组 转为 "微博模型"数组
         NSArray *newStatuses = [HLStatus objectArrayWithKeyValuesArray:json[@"status"]];
         
-        
-        // 将 HWStatus数组 转为 HWStatusFrame数组
+        // 将 HLStatus数组 转为 HWStatusFrame数组
         NSArray *newFrames = [self stausFramesWithStatuses:newStatuses];
 
         // 将最新的微博数据，添加到总数组的最前面
@@ -104,7 +103,6 @@
         
         // 刷新表格
         [self.tableView reloadData];
-        
         
         // 结束刷新
         [self.tableView headerEndRefreshing];
@@ -315,7 +313,6 @@
     [self pushToCommentViewContrller:comment.userInfo[@"status"]];
 }
 
-
 #pragma mark - 添加评论之后重新加载数据
 - (void)changeCommentStatus:(NSNotification *)doneComment{
     HLLog(@"changeCommentStatus:");
@@ -329,7 +326,6 @@
     }
     
 }
-
 
 #pragma mark - 点赞之后重新加载数据
 - (void)changelikeStatus:(NSNotification *)like{

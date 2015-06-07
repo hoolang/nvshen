@@ -46,7 +46,8 @@
 #define HL_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/latest_posts.json"
 // 加载更多旧数据的地址
 #define HL_OLDER_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/older_posts.json"
-
+// TOP 加载新的数据
+#define HL_TOP_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_latest_posts.json"
 // 通知中心
 #define HLNotificationCenter [NSNotificationCenter defaultCenter]
 // 通知

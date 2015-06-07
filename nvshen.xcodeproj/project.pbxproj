@@ -113,6 +113,10 @@
 		E0784EDB1B1B881200453294 /* HLComments.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784EDA1B1B881200453294 /* HLComments.m */; };
 		E0784EDE1B1B8B1500453294 /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784EDD1B1B8B1500453294 /* NSString+Date.m */; };
 		E0784EE11B1B919D00453294 /* HLCommentsFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784EE01B1B919D00453294 /* HLCommentsFrame.m */; };
+		E07B3B331B206288000BC81A /* HLTopPostsFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E07B3B321B206288000BC81A /* HLTopPostsFrame.m */; };
+		E07B3B361B2062C3000BC81A /* HLTopPosts.m in Sources */ = {isa = PBXBuildFile; fileRef = E07B3B351B2062C3000BC81A /* HLTopPosts.m */; };
+		E07B3B391B20875B000BC81A /* HLTopPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E07B3B381B20875B000BC81A /* HLTopPostsCell.m */; };
+		E07B3B3C1B208C98000BC81A /* HLTopPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = E07B3B3B1B208C98000BC81A /* HLTopPhotosView.m */; };
 		E0813CCC1B09CBC200008083 /* HLPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0813CCA1B09CBC200008083 /* HLPostViewController.m */; };
 		E0813CCD1B09CBC200008083 /* HLPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0813CCB1B09CBC200008083 /* HLPostViewController.xib */; };
 		E095D5691B16D0E5002B07E2 /* HLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E095D5681B16D0E5002B07E2 /* HLUser.m */; };
@@ -389,6 +393,14 @@
 		E0784EDD1B1B8B1500453294 /* NSString+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Date.m"; sourceTree = "<group>"; };
 		E0784EDF1B1B919D00453294 /* HLCommentsFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommentsFrame.h; sourceTree = "<group>"; };
 		E0784EE01B1B919D00453294 /* HLCommentsFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommentsFrame.m; sourceTree = "<group>"; };
+		E07B3B311B206288000BC81A /* HLTopPostsFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopPostsFrame.h; sourceTree = "<group>"; };
+		E07B3B321B206288000BC81A /* HLTopPostsFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPostsFrame.m; sourceTree = "<group>"; };
+		E07B3B341B2062C3000BC81A /* HLTopPosts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopPosts.h; sourceTree = "<group>"; };
+		E07B3B351B2062C3000BC81A /* HLTopPosts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPosts.m; sourceTree = "<group>"; };
+		E07B3B371B20875B000BC81A /* HLTopPostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopPostsCell.h; sourceTree = "<group>"; };
+		E07B3B381B20875B000BC81A /* HLTopPostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPostsCell.m; sourceTree = "<group>"; };
+		E07B3B3A1B208C98000BC81A /* HLTopPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopPhotosView.h; sourceTree = "<group>"; };
+		E07B3B3B1B208C98000BC81A /* HLTopPhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPhotosView.m; sourceTree = "<group>"; };
 		E0813CC91B09CBC200008083 /* HLPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLPostViewController.h; sourceTree = "<group>"; };
 		E0813CCA1B09CBC200008083 /* HLPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLPostViewController.m; sourceTree = "<group>"; };
 		E0813CCB1B09CBC200008083 /* HLPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLPostViewController.xib; sourceTree = "<group>"; };
@@ -1354,6 +1366,10 @@
 		E0FF06C31AFE567C007B9544 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E07B3B311B206288000BC81A /* HLTopPostsFrame.h */,
+				E07B3B321B206288000BC81A /* HLTopPostsFrame.m */,
+				E07B3B341B2062C3000BC81A /* HLTopPosts.h */,
+				E07B3B351B2062C3000BC81A /* HLTopPosts.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1361,6 +1377,10 @@
 		E0FF06C41AFE567C007B9544 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E07B3B371B20875B000BC81A /* HLTopPostsCell.h */,
+				E07B3B381B20875B000BC81A /* HLTopPostsCell.m */,
+				E07B3B3A1B208C98000BC81A /* HLTopPhotosView.h */,
+				E07B3B3B1B208C98000BC81A /* HLTopPhotosView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1550,9 +1570,11 @@
 				E0A065661B0B286C00CE4728 /* HLEmotion.m in Sources */,
 				E0038E8D1B12345A00E4924F /* HLSaveTool.m in Sources */,
 				E0072F141B123BA800AAC6F5 /* UIView+WebCacheOperation.m in Sources */,
+				E07B3B331B206288000BC81A /* HLTopPostsFrame.m in Sources */,
 				E0072F091B123BA800AAC6F5 /* SDWebImageDecoder.m in Sources */,
 				E0038E6D1B12342F00E4924F /* HLProductViewController.m in Sources */,
 				E0038E691B12342F00E4924F /* HLBaseTableViewController.m in Sources */,
+				E07B3B361B2062C3000BC81A /* HLTopPosts.m in Sources */,
 				E0A789A81AFE24BD004F3511 /* HLTabBarViewController.m in Sources */,
 				E0072EDE1B123BA100AAC6F5 /* MJType.m in Sources */,
 				E095D5981B17196E002B07E2 /* MJRefreshConst.m in Sources */,
@@ -1568,6 +1590,7 @@
 				E0072EB61B123B8F00AAC6F5 /* AFURLSessionManager.m in Sources */,
 				E0038E671B12342F00E4924F /* HLHtmlViewController.m in Sources */,
 				E095D5691B16D0E5002B07E2 /* HLUser.m in Sources */,
+				E07B3B391B20875B000BC81A /* HLTopPostsCell.m in Sources */,
 				E0072EE11B123BA100AAC6F5 /* NSObject+MJKeyValue.m in Sources */,
 				E09DCE7C1AFEEE7900C5145E /* HLDiscoverViewController.m in Sources */,
 				E0B5EA2E1B04A1CB0086BC03 /* AssetHelper.m in Sources */,
@@ -1614,6 +1637,7 @@
 				E095D5A01B173E79002B07E2 /* HLPosts.m in Sources */,
 				E0072F0E1B123BA800AAC6F5 /* UIButton+WebCache.m in Sources */,
 				E0D099081B075183004B447C /* MLImageCrop.m in Sources */,
+				E07B3B3C1B208C98000BC81A /* HLTopPhotosView.m in Sources */,
 				E0072EBD1B123B9800AAC6F5 /* MBProgressHUD+MJ.m in Sources */,
 				E095D5751B16E8E7002B07E2 /* HLStatusPhotoView.m in Sources */,
 				E0072F0F1B123BA800AAC6F5 /* UIImage+GIF.m in Sources */,
