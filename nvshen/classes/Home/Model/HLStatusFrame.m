@@ -18,14 +18,9 @@
 - (void)setStatus:(HLStatus *)status
 {
     _status = status;
-
-
-    HLLog(@"status %@", status);
     
     // cell的宽度
     CGFloat cellW = [UIScreen mainScreen].bounds.size.width;
-    
-    /* 原创微博 */
     
     /** 头像 */
     CGFloat iconWH = 35;
@@ -76,7 +71,7 @@
     originalH = CGRectGetMaxY(self.contentLabelF) + HLStatusCellBorderW;
    
     
-    /** 原创微博整体 */
+    /** 原创整体 */
     CGFloat originalX = 0;
     CGFloat originalY = HLStatusCellMargin;
     CGFloat originalW = cellW;

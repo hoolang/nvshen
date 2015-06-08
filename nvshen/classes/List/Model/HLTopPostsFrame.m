@@ -36,7 +36,6 @@
     self.originalViewF = CGRectMake(firstViewX, firstViewX, ScreenWidth, firstViewWH);
     
     self.cellHeight = CGRectGetMaxY(self.bottomViewF) + HLTopPostsCellBorderW;
-    
 }
 
 -(void)setTopPostsM:(NSArray *)TopPostsM{

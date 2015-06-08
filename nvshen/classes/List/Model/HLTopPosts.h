@@ -12,7 +12,7 @@
 /**	object	show作者的用户信息字段 详细*/
 @property (nonatomic, strong) HLPosts *posts;
 /**	int	评论数*/
-@property (nonatomic, assign) int comment_count;
+@property (nonatomic, assign) int comments_count;
 /**	int	表态数*/
-//@property (nonatomic, assign) int likes_count;
+@property (nonatomic, assign) int likes_count;
 @end

@@ -20,8 +20,6 @@
 #import "HLPhoto.h"
 
 @interface HLCommonCell()
-/* 原创微博 */
-
 /** 头像 */
 @property (nonatomic, weak) HLIconView *iconView;
 /** 会员图标 */
@@ -36,13 +34,6 @@
 @property (nonatomic, weak) UILabel *sourceLabel;
 /** 正文 */
 @property (nonatomic, weak) UILabel *contentLabel;
-
-/* 转发微博 */
-/** 转发微博整体 */
-@property (nonatomic, weak) UIView *retweetView;
-/** 转发微博正文 + 昵称 */
-@property (nonatomic, weak) UILabel *retweetContentLabel;
-
 
 /** 工具条 */
 @property (nonatomic, weak) HLStatusToolbar *toolbar;
@@ -109,17 +100,8 @@
     self.toolbar = toolbar;
 }
 
-
-/**
- * 初始化原创微博
- */
-//- (void)setupOriginal
-//{
-//    
-//}
-
 - (void)setupOriginal{
-    /** 原创微博整体 */
+    /** 原创整体 */
     UIView *originalView = [[UIView alloc] init];
     originalView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:originalView];

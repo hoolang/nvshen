@@ -203,7 +203,15 @@
 		E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229C1AFCA97000AE9948 /* AppDelegate.m */; };
 		E0D922A41AFCA97000AE9948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229D1AFCA97000AE9948 /* main.m */; };
 		E0D922A51AFCA97000AE9948 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D922A01AFCA97000AE9948 /* ViewController.m */; };
+		E0DD72EF1B2494D200989489 /* HLTopCommentsPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DD72EE1B2494D200989489 /* HLTopCommentsPostsCell.m */; };
+		E0DD72F21B2499F300989489 /* HLTopLikesPotsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DD72F11B2499F300989489 /* HLTopLikesPotsCell.m */; };
+		E0DD72F51B249A2A00989489 /* HLLatestUserPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DD72F41B249A2A00989489 /* HLLatestUserPostsCell.m */; };
+		E0DD72F81B24A1E200989489 /* HLTopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DD72F71B24A1E200989489 /* HLTopDetailViewController.m */; };
 		E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E75ABD1B00353400D60497 /* HLComposeViewController.m */; };
+		E0EE93171B2537D800C9C1DE /* HLTopPostsCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE93151B2537D800C9C1DE /* HLTopPostsCategoryCell.m */; };
+		E0EE931B1B2537E900C9C1DE /* HLWaterflowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE931A1B2537E900C9C1DE /* HLWaterflowLayout.m */; };
+		E0EE931E1B2537F100C9C1DE /* HLShop.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE931D1B2537F100C9C1DE /* HLShop.m */; };
+		E0EE93231B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE93221B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m */; };
 		E0FF06C81AFE5743007B9544 /* HLTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0FF06C71AFE5743007B9544 /* HLTopViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -547,8 +555,24 @@
 		E0D9229F1AFCA97000AE9948 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		E0D922A01AFCA97000AE9948 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E0D922AF1AFCAE7000AE9948 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		E0DD72ED1B2494D200989489 /* HLTopCommentsPostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopCommentsPostsCell.h; sourceTree = "<group>"; };
+		E0DD72EE1B2494D200989489 /* HLTopCommentsPostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopCommentsPostsCell.m; sourceTree = "<group>"; };
+		E0DD72F01B2499F300989489 /* HLTopLikesPotsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopLikesPotsCell.h; sourceTree = "<group>"; };
+		E0DD72F11B2499F300989489 /* HLTopLikesPotsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopLikesPotsCell.m; sourceTree = "<group>"; };
+		E0DD72F31B249A2A00989489 /* HLLatestUserPostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLLatestUserPostsCell.h; sourceTree = "<group>"; };
+		E0DD72F41B249A2A00989489 /* HLLatestUserPostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLLatestUserPostsCell.m; sourceTree = "<group>"; };
+		E0DD72F61B24A1E200989489 /* HLTopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopDetailViewController.h; sourceTree = "<group>"; };
+		E0DD72F71B24A1E200989489 /* HLTopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopDetailViewController.m; sourceTree = "<group>"; };
 		E0E75ABC1B00353400D60497 /* HLComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLComposeViewController.h; sourceTree = "<group>"; };
 		E0E75ABD1B00353400D60497 /* HLComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLComposeViewController.m; sourceTree = "<group>"; };
+		E0EE93141B2537D800C9C1DE /* HLTopPostsCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopPostsCategoryCell.h; sourceTree = "<group>"; };
+		E0EE93151B2537D800C9C1DE /* HLTopPostsCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPostsCategoryCell.m; sourceTree = "<group>"; };
+		E0EE93191B2537E900C9C1DE /* HLWaterflowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLWaterflowLayout.h; sourceTree = "<group>"; };
+		E0EE931A1B2537E900C9C1DE /* HLWaterflowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLWaterflowLayout.m; sourceTree = "<group>"; };
+		E0EE931C1B2537F100C9C1DE /* HLShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLShop.h; sourceTree = "<group>"; };
+		E0EE931D1B2537F100C9C1DE /* HLShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLShop.m; sourceTree = "<group>"; };
+		E0EE93211B2540BE00C9C1DE /* HLTopPostsCategoryFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopPostsCategoryFrame.h; sourceTree = "<group>"; };
+		E0EE93221B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPostsCategoryFrame.m; sourceTree = "<group>"; };
 		E0FF06C61AFE5743007B9544 /* HLTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopViewController.h; sourceTree = "<group>"; };
 		E0FF06C71AFE5743007B9544 /* HLTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1359,6 +1383,10 @@
 			children = (
 				E0FF06C61AFE5743007B9544 /* HLTopViewController.h */,
 				E0FF06C71AFE5743007B9544 /* HLTopViewController.m */,
+				E0DD72F61B24A1E200989489 /* HLTopDetailViewController.h */,
+				E0DD72F71B24A1E200989489 /* HLTopDetailViewController.m */,
+				E0EE93191B2537E900C9C1DE /* HLWaterflowLayout.h */,
+				E0EE931A1B2537E900C9C1DE /* HLWaterflowLayout.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1366,8 +1394,12 @@
 		E0FF06C31AFE567C007B9544 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E0EE931C1B2537F100C9C1DE /* HLShop.h */,
+				E0EE931D1B2537F100C9C1DE /* HLShop.m */,
 				E07B3B311B206288000BC81A /* HLTopPostsFrame.h */,
 				E07B3B321B206288000BC81A /* HLTopPostsFrame.m */,
+				E0EE93211B2540BE00C9C1DE /* HLTopPostsCategoryFrame.h */,
+				E0EE93221B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m */,
 				E07B3B341B2062C3000BC81A /* HLTopPosts.h */,
 				E07B3B351B2062C3000BC81A /* HLTopPosts.m */,
 			);
@@ -1377,8 +1409,16 @@
 		E0FF06C41AFE567C007B9544 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E0EE93141B2537D800C9C1DE /* HLTopPostsCategoryCell.h */,
+				E0EE93151B2537D800C9C1DE /* HLTopPostsCategoryCell.m */,
 				E07B3B371B20875B000BC81A /* HLTopPostsCell.h */,
 				E07B3B381B20875B000BC81A /* HLTopPostsCell.m */,
+				E0DD72ED1B2494D200989489 /* HLTopCommentsPostsCell.h */,
+				E0DD72EE1B2494D200989489 /* HLTopCommentsPostsCell.m */,
+				E0DD72F01B2499F300989489 /* HLTopLikesPotsCell.h */,
+				E0DD72F11B2499F300989489 /* HLTopLikesPotsCell.m */,
+				E0DD72F31B249A2A00989489 /* HLLatestUserPostsCell.h */,
+				E0DD72F41B249A2A00989489 /* HLLatestUserPostsCell.m */,
 				E07B3B3A1B208C98000BC81A /* HLTopPhotosView.h */,
 				E07B3B3B1B208C98000BC81A /* HLTopPhotosView.m */,
 			);
@@ -1574,6 +1614,7 @@
 				E0072F091B123BA800AAC6F5 /* SDWebImageDecoder.m in Sources */,
 				E0038E6D1B12342F00E4924F /* HLProductViewController.m in Sources */,
 				E0038E691B12342F00E4924F /* HLBaseTableViewController.m in Sources */,
+				E0DD72F51B249A2A00989489 /* HLLatestUserPostsCell.m in Sources */,
 				E07B3B361B2062C3000BC81A /* HLTopPosts.m in Sources */,
 				E0A789A81AFE24BD004F3511 /* HLTabBarViewController.m in Sources */,
 				E0072EDE1B123BA100AAC6F5 /* MJType.m in Sources */,
@@ -1585,6 +1626,7 @@
 				E0A53ED21B1C61E9007321CD /* HLEmotionTool.m in Sources */,
 				E0A065671B0B286C00CE4728 /* HLEmotionAttachment.m in Sources */,
 				E0072F0B1B123BA800AAC6F5 /* SDWebImageDownloaderOperation.m in Sources */,
+				E0DD72F81B24A1E200989489 /* HLTopDetailViewController.m in Sources */,
 				E0038E891B12345500E4924F /* HLSettingSwitchItem.m in Sources */,
 				E0D922A41AFCA97000AE9948 /* main.m in Sources */,
 				E0072EB61B123B8F00AAC6F5 /* AFURLSessionManager.m in Sources */,
@@ -1629,9 +1671,13 @@
 				E0038E9B1B12346800E4924F /* HLSettingCell.m in Sources */,
 				E0072E991B123B7900AAC6F5 /* HLScoreNoticeViewController.m in Sources */,
 				E0072F061B123BA800AAC6F5 /* NSData+ImageContentType.m in Sources */,
+				E0EE931E1B2537F100C9C1DE /* HLShop.m in Sources */,
 				E0038E861B12345500E4924F /* HLSettingGroup.m in Sources */,
+				E0EE93231B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m in Sources */,
 				E095D56F1B16E518002B07E2 /* HLStatusFrame.m in Sources */,
+				E0DD72F21B2499F300989489 /* HLTopLikesPotsCell.m in Sources */,
 				E0072EBF1B123B9800AAC6F5 /* MBProgressHUD.m in Sources */,
+				E0DD72EF1B2494D200989489 /* HLTopCommentsPostsCell.m in Sources */,
 				E0A789A51AFE241D004F3511 /* HLNavigationController.m in Sources */,
 				E095D5991B17196E002B07E2 /* MJRefreshFooterView.m in Sources */,
 				E095D5A01B173E79002B07E2 /* HLPosts.m in Sources */,
@@ -1646,6 +1692,7 @@
 				E095D59B1B17196E002B07E2 /* UIScrollView+MJExtension.m in Sources */,
 				E0072F051B123BA800AAC6F5 /* MKAnnotationView+WebCache.m in Sources */,
 				E0072F071B123BA800AAC6F5 /* SDImageCache.m in Sources */,
+				E0EE931B1B2537E900C9C1DE /* HLWaterflowLayout.m in Sources */,
 				E095D5841B16FE1B002B07E2 /* HLIconView.m in Sources */,
 				E0072F121B123BA800AAC6F5 /* UIImageView+HighlightedWebCache.m in Sources */,
 				E0072EB01B123B8F00AAC6F5 /* AFHTTPSessionManager.m in Sources */,
@@ -1657,6 +1704,7 @@
 				E0038E841B12345500E4924F /* HLProduct.m in Sources */,
 				E0038E661B12342F00E4924F /* HLHelpViewController.m in Sources */,
 				E0072F0A1B123BA800AAC6F5 /* SDWebImageDownloader.m in Sources */,
+				E0EE93171B2537D800C9C1DE /* HLTopPostsCategoryCell.m in Sources */,
 				E0072EE01B123BA100AAC6F5 /* NSObject+MJCoding.m in Sources */,
 				E0072F131B123BA800AAC6F5 /* UIImageView+WebCache.m in Sources */,
 				E0ABA5761B136DC500C5CE4C /* HLHttpTool.m in Sources */,

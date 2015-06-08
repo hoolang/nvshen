@@ -14,49 +14,18 @@
 #import "HLPhoto.h"
 #import "UIImageView+WebCache.h"
 #import "HLStatusPhotosView.h"
+#import "HLTopDetailViewController.h"
 
 @interface HLTopPostsCell()
 /** 占位图片 */
 @property (nonatomic, weak) UIImageView *firstView;
 @property (nonatomic, weak) HLTopPhotosView * lastView;
 @property (nonatomic, weak) UILabel *bottomView;
+@property (nonatomic, copy) NSString *sourceURL;
+@property (nonatomic, copy) NSString *vcTitle;
 @end
 
 @implementation HLTopPostsCell
-
-+ (instancetype)cellWithTableView:(UITableView *)tableView
-{
-    static NSString *ID = @"topPost";
-    HLTopPostsCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[HLTopPostsCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
-    return cell;
-}
-/**
-  *  cell的初始化方法，一个cell只会调用一次
-  *  一般在这里添加所有可能显示的子控件，以及子控件的一次性设置
-  */
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        self.backgroundColor = [UIColor clearColor];
-        // 点击cell的时候不要变色
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        // 设置选中时的背景为蓝色
-        //        UIView *bg = [[UIView alloc] init];
-        //        bg.backgroundColor = [UIColor blueColor];
-        //        self.selectedBackgroundView = bg;
-        
-        // 这个做法不行
-        //        self.selectedBackgroundView.backgroundColor = [UIColor blueColor];
-        [self setupOriginal];
-        
-    }
-    return self;
-}
 
 - (void)setupOriginal{
     /** 整体 */
@@ -101,7 +70,7 @@
     // 设置图片                                       //@"http://192.168.168.188:8008/nvshen/photos/1432729264571.jpg"
     //[self.firstView sd_setImageWithURL:[NSURL URLWithString:@"http://192.168.168.188:8008/nvshen/photos/1432729264571.jpg"] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     
-    [self.firstView sd_setImageWithURL:[NSURL URLWithString:topPostsFrame.topPosts.posts.photo] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+
 
     /** scroolView Frame*/
     NSMutableArray *photos = [[NSMutableArray alloc] init];
@@ -111,6 +80,7 @@
         HLPhoto *photo = [[HLPhoto alloc] init];
         
         photo.thumbnail_pic = topPosts.posts.photo;
+        photo.photoId = topPosts.posts.pid;
         [photos addObject:photo];
     }
     self.lastView.photos = photos;
@@ -118,9 +88,37 @@
 
     /** 底部文字 */
     self.bottomView.frame = topPostsFrame.bottomViewF;
-    self.bottomView.text = topPostsFrame.topPosts.posts.content;
+    //self.bottomView.text = topPostsFrame.topPosts.posts.content;
     self.bottomView.textColor = HLColor(100, 100, 100);
     self.bottomView.font = [UIFont systemFontOfSize:12];
+
+}
+
+/** 设置文字 */
+- (void)setupBottom:(NSString *) buttomText
+{
+        self.bottomView.text = buttomText;
+}
+/** 设置占位图片 */
+- (void)setupFirstView:(NSString *) imageUIL withURL:(NSString *)URL andTitle:(NSString *)title
+{
+    self.sourceURL = URL;
+    self.vcTitle = title;
+    
+    /** 允许交互 */
+    self.firstView.userInteractionEnabled = YES;
+    [self.firstView sd_setImageWithURL:[NSURL URLWithString:imageUIL] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+    
+    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(firstViewToDetailVC)];
+    [self.firstView addGestureRecognizer:tapGesture];
+}
+/** 通知代理 */
+- (void)firstViewToDetailVC
+{
+    HLLog(@"clickFirstView:(NSString *)URL withTitle:(NSString *)title");
+    if ([self.delegate respondsToSelector:@selector(clickFirstView: withTitle:)]) {
+        [self.delegate clickFirstView:self.sourceURL withTitle:self.vcTitle];
+    }
 
 }
 

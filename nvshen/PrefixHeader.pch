@@ -26,6 +26,8 @@
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 // 系统屏幕宽度
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
+// 系统屏幕宽度
+#define CollectionWidth ((ScreenWidth - 10) * 0.5)
 //友盟
 #define UmengAppkey @"555bf86967e58ea877004d2d"
 
@@ -46,8 +48,25 @@
 #define HL_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/latest_posts.json"
 // 加载更多旧数据的地址
 #define HL_OLDER_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/older_posts.json"
+
+///////////////////////////////////////////////////////
 // TOP 加载新的数据
 #define HL_TOP_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_latest_posts.json"
+
+// TOP 加载最新用户发表的最新数据
+#define HL_TOP_CATEGORY_LATEST_USER_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_latest_user_latest_posts.json"
+// TOP 加载最新用户发表的旧数据
+#define HL_TOP_CATEGORY_LATEST_USER_OLDER_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_latest_user_older_posts.json"
+// TOP 加载评论最多新数据
+#define HL_TOP_CATEGORY_MOSTS_COMMENTS_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_most_comments_latest_posts.json"
+// TOP 加载评论最多旧数据
+#define HL_TOP_CATEGORY_MOSTS_COMMENTS_OLDER_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_most_comments_older_posts.json"
+// TOP 加载最多点赞的最新数据
+#define HL_TOP_CATEGORY_MOSTS_LIKES_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_most_likes_latest_posts.json"
+// TOP 加载最多点赞的旧数据
+#define HL_TOP_CATEGORY_MOSTS_LIKES_OLDER_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_most_likes_older_posts.json"
+///////////////////////////////////////////////////////
+
 // 通知中心
 #define HLNotificationCenter [NSNotificationCenter defaultCenter]
 // 通知

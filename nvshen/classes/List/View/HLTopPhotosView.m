@@ -8,6 +8,7 @@
 
 #import "HLTopPhotosView.h"
 #import "HLStatusPhotoView.h"
+#import "HLPhoto.h"
 #define HLTopPhotoWH 80
 #define HLTopPhotoMargin 5
 
@@ -44,6 +45,20 @@
         HLStatusPhotoView *photoView = [[HLStatusPhotoView alloc] init];
         photoView.photo = photos[i];
         [self addSubview:photoView];
+        
+        UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(viewDetailVC)];
+        [photoView addGestureRecognizer:tapGesture];
+    }
+}
+
+/** 通知代理 */
+- (void)viewDetailVC:(HLStatusPhotoView *)photoView
+{
+    HLLog(@"clickFirstView:(NSString *)URL withTitle:(NSString *)title");
+    if ([self.delegate respondsToSelector:@selector(clickFirstView: withTitle:)]) {
+        HLStatusPhotoView *photoV = photoView;
+        NSString *pid = photoV.photo.photoId;
+        [self.delegate clickFirstView:self.sourceURL withTitle:self.vcTitle];
     }
 }
 

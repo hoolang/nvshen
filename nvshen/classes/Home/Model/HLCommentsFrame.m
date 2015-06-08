@@ -17,8 +17,6 @@
     // cell的宽度
     CGFloat cellW = [UIScreen mainScreen].bounds.size.width;
     
-    /* 原创微博 */
-    
     /** 头像 */
     CGFloat iconWH = 30;
     CGFloat iconX = HLCommentCellBorderW;

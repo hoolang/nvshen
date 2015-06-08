@@ -75,8 +75,6 @@
  点击喜欢
  */
 - (void)addLike:(UIButton *) btn{
-
-    HLLog(@"addLike^66666");
     
     // 1.请求管理者
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
