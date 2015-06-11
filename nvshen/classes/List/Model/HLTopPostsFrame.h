@@ -11,9 +11,9 @@
 // cell之间的间距
 #define HLTopPostsCellMargin 5
 #define HLTopPostsCellBorderW 10
-@class HLTopPosts;
+@class HLStatus;
 @interface HLTopPostsFrame : NSObject
-@property (nonatomic, strong) HLTopPosts *topPosts;
+@property (nonatomic, strong) HLStatus *topPosts;
 /** Show整体 */
 @property (nonatomic, assign) CGRect originalViewF;
 /** 第一个图片占位符 */

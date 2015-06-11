@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HLTopPosts.h"
+#import "HLStatus.h"
 #import "HLTopPostsCategoryFrame.h"
 
 // 昵称字体
@@ -25,7 +25,7 @@
 #define HLTopPostsCategoryBorderW 5
 
 @interface HLTopPostsCategoryFrame : UIViewController
-@property (nonatomic, strong) HLTopPosts *topPosts;
+@property (nonatomic, strong) HLStatus *topPosts;
 
 /** Show整体 */
 @property (nonatomic, assign) CGRect originalViewF;

@@ -304,6 +304,7 @@
 - (void)pushToCommentViewContrller:(HLStatus *) status{
     HLCommentViewContrller *commentVC = [[HLCommentViewContrller alloc] init];
     commentVC.status = status;
+    commentVC.title = viewDetailTitle;
     [self.navigationController pushViewController:commentVC animated:YES];
 }
 

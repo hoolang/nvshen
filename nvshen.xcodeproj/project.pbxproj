@@ -210,7 +210,6 @@
 		E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E75ABD1B00353400D60497 /* HLComposeViewController.m */; };
 		E0EE93171B2537D800C9C1DE /* HLTopPostsCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE93151B2537D800C9C1DE /* HLTopPostsCategoryCell.m */; };
 		E0EE931B1B2537E900C9C1DE /* HLWaterflowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE931A1B2537E900C9C1DE /* HLWaterflowLayout.m */; };
-		E0EE931E1B2537F100C9C1DE /* HLShop.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE931D1B2537F100C9C1DE /* HLShop.m */; };
 		E0EE93231B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE93221B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m */; };
 		E0FF06C81AFE5743007B9544 /* HLTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0FF06C71AFE5743007B9544 /* HLTopViewController.m */; };
 /* End PBXBuildFile section */
@@ -569,8 +568,6 @@
 		E0EE93151B2537D800C9C1DE /* HLTopPostsCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPostsCategoryCell.m; sourceTree = "<group>"; };
 		E0EE93191B2537E900C9C1DE /* HLWaterflowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLWaterflowLayout.h; sourceTree = "<group>"; };
 		E0EE931A1B2537E900C9C1DE /* HLWaterflowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLWaterflowLayout.m; sourceTree = "<group>"; };
-		E0EE931C1B2537F100C9C1DE /* HLShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLShop.h; sourceTree = "<group>"; };
-		E0EE931D1B2537F100C9C1DE /* HLShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLShop.m; sourceTree = "<group>"; };
 		E0EE93211B2540BE00C9C1DE /* HLTopPostsCategoryFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopPostsCategoryFrame.h; sourceTree = "<group>"; };
 		E0EE93221B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPostsCategoryFrame.m; sourceTree = "<group>"; };
 		E0FF06C61AFE5743007B9544 /* HLTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopViewController.h; sourceTree = "<group>"; };
@@ -1394,8 +1391,6 @@
 		E0FF06C31AFE567C007B9544 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E0EE931C1B2537F100C9C1DE /* HLShop.h */,
-				E0EE931D1B2537F100C9C1DE /* HLShop.m */,
 				E07B3B311B206288000BC81A /* HLTopPostsFrame.h */,
 				E07B3B321B206288000BC81A /* HLTopPostsFrame.m */,
 				E0EE93211B2540BE00C9C1DE /* HLTopPostsCategoryFrame.h */,
@@ -1671,7 +1666,6 @@
 				E0038E9B1B12346800E4924F /* HLSettingCell.m in Sources */,
 				E0072E991B123B7900AAC6F5 /* HLScoreNoticeViewController.m in Sources */,
 				E0072F061B123BA800AAC6F5 /* NSData+ImageContentType.m in Sources */,
-				E0EE931E1B2537F100C9C1DE /* HLShop.m in Sources */,
 				E0038E861B12345500E4924F /* HLSettingGroup.m in Sources */,
 				E0EE93231B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m in Sources */,
 				E095D56F1B16E518002B07E2 /* HLStatusFrame.m in Sources */,

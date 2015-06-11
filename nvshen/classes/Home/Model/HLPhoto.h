@@ -11,6 +11,6 @@
 @interface HLPhoto : NSObject
 /** 缩略图地址 */
 @property (nonatomic, copy) NSString *thumbnail_pic;
-/** 存放对应的ID地址 */
-@property (nonatomic, strong) HLStatus *status;
+/** 存放对应的status地址 */
+@property (nonatomic, strong) HLStatus *topPosts;
 @end

@@ -67,6 +67,9 @@
 #define HL_TOP_CATEGORY_MOSTS_LIKES_OLDER_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_most_likes_older_posts.json"
 ///////////////////////////////////////////////////////
 
+// 普通配置
+#define viewDetailTitle @"浏览图片"
+
 // 通知中心
 #define HLNotificationCenter [NSNotificationCenter defaultCenter]
 // 通知

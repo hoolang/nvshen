@@ -12,9 +12,10 @@
 #import "MJRefresh.h"
 #import "MJExtension.h"
 #import "HLHttpTool.h"
-#import "HLTopPosts.h"
+#import "HLStatus.h"
 #import "HLTopPostsFrame.h"
 #import "HLTopPostsCategoryFrame.h"
+#import "HLCommentViewContrller.h"
 @interface HLTopDetailViewController()
 <
 UICollectionViewDelegate,
@@ -99,7 +100,7 @@ static NSString *const ID = @"cell";
              params:params success:^(id json) {
                  HLLog(@"loadPostData=====-->>>>>> %@", self.sourceURL);
                  
-                 NSArray *latestPosts = [HLTopPosts objectArrayWithKeyValuesArray:json[@"latestPosts"]];
+                 NSArray *latestPosts = [HLStatus objectArrayWithKeyValuesArray:json[@"latestPosts"]];
                  
                  //将 HWStatus数组 转为 HWStatusFrame数组
                  NSArray *latestPostsFrame = [self topFramesWithPosts:latestPosts];
@@ -118,7 +119,7 @@ static NSString *const ID = @"cell";
 - (NSArray *)topFramesWithPosts:(NSArray *)topPosts
 {
     NSMutableArray *frames = [NSMutableArray array];
-    for (HLTopPosts *topPost in topPosts) {
+    for (HLStatus *topPost in topPosts) {
         HLTopPostsCategoryFrame *f = [[HLTopPostsCategoryFrame alloc] init];
         f.topPosts = topPost;
         [frames addObject:f];
@@ -176,8 +177,13 @@ static NSString *const ID = @"cell";
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
+    HLLog(@"indexPath.row %ld",indexPath.row);
+    
+    HLCommentViewContrller *commentVC = [[HLCommentViewContrller alloc] init];
+    HLTopPostsCategoryFrame *topPosts = _postsFrame[indexPath.row];
+    commentVC.status = topPosts.topPosts;
+    commentVC.title = viewDetailTitle;
+    [self.navigationController pushViewController:commentVC animated:YES];
 }
 //返回这个UICollectionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath

@@ -9,7 +9,7 @@
 #import "HLTopPostsCell.h"
 #import "HLTopPhotosView.h"
 #import "HLTopPostsFrame.h"
-#import "HLTopPosts.h"
+#import "HLStatus.h"
 #import "HLPosts.h"
 #import "HLPhoto.h"
 #import "UIImageView+WebCache.h"
@@ -76,11 +76,11 @@
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     for (int i = 0; i < topPostsFrame.topPostsM.count; i++) {
         HLTopPostsFrame *tpFrame = topPostsFrame.topPostsM[i];
-        HLTopPosts *topPosts = tpFrame.topPosts;
+        HLStatus *topPosts = tpFrame.topPosts;
         HLPhoto *photo = [[HLPhoto alloc] init];
-        
+                    
         photo.thumbnail_pic = topPosts.posts.photo;
-        photo.photoId = topPosts.posts.pid;
+        photo.topPosts = topPosts;
         [photos addObject:photo];
     }
     self.lastView.photos = photos;

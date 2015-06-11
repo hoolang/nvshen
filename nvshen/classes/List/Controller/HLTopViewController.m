@@ -21,11 +21,11 @@
 #import "MJExtension.h"
 #import "MJRefresh.h"
 #import "HLTopPostsFrame.h"
-#import "HLTopPosts.h"
 #import "HLTopCommentsPostsCell.h"
 #import "HLTopLikesPotsCell.h"
 #import "HLLatestUserPostsCell.h"
 #import "HLTopDetailViewController.h"
+#import "HLCommentViewContrller.h"
 
 typedef enum {
     LATEST_USER_POSTS = 0,
@@ -86,6 +86,9 @@ HLTopPostsCellDelegate
     [self setupView];
     
     [self setupDownRefresh];
+    
+    // 注册通知
+    [HLNotificationCenter addObserver:self selector:@selector(clickScrollView:) name:@"clickTopScrollViewNotification" object:nil];
 }
 
 /**
@@ -110,9 +113,9 @@ HLTopPostsCellDelegate
              params:params success:^(id json) {
                  HLLog(@"loadPostData=====-->>>>>>");
                  
-                 NSArray *latestsUserPosts = [HLTopPosts objectArrayWithKeyValuesArray:json[@"latestUserPosts"]];
-                 NSArray *mostCommentPosts = [HLTopPosts objectArrayWithKeyValuesArray:json[@"mostCommentsPosts"]];
-                 NSArray *mostLikePosts = [HLTopPosts objectArrayWithKeyValuesArray:json[@"mostLikesPosts"]];
+                 NSArray *latestsUserPosts = [HLStatus objectArrayWithKeyValuesArray:json[@"latestUserPosts"]];
+                 NSArray *mostCommentPosts = [HLStatus objectArrayWithKeyValuesArray:json[@"mostCommentsPosts"]];
+                 NSArray *mostLikePosts = [HLStatus objectArrayWithKeyValuesArray:json[@"mostLikesPosts"]];
                  
                  //将 HWStatus数组 转为 HWStatusFrame数组
                  NSArray *latestUserPostsFrame = [self topFramesWithPosts:latestsUserPosts];
@@ -124,7 +127,7 @@ HLTopPostsCellDelegate
                  self.mostLikeFrame = mostLikesPostsFrame;
                  
                  HLTopPostsFrame *topPostsFrame = self.mostCommentsFrame[0];
-                 HLTopPosts *topPosts = topPostsFrame.topPosts;
+                 HLStatus *topPosts = topPostsFrame.topPosts;
                  HLLog(@"========load topPosts.posts.photo %@", topPosts.posts.photo);
                  
                  //HLLog(@"HLTOPVIEW %@", json);
@@ -142,7 +145,7 @@ HLTopPostsCellDelegate
 - (NSArray *)topFramesWithPosts:(NSArray *)topPosts
 {
     NSMutableArray *frames = [NSMutableArray array];
-    for (HLTopPosts *topPost in topPosts) {
+    for (HLStatus *topPost in topPosts) {
         HLTopPostsFrame *f = [[HLTopPostsFrame alloc] init];
         f.topPosts = topPost;
         [frames addObject:f];
@@ -163,6 +166,20 @@ HLTopPostsCellDelegate
     [_tableView setSeparatorColor:[UIColor clearColor]];
     [self.view addSubview:_tableView];
     
+}
+
+- (void)pushToCommentViewContrller:(HLStatus *) status{
+    HLCommentViewContrller *commentVC = [[HLCommentViewContrller alloc] init];
+    commentVC.status = status;
+    commentVC.title = viewDetailTitle;
+    [self.navigationController pushViewController:commentVC animated:YES];
+}
+
+#pragma mark - 通知
+- (void)clickScrollView:(NSNotification *)oneStatus
+{
+    // 刷新表格
+    [self pushToCommentViewContrller:oneStatus.userInfo[@"status"]];
 }
 #pragma mark - 实现HLTopPostsCell代理方法
 - (void)clickFirstView:(NSString *)URL withTitle:(NSString *)title{

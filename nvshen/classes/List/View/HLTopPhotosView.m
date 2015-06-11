@@ -9,6 +9,8 @@
 #import "HLTopPhotosView.h"
 #import "HLStatusPhotoView.h"
 #import "HLPhoto.h"
+#import "HLStatus.h"
+#import "HLPosts.h"
 #define HLTopPhotoWH 80
 #define HLTopPhotoMargin 5
 
@@ -46,20 +48,27 @@
         photoView.photo = photos[i];
         [self addSubview:photoView];
         
-        UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(viewDetailVC)];
+        photoView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(viewDetailVC:)];
         [photoView addGestureRecognizer:tapGesture];
     }
 }
 
-/** 通知代理 */
-- (void)viewDetailVC:(HLStatusPhotoView *)photoView
+/** 通知 */
+- (void)viewDetailVC:(UITapGestureRecognizer *)sender
 {
-    HLLog(@"clickFirstView:(NSString *)URL withTitle:(NSString *)title");
-    if ([self.delegate respondsToSelector:@selector(clickFirstView: withTitle:)]) {
-        HLStatusPhotoView *photoV = photoView;
-        NSString *pid = photoV.photo.photoId;
-        [self.delegate clickFirstView:self.sourceURL withTitle:self.vcTitle];
-    }
+    HLLog(@"viewDetailVC");
+    HLStatusPhotoView *photoView  = (HLStatusPhotoView *)sender.view;
+    
+    HLStatus *status = photoView.photo.topPosts;
+    
+    HLLog(@"status.posts.pid %@", status.posts.pid);
+
+    NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:status, @"status", nil];
+    
+    NSNotification *notification =[NSNotification notificationWithName:@"clickTopScrollViewNotification" object:nil userInfo:dict];
+    //通过通知中心发送通知
+    [HLNotificationCenter postNotification:notification];
 }
 
 + (CGSize)sizeWithCount:(NSUInteger)count

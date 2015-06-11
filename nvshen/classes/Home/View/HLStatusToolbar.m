@@ -76,7 +76,6 @@
  点击评论按钮
  */
 - (void) clickCommentBtn{
-    HLLog(@"addComment^66666");
     //NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status.posts.pid, @"pid", nil];
     NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status, @"status", nil];
     

@@ -12,7 +12,7 @@
 #import "HLStatusPhotosView.h"
 
 @implementation HLTopPostsCategoryFrame
-- (void)setTopPosts:(HLTopPosts *)topPosts{
+- (void)setTopPosts:(HLStatus *)topPosts{
     _topPosts = topPosts;
     // cell的宽度
     CGFloat cellW = CollectionWidth;
