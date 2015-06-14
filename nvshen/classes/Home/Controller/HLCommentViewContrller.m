@@ -333,7 +333,6 @@ UITableViewDataSource
     params[@"user.uid"] = @2;
     params[@"post.pid"] = _status.posts.pid;
     
-    HLLog(@"self.toolbar.textView.text %@", self.toolbar.textView.text);
     // 3.发送请求
     [mgr POST:HL_ADD_COMMENT parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
@@ -425,21 +424,21 @@ UITableViewDataSource
 {
     switch (buttonType) {
         case HLComposeToolbarTypeSend:
-            HLLog(@"发送");
+            //HLLog(@"发送");
             [self sendComment];
             break;
             
         case HLComposeToolbarTypeEmotion: // 表情\键盘
-            HLLog(@"表情键盘");
+            //HLLog(@"表情键盘");
             [self switchKeyboard];
             break;
             
         case HLComposeToolbarTypeMention: // @
-            HLLog(@"--- @");
+            //HLLog(@"--- @");
             break;
             
         case HLComposeToolbarTypeTrend: // #
-            HLLog(@"--- #");
+            //HLLog(@"--- #");
             break;
     }
 }
@@ -499,21 +498,21 @@ UITableViewDataSource
     cell.commentsFrame = self.commentsFrames[indexPath.row];
     
     
-    HLLog(@"cell.commentsFrame %@",cell.commentsFrame);
+    //HLLog(@"cell.commentsFrame %@",cell.commentsFrame);
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HLLog(@"indexPath.row======%ld",indexPath.row);
+    //HLLog(@"indexPath.row======%ld",indexPath.row);
     HLCommentsFrame *frame = self.commentsFrames[indexPath.row];
     return frame.cellHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    HWLog(@"didSelectRowAtIndexPath---%@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
+    //    HLLog(@"didSelectRowAtIndexPath---%@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
 }
 
 - (void)dealloc

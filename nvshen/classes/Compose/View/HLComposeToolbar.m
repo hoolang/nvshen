@@ -108,16 +108,16 @@
     HLLog(@"self.height : %f", self.bounds.size.height);
     
     // 设置所有按钮的frame
-    NSUInteger count = self.subviews.count;
-    CGFloat btnW = self.width / count;
-    CGFloat btnH = self.height;
-    for (NSUInteger i = 0; i<count; i++) {
+//    NSUInteger count = self.subviews.count;
+//    CGFloat btnW = self.width / count;
+//    CGFloat btnH = self.height;
+//    for (NSUInteger i = 0; i<count; i++) {
 //        UIButton *btn = self.subviews[i];
 //        btn.y = 0;
 //        btn.width = btnW;
 //        btn.x = i * btnW;
 //        btn.height = btnH;
-    }
+//    }
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
@@ -126,7 +126,7 @@
     
     static CGFloat maxHeight = 130.0f;
     CGRect frame = textView.frame;
-    HLLog(@"frame.size.height %f", frame.size.height);
+    //HLLog(@"frame.size.height %f", frame.size.height);
     CGSize constraintSize = CGSizeMake(frame.size.width, MAXFLOAT);
     CGSize size = [textView sizeThatFits:constraintSize];
     if (size.height >= maxHeight)

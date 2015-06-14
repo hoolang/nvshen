@@ -10,4 +10,5 @@
 
 @interface NSString (Date)
 - (NSString *)getNewStyleByCompareNow;
+- (NSString *)getNewStyleByCompareNow:(NSString *) dateFormat;
 @end

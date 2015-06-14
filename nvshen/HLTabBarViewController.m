@@ -12,6 +12,7 @@
 #import "HLTopViewController.h"
 #import "HLProfileViewController.h"
 #import "HLDiscoverViewController.h"
+#import "HLChatListViewController.h"
 #import "HLTabBar.h"
 #import "HLComposeViewController.h"
 #import "DoImagePickerController.h"
@@ -28,11 +29,15 @@
     HLHomeViewController *home = [[HLHomeViewController alloc] init];
     [self addChildVc:home title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     
-    HLTopViewController *list = [[HLTopViewController alloc] init];
+    HLTopViewController *list = [HLTopViewController alloc];
+
     [self addChildVc:list title:@"排行榜" image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
     
-    HLDiscoverViewController *discover = [[HLDiscoverViewController alloc] init];
-    [self addChildVc:discover title:@"发现" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];
+//    HLDiscoverViewController *discover = [[HLDiscoverViewController alloc] init];
+//    [self addChildVc:discover title:@"发现" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];
+    
+    HLChatListViewController *chat = [[HLChatListViewController alloc] init];
+    [self addChildVc:chat title:@"聊聊" image:@"tabbar_discover" selectedImage:@"tabbar_profile_selected"];
     
     HLProfileViewController *profile = [[HLProfileViewController alloc] init];
     [self addChildVc:profile title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
@@ -77,18 +82,24 @@
     [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     [childVc.tabBarItem setTitleTextAttributes:selectTextAttrs forState:UIControlStateSelected];
     childVc.view.backgroundColor = HLColor(239, 239, 239);
+    [childVc targetForAction:@selector(onClick) withSender:self];
     
     // 先给外面传进来的小控制器 包装 一个导航控制器
     HLNavigationController *nav = [[HLNavigationController alloc] initWithRootViewController:childVc];
     // 添加为子控制器
     [self addChildViewController:nav];
 }
-
+- (void)onClick{
+    HLLog(@"sssss09_-------------");
+}
 #pragma mark - HLTabBarDelegate 代理方法
 - (void)tabBarDidClickPlusButton:(HLTabBar *)tabBar{
     
     //HLComposeViewController *compose = [[HLComposeViewController alloc] init];
     
+//    HLHomeViewController * hvc = [[HLHomeViewController alloc] init];
+//    
+//    [self presentViewController:hvc animated:YES completion:nil];
 
     
     DoImagePickerController *ipc = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];

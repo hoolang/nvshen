@@ -10,6 +10,13 @@
 
 @implementation NSString (Date)
 - (NSString *)getNewStyleByCompareNow{
+
+    NSString *dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    
+    return [self getNewStyleByCompareNow:(NSString *) dateFormat];
+}
+
+- (NSString *)getNewStyleByCompareNow:(NSString *) dateFormat{
     
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     // 如果是真机调试，转换这种欧美时间，需要设置locale
@@ -23,15 +30,14 @@
     // m:分钟
     // s:秒
     // y:年
-    //fmt.dateFormat = @"EEE MMM dd HH:mm:ss Z yyyy";
-    fmt.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    //    _created_at = @"Tue Sep 30 17:06:25 +0600 2014";
+    // fmt.dateFormat = @"EEE MMM dd HH:mm:ss Z yyyy";
+    // _created_at = @"Tue Sep 30 17:06:25 +0600 2014";
+    fmt.dateFormat = dateFormat;
     
     // 微博的创建日期
     NSDate *createDate = [fmt dateFromString:self];
     // 当前时间
     NSDate *now = [NSDate date];
-    
     
     // 日历对象（方便比较两个日期之间的差距）
     NSCalendar *calendar = [NSCalendar currentCalendar];

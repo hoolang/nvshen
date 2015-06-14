@@ -43,52 +43,34 @@ HLTopPostsCellDelegate
 @property (nonatomic, strong) NSArray *userPostsFrame;
 @property (nonatomic, strong) NSArray *mostCommentsFrame;
 @property (nonatomic, strong) NSArray *mostLikeFrame;
-@property (nonatomic, assign) BOOL isReady;
+/** 标记是否已经加载数据 */
+@property (nonatomic, assign) BOOL didLoad;
 
 @end
 
 
 @implementation HLTopViewController
-#pragma mark - 懒加载
-- (UITableView *)tableView
-{
-    if (!_tableView) {
-        self.tableView = [[UITableView alloc] init];
-    }
-    return _tableView;
-}
-- (NSArray *)userPostsFrame
-{
-    if (!_userPostsFrame) {
-        self.userPostsFrame = [NSArray array];
-    }
-    return _userPostsFrame;
-}
-- (NSArray *)mostCommentsFrame
-{
-    if (!_mostCommentsFrame) {
-        self.mostCommentsFrame = [NSArray array];
-    }
-    return _mostCommentsFrame;
-}
-- (NSArray *)mostLikeFrame
-{
-    if (!_mostLikeFrame) {
-        self.mostLikeFrame = [NSArray array];
-    }
-    return _mostLikeFrame;
-}
+
 
 -(void)viewDidLoad{
 
     [super viewDidLoad];
     
-    [self setupView];
+    HLLog(@"top viewDidLoad");
     
-    [self setupDownRefresh];
+    [self setupView];
     
     // 注册通知
     [HLNotificationCenter addObserver:self selector:@selector(clickScrollView:) name:@"clickTopScrollViewNotification" object:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    // 判断是否已经加载数据
+    if (!self.didLoad) {
+        // 还没有加载就调用此方法
+        [self setupDownRefresh];
+    }
+    
 }
 
 /**
@@ -111,6 +93,9 @@ HLTopPostsCellDelegate
     // 2.发送请求
     [HLHttpTool get:HL_TOP_LATEST_POSTS_URL
              params:params success:^(id json) {
+                 
+                 self.didLoad = YES;
+                 
                  HLLog(@"loadPostData=====-->>>>>>");
                  
                  NSArray *latestsUserPosts = [HLStatus objectArrayWithKeyValuesArray:json[@"latestUserPosts"]];

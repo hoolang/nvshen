@@ -21,6 +21,10 @@
 #import "NSString+Date.h"
 #import "UIBarButtonItem+Extension.h"
 #import "NSDate+Extension.h"
+#import "HLUserInfo.h"
+#import "HLXMPPTool.h"
+#import "CategoryWF.h"
+
 
 //版本>=IOS7
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
