@@ -31,6 +31,7 @@
     [super viewDidLoad];
     
     // 从数据里加载好友列表显示
+    //[self loadFriends2];
     
     
 }
@@ -53,6 +54,7 @@
     // 3.设置过滤和排序
     // 过滤当前登录用户的好友
     NSString *jid = [HLUserInfo sharedHLUserInfo].jid;
+    HLLog(@"jid :::::::: %@", jid);
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"streamBareJidStr = %@",jid];
     request.predicate = pre;
     
@@ -70,7 +72,7 @@
     if (err) {
         HLLog(@"%@",err);
     }
-    
+    HLLog(@"_resultsContrl.fetchedObjects.count %ld", _resultsContrl.fetchedObjects.count);
     self.didLoad = YES;
 }
 
@@ -171,6 +173,8 @@
     HLChatViewController *chatView = [[HLChatViewController alloc] init];
     
     chatView.friendJid = friend.jid;
+    
+    chatView.title = @"私聊";
     
     [self.navigationController pushViewController:chatView animated:YES];
     

@@ -6,7 +6,6 @@
 //
 
 #import "HLChatViewController.h"
-#import "HLInputView.h"
 #import "HttpTool.h"
 #import "UIImageView+WebCache.h"
 #import "HLMessageCell.h"
@@ -143,7 +142,7 @@ HLComposeToolbarDelegate>
     //cell 不可选中
     tableView.allowsSelection = NO;
     
-    tableView.backgroundColor = [UIColor colorWithRed:225/255.0 green:225/255.0 blue:225/255.0 alpha:1.0];
+    tableView.backgroundColor = HLColor(249, 249, 249);
     
     tableView.frame = CGRectMake (0,0,self.view.frame.size.width,self.view.bounds.size.height-44);
     
@@ -505,6 +504,7 @@ HLComposeToolbarDelegate>
  */
 - (void)switchKeyboard
 {
+    
     // self.textView.inputView == nil : 使用的是系统自带的键盘
     if (self.toolbar.textView.inputView == nil) { // 切换为自定义的表情键盘
         self.toolbar.textView.inputView = self.emotionKeyboard;

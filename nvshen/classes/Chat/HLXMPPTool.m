@@ -26,9 +26,6 @@ NSString *const HLLoginStatusChangeNotification = @"HLLoginStatusNotification";
     XMPPvCardAvatarModule *_avatar;//头像模块
     
     XMPPMessageArchiving *_msgArchiving;//聊天模块
-   
-    
-
 }
 
 // 1. 初始化XMPPStream
@@ -41,7 +38,6 @@ NSString *const HLLoginStatusChangeNotification = @"HLLoginStatusNotification";
 // 3.连接到服务成功后，再发送密码授权
 -(void)sendPwdToHost;
 
-
 // 4.授权成功后，发送"在线" 消息
 -(void)sendOnlineToHost;
 @end
@@ -51,7 +47,6 @@ NSString *const HLLoginStatusChangeNotification = @"HLLoginStatusNotification";
 
 
 singleton_implementation(HLXMPPTool)
-
 
 
 #pragma mark  -私有方法
@@ -183,7 +178,6 @@ singleton_implementation(HLXMPPTool)
     
     [_xmppStream sendElement:presence];
     
-    
 }
 
 
@@ -219,7 +213,6 @@ singleton_implementation(HLXMPPTool)
     
     // 如果没有错误，表示正常的断开连接(人为断开连接)
     
-    
     if(error && _resultBlock){
         _resultBlock(XMPPResultTypeNetErr);
     }
@@ -231,8 +224,6 @@ singleton_implementation(HLXMPPTool)
     HLLog(@"与主机断开连接 %@",error);
     
 }
-
-
 #pragma mark 授权成功
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
     HLLog(@"授权成功");
@@ -243,7 +234,6 @@ singleton_implementation(HLXMPPTool)
     if(_resultBlock){
         _resultBlock(XMPPResultTypeLoginSuccess);
     }
-    
     
     [self postNotification:XMPPResultTypeLoginSuccess];
     

@@ -43,7 +43,7 @@
     //3.正文
     
     CGFloat textX;
-    CGFloat textY = iconY+ padding;
+    CGFloat textY = iconY;
     
     CGSize textMaxSize = CGSizeMake(150, MAXFLOAT);
     CGSize textRealSize = [message.text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:bBtnFont} context:nil].size;
@@ -65,7 +65,6 @@
     CGFloat textMaxY = CGRectGetMaxY(_textViewF);
     
     _cellH = MAX(iconMaxY, textMaxY);
-    
     
 }
 

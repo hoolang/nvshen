@@ -53,7 +53,7 @@
         self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
         
         // 添加按钮
-        self.chatBtn = [self setupBtn:@"转发" icon:@"timeline_icon_retweet" action:@selector(chat)];
+        self.chatBtn = [self setupBtn:@"私聊" icon:@"timeline_icon_retweet" action:@selector(chat)];
 
         self.commentBtn = [self setupBtn:@"评论" icon:@"timeline_icon_comment" action:@selector(clickCommentBtn)];
 
@@ -70,7 +70,12 @@
  */
 - (void) chat{
     HLLog(@"chat %@",_status.posts.pid);
+    //NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status.posts.pid, @"pid", nil];
+    NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status, @"status", nil];
     
+    NSNotification *notification =[NSNotification notificationWithName:@"clickChatBtnNotification" object:nil userInfo:dict];
+    //通过通知中心发送通知
+    [HLNotificationCenter postNotification:notification];
 }
 /**
  点击评论按钮
@@ -88,7 +93,6 @@
  */
 - (void)addLike:(UIButton *) btn{
     HLLog(@"btn.titlelabe.text: %@",btn.titleLabel.text);
-    HLLog(@"addLike^66666");
 
     // 1.请求管理者
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];

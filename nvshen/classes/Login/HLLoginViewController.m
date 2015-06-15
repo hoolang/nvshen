@@ -83,9 +83,9 @@
 - (void)loginBtnClick:(id)sender {
     
     // 保存数据到单例
-    
     HLUserInfo *userInfo = [HLUserInfo sharedHLUserInfo];
-    userInfo.user = self.userField.text;
+    userInfo.user = [self.userField.text lowercaseString];
+    HLLog(@"userInfo.user %@", userInfo.user );
     userInfo.pwd = self.pwdField.text;
     
     // 调用父类的登录

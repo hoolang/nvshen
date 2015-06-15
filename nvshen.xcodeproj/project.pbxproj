@@ -118,8 +118,6 @@
 		E013C6D61B2A035C0068CEE8 /* HLContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6BF1B2A035C0068CEE8 /* HLContactsViewController.m */; };
 		E013C6D71B2A035C0068CEE8 /* HLEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6C11B2A035C0068CEE8 /* HLEditProfileViewController.m */; };
 		E013C6D81B2A035C0068CEE8 /* HLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6C31B2A035C0068CEE8 /* HLHistoryViewController.m */; };
-		E013C6D91B2A035C0068CEE8 /* HLInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6C51B2A035C0068CEE8 /* HLInputView.m */; };
-		E013C6DA1B2A035C0068CEE8 /* HLInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E013C6C61B2A035C0068CEE8 /* HLInputView.xib */; };
 		E013C6DB1B2A035C0068CEE8 /* HLMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6C81B2A035C0068CEE8 /* HLMeViewController.m */; };
 		E013C6DC1B2A035C0068CEE8 /* HLChatNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6CA1B2A035C0068CEE8 /* HLChatNavigationController.m */; };
 		E013C6DD1B2A035C0068CEE8 /* HLChatProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6CC1B2A035C0068CEE8 /* HLChatProfileViewController.m */; };
@@ -569,9 +567,6 @@
 		E013C6C11B2A035C0068CEE8 /* HLEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditProfileViewController.m; sourceTree = "<group>"; };
 		E013C6C21B2A035C0068CEE8 /* HLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHistoryViewController.h; sourceTree = "<group>"; };
 		E013C6C31B2A035C0068CEE8 /* HLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHistoryViewController.m; sourceTree = "<group>"; };
-		E013C6C41B2A035C0068CEE8 /* HLInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLInputView.h; sourceTree = "<group>"; };
-		E013C6C51B2A035C0068CEE8 /* HLInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLInputView.m; sourceTree = "<group>"; };
-		E013C6C61B2A035C0068CEE8 /* HLInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLInputView.xib; sourceTree = "<group>"; };
 		E013C6C71B2A035C0068CEE8 /* HLMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMeViewController.h; sourceTree = "<group>"; };
 		E013C6C81B2A035C0068CEE8 /* HLMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMeViewController.m; sourceTree = "<group>"; };
 		E013C6C91B2A035C0068CEE8 /* HLChatNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLChatNavigationController.h; sourceTree = "<group>"; };
@@ -1378,9 +1373,6 @@
 				E013C6C11B2A035C0068CEE8 /* HLEditProfileViewController.m */,
 				E013C6C21B2A035C0068CEE8 /* HLHistoryViewController.h */,
 				E013C6C31B2A035C0068CEE8 /* HLHistoryViewController.m */,
-				E013C6C41B2A035C0068CEE8 /* HLInputView.h */,
-				E013C6C51B2A035C0068CEE8 /* HLInputView.m */,
-				E013C6C61B2A035C0068CEE8 /* HLInputView.xib */,
 				E013C6C71B2A035C0068CEE8 /* HLMeViewController.h */,
 				E013C6C81B2A035C0068CEE8 /* HLMeViewController.m */,
 				E013C6C91B2A035C0068CEE8 /* HLChatNavigationController.h */,
@@ -2908,7 +2900,6 @@
 				E0B5EA321B04A1CB0086BC03 /* DoImagePickerController.xib in Resources */,
 				E0072F561B124C4C00AAC6F5 /* znzh.html in Resources */,
 				E0072F371B124C4C00AAC6F5 /* cywt.json in Resources */,
-				E013C6DA1B2A035C0068CEE8 /* HLInputView.xib in Resources */,
 				E0B5EA301B04A1CB0086BC03 /* DoAlbumCell.xib in Resources */,
 				E0072F541B124C4C00AAC6F5 /* x3d_howto.html in Resources */,
 				E0072F531B124C4C00AAC6F5 /* ssq_howto.html in Resources */,
@@ -3255,7 +3246,6 @@
 				E013C89E1B2A0AC10068CEE8 /* XMPPMessage+XEP_0333.m in Sources */,
 				E0ADF9AE1B04E57300732E3C /* HLEditPhotoViewController.m in Sources */,
 				E013C89C1B2A0AC10068CEE8 /* NSXMLElement+XEP_0297.m in Sources */,
-				E013C6D91B2A035C0068CEE8 /* HLInputView.m in Sources */,
 				E0A53EEC1B1C6215007321CD /* HLEmotionPopView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

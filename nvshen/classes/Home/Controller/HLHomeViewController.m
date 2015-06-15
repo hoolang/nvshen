@@ -18,6 +18,7 @@
 #import "HLPosts.h"
 #import "HLStatusToolbar.h"
 #import "HLCommentViewContrller.h"
+#import "HLChatViewController.h"
 
 @interface HLHomeViewController ()
 /**
@@ -48,7 +49,10 @@
     
     //注册通知
     [HLNotificationCenter addObserver:self selector:@selector(changelikeStatus:) name:@"addLikeNotification" object:nil];
+    // 点击评论按钮
     [HLNotificationCenter addObserver:self selector:@selector(clickCommentBtn:) name:@"clickCommentBtnNotification" object:nil];
+    // 点击私聊按钮
+    [HLNotificationCenter addObserver:self selector:@selector(clickChatBtn:) name:@"clickChatBtnNotification" object:nil];
 
     [HLNotificationCenter addObserver:self selector:@selector(changeCommentStatus:) name:@"DoneCommentNotification" object:nil];
 
@@ -301,6 +305,23 @@
     [self pushToCommentViewContrller:status];
 }
 
+#pragma mark - 跳转到私聊界面
+- (void)pushToChatViewContrller:(HLStatus *) status{
+    HLChatViewController *chatView = [[HLChatViewController alloc] init];
+    
+    XMPPJID *jid = [XMPPJID jidWithString:[status.posts.user.name stringByAppendingString:@"@nvshen"]];
+    chatView.friendJid = jid;
+    chatView.title = @"私聊";
+    
+    [self.navigationController pushViewController:chatView animated:YES];
+}
+
+#pragma mark - 私聊通知
+- (void)clickChatBtn:(NSNotification *)chat{
+    [self pushToChatViewContrller:chat.userInfo[@"status"]];
+}
+
+#pragma mark - 跳转到评论界面
 - (void)pushToCommentViewContrller:(HLStatus *) status{
     HLCommentViewContrller *commentVC = [[HLCommentViewContrller alloc] init];
     commentVC.status = status;

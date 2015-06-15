@@ -10,6 +10,7 @@
 #import "HLMessage.h"
 #import "Constant.h"
 #import "UIImage+ResizImage.h"
+#import "UIImageView+WebCache.h"
 @interface HLMessageCell()
 //时间
 @property (nonatomic, weak)UILabel *time;
@@ -77,9 +78,16 @@
     //2.头像
     self.icon.frame = frameMessage.iconF;
     if (model.type == HLMessageMe) {
-        self.icon.image = [UIImage imageNamed:@"Gatsby"];
+        //self.icon.image = [UIImage imageNamed:@"Gatsby"];
+        NSString *imageURL = [USER_ICON_URL stringByAppendingString:@"1434377515057.jpg"];
+        
+        [self.icon sd_setImageWithURL:[NSURL URLWithString:imageURL ] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     }else{
-        self.icon.image = [UIImage imageNamed:@"Jobs"];
+        //self.icon.image = [UIImage imageNamed:@"Jobs"];
+        
+        NSString *imageURL = [USER_ICON_URL stringByAppendingString:@"1432890642284.jpg"];
+        
+        [self.icon sd_setImageWithURL:[NSURL URLWithString:imageURL ] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     }
     
     //3.正文
@@ -88,8 +96,6 @@
     
     
     if (model.type == HLMessageMe) {
-//        [self.textView setBackgroundImage:[self resizeWithImageName:@"chat_send_nor"] forState:UIControlStateNormal];
-        
         [self.textView setBackgroundImage:[UIImage resizeWithImageName:@"chat_send_nor"] forState:UIControlStateNormal];
     }else{
         [self.textView setBackgroundImage:[UIImage resizeWithImageName:@"chat_recive_nor"] forState:UIControlStateNormal];

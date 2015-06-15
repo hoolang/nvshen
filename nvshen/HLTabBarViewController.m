@@ -46,6 +46,8 @@
     HLTabBar *tabBar = [[HLTabBar alloc] init];
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
+    
+    
     //self.tabBar.hidden = YES;
 }
 

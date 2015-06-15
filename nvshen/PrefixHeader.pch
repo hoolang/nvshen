@@ -83,6 +83,9 @@
 // 删除文字的通知
 #define HLEmotionDidDeleteNotification @"HLEmotionDidDeleteNotification"
 
+// 评论页面点击私聊的通知
+#define HLCommentViewToChatView @"commentViewToChatView"
+
 #ifdef DEBUG // 处于开发阶段
 #define HLLog(...) NSLog(__VA_ARGS__)
 #else // 处于发布阶段

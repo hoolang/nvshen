@@ -12,6 +12,7 @@
 #import "HLUser.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD+MJ.h"
+
 @interface HLCommentToolbar()
 /** 里面存放所有的按钮 */
 @property (nonatomic, strong) NSMutableArray *btns;
@@ -66,9 +67,17 @@
 /**
  聊天
  */
+/**
+ 聊天
+ */
 - (void) chat{
     HLLog(@"chat %@",_status.posts.pid);
+    //NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status.posts.pid, @"pid", nil];
+    NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status, @"status", nil];
     
+    NSNotification *notification =[NSNotification notificationWithName:HLCommentViewToChatView object:nil userInfo:dict];
+    //通过通知中心发送通知
+    [HLNotificationCenter postNotification:notification];
 }
 
 /**

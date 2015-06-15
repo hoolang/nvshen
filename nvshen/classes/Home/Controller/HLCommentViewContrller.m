@@ -22,6 +22,7 @@
 #import "MJRefresh.h"
 #import "HLComposeToolbar.h"
 #import "HLEmotionKeyboard.h"
+#import "HLChatViewController.h"
 @interface HLCommentViewContrller()
 <
 UITextViewDelegate,
@@ -112,6 +113,10 @@ UITableViewDataSource
     
     // 删除文字的通知
     [HLNotificationCenter addObserver:self selector:@selector(emotionDidDelete) name:HLEmotionDidDeleteNotification object:nil];
+    
+    // commentViewToChatView
+    [HLNotificationCenter addObserver:self selector:@selector(clickChatBtn:) name:HLCommentViewToChatView object:nil];
+    
 }
 /**
  初始化tableview
@@ -319,6 +324,7 @@ UITableViewDataSource
     
     [self.view setNeedsDisplay];
 }
+#pragma mark - 发送评论
 - (void)sendComment{
     // 1.请求管理者
     HLLog(@"sendComment");
@@ -371,7 +377,22 @@ UITableViewDataSource
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - 监听方法
+
+#pragma mark - 跳转到私聊界面
+- (void)pushToChatViewContrller:(HLStatus *) status{
+    HLChatViewController *chatView = [[HLChatViewController alloc] init];
+    
+    XMPPJID *jid = [XMPPJID jidWithString:[status.posts.user.name stringByAppendingString:@"@nvshen"]];
+    chatView.friendJid = jid;
+    chatView.title = @"私聊";
+    
+    [self.navigationController pushViewController:chatView animated:YES];
+}
+
+#pragma mark - 私聊通知
+- (void)clickChatBtn:(NSNotification *)chat{
+    [self pushToChatViewContrller:chat.userInfo[@"status"]];
+}
 /**
  *  删除文字
  */

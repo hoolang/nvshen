@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
-static NSString *domain = @"nvshen.com";
+static NSString *domain = @"nvshen";
 @interface HLUserInfo : NSObject
 
 singleton_interface(HLUserInfo);
