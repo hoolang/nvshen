@@ -54,8 +54,9 @@
         });
         
     }else{
-        
-        self.window.rootViewController = [[HLLoginViewController alloc] init];
+        HLLoginViewController *login = [[HLLoginViewController alloc] init];
+        HLNavigationController *nav = [[HLNavigationController alloc] initWithRootViewController:login];
+        self.window.rootViewController = nav;
         
     }
     

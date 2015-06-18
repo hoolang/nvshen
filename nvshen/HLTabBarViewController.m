@@ -17,7 +17,11 @@
 #import "HLComposeViewController.h"
 #import "DoImagePickerController.h"
 
-@interface HLTabBarViewController ()<HLTabBarDelegate>
+@interface HLTabBarViewController ()
+<
+HLTabBarDelegate,
+DoImagePickerControllerDelegate
+>
 
 @end
 
@@ -140,4 +144,15 @@
 //    [self presentViewController:ipc animated:YES completion:nil];
     
 }
+#pragma mark - DoImagePickerControllerDelegate
+- (void)didCancelDoImagePickerController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)didSelectPhotosFromDoImagePickerController:(DoImagePickerController *)picker result:(NSArray *)aSelected
+{
+    
+}
+
 @end

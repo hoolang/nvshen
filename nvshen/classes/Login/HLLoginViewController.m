@@ -7,8 +7,9 @@
 
 #import "HLLoginViewController.h"
 #import "HLRegisgerViewController.h"
-#import "HLNavigationController.h"
 #import "MBProgressHUD+MJ.h"
+#import "HLNavigationController.h"
+#import "HLMD5.h"
 
 @interface HLLoginViewController()<HLRegisgerViewControllerDelegate>
 @property (strong, nonatomic) UILabel *userLabel;
@@ -17,7 +18,7 @@
 @property (weak, nonatomic) UITextField *userField;
 @property (weak, nonatomic) UITextField *pwdField;
 @property (weak, nonatomic) UIButton *loginBtn;
-
+@property (weak, nonatomic) UIButton *registerBtn;
 @end
 
 @implementation HLLoginViewController
@@ -25,6 +26,8 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    self.navigationController.navigationBarHidden = YES;
     
     [self.view setBackgroundColor:HLColor(239, 239, 239)];
 
@@ -38,7 +41,9 @@
     userField.placeholder = @"（*）请输入用户名";
     userField.frame = CGRectMake(x, y, w, h);
     userField.backgroundColor = [UIColor whiteColor];
+    userField.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:userField];
+    [userField addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     self.userField =  userField;
     
     /** 密码*/
@@ -46,24 +51,43 @@
     pwdField.backgroundColor = [UIColor whiteColor];
     pwdField.secureTextEntry = YES;
     pwdField.frame = CGRectMake(x, CGRectGetMaxY(userField.frame) + h, w, h);
-    pwdField.placeholder = @" (*)请输入密码";
+    pwdField.placeholder = @"（*）请输入密码";
+    pwdField.font = [UIFont systemFontOfSize:12];
+    
     self.pwdField = pwdField;
+    [pwdField addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:pwdField];
     
     /** 登录按钮 */
     UIButton *loginBtn = [[UIButton alloc] init];
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    [loginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [loginBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    loginBtn.enabled = NO;
+    
     CGFloat width = 60;
-    CGFloat loginX = (ScreenWidth - 60) * 0.5;
-    loginBtn.frame = CGRectMake(loginX, CGRectGetMaxY(pwdField.frame), width, h);
+    CGFloat loginX = HLHorizontalCenter(60 * 2 + 10);
+    CGFloat loginY = CGRectGetMaxY(pwdField.frame) + 10;
+    loginBtn.frame = CGRectMake(loginX, loginY, width, h);
     [loginBtn addTarget:self action:@selector(loginBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    loginBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     self.loginBtn = loginBtn;
     [self.view addSubview:loginBtn];
+    
+    /** 注册按钮 */
+    UIButton *registerBtn = [[UIButton alloc] init];
+    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [registerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    registerBtn.titleLabel.font = [UIFont systemFontOfSize:12];
 
-    
-    
-    // 设置TextField和Btn的样式
+
+    registerBtn.frame = CGRectMake(CGRectGetMaxX(loginBtn.frame) + 10, loginY, width, h);
+    [registerBtn addTarget:self action:@selector(registerBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    self.registerBtn = registerBtn;
+    [self.view addSubview:registerBtn];
+
+
+        // 设置TextField和Btn的样式
 //    self.pwdField.background = [UIImage stretchedImageWithName:@"operationbox_text"];
 //    
 //  
@@ -79,6 +103,20 @@
 //    self.userLabel.text = user;
 }
 
+/** 是否可以登录 */
+- (void)textFieldDidChange{
+    if (self.userField.hasText && self.pwdField.hasText) {
+        self.loginBtn.enabled = YES;
+        [self.loginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }else{
+        self.loginBtn.enabled = NO;
+        [self.loginBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
+}
 
 - (void)loginBtnClick:(id)sender {
     
@@ -93,25 +131,12 @@
     
 }
 
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    // 获取注册控制器
-    id destVc = segue.destinationViewController;
-    
-    
-    if ([destVc isKindOfClass:[HLNavigationController class]]) {
-        HLNavigationController *nav = destVc;
-        //获取根控制器
-        
-        if ([nav.topViewController isKindOfClass:[HLRegisgerViewController class]]) {
-            HLRegisgerViewController *registerVc =  (HLRegisgerViewController *)nav.topViewController;
-            // 设置注册控制器的代理
-            registerVc.delegate = self;
-        }
-        
-    }
-    
+- (void)registerBtnClick{
+    HLRegisgerViewController *registerVC = [[HLRegisgerViewController alloc] init];
+    [self.navigationController pushViewController:registerVC animated:YES];
 }
+
+
 
 #pragma mark regisgerViewController的代理
 -(void)regisgerViewControllerDidFinishRegister{
@@ -122,7 +147,11 @@
     // 提示
     [MBProgressHUD showSuccess:@"请重新输入密码进行登录" toView:self.view];
     
-    
 }
 
+-(void)dealloc
+{
+    HLLog(@"login view deallo");
+    [HLNotificationCenter removeObserver:self];
+}
 @end

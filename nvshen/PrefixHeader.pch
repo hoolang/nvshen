@@ -40,6 +40,8 @@
 // 发表一篇秀秀
 #define HLPOST @"http://192.168.168.188:8008/nvshen/nsjson/addPost.json"
 
+// 添加用户
+#define HL_ADD_USER @"http://192.168.168.188:8008/nvshen/nsjson/addUser.json"
 // 评论
 #define HL_ADD_COMMENT @"http://192.168.168.188:8008/nvshen/nsjson/addComment.json"
 // 获取一个show的最新评论
@@ -97,6 +99,8 @@
 
 // 随机色
 #define HLRandomColor HLColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+
+#define HLHorizontalCenter(width) (ScreenWidth - (width)) * 0.5
 #endif
 
 

@@ -5,14 +5,22 @@
 //  Copyright (c) 2014年 HOOLANG. All rights reserved.
 //
 
-#import "HLAddContactViewController.h"
+#import "HLAddFriendViewController.h"
 
-@interface HLAddContactViewController()<UITextFieldDelegate>
-
+@interface HLAddFriendViewController()<UITextFieldDelegate>
+@property (nonatomic, weak) UITextField *textField;
 @end
 
-@implementation HLAddContactViewController
+@implementation HLAddFriendViewController
 
+- (void)viewDidLoad{
+    self.view.backgroundColor = [UIColor yellowColor];
+    
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 100, 100, 44)];
+    textField.delegate = self;
+    [self.view addSubview:textField];
+    self.textField = textField;
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     // 添加好友
@@ -22,11 +30,11 @@
     HLLog(@"%@",user);
     
     // 判断这个账号是否为手机号码
-    if(![textField isTelphoneNum]){
-        //提示
-        [self showAlert:@"请输入正确的手机号码"];
-        return YES;
-    }
+//    if(![textField isTelphoneNum]){
+//        //提示
+//        [self showAlert:@"请输入正确的手机号码"];
+//        return YES;
+//    }
     
     
     //判断是否添加自己

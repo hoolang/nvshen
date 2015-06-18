@@ -9,6 +9,8 @@
 
 #import "HLChatListViewController.h"
 #import "HLChatViewController.h"
+#import "HLAddFriendViewController.h"
+#import "UIImage+Circle.h"
 
 
 @interface HLChatListViewController()<NSFetchedResultsControllerDelegate>
@@ -30,8 +32,7 @@
     HLLog(@"chat list didload");
     [super viewDidLoad];
     
-    // 从数据里加载好友列表显示
-    //[self loadFriends2];
+    self.navigationItem.leftBarButtonItem =     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
     
     
 }
@@ -39,6 +40,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     if (!self.didLoad){
         [self loadFriends2];
+    }else{
+        return;
     }
 }
 
@@ -72,7 +75,8 @@
     if (err) {
         HLLog(@"%@",err);
     }
-    HLLog(@"_resultsContrl.fetchedObjects.count %ld", _resultsContrl.fetchedObjects.count);
+    HLLog(@"_resultsContrl.fetchedObjects %@", _resultsContrl.fetchedObjects);
+    
     self.didLoad = YES;
 }
 
@@ -108,6 +112,14 @@
     NSLog(@"%@",self.friends);
     
 }
+
+- (void)friendSearch{
+    HLAddFriendViewController *addFriendVC = [[HLAddFriendViewController alloc] init];
+    addFriendVC.title = @"查找女神";
+    
+    [self.navigationController pushViewController:addFriendVC animated:YES];
+    
+}
 //** 行数 */
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     HLLog(@"_resultsContrl.fetchedObjects.count %ld", _resultsContrl.fetchedObjects.count);
@@ -126,8 +138,7 @@
     // 获取对应好友
     //XMPPUserCoreDataStorageObject *friend =self.friends[indexPath.row];
     XMPPUserCoreDataStorageObject *friend = _resultsContrl.fetchedObjects[indexPath.row];
-    
-    HLLog(@"friend.jidStr %@", friend.jidStr);
+
     //    sectionNum
     //    “0”- 在线
     //    “1”- 离开
@@ -145,7 +156,18 @@
         default:
             break;
     }
-    cell.textLabel.text = friend.jidStr;
+
+    NSRange rang = [friend.jidStr rangeOfString:@"@"];
+    cell.textLabel.text = [friend.jidStr substringToIndex:rang.location];
+    
+    if(friend.photo == nil){
+        UIImage *image = [UIImage imageNamed:@"avatar_default_small"];
+        cell.imageView.image = [image clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];;
+    }
+    else{
+        cell.imageView.image = [friend.photo clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
+    }
+    
     
     return cell;
 }
@@ -155,7 +177,6 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         HLLog(@"删除好友");
         XMPPUserCoreDataStorageObject *friend = _resultsContrl.fetchedObjects[indexPath.row];
-        
         XMPPJID *freindJid = friend.jid;
         [[HLXMPPTool sharedHLXMPPTool].roster removeUser:freindJid];
     }

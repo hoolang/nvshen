@@ -7,6 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HLAddContactViewController : UITableViewController
+@interface HLAddFriendViewController : UIViewController
 
 @end

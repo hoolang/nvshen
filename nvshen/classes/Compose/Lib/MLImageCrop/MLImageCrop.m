@@ -227,21 +227,13 @@
 #pragma mark - 取消 事件
 - (void)disappear
 {
-    //退出
-    if(self.actionWindow){
-        [UIView animateWithDuration:0.35f animations:^{
-            self.actionWindow.layer.opacity = 0.01f;
-        } completion:^(BOOL finished) {
-            [self.actionWindow removeFromSuperview];
-            [self.actionWindow resignKeyWindow];
-            self.actionWindow = nil;
-        }];
-    }else{
-        HLLog(@"disappear: 退出 %@",self.view);
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    
-    
+    [UIView animateWithDuration:0.35f animations:^{
+        self.actionWindow.layer.opacity = 0.01f;
+    } completion:^(BOOL finished) {
+        [self.actionWindow removeFromSuperview];
+        [self.actionWindow resignKeyWindow];
+        self.actionWindow = nil;
+    }];
 }
 
 //取消
@@ -275,23 +267,12 @@
     
 //    _pr(cropRect);
     
+    [self disappear];
     
-    HLEditPhotoViewController *editPhotoVC = [[HLEditPhotoViewController alloc] init];
-    editPhotoVC.title = @"编辑图片";
-    
-    self.delegate = editPhotoVC;
     UIImage *cropImage = [self.imageView.image MLImageCrop_imageByCropForRect:cropRect];
     if (self.delegate && [self.delegate respondsToSelector:@selector(cropImage:forOriginalImage:)]){
         [self.delegate cropImage:cropImage forOriginalImage:self.image];
     }
-
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:editPhotoVC];
-    [self presentViewController:nav animated:YES completion:nil];
-
-    //[self disappear];
-//    [self.navigationController pushViewController:editPhotoVC animated:YES];
-
-
 }
 
 - (void)back{
@@ -553,8 +534,11 @@
         self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
     }
 }
-
-
+/** 隐藏状态栏*/
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 #pragma mark - UIScrollViewDelegate
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {

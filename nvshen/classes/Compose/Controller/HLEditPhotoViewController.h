@@ -12,6 +12,6 @@
 @interface HLEditPhotoViewController : UIViewController 
 
 @property (strong, nonatomic) IBOutlet UIImageView *ImageShow;
-@property (strong, nonatomic) NSArray *images;
+@property (strong, nonatomic) UIImage *image;
 
 @end

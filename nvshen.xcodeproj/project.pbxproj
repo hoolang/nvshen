@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E00156951B31517C00851105 /* HLMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E00156941B31517C00851105 /* HLMD5.m */; };
 		E0038E301B12325000E4924F /* setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = E0038E251B12325000E4924F /* setting.plist */; };
 		E0038E651B12342F00E4924F /* HLAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0038E4B1B12342F00E4924F /* HLAboutViewController.m */; };
 		E0038E661B12342F00E4924F /* HLHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0038E4E1B12342F00E4924F /* HLHelpViewController.m */; };
@@ -112,8 +113,7 @@
 		E013BCD51B29BA350068CEE8 /* HLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013BCCE1B29BA350068CEE8 /* HLLoginViewController.m */; };
 		E013BCD61B29BA350068CEE8 /* HLOtherLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013BCD01B29BA350068CEE8 /* HLOtherLoginViewController.m */; };
 		E013BCD71B29BA350068CEE8 /* HLRegisgerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013BCD21B29BA350068CEE8 /* HLRegisgerViewController.m */; };
-		E013BCD81B29BA350068CEE8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E013BCD31B29BA350068CEE8 /* Login.storyboard */; };
-		E013C6D41B2A035C0068CEE8 /* HLAddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6BB1B2A035C0068CEE8 /* HLAddContactViewController.m */; };
+		E013C6D41B2A035C0068CEE8 /* HLAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6BB1B2A035C0068CEE8 /* HLAddFriendViewController.m */; };
 		E013C6D51B2A035C0068CEE8 /* HLChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6BD1B2A035C0068CEE8 /* HLChatViewController.m */; };
 		E013C6D61B2A035C0068CEE8 /* HLContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6BF1B2A035C0068CEE8 /* HLContactsViewController.m */; };
 		E013C6D71B2A035C0068CEE8 /* HLEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6C11B2A035C0068CEE8 /* HLEditProfileViewController.m */; };
@@ -261,6 +261,7 @@
 		E013C8C81B2A0D5C0068CEE8 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E013C6E31B2A081F0068CEE8 /* libxml2.dylib */; };
 		E013C8C91B2A0E440068CEE8 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E013C8321B2A0AC10068CEE8 /* libidn.a */; };
 		E013C8CF1B2A1EB40068CEE8 /* HLChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C8CE1B2A1EB40068CEE8 /* HLChatListViewController.m */; };
+		E0234E321B32B64A002F1966 /* HLRegisgerIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0234E311B32B64A002F1966 /* HLRegisgerIconViewController.m */; };
 		E028B7E41B1DF51700ABC87D /* EmotionIcons in Resources */ = {isa = PBXBuildFile; fileRef = E028B7E31B1DF51700ABC87D /* EmotionIcons */; };
 		E0784ED81B1B3B5100453294 /* HLCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784ED71B1B3B5100453294 /* HLCommentView.m */; };
 		E0784EDB1B1B881200453294 /* HLComments.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784EDA1B1B881200453294 /* HLComments.m */; };
@@ -365,6 +366,8 @@
 		E0DD72F51B249A2A00989489 /* HLLatestUserPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DD72F41B249A2A00989489 /* HLLatestUserPostsCell.m */; };
 		E0DD72F81B24A1E200989489 /* HLTopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DD72F71B24A1E200989489 /* HLTopDetailViewController.m */; };
 		E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E75ABD1B00353400D60497 /* HLComposeViewController.m */; };
+		E0E84D961B2FDB610061639A /* UIImage+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E84D951B2FDB610061639A /* UIImage+Circle.m */; };
+		E0E84D991B2FFD990061639A /* HLCircleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E84D981B2FFD990061639A /* HLCircleImage.m */; };
 		E0EE93171B2537D800C9C1DE /* HLTopPostsCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE93151B2537D800C9C1DE /* HLTopPostsCategoryCell.m */; };
 		E0EE931B1B2537E900C9C1DE /* HLWaterflowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE931A1B2537E900C9C1DE /* HLWaterflowLayout.m */; };
 		E0EE93231B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE93221B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m */; };
@@ -382,6 +385,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E001568A1B313CFF00851105 /* HLRegisgerIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLRegisgerIconViewController.h; sourceTree = "<group>"; };
+		E00156931B31517C00851105 /* HLMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMD5.h; sourceTree = "<group>"; };
+		E00156941B31517C00851105 /* HLMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMD5.m; sourceTree = "<group>"; };
 		E0038E251B12325000E4924F /* setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = setting.plist; path = "../../../../../../视频教程/第2版第二期/UI高级/0912-彩票第三天/代码/ItheimaLottery01-帮助/ItheimaLottery/Classes/Setting(设置)/Controllre/setting.plist"; sourceTree = "<group>"; };
 		E0038E4A1B12342F00E4924F /* HLAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLAboutViewController.h; sourceTree = "<group>"; };
 		E0038E4B1B12342F00E4924F /* HLAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLAboutViewController.m; sourceTree = "<group>"; };
@@ -556,9 +562,8 @@
 		E013BCD01B29BA350068CEE8 /* HLOtherLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLOtherLoginViewController.m; sourceTree = "<group>"; };
 		E013BCD11B29BA350068CEE8 /* HLRegisgerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLRegisgerViewController.h; sourceTree = "<group>"; };
 		E013BCD21B29BA350068CEE8 /* HLRegisgerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLRegisgerViewController.m; sourceTree = "<group>"; };
-		E013BCD31B29BA350068CEE8 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		E013C6BA1B2A035C0068CEE8 /* HLAddContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLAddContactViewController.h; sourceTree = "<group>"; };
-		E013C6BB1B2A035C0068CEE8 /* HLAddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLAddContactViewController.m; sourceTree = "<group>"; };
+		E013C6BA1B2A035C0068CEE8 /* HLAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLAddFriendViewController.h; path = ../HLAddFriendViewController.h; sourceTree = "<group>"; };
+		E013C6BB1B2A035C0068CEE8 /* HLAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLAddFriendViewController.m; path = ../HLAddFriendViewController.m; sourceTree = "<group>"; };
 		E013C6BC1B2A035C0068CEE8 /* HLChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLChatViewController.h; path = ../HLChatViewController.h; sourceTree = "<group>"; };
 		E013C6BD1B2A035C0068CEE8 /* HLChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLChatViewController.m; path = ../HLChatViewController.m; sourceTree = "<group>"; };
 		E013C6BE1B2A035C0068CEE8 /* HLContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLContactsViewController.h; sourceTree = "<group>"; };
@@ -571,8 +576,8 @@
 		E013C6C81B2A035C0068CEE8 /* HLMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMeViewController.m; sourceTree = "<group>"; };
 		E013C6C91B2A035C0068CEE8 /* HLChatNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLChatNavigationController.h; sourceTree = "<group>"; };
 		E013C6CA1B2A035C0068CEE8 /* HLChatNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLChatNavigationController.m; sourceTree = "<group>"; };
-		E013C6CB1B2A035C0068CEE8 /* HLChatProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLChatProfileViewController.h; sourceTree = "<group>"; };
-		E013C6CC1B2A035C0068CEE8 /* HLChatProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLChatProfileViewController.m; sourceTree = "<group>"; };
+		E013C6CB1B2A035C0068CEE8 /* HLChatProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLChatProfileViewController.h; path = ../HLChatProfileViewController.h; sourceTree = "<group>"; };
+		E013C6CC1B2A035C0068CEE8 /* HLChatProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLChatProfileViewController.m; path = ../HLChatProfileViewController.m; sourceTree = "<group>"; };
 		E013C6CD1B2A035C0068CEE8 /* HLUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLUserInfo.h; sourceTree = "<group>"; };
 		E013C6CE1B2A035C0068CEE8 /* HLUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLUserInfo.m; sourceTree = "<group>"; };
 		E013C6CF1B2A035C0068CEE8 /* HLXMPPTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLXMPPTool.h; sourceTree = "<group>"; };
@@ -863,6 +868,7 @@
 		E013C8C11B2A0BF10068CEE8 /* UIView+WF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WF.m"; sourceTree = "<group>"; };
 		E013C8CD1B2A1EB40068CEE8 /* HLChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLChatListViewController.h; sourceTree = "<group>"; };
 		E013C8CE1B2A1EB40068CEE8 /* HLChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLChatListViewController.m; sourceTree = "<group>"; };
+		E0234E311B32B64A002F1966 /* HLRegisgerIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLRegisgerIconViewController.m; sourceTree = "<group>"; };
 		E028B7E31B1DF51700ABC87D /* EmotionIcons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EmotionIcons; sourceTree = "<group>"; };
 		E0784ED61B1B3B5100453294 /* HLCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommentView.h; sourceTree = "<group>"; };
 		E0784ED71B1B3B5100453294 /* HLCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommentView.m; sourceTree = "<group>"; };
@@ -1045,6 +1051,10 @@
 		E0DD72F71B24A1E200989489 /* HLTopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopDetailViewController.m; sourceTree = "<group>"; };
 		E0E75ABC1B00353400D60497 /* HLComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLComposeViewController.h; sourceTree = "<group>"; };
 		E0E75ABD1B00353400D60497 /* HLComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLComposeViewController.m; sourceTree = "<group>"; };
+		E0E84D941B2FDB610061639A /* UIImage+Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Circle.h"; sourceTree = "<group>"; };
+		E0E84D951B2FDB610061639A /* UIImage+Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Circle.m"; sourceTree = "<group>"; };
+		E0E84D971B2FFD990061639A /* HLCircleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCircleImage.h; sourceTree = "<group>"; };
+		E0E84D981B2FFD990061639A /* HLCircleImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCircleImage.m; sourceTree = "<group>"; };
 		E0EE93141B2537D800C9C1DE /* HLTopPostsCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopPostsCategoryCell.h; sourceTree = "<group>"; };
 		E0EE93151B2537D800C9C1DE /* HLTopPostsCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPostsCategoryCell.m; sourceTree = "<group>"; };
 		E0EE93191B2537E900C9C1DE /* HLWaterflowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLWaterflowLayout.h; sourceTree = "<group>"; };
@@ -1353,20 +1363,19 @@
 				E013BCD01B29BA350068CEE8 /* HLOtherLoginViewController.m */,
 				E013BCD11B29BA350068CEE8 /* HLRegisgerViewController.h */,
 				E013BCD21B29BA350068CEE8 /* HLRegisgerViewController.m */,
-				E013BCD31B29BA350068CEE8 /* Login.storyboard */,
+				E001568A1B313CFF00851105 /* HLRegisgerIconViewController.h */,
+				E0234E311B32B64A002F1966 /* HLRegisgerIconViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
 		};
-		E013C6B91B2A035C0068CEE8 /* Chat */ = {
+		E013C6B91B2A035C0068CEE8 /* Chat（私聊） */ = {
 			isa = PBXGroup;
 			children = (
 				E013C8CC1B2A1DE90068CEE8 /* Controller */,
 				E013C8CA1B2A1DCF0068CEE8 /* Model */,
 				E013C8CB1B2A1DCF0068CEE8 /* View */,
 				E082824E1B2ACE73001FB9F1 /* other */,
-				E013C6BA1B2A035C0068CEE8 /* HLAddContactViewController.h */,
-				E013C6BB1B2A035C0068CEE8 /* HLAddContactViewController.m */,
 				E013C6BE1B2A035C0068CEE8 /* HLContactsViewController.h */,
 				E013C6BF1B2A035C0068CEE8 /* HLContactsViewController.m */,
 				E013C6C01B2A035C0068CEE8 /* HLEditProfileViewController.h */,
@@ -1377,8 +1386,6 @@
 				E013C6C81B2A035C0068CEE8 /* HLMeViewController.m */,
 				E013C6C91B2A035C0068CEE8 /* HLChatNavigationController.h */,
 				E013C6CA1B2A035C0068CEE8 /* HLChatNavigationController.m */,
-				E013C6CB1B2A035C0068CEE8 /* HLChatProfileViewController.h */,
-				E013C6CC1B2A035C0068CEE8 /* HLChatProfileViewController.m */,
 				E013C6CD1B2A035C0068CEE8 /* HLUserInfo.h */,
 				E013C6CE1B2A035C0068CEE8 /* HLUserInfo.m */,
 				E013C6CF1B2A035C0068CEE8 /* HLXMPPTool.h */,
@@ -1387,6 +1394,7 @@
 				E013C6D21B2A035C0068CEE8 /* HttpTool.m */,
 				E013C6D31B2A035C0068CEE8 /* Singleton.h */,
 			);
+			name = "Chat（私聊）";
 			path = Chat;
 			sourceTree = "<group>";
 		};
@@ -2197,10 +2205,14 @@
 		E013C8CC1B2A1DE90068CEE8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E013C6BA1B2A035C0068CEE8 /* HLAddFriendViewController.h */,
+				E013C6BB1B2A035C0068CEE8 /* HLAddFriendViewController.m */,
 				E013C8CD1B2A1EB40068CEE8 /* HLChatListViewController.h */,
 				E013C8CE1B2A1EB40068CEE8 /* HLChatListViewController.m */,
 				E013C6BC1B2A035C0068CEE8 /* HLChatViewController.h */,
 				E013C6BD1B2A035C0068CEE8 /* HLChatViewController.m */,
+				E013C6CB1B2A035C0068CEE8 /* HLChatProfileViewController.h */,
+				E013C6CC1B2A035C0068CEE8 /* HLChatProfileViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2436,7 +2448,11 @@
 			isa = PBXGroup;
 			children = (
 				E0ABA5741B136DC500C5CE4C /* HLHttpTool.h */,
+				E00156931B31517C00851105 /* HLMD5.h */,
+				E00156941B31517C00851105 /* HLMD5.m */,
 				E0ABA5751B136DC500C5CE4C /* HLHttpTool.m */,
+				E0E84D971B2FFD990061639A /* HLCircleImage.h */,
+				E0E84D981B2FFD990061639A /* HLCircleImage.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -2576,7 +2592,7 @@
 				E013BCCA1B29BA350068CEE8 /* Login */,
 				E0D922951AFCA97000AE9948 /* Main(主要) */,
 				E0D922A11AFCA97000AE9948 /* Profile */,
-				E013C6B91B2A035C0068CEE8 /* Chat */,
+				E013C6B91B2A035C0068CEE8 /* Chat（私聊） */,
 				E0D922A21AFCA97000AE9948 /* Temp */,
 			);
 			path = classes;
@@ -2633,6 +2649,8 @@
 		E0D922961AFCA97000AE9948 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				E0E84D941B2FDB610061639A /* UIImage+Circle.h */,
+				E0E84D951B2FDB610061639A /* UIImage+Circle.m */,
 				E013C8B51B2A0BF10068CEE8 /* CategoryWF.h */,
 				E013C8B61B2A0BF10068CEE8 /* UIButton+WF.h */,
 				E013C8B71B2A0BF10068CEE8 /* UIButton+WF.m */,
@@ -2926,7 +2944,6 @@
 				E0072F4F1B124C4C00AAC6F5 /* qxc_howto.html in Resources */,
 				E0072F3E1B124C4C00AAC6F5 /* f9_howto.html in Resources */,
 				E0072F4B1B124C4C00AAC6F5 /* networkconnectedfailed.html in Resources */,
-				E013BCD81B29BA350068CEE8 /* Login.storyboard in Resources */,
 				E0D922701AFC9C5A00AE9948 /* LaunchScreen.xib in Resources */,
 				E0072F501B124C4C00AAC6F5 /* rule.css in Resources */,
 				E0072F521B124C4C00AAC6F5 /* ssc_howto.html in Resources */,
@@ -3087,6 +3104,7 @@
 				E095D5811B16FC5E002B07E2 /* HLStatusCell.m in Sources */,
 				E013C8981B2A0AC10068CEE8 /* NSXMLElement+XEP_0203.m in Sources */,
 				E0A789B71AFE2A50004F3511 /* UIView+Extension.m in Sources */,
+				E0E84D991B2FFD990061639A /* HLCircleImage.m in Sources */,
 				E013C8C41B2A0BF10068CEE8 /* UIScreen+WF.m in Sources */,
 				E013C8841B2A0AC10068CEE8 /* XMPPCapabilities.xcdatamodel in Sources */,
 				E082824D1B2ACB76001FB9F1 /* HLMessage.m in Sources */,
@@ -3130,6 +3148,7 @@
 				E013C8761B2A0AC10068CEE8 /* XMPPvCardTempTel.m in Sources */,
 				E013C8561B2A0AC10068CEE8 /* XMPPIQ+JabberRPC.m in Sources */,
 				E013C83C1B2A0AC10068CEE8 /* NSData+XMPP.m in Sources */,
+				E00156951B31517C00851105 /* HLMD5.m in Sources */,
 				E0038E6A1B12342F00E4924F /* HLSettingTableViewController.m in Sources */,
 				E013C6D51B2A035C0068CEE8 /* HLChatViewController.m in Sources */,
 				E013C8411B2A0AC10068CEE8 /* XMPPJID.m in Sources */,
@@ -3145,6 +3164,8 @@
 				E0072E981B123B7900AAC6F5 /* HLPushNoticeController.m in Sources */,
 				E013C8491B2A0AC10068CEE8 /* XMPPGoogleSharedStatus.m in Sources */,
 				E013C86A1B2A0AC10068CEE8 /* XMPPvCard.xcdatamodeld in Sources */,
+				E0E84D961B2FDB610061639A /* UIImage+Circle.m in Sources */,
+				E0234E321B32B64A002F1966 /* HLRegisgerIconViewController.m in Sources */,
 				E0784ED81B1B3B5100453294 /* HLCommentView.m in Sources */,
 				E0072ED91B123BA100AAC6F5 /* MJConst.m in Sources */,
 				E013C8751B2A0AC10068CEE8 /* XMPPvCardTempModule.m in Sources */,
@@ -3213,7 +3234,7 @@
 				E013C8B01B2A0AC10068CEE8 /* DDXMLDocument.m in Sources */,
 				E0072F0A1B123BA800AAC6F5 /* SDWebImageDownloader.m in Sources */,
 				E013C8771B2A0AC10068CEE8 /* NSXMLElement+XEP_0059.m in Sources */,
-				E013C6D41B2A035C0068CEE8 /* HLAddContactViewController.m in Sources */,
+				E013C6D41B2A035C0068CEE8 /* HLAddFriendViewController.m in Sources */,
 				E013C84C1B2A0AC10068CEE8 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				E0EE93171B2537D800C9C1DE /* HLTopPostsCategoryCell.m in Sources */,
 				E0072EE01B123BA100AAC6F5 /* NSObject+MJCoding.m in Sources */,

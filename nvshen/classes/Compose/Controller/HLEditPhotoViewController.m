@@ -12,7 +12,7 @@
 #import "HLPostViewController.h"
 
 
-@interface HLEditPhotoViewController ()<MLImageCropDelegate>
+@interface HLEditPhotoViewController ()
 
 @end
 
@@ -52,7 +52,7 @@
 
     UIImageView *imageV = [[UIImageView alloc]init];
     
-    imageV.image = _images[0];
+    imageV.image = _image;
     imageV.frame = CGRectMake(0, 64, self.view.width, self.view.width*(imageV.image.size.height/imageV.image.size.width));
     
     [self.view addSubview:imageV];
@@ -74,70 +74,62 @@
 
 - (void)next{
     HLPostViewController *postVC = [[HLPostViewController alloc] init];
-    postVC.image = _images[0];
+    postVC.image = _image;
     postVC.title = @"秀一下";
     
     [self.navigationController pushViewController:postVC animated:YES];
 }
 
 
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
-
-#pragma mark - crop delegate
-- (void)cropImage:(UIImage*)cropImage forOriginalImage:(UIImage*)originalImage
-{
-    
-    _images = @[cropImage];
+//#pragma mark - crop delegate
+//- (void)cropImage:(UIImage*)cropImage forOriginalImage:(UIImage*)originalImage
+//{
 //    
-//    NSLog(@"ImageShow %@",self.ImageShow);
-//    HLLog(@"%@", originalImage);
-//    self.ImageShow.image = cropImage;
-//    self.ImageShow.frame = CGRectMake(0, 120, self.view.frame.size.width, self.view.frame.size.width*(cropImage.size.height/cropImage.size.width));
-//    HLLog(@"ImageShow.image %@", self.ImageShow.image);
-//    NSLog(@"cropImage:");
-}
+//    _image = cropImage;
+////    
+////    NSLog(@"ImageShow %@",self.ImageShow);
+////    HLLog(@"%@", originalImage);
+////    self.ImageShow.image = cropImage;
+////    self.ImageShow.frame = CGRectMake(0, 120, self.view.frame.size.width, self.view.frame.size.width*(cropImage.size.height/cropImage.size.width));
+////    HLLog(@"ImageShow.image %@", self.ImageShow.image);
+////    NSLog(@"cropImage:");
+//}
 
-- (void)didSelectPhotosFromDoImagePickerController:(DoImagePickerController *)picker result:(NSArray *)aSelected
-{
-    HLLog(@"didSelectPhotosFromDoImagePickerController:%@ ------- ======", aSelected[0]);
-    
-    self.ImageShow.image = aSelected[0];
-
-    _images = aSelected;
-    
-//    UIImageView *iv = _images[0];
-//    iv.image = aSelected[0];
+//- (void)didSelectPhotosFromDoImagePickerController:(DoImagePickerController *)picker result:(NSArray *)aSelected
+//{
+//    HLLog(@"didSelectPhotosFromDoImagePickerController:%@ ------- ======", aSelected[0]);
 //    
+//    self.ImageShow.image = aSelected[0];
 //
-//    HLLog(@"didSelectPhotosFromDoImagePickerController:=======");
-//    if (picker.nResultType == DO_PICKER_RESULT_UIIMAGE)
-//    {
-//        for (int i = 0; i < MIN(4, aSelected.count); i++)
-//        {
-//            
-//            HLLog(@"DO_PICKER_RESULT_UIIMAGE DO_PICKER_RESULT_UIIMAGE: %d", i);
-//
-//            _ImageShow.image = aSelected[i];
-//        }
-//    }
-//    else if (picker.nResultType == DO_PICKER_RESULT_ASSET)
-//    {
-//        for (int i = 0; i < MIN(4, aSelected.count); i++)
-//        {
-//            _ImageShow.image = aSelected[i];
-//            _ImageShow.image = [ASSETHELPER getImageFromAsset:aSelected[i] type:ASSET_PHOTO_SCREEN_SIZE];
-//            HLLog(@"DO_PICKER_RESULT_UIIMAGE DO_PICKER_RESULT_ASSET: %d", i);
-//        }
-//        
-//        //[ASSETHELPER clearData];
-//    }
-}
+//    _image = aSelected;
+//    
+////    UIImageView *iv = _images[0];
+////    iv.image = aSelected[0];
+////    
+////
+////    HLLog(@"didSelectPhotosFromDoImagePickerController:=======");
+////    if (picker.nResultType == DO_PICKER_RESULT_UIIMAGE)
+////    {
+////        for (int i = 0; i < MIN(4, aSelected.count); i++)
+////        {
+////            
+////            HLLog(@"DO_PICKER_RESULT_UIIMAGE DO_PICKER_RESULT_UIIMAGE: %d", i);
+////
+////            _ImageShow.image = aSelected[i];
+////        }
+////    }
+////    else if (picker.nResultType == DO_PICKER_RESULT_ASSET)
+////    {
+////        for (int i = 0; i < MIN(4, aSelected.count); i++)
+////        {
+////            _ImageShow.image = aSelected[i];
+////            _ImageShow.image = [ASSETHELPER getImageFromAsset:aSelected[i] type:ASSET_PHOTO_SCREEN_SIZE];
+////            HLLog(@"DO_PICKER_RESULT_UIIMAGE DO_PICKER_RESULT_ASSET: %d", i);
+////        }
+////        
+////        //[ASSETHELPER clearData];
+////    }
+//}
 
 @end

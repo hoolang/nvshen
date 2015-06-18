@@ -13,6 +13,9 @@
 #import "HLEditPhotoViewController.h"
 #import "MLImageCrop.h"
 
+@interface DoImagePickerController()<MLImageCropDelegate>
+
+@end
 @implementation DoImagePickerController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -329,14 +332,9 @@
         //imageCrop.delegate = editPhotoVC;
         imageCrop.ratioOfWidthAndHeight = 800.0f/800.0f;// 更改这个比例可以控制图片的形状
         imageCrop.image = image;
+        
+        [imageCrop showWithAnimation:YES];
 
-        
-        
-        //[imageCrop showWithAnimation:YES];
-        HLLog(@"相机");
-        [picker pushViewController:imageCrop animated:YES];
-        //[picker.navigationController pushViewController:imageCrop animated:YES];
-        
     }
 }
 
@@ -369,6 +367,20 @@
     }];
 }
 
+#pragma mark - crop delegate
+- (void)cropImage:(UIImage*)cropImage forOriginalImage:(UIImage*)originalImage
+{
+    
+    HLEditPhotoViewController *editPhotoVC = [[HLEditPhotoViewController alloc] init];
+    
+    editPhotoVC.title = @"编辑图片";
+    
+    editPhotoVC.image = cropImage;
+
+    [self.navigationController pushViewController:editPhotoVC animated:YES];
+    
+}
+
 #pragma mark - UICollectionViewDelegates for photos
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -398,12 +410,12 @@
 
     MLImageCrop *imageCrop = [[MLImageCrop alloc]init];
     //imageCrop.delegate = editPhotoVC;
-    imageCrop.ratioOfWidthAndHeight = 800.0f/800.0f;
+    imageCrop.ratioOfWidthAndHeight = 500.0f/500.0f;
     imageCrop.image = [ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_FULL_RESOLUTION];
+    imageCrop.delegate = self;
 
-
-    //[imageCrop showWithAnimation:YES];
-    [self.navigationController pushViewController:imageCrop animated:YES];
+    [imageCrop showWithAnimation:YES];
+    //[self.navigationController pushViewController:imageCrop animated:YES];
     
 
     

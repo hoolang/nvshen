@@ -22,11 +22,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
     //self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏
     [self setupNav];
-    
+
     [self setAlum];
 
     //添加相册

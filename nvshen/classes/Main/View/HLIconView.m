@@ -9,6 +9,7 @@
 #import "HLIconView.h"
 #import "HLUser.h"
 #import "UIImageView+WebCache.h"
+#import "UIImage+Circle.h"
 
 @interface HLIconView()
 @property (nonatomic, weak) UIImageView *verifiedView;
@@ -43,8 +44,10 @@
     NSMutableString *mstr = [NSMutableString stringWithString:USER_ICON_URL];
     [mstr appendString:user.icon];
     
-    HLLog(@"mstr %@",mstr);
-    [self sd_setImageWithURL:[NSURL URLWithString:mstr] placeholderImage:[UIImage imageNamed:@"avatar_default_small"]];
+    [self sd_setImageWithURL:[NSURL URLWithString:mstr] placeholderImage:[UIImage imageNamed:@"avatar_default_small"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        // 切成圆形的图片
+        self.image = [image clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
+    }];
     
     // 2.设置加V图片
     switch (user.verified_type) {

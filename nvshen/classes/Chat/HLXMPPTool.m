@@ -6,6 +6,8 @@
 //
 
 #import "HLXMPPTool.h"
+#import "HLLoginViewController.h"
+#import "Appdelegate.h"
 NSString *const HLLoginStatusChangeNotification = @"HLLoginStatusNotification";
 /*
  * 在AppDelegate实现登录
@@ -313,17 +315,21 @@ singleton_implementation(HLXMPPTool)
     // 2. 与服务器断开连接
     [_xmppStream disconnect];
     
-    // 3. 回到登录界面
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-//    
-//    self.window.rootViewController = storyboard.instantiateInitialViewController;
-    [UIStoryboard showInitialVCWithName:@"Login"];
-    
-    
     //4.更新用户的登录状态
     [HLUserInfo sharedHLUserInfo].loginStatus = NO;
     [[HLUserInfo sharedHLUserInfo] saveUserInfoToSanbox];
     
+    // 跳转到登录界面
+    HLLoginViewController *login = [[HLLoginViewController alloc] init];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:login];
+    
+    UIApplication *app =[UIApplication sharedApplication];
+    
+    AppDelegate *appDelegate = app.delegate;
+    // 切换跟控制器
+    appDelegate.window.rootViewController = nav;
+
 }
 
 -(void)xmppUserLogin:(XMPPResultBlock)resultBlock{
