@@ -336,7 +336,7 @@ UITableViewDataSource
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     //params[@"access_token"] = [HWAccountTool account].access_token;
     params[@"comments.comment"] = self.toolbar.textView.text;
-    params[@"user.uid"] = @2;
+    params[@"user.name"] = [HLUserInfo sharedHLUserInfo].user;
     params[@"post.pid"] = _status.posts.pid;
     
     // 3.发送请求

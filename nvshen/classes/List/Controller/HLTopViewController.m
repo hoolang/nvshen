@@ -193,33 +193,42 @@ HLTopPostsCellDelegate
     switch (indexPath.row) {
         case LATEST_USER_POSTS:
         {
-            topPostsFrame = self.userPostsFrame[0];
-            topPostsFrame.topPostsM = self.userPostsFrame;
-            
             HLLatestUserPostsCell *cell = [HLLatestUserPostsCell cellWithTableView:tableView];
-            cell.topPostsFrame = topPostsFrame;
-            cell.delegate = self;
+            if (self.userPostsFrame.count > 0) {
+                topPostsFrame = self.userPostsFrame[0];
+                topPostsFrame.topPostsM = self.userPostsFrame;
+                cell.topPostsFrame = topPostsFrame;
+                cell.delegate = self;
+            }
+            
             return cell;
             break;
         }
         case MOST_COMMENTS_POSTS:
         {
             HLTopCommentsPostsCell *cell = [HLTopCommentsPostsCell cellWithTableView:tableView];
-            topPostsFrame = self.mostCommentsFrame[0];
-            topPostsFrame.topPostsM = self.mostCommentsFrame;
-            cell.topPostsFrame = topPostsFrame;
-            cell.delegate = self;
+            if(self.mostCommentsFrame.count > 0)
+            {
+                topPostsFrame = self.mostCommentsFrame[0];
+                topPostsFrame.topPostsM = self.mostCommentsFrame;
+                cell.topPostsFrame = topPostsFrame;
+                cell.delegate = self;
+            }
+            
             return cell;
             break;
         }
         case MOST_LIKES_POSTS:
         {
-            topPostsFrame = self.mostLikeFrame[0];
-            topPostsFrame.topPostsM = self.mostLikeFrame;
             
             HLTopLikesPotsCell *cell = [HLTopLikesPotsCell cellWithTableView:tableView];
-            cell.topPostsFrame = topPostsFrame;
-            cell.delegate = self;
+            if (self.mostLikeFrame.count > 0) {
+                topPostsFrame = self.mostLikeFrame[0];
+                topPostsFrame.topPostsM = self.mostLikeFrame;
+                cell.topPostsFrame = topPostsFrame;
+                cell.delegate = self;
+            }
+            
             return cell;
             break;
         }

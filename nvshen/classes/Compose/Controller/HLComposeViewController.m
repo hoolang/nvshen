@@ -10,8 +10,6 @@
 #import "DoImagePickerController.h"
 @import Photos;
 
-
-
 @interface HLComposeViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @end

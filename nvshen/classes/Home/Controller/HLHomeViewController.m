@@ -19,6 +19,7 @@
 #import "HLStatusToolbar.h"
 #import "HLCommentViewContrller.h"
 #import "HLChatViewController.h"
+#import "MBProgressHUD+MJ.h"
 
 @interface HLHomeViewController ()
 /**
@@ -309,7 +310,12 @@
 - (void)pushToChatViewContrller:(HLStatus *) status{
     HLChatViewController *chatView = [[HLChatViewController alloc] init];
     
-    XMPPJID *jid = [XMPPJID jidWithString:[status.posts.user.name stringByAppendingString:@"@nvshen"]];
+    if([status.posts.user.name isEqualToString:[HLUserInfo sharedHLUserInfo].user])
+    {
+        [MBProgressHUD showError:@"不能和自己聊天！"];
+        return;
+    }
+    XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@", status.posts.user.name, domain]];
     chatView.friendJid = jid;
     chatView.title = @"私聊";
     

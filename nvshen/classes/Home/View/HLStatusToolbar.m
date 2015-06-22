@@ -101,8 +101,7 @@
     // 2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"post.pid"] = _status.posts.pid;
-    params[@"user.uid"] = _status.posts.user.uid;
-    
+    params[@"user.name"] = [HLUserInfo sharedHLUserInfo].user;
     
     [mgr POST:HL_ADD_LIKE parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
