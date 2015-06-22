@@ -30,6 +30,7 @@
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 // 系统屏幕宽度
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
 // 系统屏幕宽度
 #define CollectionWidth ((ScreenWidth - 10) * 0.5)
 //友盟

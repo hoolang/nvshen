@@ -121,9 +121,6 @@
 //            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
 //            
 //        }});
-    
-    
-    
 }
 
 - (void)send {
@@ -144,7 +141,6 @@
  */
 - (void)sendWithImage
 {
-
     // URL: https://upload.api.weibo.com/2/statuses/upload.json
     // 参数:
     /**	status true string 要发布的微博文本内容，必须做URLencode，内容不超过140个汉字。*/
@@ -160,8 +156,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
     params[@"post.content"] = self.textView.text;
-    HLLog(@"self.textView.text - %@",self.textView.text);
+    params[@"user.name"] = self.textView.text;
     
+    HLLog(@"self.textView.text - %@",self.textView.text);
     
     // 3.发送请求
     [mgr POST:HLPOST parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -212,9 +209,11 @@
         [MBProgressHUD showError:@"发送失败"];
     }];
 }
+
 -(void)textDidChange{
     //HLLog(@"textDidChange");
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -234,5 +233,4 @@
 {
     [self.view endEditing:YES];
 }
-
 @end

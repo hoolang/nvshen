@@ -31,7 +31,7 @@
     
     [self.view setBackgroundColor:HLColor(239, 239, 239)];
 
-    CGFloat x = 50;
+    CGFloat x = 10;
     CGFloat y = 50;
     CGFloat w = ScreenWidth - 2 * x;
     CGFloat h = 30;
@@ -50,7 +50,7 @@
     UITextField *pwdField = [[UITextField alloc] init];
     pwdField.backgroundColor = [UIColor whiteColor];
     pwdField.secureTextEntry = YES;
-    pwdField.frame = CGRectMake(x, CGRectGetMaxY(userField.frame) + h, w, h);
+    pwdField.frame = CGRectMake(x, CGRectGetMaxY(userField.frame) + x, w, h);
     pwdField.placeholder = @"（*）请输入密码";
     pwdField.font = [UIFont systemFontOfSize:12];
     
@@ -65,7 +65,7 @@
     loginBtn.enabled = NO;
     
     CGFloat width = 60;
-    CGFloat loginX = HLHorizontalCenter(60 * 2 + 10);
+    CGFloat loginX = HLHorizontalCenter(width + 10);
     CGFloat loginY = CGRectGetMaxY(pwdField.frame) + 10;
     loginBtn.frame = CGRectMake(loginX, loginY, width, h);
     [loginBtn addTarget:self action:@selector(loginBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -77,11 +77,11 @@
     /** 注册按钮 */
     UIButton *registerBtn = [[UIButton alloc] init];
     [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
-    [registerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [registerBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     registerBtn.titleLabel.font = [UIFont systemFontOfSize:12];
 
 
-    registerBtn.frame = CGRectMake(CGRectGetMaxX(loginBtn.frame) + 10, loginY, width, h);
+    registerBtn.frame = CGRectMake(CGRectGetMaxX(pwdField.frame) - width, loginY, width, h);
     [registerBtn addTarget:self action:@selector(registerBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.registerBtn = registerBtn;
     [self.view addSubview:registerBtn];
@@ -107,10 +107,12 @@
 - (void)textFieldDidChange{
     if (self.userField.hasText && self.pwdField.hasText) {
         self.loginBtn.enabled = YES;
-        [self.loginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.loginBtn setBackgroundColor:[UIColor orangeColor]];
     }else{
         self.loginBtn.enabled = NO;
         [self.loginBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [self.loginBtn setBackgroundColor:[UIColor clearColor]];
     }
 }
 

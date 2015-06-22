@@ -166,7 +166,7 @@
 #pragma mark 编辑个人信息的控制器代理
 -(void)editProfileViewControllerDidSave{
     // 保存
-    //获取当前的电子名片信息
+    // 获取当前的电子名片信息
     XMPPvCardTemp *myvCard = [HLXMPPTool sharedHLXMPPTool].vCard.myvCardTemp;
     
     // 图片

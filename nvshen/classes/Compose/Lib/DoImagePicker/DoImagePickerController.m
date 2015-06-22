@@ -409,16 +409,12 @@
 {
 
     MLImageCrop *imageCrop = [[MLImageCrop alloc]init];
-    //imageCrop.delegate = editPhotoVC;
     imageCrop.ratioOfWidthAndHeight = 500.0f/500.0f;
     imageCrop.image = [ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_FULL_RESOLUTION];
     imageCrop.delegate = self;
 
     [imageCrop showWithAnimation:YES];
-    //[self.navigationController pushViewController:imageCrop animated:YES];
-    
 
-    
    // return;
     
     

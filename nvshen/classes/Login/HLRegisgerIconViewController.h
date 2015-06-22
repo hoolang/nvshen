@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DoImagePickerController.h"
 @interface HLRegisgerIconViewController : UIViewController
-@property (weak, nonatomic) NSString *username;
-@property (weak, nonatomic) NSString *password;
+@property (copy, nonatomic) NSString *username;
+@property (copy, nonatomic) NSString *sex;
+@property (copy, nonatomic) NSString *local;
 @end
