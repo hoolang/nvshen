@@ -11,6 +11,7 @@
 #import "HLChatViewController.h"
 #import "HLAddFriendViewController.h"
 #import "UIImage+Circle.h"
+#import "XMPPvCardTemp.h"
 
 
 @interface HLChatListViewController()<NSFetchedResultsControllerDelegate>
@@ -109,7 +110,7 @@
     
     // 4.执行请求获取数据
     self.friends = [context executeFetchRequest:request error:nil];
-    NSLog(@"%@",self.friends);
+    HLLog(@"%@",self.friends);
     
 }
 
@@ -160,9 +161,11 @@
     NSRange rang = [friend.jidStr rangeOfString:@"@"];
     cell.textLabel.text = [friend.jidStr substringToIndex:rang.location];
     
+    HLLog(@"friend.jid %@,friend.photo %@",friend.jid,friend.photo);
+    
     if(friend.photo == nil){
         UIImage *image = [UIImage imageNamed:@"avatar_default_small"];
-        cell.imageView.image = [image clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];;
+        cell.imageView.image = [image clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
     }
     else{
         cell.imageView.image = [friend.photo clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
@@ -188,16 +191,12 @@
     //获取好友
     XMPPUserCoreDataStorageObject *friend = _resultsContrl.fetchedObjects[indexPath.row];
     
-    //选中表格进行聊天界面
-    //[self performSegueWithIdentifier:@"ChatSegue" sender:friend.jid];
-    
     HLChatViewController *chatView = [[HLChatViewController alloc] init];
     
     chatView.friendJid = friend.jid;
-    
+    chatView.photo = [friend.photo clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
     chatView.title = @"私聊";
     
     [self.navigationController pushViewController:chatView animated:YES];
-    
 }
 @end

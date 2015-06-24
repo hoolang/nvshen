@@ -8,9 +8,34 @@
 
 #import "HLProfileViewController.h"
 #import "HLSettingTableViewController.h"
+#import "XMPPvCardTemp.h"
+#import "HLEditProfileViewController.h"
+#import "HLHttpTool.h"
+#import "MJExtension.h"
+#import "UIImageView+WebCache.h"
+#import "HLProfile.h"
+#import "HLUser.h"
+#import "HLProfileEditViewController.h"
 
 @interface HLProfileViewController ()
 
+@end
+@interface HLProfileViewController()
+@property (weak, nonatomic) UIImageView *icon;      //头像
+@property (weak, nonatomic) UILabel *nicknameLabel; //昵称
+@property (weak, nonatomic) UILabel *sexLabel;      //性别
+@property (weak, nonatomic) UILabel *local;         //地区
+@property (weak, nonatomic) UILabel *countLikes;        //地区
+@property (weak, nonatomic) UIButton *editPrifleBtn;    //编辑个人资料按钮
+@property (weak, nonatomic) UITextView *text;
+
+
+@property (weak, nonatomic) UILabel *nameLabel;//用户名
+@property (weak, nonatomic) UILabel *orgnameLabel;//公司
+@property (weak, nonatomic) UILabel *orgunitLabel;//部门
+@property (weak, nonatomic) UILabel *titleLabel;//职位
+@property (weak, nonatomic) UILabel *phoneLabel;//电话
+@property (weak, nonatomic) UILabel *emailLabel;//邮件
 @end
 
 @implementation HLProfileViewController
@@ -18,19 +43,136 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
 
-    
     // style : 这个参数是用来设置背景的，在iOS7之前效果比较明显, iOS7中没有任何效果
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(setting)];
-    // 这个item不能点击(目前放在viewWillAppear就能显示disable下的主题)
-    //self.navigationItem.rightBarButtonItem.enabled = NO;
+    // 设置标题
+    self.navigationItem.title = [HLUserInfo sharedHLUserInfo].user;
+    
+    [self loadUserInfo];
 }
 
+/** 加载个人信息 */
+- (void)loadUserInfo
+{
+    // 1.拼接请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"user.name"] = [HLUserInfo sharedHLUserInfo].user;
+    
+    // 2.发送请求
+    [HLHttpTool get:HL_ONE_USER_URL params:params success:^(id json) {
+        
+        HLLog(@"%@",json);
+        
+        // 将 "字典"数组 转为 "模型"数组
+        NSArray *userInfo = [HLProfile objectArrayWithKeyValuesArray:json[@"userinfo"]];
+        
+        HLProfile *profile = userInfo[0];
+        
+        HLLog(@"%@", userInfo);
+        
+        HLUser *user = profile.user;
+        
+        // 头像
+        CGFloat x = 10;
+        CGFloat y = 74;
+        CGFloat width = 64;
+        CGFloat border = 10;
+        UIImageView *icon = [[UIImageView alloc] init];
+        [icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", USER_ICON_URL,user.icon] ] placeholderImage:[UIImage imageNamed:@"avatar_default_small"]];
+        icon.frame = CGRectMake(x, y, width, width);
+        self.icon = icon;
+        [self.view addSubview:icon];
+        
+        // 性别
+        UILabel *sex = [[UILabel alloc] init];
+        sex.text = user.sex;
+        sex.frame = CGRectMake(CGRectGetMaxX(icon.frame) + border, y, 20, 20);
+        sex.font = [UIFont systemFontOfSize:12];
+        self.sexLabel = sex;
+        [self.view addSubview:sex];
+        
+        // 地区
+        UILabel *local = [[UILabel alloc] init];
+        local.text = [NSString stringWithFormat:@" , %@%@",user.province,user.city];
+        local.frame = CGRectMake(sex.frame.origin.x + border, y, 200, 20);
+        local.font = [UIFont systemFontOfSize:12];
+        self.local = local;
+        [self.view addSubview:local];
+        
+        // 被赞的次数
+        UILabel *countLikes = [[UILabel alloc] init];
+        countLikes.text = [NSString stringWithFormat:@"被赞了%@%@", profile.like_count, @"次"];
+        countLikes.frame = CGRectMake(CGRectGetMaxX(icon.frame) + border, CGRectGetMaxY(sex.frame), 100, 20);
+        [countLikes setFont:[UIFont systemFontOfSize:12]];
+        self.countLikes = countLikes;
+        [self.view addSubview:countLikes];
+        
+        // 编辑个人资料
+        UIButton *editPrifleBtn = [[UIButton alloc] init];
+        [editPrifleBtn setTitle:@"编辑个人资料" forState:UIControlStateNormal];
+        [editPrifleBtn setBackgroundColor:HLColor(239, 239, 239)];
+        editPrifleBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [editPrifleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        CGFloat editPrifleBtnH = 20;
+        CGFloat editPrifleBtnY = y + width - editPrifleBtnH;
+        editPrifleBtn.frame = CGRectMake(CGRectGetMaxX(icon.frame) + border, editPrifleBtnY, 130, editPrifleBtnH);
+        [editPrifleBtn addTarget:self action:@selector(editProfile) forControlEvents:UIControlEventTouchUpInside];
+        self.editPrifleBtn = editPrifleBtn;
+        [self.view addSubview:editPrifleBtn];
+        
+        // 个人说明
+        UITextView *text = [[UITextView alloc] init];
+        text.text = user.text;
+        text.font = [UIFont systemFontOfSize:12];
+        text.textColor = [UIColor blackColor];
+        text.frame = CGRectMake(border, CGRectGetMaxY(icon.frame), ScreenWidth - 2 * border, 60);
+        self.text = text;
+        [self.view addSubview:text];
+        
+        
+    } failure:^(NSError *error) {
+        HLLog(@"请求失败-%@", error);
+    }];
+}
+
+/**
+ 跳转到编辑个人信息界面
+ */
+- (void)editProfile
+{
+    /**
+     @property (weak, nonatomic) UIImageView *icon;      //头像
+     @property (weak, nonatomic) UILabel *nicknameLabel; //昵称
+     @property (weak, nonatomic) UILabel *sexLabel;      //性别
+     @property (weak, nonatomic) UILabel *local;         //地区
+     @property (weak, nonatomic) UILabel *countLikes;        //地区
+     @property (weak, nonatomic) UIButton *editPrifleBtn;    //编辑个人资料按钮
+     */
+    HLProfileEditViewController *editProfile = [[HLProfileEditViewController alloc] init];
+    editProfile.icon = self.icon;
+    editProfile.nicknameLabel.text = [HLUserInfo sharedHLUserInfo].user;
+    editProfile.sexLabel = self.sexLabel;
+    editProfile.local = self.local;
+    editProfile.text = self.text;
+    
+    [self.navigationController pushViewController:editProfile animated:YES];
+}
+
+/**
+ 注销
+ */
 - (void) logout{
     [[HLXMPPTool sharedHLXMPPTool] xmppUserlogout];
 }
 
+/**
+ 设置
+ */
 - (void) setting{
     // 创建设置口控制器
     HLSettingTableViewController *settingVc = [[HLSettingTableViewController alloc] init];
@@ -43,84 +185,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 10;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"test999 %ld", indexPath.row];
-    return  cell;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

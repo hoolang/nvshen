@@ -14,6 +14,7 @@
 #import "HLComposeToolbar.h"
 #import "HLEmotionKeyboard.h"
 #import "HLEmotionTextView.h"
+#import "XMPPvCardTemp.h"
 
 @interface HLChatViewController ()
 <UITableViewDataSource,
@@ -29,7 +30,8 @@ HLComposeToolbarDelegate>
 //@property (nonatomic, strong) NSLayoutConstraint *inputViewBottomConstraint;//inputView底部约束
 //@property (nonatomic, strong) NSLayoutConstraint *inputViewHeightConstraint;//inputView高度约束
 @property (nonatomic, weak) UITableView *tableView;
-
+/** 自己的头像 */
+@property (nonatomic, strong) UIImage *selfAvatar;
 @property (nonatomic, strong) HttpTool *httpTool;
 /** 输入控件 */
 @property (nonatomic, weak) HLEmotionTextView *textView;
@@ -45,6 +47,17 @@ HLComposeToolbarDelegate>
 
 @implementation HLChatViewController
 #pragma mark - 懒加载
+
+- (UIImage *)selfAvatar
+{
+    if (!_selfAvatar) {
+        XMPPvCardTemp *myVCard = [HLXMPPTool sharedHLXMPPTool].vCard.myvCardTemp;
+        // 图片
+        _selfAvatar = [UIImage imageWithData:myVCard.photo];
+    }
+    return _selfAvatar;
+}
+
 - (HLEmotionKeyboard *)emotionKeyboard
 {
     if (!_emotionKeyboard) {
@@ -239,17 +252,17 @@ HLComposeToolbarDelegate>
     
     message.time = [time getNewStyleByCompareNow: @"yyyy-MM-dd HH:mm:ss z"];
     
-
     if ([msg.outgoing boolValue]) {//自己发
         message.type = HLMessageMe;
+        message.avatar = _selfAvatar;
     }else{//别人发的
         message.type = HLMessageOther;
+        message.avatar = _photo;
     }
     
     frames.message = message;
     
     return frames;
-
 }
 #pragma mark -表格的数据源
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -11,18 +11,17 @@ typedef enum {
     HLMessageOther = 1
 }HLMessageType;
 @interface HLMessage : NSObject
-
 //正文
 @property (nonatomic, copy)NSString *text;
-
 //时间
 @property (nonatomic, copy)NSString *time;
-
 //发送类型
 @property (nonatomic, assign)HLMessageType type;
-
 //是否隐藏时间
 @property (nonatomic,assign)BOOL hideTime;
+// 头像
+@property (nonatomic, strong) UIImage *avatar;
+
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

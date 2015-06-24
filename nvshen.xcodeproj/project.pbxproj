@@ -275,6 +275,8 @@
 		E0234E561B333E97002F1966 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E0234E4D1B333E97002F1966 /* UIScrollView+MJRefresh.m */; };
 		E0234E571B333E97002F1966 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E0234E4F1B333E97002F1966 /* UIView+MJExtension.m */; };
 		E028B7E41B1DF51700ABC87D /* EmotionIcons in Resources */ = {isa = PBXBuildFile; fileRef = E028B7E31B1DF51700ABC87D /* EmotionIcons */; };
+		E0467B741B3A95730012D066 /* HLProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0467B731B3A95730012D066 /* HLProfile.m */; };
+		E0467B771B3AD6220012D066 /* HLProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0467B761B3AD6220012D066 /* HLProfileEditViewController.m */; };
 		E0784ED81B1B3B5100453294 /* HLCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784ED71B1B3B5100453294 /* HLCommentView.m */; };
 		E0784EDB1B1B881200453294 /* HLComments.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784EDA1B1B881200453294 /* HLComments.m */; };
 		E0784EDE1B1B8B1500453294 /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = E0784EDD1B1B8B1500453294 /* NSString+Date.m */; };
@@ -897,6 +899,10 @@
 		E0234E4E1B333E97002F1966 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		E0234E4F1B333E97002F1966 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		E028B7E31B1DF51700ABC87D /* EmotionIcons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EmotionIcons; sourceTree = "<group>"; };
+		E0467B721B3A95730012D066 /* HLProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLProfile.h; sourceTree = "<group>"; };
+		E0467B731B3A95730012D066 /* HLProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLProfile.m; sourceTree = "<group>"; };
+		E0467B751B3AD6220012D066 /* HLProfileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLProfileEditViewController.h; sourceTree = "<group>"; };
+		E0467B761B3AD6220012D066 /* HLProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLProfileEditViewController.m; sourceTree = "<group>"; };
 		E0784ED61B1B3B5100453294 /* HLCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommentView.h; sourceTree = "<group>"; };
 		E0784ED71B1B3B5100453294 /* HLCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommentView.m; sourceTree = "<group>"; };
 		E0784ED91B1B881200453294 /* HLComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLComments.h; sourceTree = "<group>"; };
@@ -2301,6 +2307,8 @@
 				E0038E621B12342F00E4924F /* Share */,
 				E09DCE741AFEEA5E00C5145E /* HLProfileViewController.h */,
 				E09DCE751AFEEA5E00C5145E /* HLProfileViewController.m */,
+				E0467B751B3AD6220012D066 /* HLProfileEditViewController.h */,
+				E0467B761B3AD6220012D066 /* HLProfileEditViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2311,6 +2319,8 @@
 				E0038E721B12345500E4924F /* help */,
 				E0038E751B12345500E4924F /* Product */,
 				E0038E781B12345500E4924F /* SettingItem */,
+				E0467B721B3A95730012D066 /* HLProfile.h */,
+				E0467B731B3A95730012D066 /* HLProfile.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3156,6 +3166,7 @@
 				E0072EDD1B123BA100AAC6F5 /* MJMethod.m in Sources */,
 				E0072EDF1B123BA100AAC6F5 /* MJTypeEncoding.m in Sources */,
 				E095D5721B16E878002B07E2 /* HLPhoto.m in Sources */,
+				E0467B741B3A95730012D066 /* HLProfile.m in Sources */,
 				E095D5781B16EAC3002B07E2 /* HLStatusPhotosView.m in Sources */,
 				E0A065901B0B2B0400CE4728 /* UITextView+Extension.m in Sources */,
 				E013C8671B2A0AC10068CEE8 /* XMPPMessage+XEP0045.m in Sources */,
@@ -3250,6 +3261,7 @@
 				E0072F121B123BA800AAC6F5 /* UIImageView+HighlightedWebCache.m in Sources */,
 				E013C8381B2A0AC10068CEE8 /* XMPPDigestMD5Authentication.m in Sources */,
 				E0072EB01B123B8F00AAC6F5 /* AFHTTPSessionManager.m in Sources */,
+				E0467B771B3AD6220012D066 /* HLProfileEditViewController.m in Sources */,
 				E0038E851B12345500E4924F /* HLSettingArrowItem.m in Sources */,
 				E013C87E1B2A0AC10068CEE8 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				E013C83B1B2A0AC10068CEE8 /* XMPPXOAuth2Google.m in Sources */,

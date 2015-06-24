@@ -87,7 +87,6 @@ DoImagePickerControllerDelegate
     selectTextAttrs[NSForegroundColorAttributeName] = [UIColor orangeColor];
     [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     [childVc.tabBarItem setTitleTextAttributes:selectTextAttrs forState:UIControlStateSelected];
-    childVc.view.backgroundColor = HLColor(239, 239, 239);
     [childVc targetForAction:@selector(onClick) withSender:self];
     
     // 先给外面传进来的小控制器 包装 一个导航控制器
@@ -100,13 +99,6 @@ DoImagePickerControllerDelegate
 }
 #pragma mark - HLTabBarDelegate 代理方法
 - (void)tabBarDidClickPlusButton:(HLTabBar *)tabBar{
-    
-    //HLComposeViewController *compose = [[HLComposeViewController alloc] init];
-    
-//    HLHomeViewController * hvc = [[HLHomeViewController alloc] init];
-//    
-//    [self presentViewController:hvc animated:YES completion:nil];
-
     
     DoImagePickerController *ipc = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
     ipc.delegate = self;
@@ -127,15 +119,10 @@ DoImagePickerControllerDelegate
     
     HLNavigationController *nav = [[HLNavigationController alloc] initWithRootViewController:ipc];
     
-    
     nav.navigationBar.hidden = YES;
 
-    
     [self presentViewController:nav animated:YES completion:nil];
     
-    
-    
-
 //    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) return;
 //    
 //    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];

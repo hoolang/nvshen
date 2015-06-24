@@ -78,23 +78,14 @@
     
     //2.头像
     self.icon.frame = frameMessage.iconF;
-    if (model.type == HLMessageMe) {
-
-        NSString *imageURL = [USER_ICON_URL stringByAppendingString:@"1434377515057.jpg"];
-        
-        [self.icon sd_setImageWithURL:[NSURL URLWithString:imageURL ] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            self.icon.image = [image clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
-        }];
-        
-    }else{
-        
-        NSString *imageURL = [USER_ICON_URL stringByAppendingString:@"1432890642284.jpg"];
-        
-        [self.icon sd_setImageWithURL:[NSURL URLWithString:imageURL ] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            self.icon.image = [image clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
-        }];
-    }
+    self.icon.image = frameMessage.message.avatar;
     
+    if (!frameMessage.message.avatar) {
+        self.icon.image = [UIImage imageNamed:@"avatar_default_small"];
+        self.icon.image = [self.icon.image clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
+    }else{
+        self.icon.image = frameMessage.message.avatar;
+    }
     //3.正文
     self.textView.frame = frameMessage.textViewF;
     [self.textView setTitle:model.text forState:UIControlStateNormal];

@@ -21,18 +21,35 @@ typedef enum {
 } HLUserVerifiedType;
 
 @interface HLUser : NSObject
+/**
+ city = "\U5e7f\U5dde";
+ email = "";
+ icon = "1434984711554.jpg";
+ name = hoolang;
+ password = e10adc3949ba59abbe56e057f20f883e;
+ province = "\U5e7f\U4e1c";
+ sex = "\U7537";
+ text = "";
+ uid = 2;
+ username = hoolang;
+ "verified_type" = 0;
+ */
 /** 用户ID*/
 @property (nonatomic, copy) NSString *uid;
 ///** 用户性别*/
-//@property (nonatomic, assign) char *sex;
+@property (nonatomic, copy) NSString *sex;
 /** 用户名*/
 @property (nonatomic, copy) NSString *name;
+/** name */
+@property (nonatomic, copy) NSString *username;
+/** email */
+@property (nonatomic, copy) NSString *email;
 /** 用户图标*/
 @property (nonatomic, copy) NSString *icon;
 ///** 省份*/
-//@property (nonatomic, copy) NSString *province;
+@property (nonatomic, copy) NSString *province;
 ///** 城市*/
-//@property (nonatomic, copy) NSString *city;
+@property (nonatomic, copy) NSString *city;
 /** 用户描述*/
 @property (nonatomic, copy) NSString *text;
 ///** 注册时间*/

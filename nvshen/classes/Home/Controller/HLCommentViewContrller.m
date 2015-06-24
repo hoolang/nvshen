@@ -230,6 +230,7 @@ UITableViewDataSource
              }];
     
 }
+
 #pragma mark -加载更多评论
 - (void)loadMoreComments{
     
@@ -312,13 +313,13 @@ UITableViewDataSource
 }
 #pragma mark - 点赞之后重新加载数据
 - (void)changelikeStatus:(NSNotification *)like{
-    NSLog(@"pid: %@",like.userInfo[@"pid"]);
+    HLLog(@"pid: %@",like.userInfo[@"pid"]);
     
     if([like.userInfo[@"response"][@"status"] isEqualToString:@"cancel"]){
-        NSLog(@"cancel: %@",like.userInfo[@"pid"]);
+        HLLog(@"cancel: %@",like.userInfo[@"pid"]);
         _status.likes_count -= 1;
     }else if([like.userInfo[@"response"][@"status"] isEqualToString:@"done"]){
-        NSLog(@"done: %@",like.userInfo[@"pid"]);
+        HLLog(@"done: %@",like.userInfo[@"pid"]);
         _status.likes_count += 1;
     }
     
@@ -414,7 +415,6 @@ UITableViewDataSource
  */
 - (void)keyboardWillChangeFrame:(NSNotification *)notification
 {
-    
     HLLog(@"keyboardWillChangeFrame");
     // 如果正在切换键盘，就不要执行后面的代码
     if (self.switchingKeybaord) return;
@@ -504,6 +504,7 @@ UITableViewDataSource
         [self.toolbar.textView becomeFirstResponder];
     });
 }
+
 #pragma mark - 数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -517,7 +518,6 @@ UITableViewDataSource
     
     // 给cell传递模型数据
     cell.commentsFrame = self.commentsFrames[indexPath.row];
-    
     
     //HLLog(@"cell.commentsFrame %@",cell.commentsFrame);
     

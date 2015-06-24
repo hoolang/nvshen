@@ -194,7 +194,8 @@ UIActionSheetDelegate
         return;
     }else{
         HLRegisgerIconViewController *registerIcon = [[HLRegisgerIconViewController alloc] init];
-        registerIcon.username = self.userField.text;
+        // 删除字符两边的空格
+        registerIcon.username = [self.userField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         registerIcon.local = self.localLable.titleLabel.text;
         registerIcon.sex = self.sexLabel.titleLabel.text;
         

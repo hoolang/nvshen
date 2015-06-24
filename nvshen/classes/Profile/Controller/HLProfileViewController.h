@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HLProfileViewController : UITableViewController
+@interface HLProfileViewController : UIViewController
 
 @end

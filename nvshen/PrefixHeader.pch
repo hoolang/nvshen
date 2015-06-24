@@ -48,6 +48,8 @@
 
 // 添加用户
 #define HL_ADD_USER @"http://192.168.168.188:8008/nvshen/nsjson/addUser.json"
+// 查找一个用户的信息
+#define HL_ONE_USER_URL @"http://192.168.168.188:8008/nvshen/nsjson/selectByName.json"
 // 评论
 #define HL_ADD_COMMENT @"http://192.168.168.188:8008/nvshen/nsjson/addComment.json"
 // 获取一个show的最新评论

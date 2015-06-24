@@ -89,6 +89,7 @@ static NSString *const ID = @"cell";
     // 2.进入刷新状态
     [self.collectionView  headerBeginRefreshing];
 }
+
 - (void)loadMoreDatas
 {
     HLLog(@"TOP Detail View Controller ->>>> loadData");
@@ -116,6 +117,7 @@ static NSString *const ID = @"cell";
                  HLLog(@"请求失败-%@", error);
              }];
 }
+
 - (NSArray *)topFramesWithPosts:(NSArray *)topPosts
 {
     NSMutableArray *frames = [NSMutableArray array];

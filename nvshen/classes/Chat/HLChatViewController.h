@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "XMPPJID.h"
 @interface HLChatViewController : UIViewController
-
-
+/** 对方的头像 */
+@property (nonatomic, strong) UIImage *photo;
 @property (nonatomic, strong) XMPPJID *friendJid;
 @end

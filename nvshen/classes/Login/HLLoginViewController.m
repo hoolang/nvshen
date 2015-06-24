@@ -124,7 +124,8 @@
     
     // 保存数据到单例
     HLUserInfo *userInfo = [HLUserInfo sharedHLUserInfo];
-    userInfo.user = [self.userField.text lowercaseString];
+    // 删除字符串两边的空格 然后转为小写
+    userInfo.user = [[self.userField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
     HLLog(@"userInfo.user %@", userInfo.user );
     userInfo.pwd = self.pwdField.text;
     

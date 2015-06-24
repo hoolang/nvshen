@@ -71,6 +71,7 @@
     //    }];
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreStatus)];
 }
+
 /**
  *  集成下拉刷新控件
  */
@@ -82,6 +83,7 @@
     // 2.进入刷新状态
     [self.tableView headerBeginRefreshing];
 }
+
 - (void)loadNewPosts{
     HLLog(@"loadNewPosts->>");
 
@@ -122,6 +124,7 @@
         //[self.tableView headerEndRefreshing];
     }];
 }
+
 /**
  *  显示最新微博的数量
  *
@@ -145,6 +148,7 @@
     } else {
         label.text = [NSString stringWithFormat:@"共有%zd条新show，么么哒", count];
     }
+    
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:16];

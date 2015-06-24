@@ -7,6 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HLChatProfileViewController : UITableViewController
+@interface HLChatProfileViewController : UIViewController
 
 @end
