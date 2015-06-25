@@ -164,7 +164,7 @@
     //    }
     
     /** 昵称 */
-    self.nameLabel.text = statusFrame.status.posts.user.name;
+    self.nameLabel.text = statusFrame.status.posts.user.username;
     HLLog(@"statusFrame.status.posts.user >>> %@",statusFrame.status.posts.user.icon);
     self.nameLabel.frame = statusFrame.nameLabelF;
     

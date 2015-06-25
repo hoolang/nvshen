@@ -10,4 +10,5 @@
 
 @interface UIImage (Circle)
 - (UIImage *)clipCircleImageWithBorder:(CGFloat) border borderColor:(UIColor *)color;
+-(UIImage*)scaleToSize:(CGSize)size;
 @end

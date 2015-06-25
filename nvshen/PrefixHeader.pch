@@ -48,6 +48,12 @@
 
 // 添加用户
 #define HL_ADD_USER @"http://192.168.168.188:8008/nvshen/nsjson/addUser.json"
+// 更新用户
+#define HL_UPDATE_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateUser.json"
+// 更新头像
+#define HL_UPDATE_AVATAR_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateAvatar.json"
+// 更新简介
+#define HL_UPDATE_TEXT_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateText.json"
 // 查找一个用户的信息
 #define HL_ONE_USER_URL @"http://192.168.168.188:8008/nvshen/nsjson/selectByName.json"
 // 评论

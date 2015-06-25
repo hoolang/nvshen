@@ -321,7 +321,7 @@
     }
     XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@", status.posts.user.name, domain]];
     chatView.friendJid = jid;
-    chatView.title = @"私聊";
+    chatView.title = status.posts.user.username;
     
     [self.navigationController pushViewController:chatView animated:YES];
 }

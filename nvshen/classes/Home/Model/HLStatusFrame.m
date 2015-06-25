@@ -31,7 +31,7 @@
     /** 昵称 */
     CGFloat nameX = CGRectGetMaxX(self.iconViewF) + HLStatusCellBorderW;
     CGFloat nameY = iconY;
-    CGSize nameSize = [status.posts.user.name sizeWithFont:HLStatusCellNameFont];
+    CGSize nameSize = [status.posts.user.username sizeWithFont:HLStatusCellNameFont];
     self.nameLabelF = (CGRect){{nameX, nameY}, nameSize};
     
 //    /** 会员图标 */

@@ -158,8 +158,9 @@
             break;
     }
 
-    NSRange rang = [friend.jidStr rangeOfString:@"@"];
-    cell.textLabel.text = [friend.jidStr substringToIndex:rang.location];
+//    NSRange rang = [friend.jidStr rangeOfString:@"@"];
+//    [friend.jidStr substringToIndex:rang.location];
+    cell.textLabel.text =  friend.nickname;
     
     HLLog(@"friend.jid %@,friend.photo %@",friend.jid,friend.photo);
     

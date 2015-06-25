@@ -13,6 +13,7 @@
 #import "HLMD5.h"
 #import "XMPPvCardTemp.h"
 #import "HLLoginViewController.h"
+#import "UIImage+Circle.h"
 
 #define HLPickFromAlum @"相册"
 #define HLPickFromCamera @"拍照"
@@ -38,7 +39,6 @@ UINavigationControllerDelegate
     [super viewDidLoad];
     self.title = @"（2/2）头像和密码";
     [self.view setBackgroundColor:HLColor(239, 239, 239)];
-    [self.navigationController.navigationBar setTintColor:[UIColor purpleColor]];
     
     /** 初始化view */
     [self setupViews];
@@ -128,8 +128,8 @@ UINavigationControllerDelegate
         // 2.拼接请求参数
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         
-        params[@"user.name"] = [_username lowercaseString];
-        params[@"user.username"] = [_username lowercaseString];
+        params[@"user.name"] = [[_username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
+        params[@"user.username"] = [[_username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
         params[@"user.password"] = [HLMD5 md5:_pwdField.text];
         params[@"user.sex"] = _sex;
         
@@ -175,7 +175,6 @@ UINavigationControllerDelegate
     
     // 图片
     myvCard.photo = UIImagePNGRepresentation(image);
-    
     
     //更新 这个方法内部会实现数据上传到服务，无需程序自己操作
     [[HLXMPPTool sharedHLXMPPTool].vCard updateMyvCardTemp:myvCard];
@@ -254,7 +253,7 @@ UINavigationControllerDelegate
 - (void)cropImage:(UIImage*)cropImage forOriginalImage:(UIImage*)originalImage
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-    self.icon.image = cropImage;
+    self.icon.image = [cropImage scaleToSize:CGSizeMake(350, 350)];
 }
 
 #pragma mark - UIImagePickerControllerDelegate

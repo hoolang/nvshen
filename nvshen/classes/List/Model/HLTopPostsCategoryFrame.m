@@ -26,7 +26,7 @@
     /** 昵称 */
     CGFloat nameX = CGRectGetMaxX(self.iconViewF) + HLTopPostsCategoryBorderW;
     CGFloat nameY = iconY;
-    CGSize nameSize = [topPosts.posts.user.name sizeWithFont:HLTopPostsCategoryNameFont];
+    CGSize nameSize = [topPosts.posts.user.username sizeWithFont:HLTopPostsCategoryNameFont];
     self.nameLabelF = (CGRect){{nameX, nameY}, nameSize};
     
     //    /** 会员图标 */

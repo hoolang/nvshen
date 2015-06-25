@@ -26,7 +26,7 @@
     /** 昵称 */
     CGFloat nameX = CGRectGetMaxX(self.iconViewF) + HLCommentCellBorderW;
     CGFloat nameY = iconY;
-    CGSize nameSize = [comments.user.name sizeWithFont:HLCommentCellNameFont];
+    CGSize nameSize = [comments.user.username sizeWithFont:HLCommentCellNameFont];
     self.nameLabelF = (CGRect){{nameX, nameY}, nameSize};
     
     //    /** 会员图标 */

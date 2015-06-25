@@ -126,7 +126,7 @@
     [self.photosView sd_setImageWithURL:url];
     
     /** 昵称 */
-    self.nameLabel.text = topPostsCategoryFrame.topPosts.posts.user.name;
+    self.nameLabel.text = topPostsCategoryFrame.topPosts.posts.user.username;
     self.nameLabel.frame = topPostsCategoryFrame.nameLabelF;
     
     /** 时间 */

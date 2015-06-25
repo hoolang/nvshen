@@ -111,9 +111,9 @@ HLTopPostsCellDelegate
                  self.mostCommentsFrame = mostCommentsFrame;
                  self.mostLikeFrame = mostLikesPostsFrame;
                  
-                 HLTopPostsFrame *topPostsFrame = self.mostCommentsFrame[0];
-                 HLStatus *topPosts = topPostsFrame.topPosts;
-                 HLLog(@"========load topPosts.posts.photo %@", topPosts.posts.photo);
+                 //HLTopPostsFrame *topPostsFrame = self.mostCommentsFrame[0];
+                 //HLStatus *topPosts = topPostsFrame.topPosts;
+                 //HLLog(@"========load topPosts.posts.photo %@", topPosts.posts.photo);
                  
                  //HLLog(@"HLTOPVIEW %@", json);
                  // 刷新表格
@@ -240,8 +240,39 @@ HLTopPostsCellDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HLTopPostsFrame *topPostsFrame = self.mostCommentsFrame[0];
-    return topPostsFrame.cellHeight;
+    switch (indexPath.row) {
+        case LATEST_USER_POSTS:
+        {
+            if (self.userPostsFrame.count > 0) {
+                HLTopPostsFrame *topPostsFrame = self.userPostsFrame[0];
+                return topPostsFrame.cellHeight;
+            }
+            
+            return 0;
+            break;
+        }
+        case MOST_COMMENTS_POSTS:
+        {
+            if (self.mostCommentsFrame.count > 0) {
+                HLTopPostsFrame *topPostsFrame = self.mostCommentsFrame[0];
+                return topPostsFrame.cellHeight;
+            }
+            return 0;
+            break;
+        }
+        case MOST_LIKES_POSTS:
+        {
+            if (self.mostLikeFrame.count > 0) {
+                HLTopPostsFrame *topPostsFrame = self.mostLikeFrame[0];
+                return topPostsFrame.cellHeight;
+            }
+            return 0;
+            break;
+        }
+        default:
+            return 0;
+            break;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

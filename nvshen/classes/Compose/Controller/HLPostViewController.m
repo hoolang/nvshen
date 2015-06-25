@@ -35,9 +35,8 @@
     textView.alwaysBounceVertical = YES;
     CGFloat screen = [UIScreen mainScreen].bounds.size.width;
     
-    textView.frame = CGRectMake(10, 74, screen - self.postImageView.frame.size.width -10 -10,self.postImageView.frame.size.height
-                                );
-    textView.font = [UIFont systemFontOfSize:13];
+    textView.frame = CGRectMake(10, 74, screen - self.postImageView.frame.size.width -10 -10,self.postImageView.frame.size.height);
+    textView.font = [UIFont systemFontOfSize:12];
     textView.delegate = self;
     textView.placeholder = @"秀一秀我的态度";
     [textView becomeFirstResponder];

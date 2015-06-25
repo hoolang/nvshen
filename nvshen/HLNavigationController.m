@@ -71,6 +71,7 @@
         
         // 设置右边的更多按钮
         viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(more) image:@"navigationbar_more" highImage:@"navigationbar_more_highlighted"];
+    
     }
     
     [super pushViewController:viewController animated:animated];

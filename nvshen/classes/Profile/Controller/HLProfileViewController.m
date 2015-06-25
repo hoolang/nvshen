@@ -15,6 +15,7 @@
 #import "UIImageView+WebCache.h"
 #import "HLProfile.h"
 #import "HLUser.h"
+#import "NSString+Extension.h"
 #import "HLProfileEditViewController.h"
 
 @interface HLProfileViewController ()
@@ -27,15 +28,13 @@
 @property (weak, nonatomic) UILabel *local;         //地区
 @property (weak, nonatomic) UILabel *countLikes;        //地区
 @property (weak, nonatomic) UIButton *editPrifleBtn;    //编辑个人资料按钮
-@property (weak, nonatomic) UITextView *text;
+@property (weak, nonatomic) UILabel *text;
+@property (copy, nonatomic) NSString *uid;
+@property (copy, nonatomic) NSString *nickname;
 
+/** 标记是否已经加载数据 */
+@property (nonatomic, assign) BOOL didLoad;
 
-@property (weak, nonatomic) UILabel *nameLabel;//用户名
-@property (weak, nonatomic) UILabel *orgnameLabel;//公司
-@property (weak, nonatomic) UILabel *orgunitLabel;//部门
-@property (weak, nonatomic) UILabel *titleLabel;//职位
-@property (weak, nonatomic) UILabel *phoneLabel;//电话
-@property (weak, nonatomic) UILabel *emailLabel;//邮件
 @end
 
 @implementation HLProfileViewController
@@ -49,10 +48,17 @@
 
     // style : 这个参数是用来设置背景的，在iOS7之前效果比较明显, iOS7中没有任何效果
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(setting)];
-    // 设置标题
-    self.navigationItem.title = [HLUserInfo sharedHLUserInfo].user;
     
-    [self loadUserInfo];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    // 判断是否已经加载数据
+    if (!self.didLoad) {
+        // 还没有加载就调用此方法
+        [self loadUserInfo];
+    }
+    
 }
 
 /** 加载个人信息 */
@@ -65,24 +71,32 @@
     // 2.发送请求
     [HLHttpTool get:HL_ONE_USER_URL params:params success:^(id json) {
         
-        HLLog(@"%@",json);
+        self.didLoad = YES;
         
         // 将 "字典"数组 转为 "模型"数组
         NSArray *userInfo = [HLProfile objectArrayWithKeyValuesArray:json[@"userinfo"]];
         
         HLProfile *profile = userInfo[0];
         
-        HLLog(@"%@", userInfo);
-        
         HLUser *user = profile.user;
         
+        // 设置uid和nickname传值
+        self.uid = user.uid;
+        self.nickname = user.username;
+        
+        // 设置标题
+        self.navigationItem.title = user.username;
+
         // 头像
         CGFloat x = 10;
         CGFloat y = 74;
         CGFloat width = 64;
         CGFloat border = 10;
         UIImageView *icon = [[UIImageView alloc] init];
-        [icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", USER_ICON_URL,user.icon] ] placeholderImage:[UIImage imageNamed:@"avatar_default_small"]];
+
+        NSString *url = [NSString stringWithFormat:@"%@%@", USER_ICON_URL,user.icon];
+        [icon sd_setImageWithURL:[NSURL URLWithString: url] placeholderImage:[UIImage imageNamed:@"avatar_default_small"] options:SDWebImageRefreshCached];
+        
         icon.frame = CGRectMake(x, y, width, width);
         self.icon = icon;
         [self.view addSubview:icon];
@@ -97,7 +111,7 @@
         
         // 地区
         UILabel *local = [[UILabel alloc] init];
-        local.text = [NSString stringWithFormat:@" , %@%@",user.province,user.city];
+        local.text = [NSString stringWithFormat:@" , %@-%@",user.province,user.city];
         local.frame = CGRectMake(sex.frame.origin.x + border, y, 200, 20);
         local.font = [UIFont systemFontOfSize:12];
         self.local = local;
@@ -126,15 +140,17 @@
         [self.view addSubview:editPrifleBtn];
         
         // 个人说明
-        UITextView *text = [[UITextView alloc] init];
+        UILabel *text = [[UILabel alloc] init];
         text.text = user.text;
         text.font = [UIFont systemFontOfSize:12];
-        text.textColor = [UIColor blackColor];
-        text.frame = CGRectMake(border, CGRectGetMaxY(icon.frame), ScreenWidth - 2 * border, 60);
+        text.textColor = [UIColor grayColor];
+        CGSize size =  [text.text sizeWithFont:[UIFont systemFontOfSize:12]];
+        text.frame = CGRectMake(border, CGRectGetMaxY(icon.frame), ScreenWidth - 2 * border, size.height);
+        [text setNumberOfLines:0];
         self.text = text;
+        
         [self.view addSubview:text];
-        
-        
+
     } failure:^(NSError *error) {
         HLLog(@"请求失败-%@", error);
     }];
@@ -154,12 +170,13 @@
      @property (weak, nonatomic) UIButton *editPrifleBtn;    //编辑个人资料按钮
      */
     HLProfileEditViewController *editProfile = [[HLProfileEditViewController alloc] init];
-    editProfile.icon = self.icon;
-    editProfile.nicknameLabel.text = [HLUserInfo sharedHLUserInfo].user;
-    editProfile.sexLabel = self.sexLabel;
-    editProfile.local = self.local;
-    editProfile.text = self.text;
-    
+//    editProfile.avatar = self.icon.image;
+//    editProfile.nickname = self.nickname;
+//    editProfile.sex = self.sexLabel.text;
+//    editProfile.local = self.local.text;
+//    editProfile.text = self.text.text;
+//    editProfile.uid = self.uid;
+//    HLLog(@"self.uid: %@", self.uid);
     [self.navigationController pushViewController:editProfile animated:YES];
 }
 
@@ -185,5 +202,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)dealloc
+{
+    HLLog(@"%s", __func__);
+    [HLNotificationCenter removeObserver:self];
+}
 @end
