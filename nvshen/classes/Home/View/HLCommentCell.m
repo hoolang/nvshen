@@ -154,7 +154,7 @@
     
     
     /** 昵称 */
-    self.nameLabel.text = commentsFrame.comments.user.username;
+    self.nameLabel.text = commentsFrame.comments.user.nickname;
     HLLog(@"commentsFrame.comments.user.icon >>> %@",commentsFrame.comments.user.icon);
     self.nameLabel.frame = commentsFrame.nameLabelF;
     

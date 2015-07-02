@@ -96,7 +96,8 @@
         photoView.height = HLTopPhotoWH;
     }
     
-    self.contentSize = CGSizeMake(2 * self.bounds.size.width - (ScreenWidth - HLTopPhotoWH - HLTopPhotoMargin), 0);
+    //self.contentSize = CGSizeMake(2 * self.bounds.size.width - (ScreenWidth - HLTopPhotoWH - HLTopPhotoMargin), 0);
+    self.contentSize = CGSizeMake(photosCount * (HLTopPhotoWH + HLTopPhotoMargin), 0);
     self.showsHorizontalScrollIndicator = NO;
     self.showsVerticalScrollIndicator = NO;
 }

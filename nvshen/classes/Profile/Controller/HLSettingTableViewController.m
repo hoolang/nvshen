@@ -69,16 +69,16 @@
         
         
     };
-    HLSettingItem *help = [HLSettingArrowItem itemWithIcon:@"MoreHelp" title:@"帮助" destVcClass:[HLHelpViewController class]];
+//    HLSettingItem *help = [HLSettingArrowItem itemWithIcon:@"MoreHelp" title:@"帮助" destVcClass:[HLHelpViewController class]];
     
     HLSettingItem *MoreShare = [HLSettingArrowItem itemWithIcon:@"MoreShare" title:@"分享" destVcClass:[HLShareViewController class]];
-    HLSettingItem *MoreMessage = [HLSettingArrowItem itemWithIcon:@"MoreMessage" title:@"查看消息" destVcClass:[HLTestViewController class]];
-    HLSettingItem *MoreNetease = [HLSettingArrowItem itemWithIcon:@"MoreNetease" title:@"产品推荐" destVcClass:[HLProductViewController class]];
+//    HLSettingItem *MoreMessage = [HLSettingArrowItem itemWithIcon:@"MoreMessage" title:@"查看消息" destVcClass:[HLTestViewController class]];
+    //HLSettingItem *MoreNetease = [HLSettingArrowItem itemWithIcon:@"MoreNetease" title:@"产品推荐" destVcClass:[HLProductViewController class]];
     HLSettingItem *MoreAbout = [HLSettingArrowItem itemWithIcon:@"MoreAbout" title:@"关于" destVcClass:[HLAboutViewController class]];
     
     HLSettingGroup *group1 = [[HLSettingGroup alloc] init];
     //group1.header = @"帮助";
-    group1.items = @[newVersion,help,MoreShare,MoreMessage,MoreNetease,MoreAbout];
+    group1.items = @[newVersion,MoreShare,MoreAbout];
     
 
     [self.dataList addObject:group1];

@@ -193,7 +193,7 @@
     //    }
     
     /** 昵称 */
-    self.nameLabel.text = statusFrame.status.posts.user.username;
+    self.nameLabel.text = statusFrame.status.posts.user.nickname;
     HLLog(@"self.nameLabel.text %@",self.nameLabel.text);
     self.nameLabel.frame = statusFrame.nameLabelF;
     

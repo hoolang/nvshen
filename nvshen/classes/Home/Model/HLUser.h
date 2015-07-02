@@ -39,9 +39,9 @@ typedef enum {
 ///** 用户性别*/
 @property (nonatomic, copy) NSString *sex;
 /** 用户名*/
-@property (nonatomic, copy) NSString *name;
-/** name */
 @property (nonatomic, copy) NSString *username;
+/** name */
+@property (nonatomic, copy) NSString *nickname;
 /** email */
 @property (nonatomic, copy) NSString *email;
 /** 用户图标*/
@@ -59,16 +59,4 @@ typedef enum {
 /** 认证类型 */
 @property (nonatomic, assign) HLUserVerifiedType verified_type;
 
-
-/**
- private int uid;
-	private String name;
-	private String icon;
-	private char sex;
-	private String province;
-	private String ;
-	private String description;
-	private Date registerTime;
-	private Date updateTime;
- */
 @end

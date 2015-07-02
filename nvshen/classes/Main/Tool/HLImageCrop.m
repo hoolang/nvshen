@@ -1,113 +1,14 @@
 //
-//  MLImageCrop.m
-//  ImageSelectAndCrop
+//  ViewController.m
+//  HLImageCrop
 //
-//  Created by molon on 14-1-16.
-//  Copyright (c) 2014年 Molon. All rights reserved.
+//  Created by hoolang on 15/6/26.
+//  Copyright (c) 2015年 Hoolang. All rights reserved.
 //
 
-#import "MLImageCrop.h"
-//#import "UIImageView+AFNetworking.h"
-//#import "Debug.h"
-#import "HLEditPhotoViewController.h"
-
-#define kDefualRatioOfWidthAndHeight 1.0f
-
-@interface UIImage (MLImageCrop_Addition)
-
-//将根据所定frame来截取图片
-- (UIImage*)MLImageCrop_imageByCropForRect:(CGRect)targetRect;
-- (UIImage *)MLImageCrop_fixOrientation;
-@end
-
-@implementation UIImage (MLImageCrop_Addition)
-
-
-- (UIImage *)MLImageCrop_fixOrientation {
-    
-    if (self.imageOrientation == UIImageOrientationUp) return self;
-    
-    CGAffineTransform transform = CGAffineTransformIdentity;
-    
-    UIImageOrientation io = self.imageOrientation;
-    if (io == UIImageOrientationDown || io == UIImageOrientationDownMirrored) {
-        transform = CGAffineTransformTranslate(transform, self.size.width, self.size.height);
-        transform = CGAffineTransformRotate(transform, M_PI);
-    }else if (io == UIImageOrientationLeft || io == UIImageOrientationLeftMirrored) {
-        transform = CGAffineTransformTranslate(transform, self.size.width, 0);
-        transform = CGAffineTransformRotate(transform, M_PI_2);
-    }else if (io == UIImageOrientationRight || io == UIImageOrientationRightMirrored) {
-        transform = CGAffineTransformTranslate(transform, 0, self.size.height);
-        transform = CGAffineTransformRotate(transform, -M_PI_2);
-        
-    }
-    
-    if (io == UIImageOrientationUpMirrored || io == UIImageOrientationDownMirrored) {
-        transform = CGAffineTransformTranslate(transform, self.size.width, 0);
-        transform = CGAffineTransformScale(transform, -1, 1);
-    }else if (io == UIImageOrientationLeftMirrored || io == UIImageOrientationRightMirrored) {
-        transform = CGAffineTransformTranslate(transform, self.size.height, 0);
-        transform = CGAffineTransformScale(transform, -1, 1);
-        
-    }
-    
-    CGContextRef ctx = CGBitmapContextCreate(NULL, self.size.width, self.size.height,
-                                             CGImageGetBitsPerComponent(self.CGImage), 0,
-                                             CGImageGetColorSpace(self.CGImage),
-                                             CGImageGetBitmapInfo(self.CGImage));
-    CGContextConcatCTM(ctx, transform);
-    
-    if (io == UIImageOrientationLeft || io == UIImageOrientationLeftMirrored || io == UIImageOrientationRight || io == UIImageOrientationRightMirrored) {
-        CGContextDrawImage(ctx, CGRectMake(0,0,self.size.height,self.size.width), self.CGImage);
-    }else{
-        CGContextDrawImage(ctx, CGRectMake(0,0,self.size.width,self.size.height), self.CGImage);
-    }
-    
-    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
-    UIImage *img = [UIImage imageWithCGImage:cgimg];
-    CGContextRelease(ctx);
-    CGImageRelease(cgimg);
-    return img;
-}
-#pragma -mark 截取图片
-- (UIImage*)MLImageCrop_imageByCropForRect:(CGRect)targetRect
-{
-    targetRect.origin.x*=self.scale;
-    targetRect.origin.y*=self.scale;
-    targetRect.size.width*=self.scale;
-    targetRect.size.height*=self.scale;
-
-    if (targetRect.origin.x<0) {
-        targetRect.origin.x = 0;
-    }
-    if (targetRect.origin.y<0) {
-        targetRect.origin.y = 0;
-    }
-    
-    //宽度高度过界就删去
-    CGFloat cgWidth = CGImageGetWidth(self.CGImage);
-    CGFloat cgHeight = CGImageGetHeight(self.CGImage);
-    if (CGRectGetMaxX(targetRect)>cgWidth) {
-        targetRect.size.width = cgWidth-targetRect.origin.x;
-    }
-    if (CGRectGetMaxY(targetRect)>cgHeight) {
-        targetRect.size.height = cgHeight-targetRect.origin.y;
-    }
-    
-    CGImageRef imageRef = CGImageCreateWithImageInRect(self.CGImage, targetRect);
-    UIImage *resultImage=[UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    
-    //修正回原scale和方向
-    resultImage = [UIImage imageWithCGImage:resultImage.CGImage scale:self.scale orientation:self.imageOrientation];
-    return resultImage;
-}
-
-@end
-
-
-@interface MLImageCrop ()<UIScrollViewDelegate>
-
+#import "HLImageCrop.h"
+#import "UIImage+HLImageCrop_Addition.h"
+@interface HLImageCrop ()
 @property(nonatomic,strong) UIScrollView *scrollView;
 @property(nonatomic,strong) UIView *overlayView; //中心截取区域的View
 
@@ -121,10 +22,10 @@
 @property(nonatomic,strong) UIView *buttonBackgroundView;
 @property(nonatomic,strong) UIButton *cancelButton;
 @property(nonatomic,strong) UIButton *confirmButton;
-
 @end
 
-@implementation MLImageCrop
+@implementation HLImageCrop
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -148,7 +49,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
+    
+    self.ratioOfWidthAndHeight = 1.0f;
+    
     self.view.backgroundColor = [UIColor blackColor];
     
     //设置frame,这里需要设置下，这样其会在最下层
@@ -170,7 +74,7 @@
     [self.view addSubview:self.cancelButton = [self acquireCustomButtonWithTitle:@"取消" andAction:@selector(onCancel:)]];
     [self.view addSubview:self.confirmButton = [self acquireCustomButtonWithTitle:@"确认" andAction:@selector(onConfirm:)]];
     
-
+    
     //双击事件
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     doubleTap.numberOfTapsRequired = 2;
@@ -204,29 +108,11 @@
     return button;
 }
 
-#pragma mark - show 显示
-- (void)showWithAnimation:(BOOL)animation
-{
-    UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    window.opaque = YES;
 
-    window.windowLevel = UIWindowLevelStatusBar+1.0f;
-    window.rootViewController = self;
-    [window makeKeyAndVisible];
-    self.actionWindow = window;
-    
-    if (animation) {
-        self.actionWindow.layer.opacity = .01f;
-        [UIView animateWithDuration:0.35f animations:^{
-            self.actionWindow.layer.opacity = 1.0f;
-        }];
-    }
-}
-
-
-#pragma mark - 取消 事件
+#pragma mark - event
 - (void)disappear
 {
+    //退出
     [UIView animateWithDuration:0.35f animations:^{
         self.actionWindow.layer.opacity = 0.01f;
     } completion:^(BOOL finished) {
@@ -236,14 +122,23 @@
     }];
 }
 
-//取消
 - (void)onCancel:(id)sender
 {
-    [self disappear];
+    if (self.isCamera) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    //[self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)onConfirm:(id)sender
 {
+    NSLog(@"onConfirm");
+    
     if (!self.imageView.image) {
         return;
     }
@@ -256,38 +151,40 @@
     CGPoint endPoint = [self.overlayView convertPoint:CGPointMake(CGRectGetMaxX(self.overlayView.bounds), CGRectGetMaxY(self.overlayView.bounds)) toView:self.imageView];
     
     //这里找到的点其实是imageView在zoomScale为1的时候的实际点，而zoomScale为1的时候imageView.frame.size并不一定是实际的图片size，所以需要修正
-//    _pr(CGRectMake(startPoint.x, startPoint.y, (endPoint.x-startPoint.x), (endPoint.y-startPoint.y)));
+    //    _pr(CGRectMake(startPoint.x, startPoint.y, (endPoint.x-startPoint.x), (endPoint.y-startPoint.y)));
     //zoomScale为1的时候的imageFrame
-//    _pr(CGRectMake(self.imageView.frame.origin.x/self.scrollView.zoomScale, self.imageView.frame.origin.y/self.scrollView.zoomScale, self.imageView.frame.size.width/self.scrollView.zoomScale, self.imageView.frame.size.height/self.scrollView.zoomScale));
+    //    _pr(CGRectMake(self.imageView.frame.origin.x/self.scrollView.zoomScale, self.imageView.frame.origin.y/self.scrollView.zoomScale, self.imageView.frame.size.width/self.scrollView.zoomScale, self.imageView.frame.size.height/self.scrollView.zoomScale));
     
     //这里获取的是实际宽度和zoomScale为1的frame宽度的比例
     CGFloat wRatio = self.imageView.image.size.width/(self.imageView.frame.size.width/self.scrollView.zoomScale);
     CGFloat hRatio = self.imageView.image.size.height/(self.imageView.frame.size.height/self.scrollView.zoomScale);
     CGRect cropRect = CGRectMake(startPoint.x*wRatio, startPoint.y*hRatio, (endPoint.x-startPoint.x)*wRatio, (endPoint.y-startPoint.y)*hRatio);
-    
-//    _pr(cropRect);
-    
-    [self disappear];
-    
-    UIImage *cropImage = [self.imageView.image MLImageCrop_imageByCropForRect:cropRect];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(cropImage:forOriginalImage:)]){
-        [self.delegate cropImage:cropImage forOriginalImage:self.image];
-    }
-}
 
-- (void)back{
-    HLLog(@"MLImage back======");
+    UIImage *cropImage = [self.imageView.image HLImageCrop_imageByCropForRect:cropRect];
     
+    if (self.isCamera) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(cropImageFromCamera:forOriginalImage:)]){
+            
+            [self.delegate cropImageFromCamera:cropImage forOriginalImage:self.image];
+            [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+
+        }
+    }else{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(cropImage:forOriginalImage:)]){
+            [self.delegate cropImage:cropImage forOriginalImage:self.image];
+        }
+    }
+
 }
 
 #pragma mark - tap
 - (void)handleDoubleTap:(UITapGestureRecognizer *)tap {
     CGPoint touchPoint = [tap locationInView:self.scrollView];
-	if (self.scrollView.zoomScale == self.scrollView.minimumZoomScale) { //除去最小的时候双击最大，其他时候都还原成最小
+    if (self.scrollView.zoomScale == self.scrollView.minimumZoomScale) { //除去最小的时候双击最大，其他时候都还原成最小
         [self.scrollView zoomToRect:CGRectMake(touchPoint.x, touchPoint.y, 1, 1) animated:YES];
-	} else {
-		[self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES]; //还原
-	}
+    } else {
+        [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES]; //还原
+    }
 }
 
 #pragma mark - getter or setter
@@ -300,65 +197,12 @@
     _image = image;
     
     //[self.imageView cancelImageRequestOperation];
-    self.imageView.image = [image MLImageCrop_fixOrientation];
+    self.imageView.image = [image HLImageCrop_fixOrientation];
     if (self.isViewLoaded) {
         [self.view setNeedsLayout];
     }
 }
 
-- (void)setImageURL:(NSURL *)imageURL
-{
-//    if ([imageURL isEqual:_imageURL]) {
-//        return;
-//    }
-//    _imageURL = imageURL;
-//    _image = nil;
-//    
-//    self.imageView.image = nil;
-//    //加载图像
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:imageURL];
-//    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
-//    
-//    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//    indicator.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
-//    [self.view addSubview:indicator];
-//    [indicator startAnimating];
-//    
-//    NSURL *recordURL = imageURL;
-//    __weak __typeof(self)weakSelf = self;
-//    [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//        [indicator stopAnimating];
-//        [indicator removeFromSuperview];
-//        
-//        if (!weakSelf.imageURL||![recordURL isEqual:weakSelf.imageURL]) {
-//            return;
-//        }
-//        
-//        weakSelf.image = image;
-//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//        [indicator stopAnimating];
-//        [indicator removeFromSuperview];
-//        
-//        if (!weakSelf.imageURL||![recordURL isEqual:weakSelf.imageURL]) {
-//            return;
-//        }
-//        UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake((weakSelf.view.bounds.size.width-120)/2, (weakSelf.view.bounds.size.height-30)/2, 120, 30)];
-//        tipsLabel.text = @"加载网络图片失败";
-//        tipsLabel.layer.opacity = .4f;
-//        tipsLabel.layer.cornerRadius = 3.0f;
-//        tipsLabel.font = [UIFont systemFontOfSize:13.0f];
-//        tipsLabel.textColor = [UIColor whiteColor];
-//        tipsLabel.backgroundColor = [UIColor darkGrayColor];
-//        tipsLabel.textAlignment = NSTextAlignmentCenter;
-//        [weakSelf.view addSubview:tipsLabel];
-//        
-//        [UIView animateWithDuration:2.0f delay:.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-//            tipsLabel.layer.opacity = .8f;
-//        } completion:^(BOOL finished) {
-//            [weakSelf disappear];
-//        }];
-//    }];
-}
 
 - (void)setRatioOfWidthAndHeight:(CGFloat)ratioOfWidthAndHeight
 {
@@ -403,10 +247,10 @@
 - (UIImageView*)imageView
 {
     if (!_imageView) {
-		_imageView = [[UIImageView alloc] init];
-		_imageView.contentMode = UIViewContentModeScaleAspectFit;
+        _imageView = [[UIImageView alloc] init];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
         //                _imageView.backgroundColor = [UIColor yellowColor];
-		[self.scrollView addSubview:_imageView];
+        [self.scrollView addSubview:_imageView];
     }
     return _imageView;
 }
@@ -534,15 +378,12 @@
         self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
     }
 }
-/** 隐藏状态栏*/
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
-}
+
+
 #pragma mark - UIScrollViewDelegate
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-	return self.imageView;
+    return self.imageView;
 }
 
 #pragma mark - rotate

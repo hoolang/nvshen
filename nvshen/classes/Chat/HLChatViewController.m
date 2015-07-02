@@ -215,7 +215,7 @@ HLComposeToolbarDelegate>
     // 1.当前登录用户的JID的消息
     // 2.好友的Jid的消息
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"streamBareJidStr = %@ AND bareJidStr = %@",[HLUserInfo sharedHLUserInfo].jid,self.friendJid.bare];
-    NSLog(@"%@",pre);
+    HLLog(@"%@",pre);
     request.predicate = pre;
     
     // 时间升序
@@ -225,7 +225,6 @@ HLComposeToolbarDelegate>
     // 查询
     _resultsContr = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
     
-
     
     NSError *err = nil;
     // 代理
@@ -302,7 +301,7 @@ HLComposeToolbarDelegate>
 -(void)textViewDidChange:(UITextView *)textView{
     //获取ContentSize
     CGFloat contentH = textView.contentSize.height;
-    NSLog(@"textView的content的高度 %f",contentH);
+    HLLog(@"textView的content的高度 %f",contentH);
     
     // 大于33，超过一行的高度/ 小于68 高度是在三行内
     if (contentH > 33 && contentH < 68 ) {
@@ -314,7 +313,7 @@ HLComposeToolbarDelegate>
     
     // 换行就等于点击了的send
     if ([text rangeOfString:@"\n"].length != 0) {
-        NSLog(@"发送数据 %@",text);
+        HLLog(@"发送数据 %@",text);
         
         // 去除换行字符
         text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -327,7 +326,7 @@ HLComposeToolbarDelegate>
 //        self.inputViewHeightConstraint.constant = 50;
         
     }else{
-        NSLog(@"%@",textView.text);
+        HLLog(@"%@",textView.text);
 
     }
 }
@@ -350,6 +349,8 @@ HLComposeToolbarDelegate>
 
 #pragma mark 发送聊天消息
 -(void)sendMsgWithText:(NSString *)text bodyType:(NSString *)bodyType{
+    
+    HLLog(@"self.friendjid :::::%@", self.friendJid);
     
     XMPPMessage *msg = [XMPPMessage messageWithType:@"chat" to:self.friendJid];
     

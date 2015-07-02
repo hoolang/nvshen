@@ -66,7 +66,7 @@
 {
     // 1.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"user.name"] = [HLUserInfo sharedHLUserInfo].user;
+    params[@"user.username"] = [HLUserInfo sharedHLUserInfo].user;
     
     // 2.发送请求
     [HLHttpTool get:HL_ONE_USER_URL params:params success:^(id json) {
@@ -82,10 +82,10 @@
         
         // 设置uid和nickname传值
         self.uid = user.uid;
-        self.nickname = user.username;
+        self.nickname = user.nickname;
         
         // 设置标题
-        self.navigationItem.title = user.username;
+        self.navigationItem.title = user.nickname;
 
         // 头像
         CGFloat x = 10;
@@ -96,6 +96,8 @@
 
         NSString *url = [NSString stringWithFormat:@"%@%@", USER_ICON_URL,user.icon];
         [icon sd_setImageWithURL:[NSURL URLWithString: url] placeholderImage:[UIImage imageNamed:@"avatar_default_small"] options:SDWebImageRefreshCached];
+        
+        HLLog(@"url:%@", url);
         
         icon.frame = CGRectMake(x, y, width, width);
         self.icon = icon;

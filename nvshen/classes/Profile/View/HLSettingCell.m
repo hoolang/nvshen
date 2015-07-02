@@ -93,6 +93,7 @@
         
         HLSettingLabelItem *labelItem = (HLSettingLabelItem *)_item;
         self.labelView.text = labelItem.text;
+        self.labelView.font = [UIFont systemFontOfSize:12];
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
     }else{
         self.accessoryView = nil;
@@ -145,6 +146,7 @@
 - (void)setSubViews
 {
     self.textLabel.backgroundColor = [UIColor clearColor];
+    self.textLabel.font = [UIFont systemFontOfSize:12];
     self.detailTextLabel.backgroundColor = [UIColor clearColor];
 }
 
@@ -160,9 +162,6 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-
 }
-
 
 @end

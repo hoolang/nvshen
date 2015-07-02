@@ -337,7 +337,7 @@ UITableViewDataSource
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     //params[@"access_token"] = [HWAccountTool account].access_token;
     params[@"comments.comment"] = self.toolbar.textView.text;
-    params[@"user.name"] = [HLUserInfo sharedHLUserInfo].user;
+    params[@"user.username"] = [HLUserInfo sharedHLUserInfo].user;
     params[@"post.pid"] = _status.posts.pid;
     
     // 3.发送请求
@@ -383,7 +383,7 @@ UITableViewDataSource
 - (void)pushToChatViewContrller:(HLStatus *) status{
     HLChatViewController *chatView = [[HLChatViewController alloc] init];
     
-    XMPPJID *jid = [XMPPJID jidWithString:[status.posts.user.name stringByAppendingString:@"@nvshen"]];
+    XMPPJID *jid = [XMPPJID jidWithString:[status.posts.user.username stringByAppendingString:@"@nvshen"]];
     chatView.friendJid = jid;
     chatView.title = @"私聊";
     

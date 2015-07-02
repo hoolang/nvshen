@@ -25,7 +25,6 @@
 #import "HLXMPPTool.h"
 #import "CategoryWF.h"
 
-
 //版本>=IOS7
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 // 系统屏幕宽度
@@ -54,6 +53,10 @@
 #define HL_UPDATE_AVATAR_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateAvatar.json"
 // 更新简介
 #define HL_UPDATE_TEXT_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateText.json"
+// 更新地区
+#define HL_UPDATE_LOCAL_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateLocal.json"
+// 更新性别
+#define HL_UPDATE_SEX_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateSex.json"
 // 查找一个用户的信息
 #define HL_ONE_USER_URL @"http://192.168.168.188:8008/nvshen/nsjson/selectByName.json"
 // 评论

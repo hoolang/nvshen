@@ -121,7 +121,7 @@
         HLLog(@"请求失败-%@", error);
         
         // 结束刷新刷新
-        //[self.tableView headerEndRefreshing];
+        [self.tableView headerEndRefreshing];
     }];
 }
 
@@ -314,14 +314,14 @@
 - (void)pushToChatViewContrller:(HLStatus *) status{
     HLChatViewController *chatView = [[HLChatViewController alloc] init];
     
-    if([status.posts.user.name isEqualToString:[HLUserInfo sharedHLUserInfo].user])
+    if([status.posts.user.username isEqualToString:[HLUserInfo sharedHLUserInfo].user])
     {
         [MBProgressHUD showError:@"不能和自己聊天！"];
         return;
     }
-    XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@", status.posts.user.name, domain]];
+    XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@", status.posts.user.username, domain]];
     chatView.friendJid = jid;
-    chatView.title = status.posts.user.username;
+    chatView.title = status.posts.user.nickname;
     
     [self.navigationController pushViewController:chatView animated:YES];
 }

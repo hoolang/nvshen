@@ -30,23 +30,21 @@
 
 
 -(void)viewDidLoad{
-    HLLog(@"chat list didload");
     [super viewDidLoad];
     
     self.navigationItem.leftBarButtonItem =     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
     
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if (!self.didLoad){
+    HLLog(@"viewWillAppear");
+    if (self.didLoad == NO){
         [self loadFriends2];
-    }else{
-        return;
     }
 }
 
 -(void)loadFriends2{
+    HLLog(@"chat list didload");
     
     //使用CoreData获取数据
     // 1.上下文【关联到数据库XMPPRoster.sqlite】
@@ -58,7 +56,9 @@
     // 3.设置过滤和排序
     // 过滤当前登录用户的好友
     NSString *jid = [HLUserInfo sharedHLUserInfo].jid;
+    
     HLLog(@"jid :::::::: %@", jid);
+    
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"streamBareJidStr = %@",jid];
     request.predicate = pre;
     
@@ -78,6 +78,7 @@
     }
     HLLog(@"_resultsContrl.fetchedObjects %@", _resultsContrl.fetchedObjects);
     
+    [self.tableView reloadData];
     self.didLoad = YES;
 }
 
@@ -110,7 +111,7 @@
     
     // 4.执行请求获取数据
     self.friends = [context executeFetchRequest:request error:nil];
-    HLLog(@"%@",self.friends);
+    //HLLog(@"%@",self.friends);
     
 }
 

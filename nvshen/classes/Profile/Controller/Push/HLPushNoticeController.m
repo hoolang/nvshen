@@ -42,7 +42,7 @@
 {
     
     // 0组
-    HLSettingArrowItem *push = [HLSettingArrowItem itemWithIcon:nil title:@"开奖号码推送" destVcClass:nil];
+    HLSettingArrowItem *push = [HLSettingArrowItem itemWithIcon:nil title:@"接收好友信息提醒" destVcClass:nil];
     
     
     HLSettingItem *anim = [HLSettingArrowItem itemWithIcon:nil title:@"中奖动画"];

@@ -44,8 +44,8 @@
     // 2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"user.uid"] = self.uid;
-    params[@"user.name"] = [HLUserInfo sharedHLUserInfo].user;
-    params[@"user.username"] = [[self.nicknameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
+    params[@"user.username"] = [HLUserInfo sharedHLUserInfo].user;
+    params[@"user.nickname"] = [[self.nicknameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
 
     [MBProgressHUD showMessage:@"正在保存..."];
     // 3.发送请求

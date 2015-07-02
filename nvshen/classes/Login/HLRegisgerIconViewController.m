@@ -7,7 +7,7 @@
 //
 
 #import "HLRegisgerIconViewController.h"
-#import "MLImageCrop.h"
+#import "HLImageCrop.h"
 #import "MBProgressHUD+MJ.h"
 #import "AFNetworking.h"
 #import "HLMD5.h"
@@ -21,7 +21,7 @@
 @interface HLRegisgerIconViewController()
 <UITextFieldDelegate,
 UIActionSheetDelegate,
-MLImageCropDelegate,
+HLImageCropDelegate,
 UIImagePickerControllerDelegate,
 UINavigationControllerDelegate
 >
@@ -128,8 +128,8 @@ UINavigationControllerDelegate
         // 2.拼接请求参数
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         
-        params[@"user.name"] = [[_username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
         params[@"user.username"] = [[_username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
+        params[@"user.nickname"] = [[_username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
         params[@"user.password"] = [HLMD5 md5:_pwdField.text];
         params[@"user.sex"] = _sex;
         
@@ -262,17 +262,15 @@ UINavigationControllerDelegate
  */
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    //[picker dismissViewControllerAnimated:YES completion:nil];
-    
-    // info中就包含了选择的图片
+
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
-    MLImageCrop *imageCrop = [[MLImageCrop alloc]init];
+    HLImageCrop *imageCrop = [[HLImageCrop alloc]init];
     imageCrop.ratioOfWidthAndHeight = 500.0f/500.0f;
     imageCrop.image = image;
     imageCrop.delegate = self;
     
-    [imageCrop showWithAnimation:YES];
+    [picker pushViewController:imageCrop animated:YES];
 
 }
 

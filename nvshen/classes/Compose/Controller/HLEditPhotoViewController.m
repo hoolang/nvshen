@@ -8,7 +8,7 @@
 
 #import "HLEditPhotoViewController.h"
 #import "AssetHelper.h"
-#import "MLImageCrop.h"
+#import "HLImageCrop.h"
 #import "HLPostViewController.h"
 
 
@@ -49,6 +49,8 @@
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(back) image:@"navigationbar_back" highImage:@"navigationbar_back_highlighted"];
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(next) image:@"navigationbar_back" highImage:@"navigationbar_back_highlighted"];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStylePlain target:self action:@selector(next)];
 
     UIImageView *imageV = [[UIImageView alloc]init];
     

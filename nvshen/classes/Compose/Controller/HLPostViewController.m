@@ -28,7 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(send) image:@"navigationbar_back" highImage:@"navigationbar_back_highlighted"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(send)];
+                                             // itemWithTarget:self action:@selector(send) image:@"navigationbar_back" highImage:@"navigationbar_back_highlighted"];
   
     HLEmotionTextView *textView = [[HLEmotionTextView alloc] init];
     // 垂直方向上可以拖拽

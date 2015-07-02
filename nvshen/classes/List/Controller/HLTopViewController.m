@@ -60,6 +60,8 @@ HLTopPostsCellDelegate
     
     [self setupView];
     
+    [self setupDownRefresh];
+    
     // 注册通知
     [HLNotificationCenter addObserver:self selector:@selector(clickScrollView:) name:@"clickTopScrollViewNotification" object:nil];
 }
@@ -68,7 +70,10 @@ HLTopPostsCellDelegate
     // 判断是否已经加载数据
     if (!self.didLoad) {
         // 还没有加载就调用此方法
-        [self setupDownRefresh];
+        [self loadPostData];
+        
+        // 1.添加刷新控件
+        [self.tableView addHeaderWithTarget:self action:@selector(loadPostData)];
     }
     
 }
@@ -78,17 +83,17 @@ HLTopPostsCellDelegate
  */
 - (void)setupDownRefresh
 {
-    // 1.添加刷新控件
-    //    [self.tableView addHeaderWithTarget:self action:@selector(loadPostData)];
-    [self loadPostData];
-    // 2.进入刷新状态
-    [self.tableView headerBeginRefreshing];
+    // 如果didLoad为yes 表示进入top页面，可以下拉刷新
+    if (self.didLoad) {
+        
+        // 2.进入刷新状态
+        [self.tableView headerBeginRefreshing];
+    }
 }
 - (void)loadPostData
 {
     HLLog(@"TOP View ->>>> loadData");
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"uid"] = @1;
     
     // 2.发送请求
     [HLHttpTool get:HL_TOP_LATEST_POSTS_URL
@@ -102,7 +107,7 @@ HLTopPostsCellDelegate
                  NSArray *mostCommentPosts = [HLStatus objectArrayWithKeyValuesArray:json[@"mostCommentsPosts"]];
                  NSArray *mostLikePosts = [HLStatus objectArrayWithKeyValuesArray:json[@"mostLikesPosts"]];
                  
-                 //将 HWStatus数组 转为 HWStatusFrame数组
+                 //将 HLStatus数组 转为 HLStatusFrame数组
                  NSArray *latestUserPostsFrame = [self topFramesWithPosts:latestsUserPosts];
                  NSArray *mostCommentsFrame = [self topFramesWithPosts:mostCommentPosts];
                  NSArray *mostLikesPostsFrame = [self topFramesWithPosts:mostLikePosts];
@@ -111,16 +116,15 @@ HLTopPostsCellDelegate
                  self.mostCommentsFrame = mostCommentsFrame;
                  self.mostLikeFrame = mostLikesPostsFrame;
                  
-                 //HLTopPostsFrame *topPostsFrame = self.mostCommentsFrame[0];
-                 //HLStatus *topPosts = topPostsFrame.topPosts;
-                 //HLLog(@"========load topPosts.posts.photo %@", topPosts.posts.photo);
-                 
-                 //HLLog(@"HLTOPVIEW %@", json);
                  // 刷新表格
                  [self.tableView reloadData];
+                 // 结束刷新(隐藏footer)
+                 [self.tableView headerEndRefreshing];
                  
              } failure:^(NSError *error) {
                  HLLog(@"请求失败-%@", error);
+                 // 结束刷新(隐藏footer)
+                 [self.tableView headerEndRefreshing];
              }];
 }
 

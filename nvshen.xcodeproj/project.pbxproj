@@ -361,7 +361,6 @@
 		E0B5EA4B1B04A1E20086BC03 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA401B04A1E20086BC03 /* up.png */; };
 		E0B5EA4C1B04A1E20086BC03 /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA411B04A1E20086BC03 /* up@2x.png */; };
 		E0D099041B06EE1F004B447C /* 1111.png in Resources */ = {isa = PBXBuildFile; fileRef = E0D099031B06EE1F004B447C /* 1111.png */; };
-		E0D099081B075183004B447C /* MLImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D099071B075183004B447C /* MLImageCrop.m */; };
 		E0D9226B1AFC9C5A00AE9948 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0D922691AFC9C5A00AE9948 /* Main.storyboard */; };
 		E0D9226D1AFC9C5A00AE9948 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0D9226C1AFC9C5A00AE9948 /* Images.xcassets */; };
 		E0D922701AFC9C5A00AE9948 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0D9226E1AFC9C5A00AE9948 /* LaunchScreen.xib */; };
@@ -376,6 +375,8 @@
 		E0E75ABE1B00353400D60497 /* HLComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E75ABD1B00353400D60497 /* HLComposeViewController.m */; };
 		E0E84D961B2FDB610061639A /* UIImage+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E84D951B2FDB610061639A /* UIImage+Circle.m */; };
 		E0E84D991B2FFD990061639A /* HLCircleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E84D981B2FFD990061639A /* HLCircleImage.m */; };
+		E0EC3C101B3DB94500BADFD9 /* UIImage+HLImageCrop_Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EC3C0F1B3DB94500BADFD9 /* UIImage+HLImageCrop_Addition.m */; };
+		E0EC3C131B3DB96600BADFD9 /* HLImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EC3C121B3DB96600BADFD9 /* HLImageCrop.m */; };
 		E0EE93171B2537D800C9C1DE /* HLTopPostsCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE93151B2537D800C9C1DE /* HLTopPostsCategoryCell.m */; };
 		E0EE931B1B2537E900C9C1DE /* HLWaterflowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE931A1B2537E900C9C1DE /* HLWaterflowLayout.m */; };
 		E0EE93231B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EE93221B2540BE00C9C1DE /* HLTopPostsCategoryFrame.m */; };
@@ -1048,8 +1049,6 @@
 		E0B5EA401B04A1E20086BC03 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
 		E0B5EA411B04A1E20086BC03 /* up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up@2x.png"; sourceTree = "<group>"; };
 		E0D099031B06EE1F004B447C /* 1111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1111.png; sourceTree = "<group>"; };
-		E0D099061B075183004B447C /* MLImageCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLImageCrop.h; sourceTree = "<group>"; };
-		E0D099071B075183004B447C /* MLImageCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLImageCrop.m; sourceTree = "<group>"; };
 		E0D9225C1AFC9C5A00AE9948 /* nvshen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nvshen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D922601AFC9C5A00AE9948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0D9226A1AFC9C5A00AE9948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1078,6 +1077,10 @@
 		E0E84D951B2FDB610061639A /* UIImage+Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Circle.m"; sourceTree = "<group>"; };
 		E0E84D971B2FFD990061639A /* HLCircleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCircleImage.h; sourceTree = "<group>"; };
 		E0E84D981B2FFD990061639A /* HLCircleImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCircleImage.m; sourceTree = "<group>"; };
+		E0EC3C0E1B3DB94500BADFD9 /* UIImage+HLImageCrop_Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+HLImageCrop_Addition.h"; sourceTree = "<group>"; };
+		E0EC3C0F1B3DB94500BADFD9 /* UIImage+HLImageCrop_Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+HLImageCrop_Addition.m"; sourceTree = "<group>"; };
+		E0EC3C111B3DB96600BADFD9 /* HLImageCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLImageCrop.h; sourceTree = "<group>"; };
+		E0EC3C121B3DB96600BADFD9 /* HLImageCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLImageCrop.m; sourceTree = "<group>"; };
 		E0EE93141B2537D800C9C1DE /* HLTopPostsCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopPostsCategoryCell.h; sourceTree = "<group>"; };
 		E0EE93151B2537D800C9C1DE /* HLTopPostsCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPostsCategoryCell.m; sourceTree = "<group>"; };
 		E0EE93191B2537E900C9C1DE /* HLWaterflowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLWaterflowLayout.h; sourceTree = "<group>"; };
@@ -2228,10 +2231,10 @@
 		E013C8CC1B2A1DE90068CEE8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E013C6BA1B2A035C0068CEE8 /* HLAddFriendViewController.h */,
-				E013C6BB1B2A035C0068CEE8 /* HLAddFriendViewController.m */,
 				E013C8CD1B2A1EB40068CEE8 /* HLChatListViewController.h */,
 				E013C8CE1B2A1EB40068CEE8 /* HLChatListViewController.m */,
+				E013C6BA1B2A035C0068CEE8 /* HLAddFriendViewController.h */,
+				E013C6BB1B2A035C0068CEE8 /* HLAddFriendViewController.m */,
 				E013C6BC1B2A035C0068CEE8 /* HLChatViewController.h */,
 				E013C6BD1B2A035C0068CEE8 /* HLChatViewController.m */,
 				E013C6CB1B2A035C0068CEE8 /* HLChatProfileViewController.h */,
@@ -2279,7 +2282,6 @@
 		E081D6F21B021612005E42F1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				E0D099051B075183004B447C /* MLImageCrop */,
 				E0B5EA221B04A1CB0086BC03 /* DoImagePicker */,
 			);
 			path = Lib;
@@ -2490,6 +2492,10 @@
 		E0ABA5731B136DC500C5CE4C /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				E0EC3C111B3DB96600BADFD9 /* HLImageCrop.h */,
+				E0EC3C121B3DB96600BADFD9 /* HLImageCrop.m */,
+				E0EC3C0E1B3DB94500BADFD9 /* UIImage+HLImageCrop_Addition.h */,
+				E0EC3C0F1B3DB94500BADFD9 /* UIImage+HLImageCrop_Addition.m */,
 				E0ABA5741B136DC500C5CE4C /* HLHttpTool.h */,
 				E00156931B31517C00851105 /* HLMD5.h */,
 				E00156941B31517C00851105 /* HLMD5.m */,
@@ -2544,15 +2550,6 @@
 				E0B5EA411B04A1E20086BC03 /* up@2x.png */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		E0D099051B075183004B447C /* MLImageCrop */ = {
-			isa = PBXGroup;
-			children = (
-				E0D099061B075183004B447C /* MLImageCrop.h */,
-				E0D099071B075183004B447C /* MLImageCrop.m */,
-			);
-			path = MLImageCrop;
 			sourceTree = "<group>";
 		};
 		E0D922531AFC9C5A00AE9948 = {
@@ -3094,6 +3091,7 @@
 				E013C86B1B2A0AC10068CEE8 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				E0072F141B123BA800AAC6F5 /* UIView+WebCacheOperation.m in Sources */,
 				E07B3B331B206288000BC81A /* HLTopPostsFrame.m in Sources */,
+				E0EC3C131B3DB96600BADFD9 /* HLImageCrop.m in Sources */,
 				E013C8911B2A0AC10068CEE8 /* XMPPMessage+XEP_0184.m in Sources */,
 				E0072F091B123BA800AAC6F5 /* SDWebImageDecoder.m in Sources */,
 				E0038E6D1B12342F00E4924F /* HLProductViewController.m in Sources */,
@@ -3249,7 +3247,6 @@
 				E013C8A81B2A0AC10068CEE8 /* DDASLLogger.m in Sources */,
 				E0072F0E1B123BA800AAC6F5 /* UIButton+WebCache.m in Sources */,
 				E013C8991B2A0AC10068CEE8 /* XEP_0223.m in Sources */,
-				E0D099081B075183004B447C /* MLImageCrop.m in Sources */,
 				E07B3B3C1B208C98000BC81A /* HLTopPhotosView.m in Sources */,
 				E013C83F1B2A0AC10068CEE8 /* XMPPElement.m in Sources */,
 				E013C8C61B2A0BF10068CEE8 /* UITextField+WF.m in Sources */,
@@ -3290,6 +3287,7 @@
 				E013C8771B2A0AC10068CEE8 /* NSXMLElement+XEP_0059.m in Sources */,
 				E013C6D41B2A035C0068CEE8 /* HLAddFriendViewController.m in Sources */,
 				E013C84C1B2A0AC10068CEE8 /* XMPPGroupCoreDataStorageObject.m in Sources */,
+				E0EC3C101B3DB94500BADFD9 /* UIImage+HLImageCrop_Addition.m in Sources */,
 				E0EE93171B2537D800C9C1DE /* HLTopPostsCategoryCell.m in Sources */,
 				E0072EE01B123BA100AAC6F5 /* NSObject+MJCoding.m in Sources */,
 				E0072F131B123BA800AAC6F5 /* UIImageView+WebCache.m in Sources */,

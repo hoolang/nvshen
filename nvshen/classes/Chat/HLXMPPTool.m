@@ -87,6 +87,7 @@ singleton_implementation(HLXMPPTool)
     
     // 设置代理
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    [_roster addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
 
 #pragma mark 释放xmppStream相关的资源
@@ -138,7 +139,7 @@ singleton_implementation(HLXMPPTool)
         user = [HLUserInfo sharedHLUserInfo].user;
     }
     
-    XMPPJID *myJID = [XMPPJID jidWithUser:user domain:@"nvshen.com" resource:@"iphone" ];
+    XMPPJID *myJID = [XMPPJID jidWithUser:user domain:domain resource:@"iphone" ];
     _xmppStream.myJID = myJID;
     
     // 设置服务器域名
@@ -357,6 +358,24 @@ singleton_implementation(HLXMPPTool)
     [self connectToHost];
 }
 
+//处理加好友
+#pragma mark 处理加好友回调,加好友
+- (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
+{
+    
+    //取得好友状态
+    NSString *presenceType = [NSString stringWithFormat:@"%@", [presence type]]; //online/offline
+    //请求的用户
+    NSString *presenceFromUser =[NSString stringWithFormat:@"%@", [[presence from] user]];
+    HLLog(@"presenceType:%@",presenceType);
+    
+    HLLog(@"presence2:%@  sender2:%@",presence,sender);
+    
+    XMPPJID *jid = [XMPPJID jidWithString:presenceFromUser];
+    HLLog(@"接收到好友请求: %@", jid);
+    [_roster acceptPresenceSubscriptionRequestFrom:jid andAddToRoster:YES];
+    
+}
 
 -(void)dealloc{
     [self teardownXmpp];

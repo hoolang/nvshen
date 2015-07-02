@@ -8,7 +8,7 @@
 
 #import "HLProfileEditViewController.h"
 #import "NSString+Extension.h"
-#import "MLImageCrop.h"
+#import "HLImageCrop.h"
 #import "UIImage+Circle.h"
 #import "HLEditNickNameViewController.h"
 #import "HLProfileEditTextViewController.h"
@@ -41,7 +41,7 @@ UITableViewDelegate,
 UITableViewDataSource,
 UITextFieldDelegate,
 UIActionSheetDelegate,
-MLImageCropDelegate,
+HLImageCropDelegate,
 UIImagePickerControllerDelegate,
 UINavigationControllerDelegate,
 HLEditNickNameDelegate,
@@ -56,9 +56,51 @@ UIPickerViewDelegate
 @property (nonatomic, strong) NSArray *cities;
 @property (nonatomic,assign) NSInteger provinceIndex;  // 选中城市索引 ProvinceName
 
+/** 垃圾变量 以后要改的 */
+@property (nonatomic, strong) UILabel *avatarLine;
+@property (nonatomic, strong) UILabel *nickLine;
+@property (nonatomic, strong) UILabel *sexLine;
+@property (nonatomic, strong) UILabel *localLine;
+
 @end
 
 @implementation HLProfileEditViewController
+- (UILabel *)avatarLine
+{
+    if (_avatarLine == nil) {
+        _avatarLine = [[UILabel alloc] init];
+        _avatarLine.backgroundColor = HLColor(188, 188, 188);
+        _avatarLine.frame = CGRectMake(10, 64, ScreenWidth - 20, 0.2);
+    }
+    return _avatarLine;
+}
+- (UILabel *)nickLine
+{
+    if (_nickLine == nil) {
+        _nickLine = [[UILabel alloc] init];
+        _nickLine.backgroundColor = HLColor(188, 188, 188);
+        _nickLine.frame = CGRectMake(10, 44, ScreenWidth - 20, 0.2);
+    }
+    return _nickLine;
+}
+- (UILabel *)sexLine
+{
+    if (_sexLine == nil) {
+        _sexLine = [[UILabel alloc] init];
+        _sexLine.backgroundColor = HLColor(200, 200, 200);
+        _sexLine.frame = CGRectMake(10, 44, ScreenWidth - 20, 0.2);
+    }
+    return _sexLine;
+}
+- (UILabel *)localLine
+{
+    if (_localLine == nil) {
+        _localLine = [[UILabel alloc] init];
+        _localLine.backgroundColor = HLColor(200, 200, 200);
+        _localLine.frame = CGRectMake(10, 44, ScreenWidth - 20, 0.2);
+    }
+    return _localLine;
+}
 
 -(NSArray *)provinces{
     if (_provinces == nil) {
@@ -73,11 +115,8 @@ UIPickerViewDelegate
             [provincesM addObject:province];
             
         }
-        
         _provinces = provincesM;
-        
     }
-    
     return _provinces;
 }
 
@@ -85,6 +124,7 @@ UIPickerViewDelegate
     [super viewDidLoad];
     self.title = @"编辑资料";
     self.view.backgroundColor = HLColor(239, 239, 239);
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] init];
 
     [self setupView];
     [self loadUserInfo];
@@ -115,7 +155,7 @@ UIPickerViewDelegate
      */
     // 1.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"user.name"] = [HLUserInfo sharedHLUserInfo].user;
+    params[@"user.username"] = [HLUserInfo sharedHLUserInfo].user;
     
     // 2.发送请求
     [HLHttpTool get:HL_ONE_USER_URL params:params success:^(id json) {
@@ -152,11 +192,21 @@ UIPickerViewDelegate
     label.text = text;
     label.textColor = [UIColor grayColor];
     label.font = [UIFont systemFontOfSize:12];
+    [label setNumberOfLines:0];
+    
     CGSize size =  [text sizeWithFont:[UIFont systemFontOfSize:12]];
-    CGFloat width = size.width;
+    
+    //CGFloat defaultWidth = (ScreenWidth - 100 - 20);
+    CGFloat width = size.width ;
     CGFloat height = size.height;
     
-    label.frame = CGRectMake(100, (cellHeight - height) * 0.5, width , height);
+    HLLog(@"height %f", height);
+    // 如果文本的宽度大于cell的宽度
+    CGFloat y = cellHeight > height ? (cellHeight - height) * 0.5 : 0;
+    
+    
+    
+    label.frame = CGRectMake(100, y, width , height);
     
     return label;
 }
@@ -188,6 +238,9 @@ UIPickerViewDelegate
             self.avatarLabel = [self cellLabel:@"修改头像" cellHeight:64];
             
             [cell addSubview:self.avatarLabel];
+            
+            [cell addSubview:self.avatarLine];
+            
         }
             break;
         case nicknameLabel:
@@ -196,9 +249,11 @@ UIPickerViewDelegate
             // 移除上一次的label
             [self.nicknameLabel removeFromSuperview];
             
-            self.nicknameLabel = [self cellLabel:_user.username cellHeight:cell.height];
+            self.nicknameLabel = [self cellLabel:self.user.nickname cellHeight:cell.height];
             
             [cell addSubview:self.nicknameLabel];
+            
+            [cell addSubview:self.nickLine];
             
         }
             break;
@@ -208,10 +263,12 @@ UIPickerViewDelegate
             [self.sexLabel removeFromSuperview];
             
             cell.textLabel.text = @"性别";
-
-            self.sexLabel = [self cellLabel:_user.sex cellHeight:cell.height];
+            
+            self.sexLabel = [self cellLabel:self.user.sex cellHeight:cell.height];
             
             [cell addSubview:self.sexLabel];
+            
+            [cell addSubview:self.sexLine];
 
         }
             break;
@@ -221,9 +278,11 @@ UIPickerViewDelegate
             
             cell.textLabel.text = @"所在地";
         
-            self.localLabel = [self cellLabel:[NSString stringWithFormat:@"%@-%@",_user.province, _user.city] cellHeight:cell.height];
+            self.localLabel = [self cellLabel:[NSString stringWithFormat:@"%@-%@",self.user.province, self.user.city] cellHeight:cell.height];
             
             [cell addSubview:self.localLabel];
+            
+            [cell addSubview:self.localLine];
             
             return cell;
         }
@@ -234,21 +293,9 @@ UIPickerViewDelegate
             
             [self.text removeFromSuperview];
             
-            self.text = [self cellLabel:_user.text cellHeight:cell.height];
+            self.text = [self cellLabel:self.user.text cellHeight:cell.height];
             
             [self.text setNumberOfLines:0];
-            
-            self.text.frame = CGRectMake(100, 10, ScreenWidth - 100 - 20, 100);
-            
-//            [self cellLabel:_user.text cellHeight:cell.height];
-//            
-//            self.textView.text = _user.text;
-//            
-//            self.textView.font = [UIFont systemFontOfSize:12];
-//            
-//            self.textView.textColor = [UIColor grayColor];
-//            
-//            self.textView.editable = NO;
             
             [cell addSubview:self.text];
             
@@ -276,10 +323,16 @@ UIPickerViewDelegate
         case text:
         {
             CGSize size =  [_user.text sizeWithFont:[UIFont systemFontOfSize:12]];
-
-            return size.height + 10;
-            break;
+            CGFloat height = size.height + 10;
+            
+            if (height < 44) {
+                return 44;
+            }
+            
+            return size.height;
         }
+        break;
+            
         default:
             return 44;
             break;
@@ -292,7 +345,9 @@ UIPickerViewDelegate
     switch (indexPath.row) {
         case avatar:
         {
-
+            // 隐藏pickerview
+            [self hidePickerView];
+            
             UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                           initWithTitle:nil
                                           delegate:self
@@ -306,19 +361,22 @@ UIPickerViewDelegate
             break;
         case nicknameLabel:
         {
+            // 隐藏pickerview
+            [self hidePickerView];
+            
             HLEditNickNameViewController *nicknameVC = [[HLEditNickNameViewController alloc] init];
-            nicknameVC.nickname = _user.username;
-            nicknameVC.uid = _user.uid;
+            nicknameVC.nickname = self.user.nickname;
+            nicknameVC.uid = self.user.uid;
             nicknameVC.delegate = self;
             [self.navigationController pushViewController:nicknameVC animated:YES];
-            
         }
             break;
         case sexLabel:
         {
-
-            [self setupSex];
+            // 隐藏pickerview
+            [self hidePickerView];
             
+            [self setupSex];
         }
             break;
         case local:
@@ -328,7 +386,9 @@ UIPickerViewDelegate
             break;
         case text:
         {
-
+            // 隐藏pickerview
+            [self hidePickerView];
+            
             HLProfileEditTextViewController *textVC = [[HLProfileEditTextViewController alloc] init];
             textVC.text = _user.text;
             textVC.uid = _user.uid;
@@ -340,6 +400,9 @@ UIPickerViewDelegate
         default:
             break;
     }
+    // 取消选中状态
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
 }
 
 /** 设置性别 */
@@ -380,15 +443,14 @@ UIPickerViewDelegate
 #pragma mark -HLProfileEditTextDelegate
 - (void)reloadText:(NSString *)text
 {
-    _user.text = text;
+    self.user.text = text;
     [self.tableView reloadData];
 }
 
 #pragma mark - HLEditNickNameDelegate
 - (void)reloadNickname:(NSString *)nickname
 {
-    _user.username = nickname;
-    
+    self.user.nickname = nickname;
     [self.tableView reloadData];
 }
 
@@ -404,8 +466,8 @@ UIPickerViewDelegate
     
     // 2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"user.uid"] = _user.uid;
-    params[@"user.name"] = [HLUserInfo sharedHLUserInfo].user;
+    params[@"user.uid"] = self.user.uid;
+    params[@"user.username"] = [HLUserInfo sharedHLUserInfo].user;
 
     // 3.发送请求
     [mgr POST:HL_UPDATE_AVATAR_USER parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -439,19 +501,54 @@ UIPickerViewDelegate
     // info中就包含了选择的图片
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
-    MLImageCrop *imageCrop = [[MLImageCrop alloc]init];
-    imageCrop.ratioOfWidthAndHeight = 500.0f/500.0f;
+    HLImageCrop *imageCrop = [[HLImageCrop alloc]init];
+    imageCrop.ratioOfWidthAndHeight = 1.0f;
     imageCrop.image = image;
     imageCrop.delegate = self;
-    
-    [imageCrop showWithAnimation:YES];
-    
+
+
+    [picker pushViewController:imageCrop animated:YES];
 }
 /** 相册取消操作 */
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
+
+/** 保存性别 */
+- (void)updateSex
+{
+    //
+    HLLog(@"%s", __func__);
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    //设置响应内容类型
+    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    // 2.拼接请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"user.uid"] = self.user.uid;
+    params[@"user.sex"] = _user.sex;
+    
+    //    NSRange rang = [self.localLabel.text rangeOfString:@"-"];
+    //    params[@"user.province"] = [self.localLabel.text substringToIndex:rang.location];
+    //    params[@"user.city"] = [self.localLabel.text substringFromIndex:rang.location + 1];
+    
+    [MBProgressHUD showMessage:@"正在保存..."];
+    // 3.发送请求
+    [mgr POST:HL_UPDATE_SEX_USER parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+    } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showSuccess:@"性别已修改成功"];
+        [self.tableView reloadData];
+        [self hidePickerView];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"网络异常，请稍后再试！"];
+    }];
+}
+
 #pragma mark - UIActionSheetDelegate
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -465,12 +562,12 @@ UIPickerViewDelegate
     }else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"男"]){
         // 设置性别：男
         _user.sex = @"男";
-        [self.tableView reloadData];
+        [self updateSex];
         
     }else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"女"]){
         // 设置性别：女
         _user.sex = @"女";
-        [self.tableView reloadData];
+        [self updateSex];
     }
     
 }
@@ -487,6 +584,17 @@ UIPickerViewDelegate
     
 }
 
+/** 隐藏PickeView */
+- (void)hidePickerView
+{
+    for ( UIView *view in [self.view subviews]) {
+        //HLLog(@"view %@", view);
+        if(view.tag == 1){
+            view.hidden = YES;
+            return;
+        }
+    }
+}
 
 /** 地区选择器*/
 - (void)setPickerViewFrame{
@@ -500,20 +608,107 @@ UIPickerViewDelegate
             }
         }
     }else{
+        // 容器
+        UIView *containV = [[UIView alloc] init];
+        containV.tag = 1;
+        containV.frame = CGRectMake(0, ScreenHeight - 216 - 44, ScreenWidth, 216 + 44);
+        containV.backgroundColor = HLColor(239, 239, 239);
+        [self.view addSubview:containV];
+        
+        // 顶部按钮容器
+        UIView *comfirm = [[UIView alloc] init];
+        CGFloat height = 44;
+        comfirm.frame = CGRectMake(0, 0, ScreenWidth, height);
+        comfirm.backgroundColor = HLColor(239, 239, 239);
+        
+        // 取消按钮
+        UIButton *cancelBtn = [[UIButton alloc] init];
+        
+        cancelBtn.frame = CGRectMake(0, 0, 60, 44);
+        
+        cancelBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        
+        [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        
+        [cancelBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        
+        [cancelBtn addTarget:self action:@selector(cancelPickerView) forControlEvents:UIControlEventTouchUpInside];
+        
+        [comfirm addSubview:cancelBtn];
+        
+        // 确认按钮
+        UIButton *comfirmBtn = [[UIButton alloc] init];
+        
+        comfirmBtn.frame = CGRectMake(ScreenWidth - 60, 0, 60, 44);
+        
+        comfirmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        
+        [comfirmBtn setTitle:@"保存" forState:UIControlStateNormal];
+        
+        [comfirmBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        
+        [comfirmBtn addTarget:self action:@selector(comfirmPickerView) forControlEvents:UIControlEventTouchUpInside];
+        
+        [comfirm addSubview:comfirmBtn];
+        
+        // 地区选择器
         UIPickerView *pickerV = [[UIPickerView alloc] init];
-        pickerV.frame = CGRectMake(0, ScreenHeight - 216, ScreenWidth, 216);
+        pickerV.frame = CGRectMake(0, CGRectGetMaxY(comfirm.frame), ScreenWidth, 216);
         pickerV.delegate = self;
-        pickerV.tag = 1;
         pickerV.dataSource = self;
+        pickerV.backgroundColor = [UIColor whiteColor];
+        [pickerV setTintColor:[UIColor grayColor]];
         [pickerV reloadAllComponents];
         self.pickerV = pickerV;
         
-        [self.view addSubview:pickerV];
+        [containV addSubview:comfirm];
+        [containV addSubview:pickerV];
         
         [self.view reloadInputViews];
     }
     
 }
+- (void)cancelPickerView
+{
+    // 隐藏pickerview
+    [self hidePickerView];
+}
+
+- (void)comfirmPickerView
+{
+    //
+    HLLog(@"%s", __func__);
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    //设置响应内容类型
+    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    // 2.拼接请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"user.uid"] = self.user.uid;
+    params[@"user.province"] = self.user.province;
+    params[@"user.city"] = self.user.city;
+    
+//    NSRange rang = [self.localLabel.text rangeOfString:@"-"];
+//    params[@"user.province"] = [self.localLabel.text substringToIndex:rang.location];
+//    params[@"user.city"] = [self.localLabel.text substringFromIndex:rang.location + 1];
+    
+    [MBProgressHUD showMessage:@"正在保存..."];
+    // 3.发送请求
+    [mgr POST:HL_UPDATE_LOCAL_USER parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+    } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showSuccess:@"地区已修改成功"];
+        [self.tableView reloadData];
+        [self hidePickerView];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"网络异常，请稍后再试！"];
+    }];
+    
+}
+
 #pragma mark - PickerViewDelegate
 // returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -550,14 +745,17 @@ UIPickerViewDelegate
     if (component == 0) {
         HLProvinces *province = self.provinces[row];
         label.text = province.name;
+        _user.province = province.name;
         //label.bounds = CGRectMake(0, 0, 150, 30);
     }else{//显示城市
         //默认是第一城市
         HLProvinces *province = self.provinces[self.provinceIndex];
         label.text = province.cities[row];
+        _user.city = province.cities[row];
     }
     
-    label.backgroundColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:12];
     return label;
     
 }

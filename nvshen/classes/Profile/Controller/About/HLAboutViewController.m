@@ -22,7 +22,6 @@
 @implementation HLAboutViewController
 
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,19 +36,17 @@
 
 - (void)addGroup0
 {
-    
     // 0组
     HLSettingArrowItem *score = [HLSettingArrowItem itemWithIcon:nil title:@"评分支持" destVcClass:nil];
     
     
     HLSettingItem *tel = [HLSettingArrowItem itemWithIcon:nil title:@"客服电话"];
-    tel.subTitle = @"020-83568090";
+    tel.subTitle = @"15818587820";
     
     HLSettingGroup *group0 = [[HLSettingGroup alloc] init];
     group0.items = @[score,tel];
     
     [self.dataList addObject:group0];
-    
 }
 
 

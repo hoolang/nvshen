@@ -11,10 +11,16 @@
 #import "DoAlbumCell.h"
 #import "DoPhotoCell.h"
 #import "HLEditPhotoViewController.h"
-#import "MLImageCrop.h"
+#import "HLImageCrop.h"
 
-@interface DoImagePickerController()<MLImageCropDelegate>
+@interface DoImagePickerController()
+<
+HLImageCropDelegate,
+UINavigationControllerDelegate,
+UIImagePickerControllerDelegate
+>
 
+@property (nonatomic, weak) UIViewController *viewController;
 @end
 @implementation DoImagePickerController
 
@@ -182,7 +188,7 @@
         
     }
     
-    [self presentModalViewController:picker animated:YES];
+    [self presentViewController:picker animated:YES completion:nil];
 
 
 }
@@ -295,47 +301,48 @@
     [self hideBottomMenu];
 }
 
-#pragma -mark 拍照选择照片协议方法
+#pragma -mark 拍照协议方法
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
     [UIApplication sharedApplication].statusBarHidden = NO;
     
-    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+//    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+//    
+//    NSData *data;
+//    
+//    if ([mediaType isEqualToString:@"public.image"]){
+//        
+//        //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
+//        UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+//        
+//        //图片压缩，因为原图都是很大的，不必要传原图
+//        UIImage *scaleImage = [self scaleImage:originImage toScale:0.3];
+//        
+//        //以下这两步都是比较耗时的操作，最好开一个HUD提示用户，这样体验会好些，不至于阻塞界面
+//        if (UIImagePNGRepresentation(scaleImage) == nil) {
+//            //将图片转换为JPG格式的二进制数据
+//            data = UIImageJPEGRepresentation(scaleImage, 1);
+//        } else {
+//            //将图片转换为PNG格式的二进制数据
+//            data = UIImagePNGRepresentation(scaleImage);
+//        }
+//        
+//        //将二进制数据生成UIImage
+//        UIImage *image = [UIImage imageWithData:data];
     
-    NSData *data;
-    
-    if ([mediaType isEqualToString:@"public.image"]){
+        UIImage *image = info[UIImagePickerControllerOriginalImage];
         
-        //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
-        UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-        
-        //图片压缩，因为原图都是很大的，不必要传原图
-        UIImage *scaleImage = [self scaleImage:originImage toScale:0.3];
-        
-        //以下这两步都是比较耗时的操作，最好开一个HUD提示用户，这样体验会好些，不至于阻塞界面
-        if (UIImagePNGRepresentation(scaleImage) == nil) {
-            //将图片转换为JPG格式的二进制数据
-            data = UIImageJPEGRepresentation(scaleImage, 1);
-        } else {
-            //将图片转换为PNG格式的二进制数据
-            data = UIImagePNGRepresentation(scaleImage);
-        }
-        
-        //将二进制数据生成UIImage
-        UIImage *image = [UIImage imageWithData:data];
-        
-        HLLog(@"拍照选择照片协议方法");
+        HLLog(@"拍照协议方法");
         
         
-        MLImageCrop *imageCrop = [[MLImageCrop alloc]init];
-        //imageCrop.delegate = editPhotoVC;
-        imageCrop.ratioOfWidthAndHeight = 800.0f/800.0f;// 更改这个比例可以控制图片的形状
-        imageCrop.image = image;
-        
-        [imageCrop showWithAnimation:YES];
 
-    }
+    HLImageCrop *imageCrop = [[HLImageCrop alloc]init];
+    imageCrop.delegate = self;
+    imageCrop.image = image;
+    imageCrop.isCamera = YES;
+    
+    [picker pushViewController:imageCrop animated:YES];
 }
 
 -(void)back{
@@ -380,7 +387,16 @@
     [self.navigationController pushViewController:editPhotoVC animated:YES];
     
 }
-
+- (void)cropImageFromCamera:(UIImage*)cropImage forOriginalImage:(UIImage*)originalImage{
+    
+    HLEditPhotoViewController *editPhotoVC = [[HLEditPhotoViewController alloc] init];
+    
+    editPhotoVC.title = @"编辑图片";
+    
+    editPhotoVC.image = cropImage;
+    
+    [self.navigationController pushViewController:editPhotoVC animated:YES];
+}
 #pragma mark - UICollectionViewDelegates for photos
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -408,12 +424,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    MLImageCrop *imageCrop = [[MLImageCrop alloc]init];
+    HLImageCrop *imageCrop = [[HLImageCrop alloc]init];
     imageCrop.ratioOfWidthAndHeight = 500.0f/500.0f;
     imageCrop.image = [ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_FULL_RESOLUTION];
     imageCrop.delegate = self;
 
-    [imageCrop showWithAnimation:YES];
+    [self.navigationController pushViewController:imageCrop animated:YES];
 
    // return;
     

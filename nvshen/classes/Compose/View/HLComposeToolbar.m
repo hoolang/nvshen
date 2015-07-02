@@ -145,7 +145,14 @@
     CGFloat difference = selfNewHeight - self.height;
     self.textView.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, size.height);
     self.height = selfNewHeight;
-    self.sendButton.enabled = self.textView.hasText;
+    if(self.textView.hasText)
+    {
+        self.sendButton.enabled = YES;
+        [self.sendButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    }else{
+        self.sendButton.enabled = NO;
+        [self.sendButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    }
     HLLog(@"self.sendButton.enabled %d",self.sendButton.enabled);
     if ([self.delegate respondsToSelector:@selector(composeToolbar:refreshToolbarFrame:)]) {
         [self.delegate composeToolbar:self refreshToolbarFrame:difference];
@@ -155,6 +162,9 @@
 
 - (void)btnClick:(UIButton *)btn
 {
+    self.sendButton.enabled = NO;
+    [self.sendButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    
     if ([self.delegate respondsToSelector:@selector(composeToolbar:didClickButton:)]) {
 //        NSUInteger index = (NSUInteger)(btn.x / btn.width);
         [self.delegate composeToolbar:self didClickButton:btn.tag];

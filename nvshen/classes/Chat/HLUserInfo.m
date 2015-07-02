@@ -31,6 +31,7 @@ singleton_implementation(HLUserInfo)
 -(void)loadUserInfoFromSanbox{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.user = [defaults objectForKey:UserKey];
+    HLLog(@"self.user%@",self.user);
     self.loginStatus = [defaults boolForKey:LoginStatusKey];
     self.pwd = [defaults objectForKey:PwdKey];
 }
