@@ -40,6 +40,7 @@
 {
     _user = user;
     
+    
     // 1.下载图片
     NSMutableString *mstr = [NSMutableString stringWithString:USER_ICON_URL];
     [mstr appendString:user.icon];

@@ -21,6 +21,7 @@
 #import "MBProgressHUD+MJ.h"
 #import "HLProvinces.h"
 #import "HLCity.h"
+#import "XMPPvCardTemp.h"
 
 
 #define HLPickFromAlum @"相册"
@@ -453,7 +454,37 @@ UIPickerViewDelegate
     self.user.nickname = nickname;
     [self.tableView reloadData];
 }
-
+#pragma mark - 保存头像
+- (void)editAvatar:(UIImage *) image
+{
+    NSXMLElement *vCardXML = [NSXMLElement elementWithName:@"vCard" stringValue:@"vcard-temp"];
+    NSXMLElement *photoXML = [NSXMLElement elementWithName:@"PHOTO"];
+    NSXMLElement *typeXML = [NSXMLElement elementWithName:@"TYPE" stringValue:@"image/jpeg"];
+    
+    
+    NSData *dataFromImage = UIImageJPEGRepresentation(image, 0.7f);
+    //NSData *dataFromImage = UIImagePNGRepresentation(image);
+    
+    NSXMLElement *binvalXML = [NSXMLElement elementWithName:@"BINVAL" stringValue:[dataFromImage base64Encoding]];
+    [photoXML addChild:typeXML];
+    [photoXML addChild:binvalXML];
+    [photoXML addChild:photoXML];
+    
+    XMPPvCardTemp * myvCardTemp = [[HLXMPPTool sharedHLXMPPTool].vCard myvCardTemp];
+    HLLog(@"myvCardTemp: %@",myvCardTemp);
+    
+    if (myvCardTemp)
+    {
+        myvCardTemp.photo = dataFromImage;
+        [[HLXMPPTool sharedHLXMPPTool].vCard updateMyvCardTemp:myvCardTemp];
+    }else
+    {
+        XMPPvCardTemp *newvCardTemp = [XMPPvCardTemp vCardTempFromElement:vCardXML];
+        newvCardTemp.nickname = self.user.nickname;
+        [[HLXMPPTool sharedHLXMPPTool].vCard updateMyvCardTemp:newvCardTemp];
+        
+    }
+}
 #pragma mark - MLImageCropDelegate
 - (void)cropImage:(UIImage*)cropImage forOriginalImage:(UIImage*)originalImage
 {
@@ -468,20 +499,39 @@ UIPickerViewDelegate
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"user.uid"] = self.user.uid;
     params[@"user.username"] = [HLUserInfo sharedHLUserInfo].user;
+    
+    UIImage *image = [cropImage scaleToSize:CGSizeMake(320, 320)];
+    
+    //
+    NSData *data = UIImageJPEGRepresentation(image, 0.6);
+    
+    // 保存openfire头像
+    [self editAvatar:image];
 
     // 3.发送请求
     [mgr POST:HL_UPDATE_AVATAR_USER parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         // 拼接文件数据
-        UIImage *image = [cropImage scaleToSize:CGSizeMake(320, 320)];;
-        //
-        NSData *data = UIImageJPEGRepresentation(image, 0.6);
+        HLLog(@"length %ld", [data length]/1024 );
+        
         [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
+        
          [MBProgressHUD showSuccess:@"正在保存头像...."];
     } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        
+//        // 保存
+//        //获取当前的电子名片信息
+//        XMPPvCardTemp *myvCard = [HLXMPPTool sharedHLXMPPTool].vCard.myvCardTemp;
+//        
+//        // 图片
+//        myvCard.photo = data;
+//        
+//        //更新 这个方法内部会实现数据上传到服务，无需程序自己操作
+//        [[HLXMPPTool sharedHLXMPPTool].vCard updateMyvCardTemp:myvCard];
+        
 
         [MBProgressHUD hideHUD];
         [MBProgressHUD showSuccess:@"保存头像成功"];
-        self.avatar = [cropImage scaleToSize:CGSizeMake(320, 320)];
+        self.avatar = image;
         [self.tableView reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

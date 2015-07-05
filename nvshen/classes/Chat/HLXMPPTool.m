@@ -17,7 +17,7 @@ NSString *const HLLoginStatusChangeNotification = @"HLLoginStatusNotification";
  3. 连接到服务成功后，再发送密码授权
  4. 授权成功后，发送"在线" 消息
  */
-@interface HLXMPPTool ()<XMPPStreamDelegate>{
+@interface HLXMPPTool ()<XMPPStreamDelegate, XMPPRosterDelegate>{
     
     XMPPResultBlock _resultBlock;
     
@@ -25,9 +25,9 @@ NSString *const HLLoginStatusChangeNotification = @"HLLoginStatusNotification";
     
     XMPPvCardCoreDataStorage *_vCardStorage;//电子名片的数据存储
     
-    XMPPvCardAvatarModule *_avatar;//头像模块
-    
     XMPPMessageArchiving *_msgArchiving;//聊天模块
+    
+
 }
 
 // 1. 初始化XMPPStream
@@ -183,7 +183,6 @@ singleton_implementation(HLXMPPTool)
     
 }
 
-
 /**
  * 通知 HLHistoryViewControllers 登录状态
  *
@@ -193,7 +192,7 @@ singleton_implementation(HLXMPPTool)
     // 将登录状态放入字典，然后通过通知传递
     NSDictionary *userInfo = @{@"loginStatus":@(resultType)};
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:HLLoginStatusChangeNotification object:nil userInfo:userInfo];
+    [HLNotificationCenter postNotificationName:HLLoginStatusChangeNotification object:nil userInfo:userInfo];
 }
 
 #pragma mark -XMPPStream的代理
@@ -271,7 +270,6 @@ singleton_implementation(HLXMPPTool)
     if(_resultBlock){
         _resultBlock(XMPPResultTypeRegisterFailure);
     }
-    
 }
 
 #pragma mark 接收到好友消息
@@ -371,7 +369,7 @@ singleton_implementation(HLXMPPTool)
     
     HLLog(@"presence2:%@  sender2:%@",presence,sender);
     
-    XMPPJID *jid = [XMPPJID jidWithString:presenceFromUser];
+    XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",presenceFromUser,domain ]];
     HLLog(@"接收到好友请求: %@", jid);
     [_roster acceptPresenceSubscriptionRequestFrom:jid andAddToRoster:YES];
     

@@ -29,6 +29,7 @@ singleton_interface(HLXMPPTool);
 @property (nonatomic, strong,readonly)XMPPRosterCoreDataStorage *rosterStorage;//花名册数据存储
 @property (nonatomic, strong,readonly)XMPPRoster *roster;//花名册模块
 @property (nonatomic, strong,readonly)XMPPMessageArchivingCoreDataStorage *msgStorage;//聊天的数据存储
+@property (nonatomic, strong,readonly)XMPPvCardAvatarModule *avatar;//头像模块
 /**
  *  注册标识 YES 注册 / NO 登录
  */

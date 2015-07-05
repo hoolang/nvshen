@@ -10,9 +10,9 @@
 
 #define bNormalH 44
 
-#define bIconW 50
+#define bIconW 34
 
-#define bIconH 50
+#define bIconH 34
 
 #define bBtnFont [UIFont systemFontOfSize:15.0f]
 

@@ -122,6 +122,27 @@
     [self.navigationController pushViewController:addFriendVC animated:YES];
     
 }
+
+- (void)configurePhotoForCell:(UITableViewCell *)cell user:(XMPPUserCoreDataStorageObject *)user
+{
+    // Our xmppRosterStorage will cache photos as they arrive from the xmppvCardAvatarModule.
+    // We only need to ask the avatar module for a photo, if the roster doesn't have it.
+    
+    if (user.photo != nil)
+    {
+        cell.imageView.image = [user.photo clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
+    }
+    else
+    {
+        NSData *photoData = [[HLXMPPTool sharedHLXMPPTool].avatar photoDataForJID:user.jid];
+        
+        if (photoData != nil)
+            cell.imageView.image = [[UIImage imageWithData:photoData] clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
+        else
+            cell.imageView.image = [[UIImage imageNamed:@"avatar_default_small"] clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
+    }
+}
+
 //** 行数 */
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     HLLog(@"_resultsContrl.fetchedObjects.count %ld", _resultsContrl.fetchedObjects.count);
@@ -158,22 +179,28 @@
         default:
             break;
     }
+    
+    NSString *name = friend.nickname;
+    
+    if (name == nil) {
+        //获取联系人的名片，如果数据库有就返回，没有返回空，并到服务器上抓取
+        XMPPvCardTemp *vcard = [[HLXMPPTool sharedHLXMPPTool].vCard  vCardTempForJID:friend.jid shouldFetch:YES];
+        
+        name = vcard.nickname;
+        
+        if (name == nil) {
+             NSRange rang = [friend.jidStr rangeOfString:@"@"];
+            name = [friend.jidStr substringToIndex:rang.location];
+        }
+        
+    }
 
-//    NSRange rang = [friend.jidStr rangeOfString:@"@"];
-//    [friend.jidStr substringToIndex:rang.location];
-    cell.textLabel.text =  friend.nickname;
+    cell.textLabel.text = name;
+    //[NSString stringWithFormat:@"%@ %@",  friend.nickname, friend.unreadMessages ];
     
-    HLLog(@"friend.jid %@,friend.photo %@",friend.jid,friend.photo);
+    HLLog(@"friend.jid %@,friend.nickname %@ ",friend.jid,friend.nickname);
     
-    if(friend.photo == nil){
-        UIImage *image = [UIImage imageNamed:@"avatar_default_small"];
-        cell.imageView.image = [image clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
-    }
-    else{
-        cell.imageView.image = [friend.photo clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
-    }
-    
-    
+    [self configurePhotoForCell:cell user:friend];
     return cell;
 }
 
@@ -196,8 +223,23 @@
     HLChatViewController *chatView = [[HLChatViewController alloc] init];
     
     chatView.friendJid = friend.jid;
-    chatView.photo = [friend.photo clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
-    chatView.title = @"私聊";
+    
+    chatView.title = [self tableView:tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+    
+    if (friend.photo != nil)
+    {
+        chatView.photo = [friend.photo clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
+    }
+    else
+    {
+        
+        NSData *photoData = [[HLXMPPTool sharedHLXMPPTool].avatar photoDataForJID:friend.jid];
+        
+        if (photoData != nil)
+            chatView.photo = [[UIImage imageWithData:photoData] clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
+        else
+            chatView.photo = [[UIImage imageNamed:@"avatar_default_small"] clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
+    }
     
     [self.navigationController pushViewController:chatView animated:YES];
 }

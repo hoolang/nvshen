@@ -85,6 +85,7 @@
 }
 
 - (void)loadNewPosts{
+    
     HLLog(@"loadNewPosts->>");
 
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -116,7 +117,7 @@
         
         // 显示最新微博的数量
         [self showNewStatusCount:newStatuses.count];
-        HLLog(@"%@", json);
+        //HLLog(@"%@", json);
     } failure:^(NSError *error) {
         HLLog(@"请求失败-%@", error);
         
@@ -185,7 +186,7 @@
 {
     HLLog(@"loadMoreStatus->>>");
     // 1.拼接请求参数
-//    HWAccount *account = [HLAccountTool account];
+//    HLAccount *account = [HLAccountTool account];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //    params[@"access_token"] = account.access_token;
     
@@ -205,7 +206,7 @@
         // 将 "微博字典"数组 转为 "微博模型"数组
         NSArray *newStatuses = [HLStatus objectArrayWithKeyValuesArray:json[@"status"]];
         
-        // 将 HWStatus数组 转为 HWStatusFrame数组
+        // 将 HLStatus数组 转为 HLStatusFrame数组
         NSArray *newFrames = [self stausFramesWithStatuses:newStatuses];
         
         // 将更多的微博数据，添加到总数组的最后面

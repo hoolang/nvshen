@@ -92,7 +92,7 @@
     // 2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"post.pid"] = _status.posts.pid;
-    params[@"user.uid"] = _status.posts.user.uid;
+    params[@"user.username"] = _status.posts.user.username;
     
     
     [mgr POST:HL_ADD_LIKE parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -109,7 +109,7 @@
         //通过通知中心发送通知
         [HLNotificationCenter postNotification:notification];
         
-        [MBProgressHUD showSuccess:@"谢谢点赞"];
+        //[MBProgressHUD showSuccess:@"谢谢点赞"];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD showError:@"网络不稳定，请稍微再试"];
     }];

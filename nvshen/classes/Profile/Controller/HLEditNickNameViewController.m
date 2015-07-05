@@ -8,6 +8,7 @@
 
 #import "HLEditNickNameViewController.h"
 #import "AFNetworking.h"
+#import "XMPPvCardTemp.h"
 #import "MBProgressHUD+MJ.h"
 
 @interface HLEditNickNameViewController ()
@@ -32,6 +33,34 @@
     [self.view addSubview:nickname];
     
 }
+- (void)editNickname:(NSString *)nickname
+{
+//    NSXMLElement *vCardXML = [NSXMLElement elementWithName:@"vCard" stringValue:@"vcard-temp"];
+//    NSXMLElement *photoXML = [NSXMLElement elementWithName:@"PHOTO"];
+//    NSXMLElement *typeXML = [NSXMLElement elementWithName:@"TYPE" stringValue:@"image/jpeg"];
+//
+//    
+//    NSXMLElement *binvalXML = [NSXMLElement elementWithName:@"BINVAL" stringValue:[dataFromImage base64Encoding]];
+//    [photoXML addChild:typeXML];
+//    [photoXML addChild:binvalXML];
+//    [photoXML addChild:photoXML];
+    
+    XMPPvCardTemp * myvCardTemp = [[HLXMPPTool sharedHLXMPPTool].vCard myvCardTemp];
+    HLLog(@"myvCardTemp: %@",myvCardTemp);
+    
+    if (myvCardTemp)
+    {
+        myvCardTemp.nickname = nickname;
+        [[HLXMPPTool sharedHLXMPPTool].vCard updateMyvCardTemp:myvCardTemp];
+    }else
+    {
+//        XMPPvCardTemp *newvCardTemp = [XMPPvCardTemp vCardTempFromElement:vCardXML];
+//        newvCardTemp.nickname = self.nicknameField.text;
+//        [[HLXMPPTool sharedHLXMPPTool].vCard updateMyvCardTemp:newvCardTemp];
+        HLLog(@"myvCardTemp is :  %@", myvCardTemp);
+        
+    }
+}
 
 /*完成编辑*/
 - (void)done
@@ -48,6 +77,13 @@
     params[@"user.nickname"] = [[self.nicknameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
 
     [MBProgressHUD showMessage:@"正在保存..."];
+    
+    // 昵称
+    _nickname = [[self.nicknameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
+    // 保存
+    [self editNickname:_nickname];
+    
+    
     // 3.发送请求
     [mgr POST:HL_UPDATE_USER parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 

@@ -156,7 +156,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
     params[@"post.content"] = self.textView.text;
-    params[@"user.name"] = [HLUserInfo sharedHLUserInfo].user;
+    params[@"user.username"] = [HLUserInfo sharedHLUserInfo].user;
     
     // 3.发送请求
     [mgr POST:HLPOST parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {

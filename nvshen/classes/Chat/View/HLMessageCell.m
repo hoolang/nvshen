@@ -82,9 +82,9 @@
     
     if (!frameMessage.message.avatar) {
         self.icon.image = [UIImage imageNamed:@"avatar_default_small"];
-        self.icon.image = [self.icon.image clipCircleImageWithBorder:5 borderColor:[UIColor whiteColor]];
+        self.icon.image = [self.icon.image clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
     }else{
-        self.icon.image = frameMessage.message.avatar;
+        self.icon.image = [frameMessage.message.avatar clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
     }
     //3.正文
     self.textView.frame = frameMessage.textViewF;

@@ -54,6 +54,10 @@ HLComposeToolbarDelegate>
         XMPPvCardTemp *myVCard = [HLXMPPTool sharedHLXMPPTool].vCard.myvCardTemp;
         // 图片
         _selfAvatar = [UIImage imageWithData:myVCard.photo];
+        NSData *photoData = [[HLXMPPTool sharedHLXMPPTool].avatar photoDataForJID:[XMPPJID jidWithString:[HLUserInfo sharedHLUserInfo].jid]];
+        
+       _selfAvatar = [UIImage imageWithData:photoData];
+
     }
     return _selfAvatar;
 }
@@ -253,10 +257,10 @@ HLComposeToolbarDelegate>
     
     if ([msg.outgoing boolValue]) {//自己发
         message.type = HLMessageMe;
-        message.avatar = _selfAvatar;
+        message.avatar = self.selfAvatar;
     }else{//别人发的
         message.type = HLMessageOther;
-        message.avatar = _photo;
+        message.avatar = self.photo;
     }
     
     frames.message = message;

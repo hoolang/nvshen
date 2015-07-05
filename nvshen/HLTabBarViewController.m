@@ -35,13 +35,13 @@ DoImagePickerControllerDelegate
     
     HLTopViewController *list = [HLTopViewController alloc];
 
-    [self addChildVc:list title:@"排行榜" image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
+    [self addChildVc:list title:@"排行榜" image:@"tabbar_top" selectedImage:@"tabbar_top_selected"];
     
 //    HLDiscoverViewController *discover = [[HLDiscoverViewController alloc] init];
 //    [self addChildVc:discover title:@"发现" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];
     
     HLChatListViewController *chat = [[HLChatListViewController alloc] init];
-    [self addChildVc:chat title:@"聊聊" image:@"tabbar_discover" selectedImage:@"tabbar_profile_selected"];
+    [self addChildVc:chat title:@"聊聊" image:@"tabbar_chat" selectedImage:@"tabbar_chat_selected"];
     
     HLProfileViewController *profile = [[HLProfileViewController alloc] init];
     [self addChildVc:profile title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
