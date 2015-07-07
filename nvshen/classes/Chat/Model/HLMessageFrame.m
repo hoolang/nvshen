@@ -48,7 +48,7 @@
     CGSize textMaxSize = CGSizeMake(150, MAXFLOAT);
     CGSize textRealSize = [message.text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:bBtnFont} context:nil].size;
     
-    CGSize btnSize = CGSizeMake(textRealSize.width + 40, textRealSize.height + 40);
+    CGSize btnSize = CGSizeMake(textRealSize.width + 20, textRealSize.height + 20);
     
     if (message.type == HLMessageMe) {
         textX = bScreenWidth - iconW - padding*2 - btnSize.width;

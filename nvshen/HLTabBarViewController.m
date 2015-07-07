@@ -12,7 +12,7 @@
 #import "HLTopViewController.h"
 #import "HLProfileViewController.h"
 #import "HLDiscoverViewController.h"
-#import "HLChatListViewController.h"
+#import "HLChatMainViewController.h"
 #import "HLTabBar.h"
 #import "HLComposeViewController.h"
 #import "DoImagePickerController.h"
@@ -40,7 +40,7 @@ DoImagePickerControllerDelegate
 //    HLDiscoverViewController *discover = [[HLDiscoverViewController alloc] init];
 //    [self addChildVc:discover title:@"发现" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];
     
-    HLChatListViewController *chat = [[HLChatListViewController alloc] init];
+    HLChatMainViewController *chat = [[HLChatMainViewController alloc] init];
     [self addChildVc:chat title:@"聊聊" image:@"tabbar_chat" selectedImage:@"tabbar_chat_selected"];
     
     HLProfileViewController *profile = [[HLProfileViewController alloc] init];
@@ -50,7 +50,6 @@ DoImagePickerControllerDelegate
     HLTabBar *tabBar = [[HLTabBar alloc] init];
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
-    
     
     //self.tabBar.hidden = YES;
 }
@@ -75,6 +74,8 @@ DoImagePickerControllerDelegate
     childVc.title = title; // 同时设置tabbar和navigationBar的文字
     //    childVc.tabBarItem.title = title; // 设置tabbar的文字
     //    childVc.navigationItem.title = title; // 设置navigationBar的文字
+//    childVc.tabBarItem.badgeValue = @"1";
+    
     
     // 设置子控制器的图片
     childVc.tabBarItem.image = [UIImage imageNamed:image];
@@ -93,10 +94,14 @@ DoImagePickerControllerDelegate
     HLNavigationController *nav = [[HLNavigationController alloc] initWithRootViewController:childVc];
     // 添加为子控制器
     [self addChildViewController:nav];
+
 }
+
 - (void)onClick{
     HLLog(@"sssss09_-------------");
 }
+
+
 #pragma mark - HLTabBarDelegate 代理方法
 - (void)tabBarDidClickPlusButton:(HLTabBar *)tabBar{
     

@@ -14,6 +14,6 @@
 
 #define bIconH 34
 
-#define bBtnFont [UIFont systemFontOfSize:15.0f]
+#define bBtnFont [UIFont systemFontOfSize:14.0f]
 
 #define bBtnPadding 20

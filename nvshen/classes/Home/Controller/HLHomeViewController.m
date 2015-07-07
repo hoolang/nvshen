@@ -20,6 +20,7 @@
 #import "HLCommentViewContrller.h"
 #import "HLChatViewController.h"
 #import "MBProgressHUD+MJ.h"
+#import "HLChatsTool.h"
 
 @interface HLHomeViewController ()
 /**
@@ -323,6 +324,8 @@
     XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@", status.posts.user.username, domain]];
     chatView.friendJid = jid;
     chatView.title = status.posts.user.nickname;
+    
+    //[HLChatsTool saveChats:status.posts.user];
     
     [self.navigationController pushViewController:chatView animated:YES];
 }

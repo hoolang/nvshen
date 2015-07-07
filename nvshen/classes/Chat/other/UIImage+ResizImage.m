@@ -20,7 +20,7 @@
     CGFloat w = normal.size.width*0.5;
     CGFloat h = normal.size.height*0.5;
     //传入上下左右不需要拉升的边距，只拉伸/填铺中间部分
-    return [normal resizableImageWithCapInsets:UIEdgeInsetsMake(h, w, h, w)];
+    return [normal resizableImageWithCapInsets:UIEdgeInsetsMake(14, 18, 14, 18)];
     
     //    [normal resizableImageWithCapInsets:UIEdgeInsetsMake(<#CGFloat top#>, <#CGFloat left#>, <#CGFloat bottom#>, <#CGFloat right#>)]
     

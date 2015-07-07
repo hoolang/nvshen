@@ -49,7 +49,7 @@
         UIButton *textView = [[UIButton alloc]init];
         textView.titleLabel.font = bBtnFont;
         textView.titleLabel.numberOfLines = 0;//自动换行
-        textView.contentEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
+        textView.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         [textView setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.contentView addSubview:textView];
         self.textView = textView;
@@ -82,9 +82,9 @@
     
     if (!frameMessage.message.avatar) {
         self.icon.image = [UIImage imageNamed:@"avatar_default_small"];
-        self.icon.image = [self.icon.image clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
+        self.icon.image = [self.icon.image clipCircleImageWithBorder:0 borderColor:[UIColor whiteColor]];
     }else{
-        self.icon.image = [frameMessage.message.avatar clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
+        self.icon.image = [frameMessage.message.avatar clipCircleImageWithBorder:0 borderColor:[UIColor whiteColor]];
     }
     //3.正文
     self.textView.frame = frameMessage.textViewF;
@@ -92,6 +92,7 @@
     
     
     if (model.type == HLMessageMe) {
+        [self.textView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.textView setBackgroundImage:[UIImage resizeWithImageName:@"chat_send_nor"] forState:UIControlStateNormal];
     }else{
         [self.textView setBackgroundImage:[UIImage resizeWithImageName:@"chat_recive_nor"] forState:UIControlStateNormal];

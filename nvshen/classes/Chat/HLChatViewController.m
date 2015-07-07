@@ -370,6 +370,7 @@ HLComposeToolbarDelegate>
 
 #pragma mark 滚动到底部
 -(void)scrollToTableBottom{
+    
     NSInteger lastRow = _resultsContr.fetchedObjects.count - 1;
     
     if (lastRow < 0) {

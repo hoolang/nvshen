@@ -217,6 +217,4 @@
     //HLLog(@"强转long 可能以后会出错");
     //[btn setTag:(NSInteger)_status.posts.pid];
 }
-
-
 @end

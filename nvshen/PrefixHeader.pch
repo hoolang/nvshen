@@ -59,6 +59,10 @@
 #define HL_UPDATE_SEX_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateSex.json"
 // 查找一个用户的信息
 #define HL_ONE_USER_URL @"http://192.168.168.188:8008/nvshen/nsjson/selectByName.json"
+// 根据nickname模糊查询
+#define HL_SEARCH_NICKNAME_URL @"http://192.168.168.188:8008/nvshen/nsjson/searchNickname.json"
+
+///////////////////////////////////////////////////////
 // 评论
 #define HL_ADD_COMMENT @"http://192.168.168.188:8008/nvshen/nsjson/addComment.json"
 // 获取一个show的最新评论
@@ -119,6 +123,3 @@
 
 #define HLHorizontalCenter(width) (ScreenWidth - (width)) * 0.5
 #endif
-
-
-

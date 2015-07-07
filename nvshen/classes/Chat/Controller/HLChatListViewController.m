@@ -14,16 +14,19 @@
 #import "XMPPvCardTemp.h"
 
 
-@interface HLChatListViewController()<NSFetchedResultsControllerDelegate>
+@interface HLChatListViewController()
+<
+UITableViewDelegate,
+UITableViewDataSource,
+NSFetchedResultsControllerDelegate
+>
 {
 
     NSFetchedResultsController *_resultsContrl;
 }
 
 @property (nonatomic, strong) NSArray *friends;
-/** 标记是否已经加载数据 */
-@property (nonatomic, assign) BOOL didLoad;
-
+@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation HLChatListViewController
@@ -31,19 +34,36 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+        [self setupView];
     
     self.navigationItem.leftBarButtonItem =     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
+    
+}
+
+/**
+ 初始化tableview
+ */
+- (void)setupView{
+    self.view.backgroundColor = [UIColor grayColor];
+    _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView.frame = CGRectMake (0,69,self.view.frame.size.width,self.view.bounds.size.height-44);
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.backgroundColor = HLColor(239, 239, 239);
+    // 设置cell的边框颜色
+    [_tableView setSeparatorColor:[UIColor clearColor]];
+    [self.view addSubview:_tableView];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     HLLog(@"viewWillAppear");
     if (self.didLoad == NO){
-        [self loadFriends2];
+        [self loadFriends];
     }
 }
 
--(void)loadFriends2{
+-(void)loadFriends{
     HLLog(@"chat list didload");
     
     //使用CoreData获取数据
@@ -90,7 +110,7 @@
     [self.tableView reloadData];
 }
 
--(void)loadFriends{
+-(void)loadFriends2{
     //使用CoreData获取数据
     // 1.上下文【关联到数据库XMPPRoster.sqlite】
     NSManagedObjectContext *context = [HLXMPPTool sharedHLXMPPTool].rosterStorage.mainThreadManagedObjectContext;
@@ -240,7 +260,13 @@
         else
             chatView.photo = [[UIImage imageNamed:@"avatar_default_small"] clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
     }
-    
-    [self.navigationController pushViewController:chatView animated:YES];
+    if ([self.delegate respondsToSelector:@selector(pushToChatView:)]) {
+        [self.delegate pushToChatView:chatView];
+    }
+    //[self.navigationController pushViewController:chatView animated:YES];
+}
+-(void)dealloc
+{
+    HLLog(@"%s", __func__);
 }
 @end

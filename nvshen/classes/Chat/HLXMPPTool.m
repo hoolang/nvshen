@@ -373,6 +373,10 @@ singleton_implementation(HLXMPPTool)
     HLLog(@"接收到好友请求: %@", jid);
     [_roster acceptPresenceSubscriptionRequestFrom:jid andAddToRoster:YES];
     
+
+    NSNotification *notification =[NSNotification notificationWithName:@"SetUpChatBadgeNotification" object:nil userInfo:nil];
+    //通过通知中心发送通知
+    [HLNotificationCenter postNotification:notification];
 }
 
 -(void)dealloc{
