@@ -325,7 +325,7 @@
     chatView.friendJid = jid;
     chatView.title = status.posts.user.nickname;
     
-    //[HLChatsTool saveChats:status.posts.user];
+    [HLChatsTool saveChats:status.posts.user];
     
     [self.navigationController pushViewController:chatView animated:YES];
 }

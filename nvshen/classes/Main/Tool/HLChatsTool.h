@@ -29,4 +29,38 @@
  *  @param chatId 联系人对应的id
  */
 + (void)deleteChats:(NSString *)username;
+
+#pragma mark-好友请求
+/**
+ *  统计好友请求
+ *
+ *  @param params <#params description#>
+ *
+ *  @return <#return value description#>
+ */
++ (NSArray *)subscriptionWithParams:(NSDictionary *)params;
+/**
+ *  删除沙河中的数据
+ *
+ *  @param username
+ */
++ (void)deleteSubscription:(NSString *)username;
+/**
+ *  保存好友请求信息到沙盒中
+ *
+ *  @param user <#user description#>
+ */
++ (void)saveNewSubscription:(HLUser *)user;
+/**
+ *  最新的好友请求（未处理）
+ *
+ *  @return <#return value description#>
+ */
++ (NSArray *)newSubscriptions;
+/**
+ *  更新好友请求状态
+ *
+ *  @param username
+ */
++ (void)updateSubscriptionFromUsername:(NSString *)username Status:(NSString *)status;
 @end

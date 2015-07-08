@@ -11,9 +11,11 @@
 #import "HLChatRecentViewController.h"
 #import "HLChatListViewController.h"
 #import "HLChatViewController.h"
+#import "HLChatsTool.h"
 
 @interface HLChatMainViewController ()
 <
+HLChatRecentVCDelegate,
 HLChatListVCDelegate
 >
 @property (nonatomic, strong) HLChatRecentViewController *recentVC;
@@ -24,14 +26,6 @@ HLChatListVCDelegate
 
 @implementation HLChatMainViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 - (void)viewDidAppear:(BOOL)animated
 {
         HLLog(@"%s ", __func__);
@@ -46,7 +40,8 @@ HLChatListVCDelegate
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setupChatBadge];
     
     SegmentedControl *segmentedControl = [[SegmentedControl alloc] init];
     [segmentedControl addTarget:self action:@selector(typeAction:) forControlEvents:UIControlEventValueChanged];
@@ -55,6 +50,7 @@ HLChatListVCDelegate
     
     self.recentVC = [[HLChatRecentViewController alloc] init];
     self.recentVC.view.frame = self.view.bounds;
+    self.recentVC.delegate = self;
     [self.view addSubview:self.recentVC.view];
     
     self.chatListVC = [[HLChatListViewController alloc] init];
@@ -72,7 +68,7 @@ HLChatListVCDelegate
     self.recentVC.view.hidden = NO;
     self.chatListVC.view.hidden = YES;
     
-    [HLNotificationCenter addObserver:self selector:@selector(setupChatBadge) name:@"SetUpChatBadgeNotification" object:nil];
+    [HLNotificationCenter addObserver:self selector:@selector(refreshRecentList) name:@"SetUpChatBadgeNotification" object:nil];
 
 }
 
@@ -106,21 +102,55 @@ HLChatListVCDelegate
 }
 
 #pragma mark -HLChatListVCDelegate
-- (void)pushToChatView:(HLChatViewController *)chatView{
+- (void)pushToChatView:(HLChatViewController *)chatView
+{
     [self.navigationController pushViewController:chatView animated:YES];
 }
 
+#pragma mark -HLChatRecentVCDelegate
+- (void)pushRecentToChatView:(HLChatViewController *)chatView
+{
+    [self.navigationController pushViewController:chatView animated:YES];
+}
+
+- (void)pushRecentToSubscriptionView:(HLChatViewController *)chatView
+{
+    
+}
+- (void)chatRecentRefreshMainViewBadge
+{
+    // 设置badge
+    [self setupChatBadge];
+}
+
 #pragma mark - 设置badge
+/**
+ *  刷新待处理好友请求个数
+ */
+- (void)refreshRecentList
+{
+    // 刷新待处理好友请求个数
+    [self.recentVC loadDataSources];
+    // 设置badge
+    [self setupChatBadge];
+}
+
+/**
+ *  设置badge
+ */
 - (void)setupChatBadge
 {
-//    if ([status isEqualToString:@"0"]) { // 如果是0，得清空数字
-        self.tabBarItem.badgeValue = @"11";
-        [UIApplication sharedApplication].applicationIconBadgeNumber = 11;
-//    } else { // 非0情况
-//        self.tabBarItem.badgeValue = status;
-//        [UIApplication sharedApplication].applicationIconBadgeNumber = status.intValue;
-//    }
+    NSArray *array = [HLChatsTool newSubscriptions];
+    HLLog(@"array.count %ld", array.count);
+    if (array.count > 0) { // 如果是0，得清空数字
+        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", array.count];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = array.count;
+    } else { // 非0情况
+        self.tabBarItem.badgeValue = nil;
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    }
 }
+
 -(void)dealloc
 {
     HLLog(@"%s", __func__);

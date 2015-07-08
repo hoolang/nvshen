@@ -322,6 +322,8 @@
 		E07B3B361B2062C3000BC81A /* HLTopPosts.m in Sources */ = {isa = PBXBuildFile; fileRef = E07B3B351B2062C3000BC81A /* HLTopPosts.m */; };
 		E07B3B391B20875B000BC81A /* HLTopPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E07B3B381B20875B000BC81A /* HLTopPostsCell.m */; };
 		E07B3B3C1B208C98000BC81A /* HLTopPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = E07B3B3B1B208C98000BC81A /* HLTopPhotosView.m */; };
+		E07D3F481B4CECB700968259 /* HLChatListSubscriptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E07D3F471B4CECB700968259 /* HLChatListSubscriptionsViewController.m */; };
+		E07D3F4B1B4D085800968259 /* HLChatDealSubscribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E07D3F4A1B4D085800968259 /* HLChatDealSubscribeViewController.m */; };
 		E0813CCC1B09CBC200008083 /* HLPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0813CCA1B09CBC200008083 /* HLPostViewController.m */; };
 		E0813CCD1B09CBC200008083 /* HLPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0813CCB1B09CBC200008083 /* HLPostViewController.xib */; };
 		E08282471B2ACAC0001FB9F1 /* HLMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E08282461B2ACAC0001FB9F1 /* HLMessageCell.m */; };
@@ -1022,6 +1024,10 @@
 		E07B3B381B20875B000BC81A /* HLTopPostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPostsCell.m; sourceTree = "<group>"; };
 		E07B3B3A1B208C98000BC81A /* HLTopPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopPhotosView.h; sourceTree = "<group>"; };
 		E07B3B3B1B208C98000BC81A /* HLTopPhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopPhotosView.m; sourceTree = "<group>"; };
+		E07D3F461B4CECB700968259 /* HLChatListSubscriptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLChatListSubscriptionsViewController.h; sourceTree = "<group>"; };
+		E07D3F471B4CECB700968259 /* HLChatListSubscriptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLChatListSubscriptionsViewController.m; sourceTree = "<group>"; };
+		E07D3F491B4D085800968259 /* HLChatDealSubscribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLChatDealSubscribeViewController.h; sourceTree = "<group>"; };
+		E07D3F4A1B4D085800968259 /* HLChatDealSubscribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLChatDealSubscribeViewController.m; sourceTree = "<group>"; };
 		E0813CC91B09CBC200008083 /* HLPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLPostViewController.h; sourceTree = "<group>"; };
 		E0813CCA1B09CBC200008083 /* HLPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLPostViewController.m; sourceTree = "<group>"; };
 		E0813CCB1B09CBC200008083 /* HLPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLPostViewController.xib; sourceTree = "<group>"; };
@@ -1553,6 +1559,10 @@
 				E013C8CE1B2A1EB40068CEE8 /* HLChatListViewController.m */,
 				E013C6BA1B2A035C0068CEE8 /* HLAddFriendViewController.h */,
 				E013C6BB1B2A035C0068CEE8 /* HLAddFriendViewController.m */,
+				E07D3F461B4CECB700968259 /* HLChatListSubscriptionsViewController.h */,
+				E07D3F471B4CECB700968259 /* HLChatListSubscriptionsViewController.m */,
+				E07D3F491B4D085800968259 /* HLChatDealSubscribeViewController.h */,
+				E07D3F4A1B4D085800968259 /* HLChatDealSubscribeViewController.m */,
 				E013C6BC1B2A035C0068CEE8 /* HLChatViewController.h */,
 				E013C6BD1B2A035C0068CEE8 /* HLChatViewController.m */,
 				E013C6CB1B2A035C0068CEE8 /* HLChatProfileViewController.h */,
@@ -3447,6 +3457,7 @@
 				E0A53EE91B1C6215007321CD /* HLEmotionKeyboard.m in Sources */,
 				E05469691B4A3C3700CBEC6A /* XMPPRosterMemoryStorage.m in Sources */,
 				E013C8C51B2A0BF10068CEE8 /* UIStoryboard+WF.m in Sources */,
+				E07D3F4B1B4D085800968259 /* HLChatDealSubscribeViewController.m in Sources */,
 				E0234E551B333E97002F1966 /* UIScrollView+MJExtension.m in Sources */,
 				E013BCD41B29BA350068CEE8 /* HLBaseLoginViewController.m in Sources */,
 				E05469CE1B4A3C3700CBEC6A /* DDMultiFormatter.m in Sources */,
@@ -3517,6 +3528,7 @@
 				E095D56F1B16E518002B07E2 /* HLStatusFrame.m in Sources */,
 				E0DD72F21B2499F300989489 /* HLTopLikesPotsCell.m in Sources */,
 				E0546B121B4AF45D00CBEC6A /* FMDatabasePool.m in Sources */,
+				E07D3F481B4CECB700968259 /* HLChatListSubscriptionsViewController.m in Sources */,
 				E0546B101B4AF45D00CBEC6A /* FMDatabase.m in Sources */,
 				E0072EBF1B123B9800AAC6F5 /* MBProgressHUD.m in Sources */,
 				E013C6D81B2A035C0068CEE8 /* HLHistoryViewController.m in Sources */,

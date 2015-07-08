@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HLChatViewController;
+@protocol HLChatRecentVCDelegate <NSObject>
+
+- (void)pushRecentToChatView:(UIViewController *)chatView;
+- (void)pushRecentToSubscriptionView:(HLChatViewController *)chatView;
+- (void)chatRecentRefreshMainViewBadge;
+
+@end
 
 @interface HLChatRecentViewController : UIViewController
+@property (nonatomic, weak) id<HLChatRecentVCDelegate> delegate;
 - (void)loadDataSources;
+- (void)subscriptions;
 @end

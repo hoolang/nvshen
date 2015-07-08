@@ -44,12 +44,15 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    // 如果此用户名为空，则表示查看自己的个人资料，可以显示导航栏的按钮
+    if (_username == nil) {
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+        
+        // style : 这个参数是用来设置背景的，在iOS7之前效果比较明显, iOS7中没有任何效果
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(setting)];
+    }
 
-    // style : 这个参数是用来设置背景的，在iOS7之前效果比较明显, iOS7中没有任何效果
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(setting)];
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -66,7 +69,13 @@
 {
     // 1.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    // 自己的用户名
     params[@"user.username"] = [HLUserInfo sharedHLUserInfo].user;
+    
+    if (_username != nil) {
+        // 要查看的用户名
+        params[@"user.username"] = _username;
+    }
     
     // 2.发送请求
     [HLHttpTool get:HL_ONE_USER_URL params:params success:^(id json) {
@@ -139,7 +148,14 @@
         editPrifleBtn.frame = CGRectMake(CGRectGetMaxX(icon.frame) + border, editPrifleBtnY, 130, editPrifleBtnH);
         [editPrifleBtn addTarget:self action:@selector(editProfile) forControlEvents:UIControlEventTouchUpInside];
         self.editPrifleBtn = editPrifleBtn;
-        [self.view addSubview:editPrifleBtn];
+        
+        /**
+         *  如果传过来的用户名为空，则为查看自己的个人信息，需要添加编辑按钮
+         */
+        if (_username == nil) {
+            [self.view addSubview:editPrifleBtn];
+        }
+
         
         // 个人说明
         UILabel *text = [[UILabel alloc] init];

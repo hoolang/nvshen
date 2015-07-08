@@ -12,6 +12,7 @@
 #import "HLAddFriendViewController.h"
 #import "UIImage+Circle.h"
 #import "XMPPvCardTemp.h"
+#import "HLChatsTool.h"
 
 
 @interface HLChatListViewController()
@@ -46,7 +47,7 @@ NSFetchedResultsControllerDelegate
 - (void)setupView{
     self.view.backgroundColor = [UIColor grayColor];
     _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    _tableView.frame = CGRectMake (0,69,self.view.frame.size.width,self.view.bounds.size.height-44);
+    _tableView.frame = CGRectMake (0,69,self.view.frame.size.width,self.view.bounds.size.height);
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = HLColor(239, 239, 239);
@@ -212,7 +213,6 @@ NSFetchedResultsControllerDelegate
              NSRange rang = [friend.jidStr rangeOfString:@"@"];
             name = [friend.jidStr substringToIndex:rang.location];
         }
-        
     }
 
     cell.textLabel.text = name;
@@ -231,9 +231,13 @@ NSFetchedResultsControllerDelegate
         XMPPUserCoreDataStorageObject *friend = _resultsContrl.fetchedObjects[indexPath.row];
         XMPPJID *freindJid = friend.jid;
         [[HLXMPPTool sharedHLXMPPTool].roster removeUser:freindJid];
+        
+        // 删除沙盒中的数据
+        NSRange rang = [friend.jidStr rangeOfString:@"@"];
+        NSString *username = [friend.jidStr substringToIndex:rang.location];
+        [HLChatsTool updateSubscriptionFromUsername:username Status:@"已删除"];
     }
 }
-
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

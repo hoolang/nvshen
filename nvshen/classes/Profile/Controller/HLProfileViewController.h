@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HLProfileViewController : UIViewController
-
+@property (nonatomic, copy) NSString *username;
 @end

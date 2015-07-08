@@ -8,6 +8,11 @@
 #import "HLXMPPTool.h"
 #import "HLLoginViewController.h"
 #import "Appdelegate.h"
+#import "HLUser.h"
+#import "HLHttpTool.h"
+#import "HLProfile.h"
+#import "MJExtension.h"
+#import "HLChatsTool.h"
 NSString *const HLLoginStatusChangeNotification = @"HLLoginStatusNotification";
 /*
  * 在AppDelegate实现登录
@@ -296,6 +301,8 @@ singleton_implementation(HLXMPPTool)
         [[UIApplication sharedApplication] scheduleLocalNotification:localNoti];
         
         //{"aps":{'alert':"zhangsan\n have dinner":'sound':'default',badge:'12'}}
+    }else{
+        
     }
 }
 
@@ -371,12 +378,55 @@ singleton_implementation(HLXMPPTool)
     
     XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",presenceFromUser,domain ]];
     HLLog(@"接收到好友请求: %@", jid);
-    [_roster acceptPresenceSubscriptionRequestFrom:jid andAddToRoster:YES];
+    // 接受请求
+    //[_roster acceptPresenceSubscriptionRequestFrom:jid andAddToRoster:YES];
     
-
-    NSNotification *notification =[NSNotification notificationWithName:@"SetUpChatBadgeNotification" object:nil userInfo:nil];
+    /** 加载个人信息 */
+    [self loadUserInfo:presenceFromUser];
+    
+//    NSNotification *notification =[NSNotification notificationWithName:@"SetUpChatBadgeNotification" object:nil userInfo:nil];
     //通过通知中心发送通知
-    [HLNotificationCenter postNotification:notification];
+//    [HLNotificationCenter postNotification:notification];
+}
+
+
+/** 加载个人信息 */
+- (void)loadUserInfo:(NSString *)username
+{
+    /**
+     @property (strong, nonatomic) UIImage *avatar;      //头像
+     @property (copy, nonatomic) NSString *nickname; //昵称
+     @property (copy, nonatomic) NSString *sex;      //性别
+     @property (copy, nonatomic) NSString *local;         //地区
+     @property (copy, nonatomic) NSString *text;
+     @property (nonatomic, copy) NSString *uid;
+     */
+    // 1.拼接请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"user.username"] = username;
+    
+    // 2.发送请求
+    [HLHttpTool get:HL_ONE_USER_URL params:params success:^(id json) {
+        
+        // 将 "字典"数组 转为 "模型"数组
+        NSArray *userInfo = [HLProfile objectArrayWithKeyValuesArray:json[@"userinfo"]];
+        
+        HLProfile *profile = userInfo[0];
+        
+        HLUser *user = profile.user;
+        user.text = @"未处理";
+        // 保存请求好友的用户到沙盒
+        [HLChatsTool saveNewSubscription:user];
+        
+//        NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_status.posts.pid, @"pid", nil];
+        
+        NSNotification *notification =[NSNotification notificationWithName:@"SetUpChatBadgeNotification" object:nil userInfo:nil];
+        //通过通知中心发送通知
+        [HLNotificationCenter postNotification:notification];
+        
+    } failure:^(NSError *error) {
+        HLLog(@"请求失败-%@", error);
+    }];
 }
 
 -(void)dealloc{
