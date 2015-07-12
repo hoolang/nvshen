@@ -14,6 +14,7 @@
 #import "MJExtension.h"
 #import "HLChatsTool.h"
 NSString *const HLLoginStatusChangeNotification = @"HLLoginStatusNotification";
+NSString *const HLDidReceiveMessageNotification = @"HLDidReceiveMessageNotification";
 /*
  * 在AppDelegate实现登录
  
@@ -279,37 +280,49 @@ singleton_implementation(HLXMPPTool)
 
 #pragma mark 接收到好友消息
 -(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
-    HLLog(@"%@",message);
     
-    //如果当前程序不在前台，发出一个本地通知
-    if([UIApplication sharedApplication].applicationState != UIApplicationStateActive){
-        HLLog(@"在后台");
-        
-        //本地通知
-        UILocalNotification *localNoti = [[UILocalNotification alloc] init];
-        
-        // 设置内容
-        localNoti.alertBody = [NSString stringWithFormat:@"%@\n%@",message.fromStr,message.body];
-        
-        // 设置通知执行时间
-        localNoti.fireDate = [NSDate date];
-        
-        //声音
-        localNoti.soundName = @"default";
-        
-        //执行
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNoti];
-        
-        //{"aps":{'alert':"zhangsan\n have dinner":'sound':'default',badge:'12'}}
+    HLLog(@"mark 接收到好友消息 %@",message);
+    
+    if (message.body != nil) {
+        //如果当前程序不在前台，发出一个本地通知
+        if([UIApplication sharedApplication].applicationState != UIApplicationStateActive){
+            HLLog(@"在后台");
+            
+            //本地通知
+            UILocalNotification *localNoti = [[UILocalNotification alloc] init];
+            
+            // 设置内容
+            localNoti.alertBody = [NSString stringWithFormat:@"%@\n%@",message.fromStr,message.body];
+            
+            // 设置通知执行时间
+            localNoti.fireDate = [NSDate date];
+            
+            //声音
+            localNoti.soundName = @"default";
+            
+            //执行
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNoti];
+            
+            //{"aps":{'alert':"zhangsan\n have dinner":'sound':'default',badge:'12'}}
+        }else{
+            HLLog(@"在前台");
+            // 将message 放入字典，然后通过通知传递
+            NSDictionary *messageinfo = @{@"message":message};
+            
+            [HLNotificationCenter postNotificationName:HLDidReceiveMessageNotification object:nil userInfo:messageinfo];
+        }
     }else{
-        
+        //HLLog(@"message is null");
     }
+
 }
 
 -(void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
     //XMPPPresence 在线 离线
     
     //presence.from 消息是谁发送过来
+    
+    HLLog(@"presence.from %@", presence.from);
 }
 
 #pragma mark -公共方法

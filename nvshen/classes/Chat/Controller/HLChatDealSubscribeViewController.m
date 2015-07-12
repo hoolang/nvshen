@@ -13,6 +13,7 @@
 #import "HLHttpTool.h"
 #import "HLProfile.h"
 #import "MJExtension.h"
+#import "HLProfileViewController.h"
 
 @interface HLChatDealSubscribeViewController ()
 <
@@ -224,21 +225,13 @@ UITableViewDataSource
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    HLUser *user = self.subscriptionsFrames[indexPath.row];
-    
-    //    HLChatViewController *chatView = [[HLChatViewController alloc] init];
-    //    // 设置聊天对象的头像
-    //    chatView.photo = [self tableView:tableView cellForRowAtIndexPath:indexPath].imageView.image;
-    //    // 设置聊天对象的jid
-    //    chatView.friendJid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@", user.username,domain]];
-    //    // 设置控制器标题
-    //    chatView.title = user.nickname;
-    //
-    //    // 代理方法
-    //    if ([self.delegate respondsToSelector:@selector(pushRecentToChatView:)]) {
-    //        [self.delegate pushRecentToChatView:chatView];
-    //    }
+    if (indexPath.row == 0) {
+        // 跳转到查看改好友的个人资料
+        HLProfileViewController *profile = [[HLProfileViewController alloc] init];
+        profile.username = _user.username;
+        profile.title = [NSString stringWithFormat:@"%@的资料", _user.username];
+        [self.navigationController pushViewController:profile animated:YES];
+    }
     
 }
 - (void)didReceiveMemoryWarning {

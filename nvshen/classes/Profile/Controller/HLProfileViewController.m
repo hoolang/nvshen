@@ -42,6 +42,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    HLLog(@"%s", __func__);
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     // 如果此用户名为空，则表示查看自己的个人资料，可以显示导航栏的按钮
@@ -156,7 +158,6 @@
             [self.view addSubview:editPrifleBtn];
         }
 
-        
         // 个人说明
         UILabel *text = [[UILabel alloc] init];
         text.text = user.text;

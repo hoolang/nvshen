@@ -35,7 +35,7 @@ NSFetchedResultsControllerDelegate
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-        [self setupView];
+    [self setupView];
     
     self.navigationItem.leftBarButtonItem =     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
     
@@ -62,6 +62,8 @@ NSFetchedResultsControllerDelegate
     if (self.didLoad == NO){
         [self loadFriends];
     }
+    // 不在聊天界面
+    self.isChating = NO;
 }
 
 -(void)loadFriends{
@@ -267,6 +269,8 @@ NSFetchedResultsControllerDelegate
     if ([self.delegate respondsToSelector:@selector(pushToChatView:)]) {
         [self.delegate pushToChatView:chatView];
     }
+    
+    self.isChating = YES;
     //[self.navigationController pushViewController:chatView animated:YES];
 }
 -(void)dealloc

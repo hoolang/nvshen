@@ -8,7 +8,6 @@
 
 #import "HLTabBar.h"
 #import "HLProfileViewController.h"
-#import "UIView+MGBadgeView.h"
 @interface HLTabBar()
 @property(nonatomic, weak) UIButton *plusBtn;
 @end
@@ -61,7 +60,7 @@
     CGFloat tabbarButtonIndex = 0;
     for (UIView *child in self.subviews) {
 
-        HLLog(@"child ===== %@", child);
+        //HLLog(@"child ===== %@", child);
         Class class = NSClassFromString(@"UITabBarButton");
         if ([child isKindOfClass:class]) {
             // 设置宽度
@@ -80,35 +79,5 @@
         }
     }
 }
-#pragma mark 设置bagde显示
-- (void)setupChatBadge
-{
-    CGFloat tabbarButtonIndex = 0;
-    for (UIView *child in self.subviews) {
-        Class class = NSClassFromString(@"UITabBarButton");
-        if ([child isKindOfClass:class]) {
-            HLLog(@"child ===== %@", child);
-            // 增加索引
-            tabbarButtonIndex++;
-
-            if (tabbarButtonIndex == 3) {
-                [child.badgeView setBadgeValue:11];
-                [child.badgeView setOutlineWidth:0.0];
-                [child.badgeView setPosition:MGBadgePositionTopRight];
-                [child.badgeView setBadgeColor:[UIColor orangeColor]];
-                [child.badgeView setTextColor:[UIColor whiteColor]];
-            }
-        }
-    }
-}
-
- 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

@@ -18,6 +18,7 @@
 
 @interface HLChatRecentViewController : UIViewController
 @property (nonatomic, weak) id<HLChatRecentVCDelegate> delegate;
+@property (nonatomic, strong) UITableView *tableView;
 - (void)loadDataSources;
 - (void)subscriptions;
 @end

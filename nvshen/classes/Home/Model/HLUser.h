@@ -55,7 +55,7 @@ typedef enum {
 ///** 注册时间*/
 //@property (nonatomic, copy) NSDate *registerTime;
 ///** 更新时间*/
-//@property (nonatomic, copy) NSDate *updateTime;
+@property (nonatomic, copy) NSString *updateTime;
 /** 认证类型 */
 @property (nonatomic, assign) HLUserVerifiedType verified_type;
 

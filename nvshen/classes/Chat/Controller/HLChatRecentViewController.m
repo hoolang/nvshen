@@ -23,7 +23,7 @@
 UITableViewDelegate,
 UITableViewDataSource
 >
-@property (nonatomic, strong) UITableView *tableView;
+
 @property (nonatomic, strong) NSMutableArray *chatsFrames;
 @property (nonatomic, strong) NSArray *subscriptionsFrames;
 @end
@@ -47,7 +47,9 @@ UITableViewDataSource
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 加载视图
     [self setupView];
+    // 加载数据
     [self loadDataSources];
 }
 
@@ -77,11 +79,11 @@ UITableViewDataSource
  */
 - (void)loadDataSources
 {
-    HLLog(@"%s", __func__);
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //    params[@"access_token"] = account.access_token;
     
-    // 定义一个block处理返回的字典数据
+    //定义一个block处理返回的字典数据
     void (^dealingResult)(NSArray *) = ^(NSArray *users){
 
         [self.chatsFrames removeAllObjects];
@@ -94,28 +96,36 @@ UITableViewDataSource
         // 好友请求个数
         [self subscriptions];
         
+        // 实现代理
         if ([self.delegate respondsToSelector:@selector(chatRecentRefreshMainViewBadge)]) {
             [self.delegate chatRecentRefreshMainViewBadge];
         }
         
-        // 刷新表格
-        [self.tableView reloadData];
+        // 回到主线程刷新表格
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
 
     };
     
-    // 2.尝试从数据库中加载最近联系人数据
-    NSArray *users = [HLChatsTool chatsWithParams:params];
+    // 2.从数据库中加载最近联系人数据
+    //NSArray *users = [HLChatsTool chatsWithParams:params];
+    NSArray *users = [HLChatsTool loadMessages];
     
-    HLLog(@"user.count %ld", users.count);
+    HLLog(@"%s user.count:%ld", __func__, users.count);
+    
 
     dealingResult(users);
+    
+    
 }
+
 /**
  *  好友请求个数
  */
 - (void)subscriptions
 {
-    [self.tableView reloadData];
+    HLLog(@"%s", __func__);
     
     // 获取待处理好友请求个数
     NSArray *array = [HLChatsTool newSubscriptions];
@@ -166,14 +176,20 @@ UITableViewDataSource
         cell.imageView.image = [[UIImage imageNamed:@"avatar_default_small"] clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
         cell.textLabel.text = user.uid;
         cell.detailTextLabel.text = user.text;
-    }else
-    {
+    }
+    else{
+        
         UIImageView *imageV = [[UIImageView alloc] init];
         [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", USER_ICON_URL,user.icon]] placeholderImage:[UIImage imageNamed:@"avatar_default_small"] ];
         
         cell.imageView.image = [imageV.image clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
         cell.textLabel.text = user.nickname;
-        cell.detailTextLabel.text = nil;
+        // user.email 表status：未读
+        // user.sex 未读数
+        // user.text 消息内容
+        HLLog(@"%s", __func__);
+        HLLog(@"user.text %@", user.text);
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", user.text];
     }
     
     return cell;
@@ -181,13 +197,11 @@ UITableViewDataSource
 /**
  *  选中某行
  *
- *  @param tableView <#tableView description#>
- *  @param indexPath <#indexPath description#>
+ *  @param tableView 
+ *  @param indexPath
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-
     HLUser *user = self.chatsFrames[indexPath.row];
     
     if([user.uid isEqualToString:SUBSCRIPTIONS]){
@@ -212,20 +226,32 @@ UITableViewDataSource
     if ([self.delegate respondsToSelector:@selector(pushRecentToChatView:)]) {
         [self.delegate pushRecentToChatView:chatView];
     }
+    // 更新消息状态为已读
+    [HLChatsTool updateMessage:user.username];
 
 }
 
-//实现这个方法，cell往左滑就会有个delete
+//cell往左滑就会有个delete
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
         HLUser *user = self.chatsFrames[indexPath.row];
-        [HLChatsTool deleteChats:user.username];
-        [self.chatsFrames removeObjectAtIndex:indexPath.row];
-        [self.tableView reloadData];
+        
+        if([user.uid isEqualToString:SUBSCRIPTIONS]){
+            // 拒绝好友请求信息
+            [HLChatsTool updateSubscriptionsStatus:@"已拒绝"];
+            [self.chatsFrames removeObjectAtIndex:indexPath.row];
+            [self.tableView reloadData];
+        }
+        else{
+            // 删除最近联系人信息
+            [HLChatsTool deleteMessage:user.username];
+            [self.chatsFrames removeObjectAtIndex:indexPath.row];
+            [self.tableView reloadData];
+        }
     }
 }
-
-
 
 #pragma mark -其他
 - (void)didReceiveMemoryWarning {

@@ -379,7 +379,6 @@
 		E0ABA5761B136DC500C5CE4C /* HLHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ABA5751B136DC500C5CE4C /* HLHttpTool.m */; };
 		E0ADF9AE1B04E57300732E3C /* HLEditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ADF9AC1B04E57300732E3C /* HLEditPhotoViewController.m */; };
 		E0ADF9AF1B04E57300732E3C /* HLEditPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0ADF9AD1B04E57300732E3C /* HLEditPhotoViewController.xib */; };
-		E0B153531B4990420039F23F /* UIView+MGBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B153521B4990420039F23F /* UIView+MGBadgeView.m */; };
 		E0B5EA2E1B04A1CB0086BC03 /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B5EA241B04A1CB0086BC03 /* AssetHelper.m */; };
 		E0B5EA2F1B04A1CB0086BC03 /* DoAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B5EA261B04A1CB0086BC03 /* DoAlbumCell.m */; };
 		E0B5EA301B04A1CB0086BC03 /* DoAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B5EA271B04A1CB0086BC03 /* DoAlbumCell.xib */; };
@@ -1128,8 +1127,6 @@
 		E0ADF9AB1B04E57300732E3C /* HLEditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditPhotoViewController.h; sourceTree = "<group>"; };
 		E0ADF9AC1B04E57300732E3C /* HLEditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditPhotoViewController.m; sourceTree = "<group>"; };
 		E0ADF9AD1B04E57300732E3C /* HLEditPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLEditPhotoViewController.xib; sourceTree = "<group>"; };
-		E0B153511B4990420039F23F /* UIView+MGBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MGBadgeView.h"; sourceTree = "<group>"; };
-		E0B153521B4990420039F23F /* UIView+MGBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MGBadgeView.m"; sourceTree = "<group>"; };
 		E0B5EA231B04A1CB0086BC03 /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
 		E0B5EA241B04A1CB0086BC03 /* AssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetHelper.m; sourceTree = "<group>"; };
 		E0B5EA251B04A1CB0086BC03 /* DoAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoAlbumCell.h; sourceTree = "<group>"; };
@@ -2943,8 +2940,6 @@
 		E0D922961AFCA97000AE9948 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				E0B153511B4990420039F23F /* UIView+MGBadgeView.h */,
-				E0B153521B4990420039F23F /* UIView+MGBadgeView.m */,
 				E0E84D941B2FDB610061639A /* UIImage+Circle.h */,
 				E0E84D951B2FDB610061639A /* UIImage+Circle.m */,
 				E013C8B51B2A0BF10068CEE8 /* CategoryWF.h */,
@@ -3486,7 +3481,6 @@
 				E0B5EA331B04A1CB0086BC03 /* DoPhotoCell.m in Sources */,
 				E05469BB1B4A3C3700CBEC6A /* XMPPMessage+XEP_0308.m in Sources */,
 				E0072EB41B123B8F00AAC6F5 /* AFURLRequestSerialization.m in Sources */,
-				E0B153531B4990420039F23F /* UIView+MGBadgeView.m in Sources */,
 				E095D5A31B177390002B07E2 /* NSDate+Extension.m in Sources */,
 				E05469551B4A3C3700CBEC6A /* XMPPJID.m in Sources */,
 				E05469501B4A3C3700CBEC6A /* NSXMLElement+XMPP.m in Sources */,

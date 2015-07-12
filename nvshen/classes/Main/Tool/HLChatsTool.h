@@ -10,6 +10,7 @@
 #import "HLUser.h"
 
 @interface HLChatsTool : NSObject
+#pragma mark-最近联系======================
 /**
  *  根据请求参数去沙盒中加载缓存的联系人数据
  *
@@ -23,20 +24,15 @@
  *  @param statuses 需要存储的联系数据
  */
 + (void)saveChats:(HLUser *)usser;
-/**
- *  删除沙盒中的联系人
- *
- *  @param chatId 联系人对应的id
- */
-+ (void)deleteChats:(NSString *)username;
 
-#pragma mark-好友请求
+
+#pragma mark-好友请求======================
 /**
  *  统计好友请求
  *
- *  @param params <#params description#>
+ *  @param params
  *
- *  @return <#return value description#>
+ *  @return
  */
 + (NSArray *)subscriptionWithParams:(NSDictionary *)params;
 /**
@@ -48,13 +44,13 @@
 /**
  *  保存好友请求信息到沙盒中
  *
- *  @param user <#user description#>
+ *  @param user
  */
 + (void)saveNewSubscription:(HLUser *)user;
 /**
  *  最新的好友请求（未处理）
  *
- *  @return <#return value description#>
+ *  @return
  */
 + (NSArray *)newSubscriptions;
 /**
@@ -63,4 +59,16 @@
  *  @param username
  */
 + (void)updateSubscriptionFromUsername:(NSString *)username Status:(NSString *)status;
+/**
+ *  更新所有好友请求状态
+ *
+ *  @param username
+ */
++ (void)updateSubscriptionsStatus:(NSString *)status;
+
+#pragma mark-消息处理======================
++ (void)saveMessage:(XMPPMessage *)message isCurrent:(BOOL)current;
++ (NSArray *)loadMessages;
++ (void)updateMessage:(NSString *)username;
++ (void)deleteMessage:(NSString *)username;
 @end

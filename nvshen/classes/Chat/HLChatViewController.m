@@ -15,6 +15,7 @@
 #import "HLEmotionKeyboard.h"
 #import "HLEmotionTextView.h"
 #import "XMPPvCardTemp.h"
+#import "HLChatsTool.h"
 
 @interface HLChatViewController ()
 <UITableViewDataSource,
@@ -345,10 +346,18 @@ HLComposeToolbarDelegate>
     // 设置内容
     [msg addBody:self.toolbar.textView.text];
     
+    HLLog(@"msg.toStr %@", msg.toStr);
+    
+    HLLog(@"msg.fromStr %@", msg.fromStr);
+    
     [[HLXMPPTool sharedHLXMPPTool].xmppStream sendElement:msg];
     
-    self.toolbar.textView.text = nil;
+    // 保存发出去的消息
+    [HLChatsTool saveMessage:msg isCurrent:YES];
+    
+    self.toolbar.textView.text = @"";
     [self.toolbar.textView resignFirstResponder];
+    self.toolbar.textView.text = @"";
 }
 
 #pragma mark 发送聊天消息

@@ -45,7 +45,7 @@
     [encoder encodeObject:self.city forKey:@"city"];
     [encoder encodeObject:self.text forKey:@"text"];
     [encoder encodeInt:self.verified_type forKey:@"verified_type"];
-
+    [encoder encodeObject:self.updateTime forKey:@"updateTime"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -61,7 +61,7 @@
         self.city = [decoder decodeObjectForKey:@"city"];
         self.text = [decoder decodeObjectForKey:@"text"];
         self.verified_type = [decoder decodeIntForKey:@"verified_type"];
-
+        self.updateTime = [decoder decodeObjectForKey:@"updateTime"];
 
     }
     return self;

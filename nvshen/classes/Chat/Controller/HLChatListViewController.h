@@ -19,5 +19,8 @@
 /** 标记是否已经加载数据 */
 @property (nonatomic, assign) BOOL didLoad;
 @property (nonatomic, weak) id<HLChatListVCDelegate> delegate;
+@property (nonatomic, assign) BOOL isChating;
+
 -(void)loadFriends;
+
 @end

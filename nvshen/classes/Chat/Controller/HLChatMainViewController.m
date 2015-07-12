@@ -8,8 +8,6 @@
 
 #import "HLChatMainViewController.h"
 #import "SegmentedControl.h"
-#import "HLChatRecentViewController.h"
-#import "HLChatListViewController.h"
 #import "HLChatViewController.h"
 #import "HLChatsTool.h"
 
@@ -18,8 +16,6 @@
 HLChatRecentVCDelegate,
 HLChatListVCDelegate
 >
-@property (nonatomic, strong) HLChatRecentViewController *recentVC;
-@property (nonatomic, strong) HLChatListViewController *chatListVC;
 @property (nonatomic, strong) NSArray *viewsControllers;
 @property (nonatomic, assign) NSInteger lastSelectedSegmentIndex;
 @end
@@ -28,7 +24,7 @@ HLChatListVCDelegate
 
 - (void)viewDidAppear:(BOOL)animated
 {
-        HLLog(@"%s ", __func__);
+    HLLog(@"%s ", __func__);
     [self.recentVC loadDataSources];
     
     if (!self.chatListVC.didLoad) {
@@ -36,6 +32,7 @@ HLChatListVCDelegate
         [self.chatListVC loadFriends];
 
     }
+    self.chatListVC.isChating = NO;
 }
 - (void)viewDidLoad
 {
@@ -117,8 +114,10 @@ HLChatListVCDelegate
 {
     
 }
+
 - (void)chatRecentRefreshMainViewBadge
 {
+    HLLog(@"%s", __func__);
     // 设置badge
     [self setupChatBadge];
 }
@@ -133,6 +132,8 @@ HLChatListVCDelegate
     [self.recentVC loadDataSources];
     // 设置badge
     [self setupChatBadge];
+    // 刷新表格
+    [self.recentVC.tableView reloadData];
 }
 
 /**
@@ -140,19 +141,34 @@ HLChatListVCDelegate
  */
 - (void)setupChatBadge
 {
+    HLLog(@"%s", __func__);
+    
+    int badges = 0;
     NSArray *array = [HLChatsTool newSubscriptions];
-    HLLog(@"array.count %ld", array.count);
-    if (array.count > 0) { // 如果是0，得清空数字
-        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", array.count];
-        [UIApplication sharedApplication].applicationIconBadgeNumber = array.count;
-    } else { // 非0情况
+    NSArray *messages = [HLChatsTool loadMessages];
+    
+    for (HLUser *user in messages) {
+        badges += [user.sex intValue];
+    }
+    
+    badges += array.count;
+    
+    HLLog(@"setupChatBadge array.count %d", badges);
+    if (badges > 0) { // 如果是0，得清空数字
+        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", badges];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = badges;
+    } else { // badges = 0
         self.tabBarItem.badgeValue = nil;
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     }
+    
+    HLLog(@"设置Badge完成： %s", __func__);
 }
+
 
 -(void)dealloc
 {
+    [HLNotificationCenter removeObserver:self];
     HLLog(@"%s", __func__);
 }
 @end
