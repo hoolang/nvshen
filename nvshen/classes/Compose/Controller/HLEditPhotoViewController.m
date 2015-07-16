@@ -10,6 +10,7 @@
 #import "AssetHelper.h"
 #import "HLImageCrop.h"
 #import "HLPostViewController.h"
+#import "UIImage+Circle.h"
 
 
 @interface HLEditPhotoViewController ()
@@ -77,7 +78,15 @@
 
 - (void)next{
     HLPostViewController *postVC = [[HLPostViewController alloc] init];
-    postVC.image = _image;
+    CGFloat imageH = self.image.size.height;
+    
+    if (imageH > 500) {
+        postVC.image = [_image scaleToSize:CGSizeMake(500, 500)];
+    }
+    else{
+        postVC.image = _image;
+    }
+
     postVC.title = @"秀一下";
     
     [self.navigationController pushViewController:postVC animated:YES];

@@ -137,6 +137,8 @@ UINavigationControllerDelegate
         params[@"user.province"] = [_local substringToIndex:rang.location];
         params[@"user.city"] = [_local substringFromIndex:rang.location + 1];
         
+        HLLog(@"params[@'user.username'] %@", params[@"user.username"]);
+        
         // 3.发送请求
         [mgr POST:HL_ADD_USER parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             // 拼接文件数据
@@ -144,11 +146,15 @@ UINavigationControllerDelegate
             //
             NSData *data = UIImageJPEGRepresentation(image, 0.6);
             [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
+            
+            [MBProgressHUD showMessage:@"正在注册...."];
         } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+            [MBProgressHUD hideHUD];
             [MBProgressHUD showSuccess:@"注册成功"];
             HLLoginViewController *login = [[HLLoginViewController alloc] init];
             [self.navigationController pushViewController:login animated:YES];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [MBProgressHUD hideHUD];
             [MBProgressHUD showError:@"网络异常，请稍后再试！"];
         }];
         

@@ -166,6 +166,7 @@ NSFetchedResultsControllerDelegate
     }
 }
 
+#pragma mark - tableview数据源
 //** 行数 */
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     HLLog(@"_resultsContrl.fetchedObjects.count %ld", _resultsContrl.fetchedObjects.count);
@@ -223,11 +224,13 @@ NSFetchedResultsControllerDelegate
     HLLog(@"friend.jid %@,friend.nickname %@ ",friend.jid,friend.nickname);
     
     [self configurePhotoForCell:cell user:friend];
+    
     return cell;
 }
 
 //实现这个方法，cell往左滑就会有个delete
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         HLLog(@"删除好友");
         XMPPUserCoreDataStorageObject *friend = _resultsContrl.fetchedObjects[indexPath.row];
@@ -241,6 +244,7 @@ NSFetchedResultsControllerDelegate
     }
 }
 
+#pragma -mark 选中cell
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //获取好友
@@ -266,6 +270,7 @@ NSFetchedResultsControllerDelegate
         else
             chatView.photo = [[UIImage imageNamed:@"avatar_default_small"] clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
     }
+    
     if ([self.delegate respondsToSelector:@selector(pushToChatView:)]) {
         [self.delegate pushToChatView:chatView];
     }
@@ -273,6 +278,7 @@ NSFetchedResultsControllerDelegate
     self.isChating = YES;
     //[self.navigationController pushViewController:chatView animated:YES];
 }
+
 -(void)dealloc
 {
     HLLog(@"%s", __func__);

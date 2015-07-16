@@ -25,6 +25,8 @@
 #import "HLXMPPTool.h"
 #import "CategoryWF.h"
 
+// http://192.168.168.188:8008/
+
 //版本>=IOS7
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 // 系统屏幕宽度
@@ -37,61 +39,61 @@
 
 //=============================================================
 // 头像图片存放路径
-#define USER_ICON_URL @"http://192.168.168.188:8008/nvshen/icons/"
+#define USER_ICON_URL @"http://115.126.73.22:8080/icons/"
 // posts图片存放路径
-#define USER_POSTS_PHOTO_URL @"http://192.168.168.188:8008/nvshen/photos/"
+#define USER_POSTS_PHOTO_URL @"http://115.126.73.22:8080/photos/"
 //=============================================================
 
 // 发表一篇秀秀
-#define HLPOST @"http://192.168.168.188:8008/nvshen/nsjson/addPost.json"
+#define HLPOST @"http://115.126.73.22:8080/nsjson/addPost.json"
 
 // 添加用户
-#define HL_ADD_USER @"http://192.168.168.188:8008/nvshen/nsjson/addUser.json"
+#define HL_ADD_USER @"http://115.126.73.22:8080/nsjson/addUser.json"
 // 更新用户
-#define HL_UPDATE_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateUser.json"
+#define HL_UPDATE_USER @"http://115.126.73.22:8080/nsjson/updateUser.json"
 // 更新头像
-#define HL_UPDATE_AVATAR_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateAvatar.json"
+#define HL_UPDATE_AVATAR_USER @"http://115.126.73.22:8080/nsjson/updateAvatar.json"
 // 更新简介
-#define HL_UPDATE_TEXT_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateText.json"
+#define HL_UPDATE_TEXT_USER @"http://115.126.73.22:8080/nsjson/updateText.json"
 // 更新地区
-#define HL_UPDATE_LOCAL_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateLocal.json"
+#define HL_UPDATE_LOCAL_USER @"http://115.126.73.22:8080/nsjson/updateLocal.json"
 // 更新性别
-#define HL_UPDATE_SEX_USER @"http://192.168.168.188:8008/nvshen/nsjson/updateSex.json"
+#define HL_UPDATE_SEX_USER @"http://115.126.73.22:8080/nsjson/updateSex.json"
 // 查找一个用户的信息
-#define HL_ONE_USER_URL @"http://192.168.168.188:8008/nvshen/nsjson/selectByName.json"
+#define HL_ONE_USER_URL @"http://115.126.73.22:8080/nsjson/selectByName.json"
 // 根据nickname模糊查询
-#define HL_SEARCH_NICKNAME_URL @"http://192.168.168.188:8008/nvshen/nsjson/searchNickname.json"
+#define HL_SEARCH_NICKNAME_URL @"http://115.126.73.22:8080/nsjson/searchNickname.json"
 
 ///////////////////////////////////////////////////////
 // 评论
-#define HL_ADD_COMMENT @"http://192.168.168.188:8008/nvshen/nsjson/addComment.json"
+#define HL_ADD_COMMENT @"http://115.126.73.22:8080/nsjson/addComment.json"
 // 获取一个show的最新评论
-#define HL_LATEST_COMMENT_URL @"http://192.168.168.188:8008/nvshen/nsjson/latest_comments.json"
+#define HL_LATEST_COMMENT_URL @"http://115.126.73.22:8080/nsjson/latest_comments.json"
 // 获取一个show的旧评论
-#define HL_OLDER_COMMENT_URL @"http://192.168.168.188:8008/nvshen/nsjson/older_comments.json"
+#define HL_OLDER_COMMENT_URL @"http://115.126.73.22:8080/nsjson/older_comments.json"
 // 点赞
-#define HL_ADD_LIKE @"http://192.168.168.188:8008/nvshen/nsjson/addLike.json"
+#define HL_ADD_LIKE @"http://115.126.73.22:8080/nsjson/addLike.json"
 // 最新show的获取地址
-#define HL_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/latest_posts.json"
+#define HL_LATEST_POSTS_URL @"http://115.126.73.22:8080/nsjson/latest_posts.json"
 // 加载更多旧数据的地址
-#define HL_OLDER_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/older_posts.json"
+#define HL_OLDER_POSTS_URL @"http://115.126.73.22:8080/nsjson/older_posts.json"
 
 ///////////////////////////////////////////////////////
 // TOP 加载新的数据
-#define HL_TOP_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_latest_posts.json"
+#define HL_TOP_LATEST_POSTS_URL @"http://115.126.73.22:8080/nsjson/top_latest_posts.json"
 
 // TOP 加载最新用户发表的最新数据
-#define HL_TOP_CATEGORY_LATEST_USER_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_latest_user_latest_posts.json"
+#define HL_TOP_CATEGORY_LATEST_USER_LATEST_POSTS_URL @"http://115.126.73.22:8080/nsjson/top_latest_user_latest_posts.json"
 // TOP 加载最新用户发表的旧数据
-#define HL_TOP_CATEGORY_LATEST_USER_OLDER_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_latest_user_older_posts.json"
+#define HL_TOP_CATEGORY_LATEST_USER_OLDER_POSTS_URL @"http://115.126.73.22:8080/nsjson/top_latest_user_older_posts.json"
 // TOP 加载评论最多新数据
-#define HL_TOP_CATEGORY_MOSTS_COMMENTS_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_most_comments_latest_posts.json"
+#define HL_TOP_CATEGORY_MOSTS_COMMENTS_LATEST_POSTS_URL @"http://115.126.73.22:8080/nsjson/top_most_comments_latest_posts.json"
 // TOP 加载评论最多旧数据
-#define HL_TOP_CATEGORY_MOSTS_COMMENTS_OLDER_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_most_comments_older_posts.json"
+#define HL_TOP_CATEGORY_MOSTS_COMMENTS_OLDER_POSTS_URL @"http://115.126.73.22:8080/nsjson/top_most_comments_older_posts.json"
 // TOP 加载最多点赞的最新数据
-#define HL_TOP_CATEGORY_MOSTS_LIKES_LATEST_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_most_likes_latest_posts.json"
+#define HL_TOP_CATEGORY_MOSTS_LIKES_LATEST_POSTS_URL @"http://115.126.73.22:8080/nsjson/top_most_likes_latest_posts.json"
 // TOP 加载最多点赞的旧数据
-#define HL_TOP_CATEGORY_MOSTS_LIKES_OLDER_POSTS_URL @"http://192.168.168.188:8008/nvshen/nsjson/top_most_likes_older_posts.json"
+#define HL_TOP_CATEGORY_MOSTS_LIKES_OLDER_POSTS_URL @"http://115.126.73.22:8080/nsjson/top_most_likes_older_posts.json"
 ///////////////////////////////////////////////////////
 
 // 普通配置

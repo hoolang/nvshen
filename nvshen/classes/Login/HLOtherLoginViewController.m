@@ -42,35 +42,10 @@
     
     
 }
-- (IBAction)loginBtnClick {
-    // 登录
-    
-    /*
-     * 官方的登录实现
-     
-     * 1.把用户名和密码放在WCUserInfo的单例
-     
-     
-     * 2.调用 AppDelegate的一个login 连接服务并登录
-     */
-    
-    HLUserInfo *userInfo = [HLUserInfo sharedHLUserInfo];
-    userInfo.user = self.userField.text;
-    userInfo.pwd = self.pwdField.text;
-    
-    [super login];
-}
-
-
-
-- (IBAction)cancel:(id)sender {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 
 
 -(void)dealloc{
-    NSLog(@"%s",__func__);
+    HLLog(@"%s",__func__);
 }
 @end

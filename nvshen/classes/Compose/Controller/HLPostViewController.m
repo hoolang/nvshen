@@ -165,10 +165,22 @@
         //
         NSData *data = UIImageJPEGRepresentation(image, 0.6);
         [formData appendPartWithFileData:data name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+        [MBProgressHUD showSuccess:@"正在发布..."];
+        
     } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-        [MBProgressHUD showSuccess:@"发送成功"];
+        
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showSuccess:@"发布成功"];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [MBProgressHUD showError:@"发送失败"];
+        
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"发布失败"];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        
     }];
 }
 

@@ -3,7 +3,7 @@
 //  ItheimaLottery
 //
 //  Created by apple on 14-9-12.
-//  Copyright (c) 2014年 itcast. All rights reserved.
+//  Copyright (c) 2014年 Hoolang. All rights reserved.
 //
 
 #import "HLShareViewController.h"
