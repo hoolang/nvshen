@@ -2,7 +2,7 @@
 基于xmppframework 和 openfire的简单聊天系统。
 后台系统为java ssh框架缩写
 
-目前比较简陋。 望大家多多指教。
+目前比较简陋。 望大家多多指教。有问题，请与我联系 企鹅：7283380
 
 ![image](https://github.com/hoolang/nsimages/blob/master/1.png)
 
