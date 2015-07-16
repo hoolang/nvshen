@@ -376,7 +376,18 @@ singleton_implementation(HLXMPPTool)
     [self connectToHost];
 }
 
-//处理加好友
+// 添加好友
+#pragma mark -添加好友
+- (void)xmppAddFriendSubscribeUser:(XMPPJID *)name
+{
+    //创建用户jid
+    XMPPJID *jid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@", name, domain]];
+    
+    //添加好友xmppRoster语法
+    [_roster subscribePresenceToUser:jid];
+    
+}
+// 处理加好友
 #pragma mark 处理加好友回调,加好友
 - (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {

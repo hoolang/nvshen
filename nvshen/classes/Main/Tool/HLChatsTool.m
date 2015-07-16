@@ -269,6 +269,7 @@ static FMDatabase *_db;
     NSRange rang = [message.fromStr rangeOfString:@"@"];
     NSString *username = [message.fromStr substringToIndex:rang.location];
     
+    // username = message.from.user
     HLLog(@"from username: %@", username);
 
     
@@ -277,6 +278,7 @@ static FMDatabase *_db;
         // 则用户名是接受方
         NSRange rang = [message.toStr rangeOfString:@"@"];
         username = [message.toStr substringToIndex:rang.location];
+        // username = message.to.user
     }
     
     NSArray *array = [self seleteMessageByUsername:username];

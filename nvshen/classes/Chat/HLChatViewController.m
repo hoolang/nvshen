@@ -16,6 +16,7 @@
 #import "HLEmotionTextView.h"
 #import "XMPPvCardTemp.h"
 #import "HLChatsTool.h"
+#import "MBProgressHUD+MJ.h"
 
 @interface HLChatViewController ()
 <UITableViewDataSource,
@@ -28,8 +29,7 @@ HLComposeToolbarDelegate>
 {
     NSFetchedResultsController *_resultsContr;
 }
-//@property (nonatomic, strong) NSLayoutConstraint *inputViewBottomConstraint;//inputView底部约束
-//@property (nonatomic, strong) NSLayoutConstraint *inputViewHeightConstraint;//inputView高度约束
+
 @property (nonatomic, weak) UITableView *tableView;
 /** 自己的头像 */
 @property (nonatomic, strong) UIImage *selfAvatar;
@@ -47,8 +47,8 @@ HLComposeToolbarDelegate>
 @end
 
 @implementation HLChatViewController
-#pragma mark - 懒加载
 
+#pragma mark - 懒加载
 - (UIImage *)selfAvatar
 {
     if (!_selfAvatar) {
@@ -84,6 +84,8 @@ HLComposeToolbarDelegate>
 -(void)viewDidLoad{
     [super viewDidLoad];
     
+    // 设置添加朋友按钮
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSubscript) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
     
     [self setupView];
     
@@ -97,7 +99,7 @@ HLComposeToolbarDelegate>
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     // 加载数据
-    [self loadMsgs];
+    [self loadMessages];
     
     // 键盘的frame发生改变时发出的通知（位置和尺寸）
     [HLNotificationCenter addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -153,7 +155,6 @@ HLComposeToolbarDelegate>
 
 
 -(void)setupView{
-    // 代码方式实现自动布局 VFL
     // 创建一个Tableview;
     UITableView *tableView = [[UITableView alloc] init];
     //tableView.backgroundColor = [UIColor redColor];
@@ -168,53 +169,21 @@ HLComposeToolbarDelegate>
     
     tableView.delegate = self;
     tableView.dataSource = self;
-#warning 代码实现自动布局，要设置下面的属性为NO
-    tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+//#warning 代码实现自动布局，要设置下面的属性为NO
+//    tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    
     [self.view addSubview:tableView];
     self.tableView = tableView;
-    
-    // 创建输入框View
-//    HLInputView *inputView = [HLInputView inputView];
-//    inputView.translatesAutoresizingMaskIntoConstraints = NO;
-//    // 设置TextView代理
-//    inputView.textView.delegate = self;
-    
-    // 添加按钮事件
-//    [inputView.addBtn addTarget:self action:@selector(addBtnClick) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:inputView];
-    
-    // 自动布局
-    
-    // 水平方向的约束
-//   NSDictionary *views = @{@"tableview":tableView,
-//                            @"inputView":inputView};
-    
-    // 1.tabview水平方向的约束
-//    NSArray *tabviewHConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tableview]-0-|" options:0 metrics:nil views:views];
-//    [self.view addConstraints:tabviewHConstraints];
-//    
-//    // 2.inputView水平方向的约束
-//    NSArray *inputViewHConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[inputView]-0-|" options:0 metrics:nil views:views];
-//    [self.view addConstraints:inputViewHConstraints];
-//    
-//    
-//    // 垂直方向的约束
-//    NSArray *vContraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-64-[tableview]-0-[inputView(50)]-0-|" options:0 metrics:nil views:views];
-//    [self.view addConstraints:vContraints];
-    // 添加inputView的高度约束
-//    self.inputViewHeightConstraint = vContraints[2];
-//    self.inputViewBottomConstraint = [vContraints lastObject];
-//    NSLog(@"%@",vContraints);
 }
 
 #pragma mark 加载XMPPMessageArchiving数据库的数据显示在表格
--(void)loadMsgs{
+-(void)loadMessages{
 
     // 上下文
     NSManagedObjectContext *context = [HLXMPPTool sharedHLXMPPTool].msgStorage.mainThreadManagedObjectContext;
     // 请求对象
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"XMPPMessageArchiving_Message_CoreDataObject"];
-    
     
     // 过滤、排序
     // 1.当前登录用户的JID的消息
@@ -243,6 +212,7 @@ HLComposeToolbarDelegate>
         HLLog(@"%@",err);
     }
 }
+
 /** 转frames*/
 - (HLMessageFrame *)chatFramesWithChats:(XMPPMessageArchiving_Message_CoreDataObject *) msg
 {
@@ -268,8 +238,21 @@ HLComposeToolbarDelegate>
     
     return frames;
 }
+#pragma mark -添加好友
+- (void)friendSubscript
+{
+    [[HLXMPPTool sharedHLXMPPTool] xmppAddFriendSubscribeUser:_friendJid];
+    
+    if([_friendJid.user isEqualToString:[HLUserInfo sharedHLUserInfo].user])
+    {
+        [MBProgressHUD showError:@"不能添加自己为好友"];
+    }else{
+        [MBProgressHUD showSuccess:@"已发送好友请求"];
+    }
+}
+
 #pragma mark -表格的数据源
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _resultsContr.fetchedObjects.count;
 }
 
@@ -332,7 +315,6 @@ HLComposeToolbarDelegate>
         
     }else{
         HLLog(@"%@",textView.text);
-
     }
 }
 #pragma mark 发送聊天消息(Text)

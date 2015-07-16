@@ -22,7 +22,6 @@ UITableViewDataSource,
 NSFetchedResultsControllerDelegate
 >
 {
-
     NSFetchedResultsController *_resultsContrl;
 }
 
@@ -32,12 +31,12 @@ NSFetchedResultsControllerDelegate
 
 @implementation HLChatListViewController
 
-
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
     [self setupView];
     
-    self.navigationItem.leftBarButtonItem =     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
     
 }
 
@@ -113,30 +112,6 @@ NSFetchedResultsControllerDelegate
     [self.tableView reloadData];
 }
 
--(void)loadFriends2{
-    //使用CoreData获取数据
-    // 1.上下文【关联到数据库XMPPRoster.sqlite】
-    NSManagedObjectContext *context = [HLXMPPTool sharedHLXMPPTool].rosterStorage.mainThreadManagedObjectContext;
-    
-    
-    // 2.FetchRequest【查哪张表】
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"XMPPUserCoreDataStorageObject"];
-    
-    // 3.设置过滤和排序
-    // 过滤当前登录用户的好友
-    NSString *jid = [HLUserInfo sharedHLUserInfo].jid;
-    NSPredicate *pre = [NSPredicate predicateWithFormat:@"streamBareJidStr = %@",jid];
-    request.predicate = pre;
-    
-    //排序
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
-    request.sortDescriptors = @[sort];
-    
-    // 4.执行请求获取数据
-    self.friends = [context executeFetchRequest:request error:nil];
-    //HLLog(@"%@",self.friends);
-    
-}
 
 - (void)friendSearch{
     HLAddFriendViewController *addFriendVC = [[HLAddFriendViewController alloc] init];
@@ -160,9 +135,10 @@ NSFetchedResultsControllerDelegate
         NSData *photoData = [[HLXMPPTool sharedHLXMPPTool].avatar photoDataForJID:user.jid];
         
         if (photoData != nil)
-            cell.imageView.image = [[UIImage imageWithData:photoData] clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
-        else
+        {   cell.imageView.image = [[UIImage imageWithData:photoData] clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
+        }else{
             cell.imageView.image = [[UIImage imageNamed:@"avatar_default_small"] clipCircleImageWithBorder:3 borderColor:[UIColor whiteColor]];
+        }
     }
 }
 
@@ -183,7 +159,6 @@ NSFetchedResultsControllerDelegate
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     // 获取对应好友
-    //XMPPUserCoreDataStorageObject *friend =self.friends[indexPath.row];
     XMPPUserCoreDataStorageObject *friend = _resultsContrl.fetchedObjects[indexPath.row];
 
     //    sectionNum
@@ -212,6 +187,7 @@ NSFetchedResultsControllerDelegate
         
         name = vcard.nickname;
         
+        // 如果昵称为空就截取jid
         if (name == nil) {
              NSRange rang = [friend.jidStr rangeOfString:@"@"];
             name = [friend.jidStr substringToIndex:rang.location];
@@ -232,6 +208,7 @@ NSFetchedResultsControllerDelegate
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
         HLLog(@"删除好友");
         XMPPUserCoreDataStorageObject *friend = _resultsContrl.fetchedObjects[indexPath.row];
         XMPPJID *freindJid = friend.jid;
@@ -275,6 +252,7 @@ NSFetchedResultsControllerDelegate
         [self.delegate pushToChatView:chatView];
     }
     
+    // 在聊天界面为YES
     self.isChating = YES;
     //[self.navigationController pushViewController:chatView animated:YES];
 }

@@ -41,15 +41,19 @@ singleton_interface(HLXMPPTool);
  *  用户注销
  
  */
--(void)xmppUserlogout;
+- (void)xmppUserlogout;
 /**
  *  用户登录
  */
--(void)xmppUserLogin:(XMPPResultBlock)resultBlock;
-
-
+- (void)xmppUserLogin:(XMPPResultBlock)resultBlock;
 /**
  *  用户注册
  */
--(void)xmppUserRegister:(XMPPResultBlock)resultBlock;
+- (void)xmppUserRegister:(XMPPResultBlock)resultBlock;
+/**
+ *  添加好友
+ *
+ *  @param name 好友用户名
+ */
+- (void)xmppAddFriendSubscribeUser:(XMPPJID *)name;
 @end

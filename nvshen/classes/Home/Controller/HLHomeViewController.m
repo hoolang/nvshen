@@ -55,7 +55,7 @@
     [HLNotificationCenter addObserver:self selector:@selector(clickCommentBtn:) name:@"clickCommentBtnNotification" object:nil];
     // 点击私聊按钮
     [HLNotificationCenter addObserver:self selector:@selector(clickChatBtn:) name:@"clickChatBtnNotification" object:nil];
-
+    // 更新评论的通知
     [HLNotificationCenter addObserver:self selector:@selector(changeCommentStatus:) name:@"DoneCommentNotification" object:nil];
 
     [self.tableView reloadData];
@@ -181,7 +181,7 @@
 
 
 /**
- *  加载更多的微博数据
+ *  加载更多的数据
  */
 - (void)loadMoreStatus
 {
@@ -191,12 +191,11 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //    params[@"access_token"] = account.access_token;
     
-    // 取出最后面的微博（最新的微博，ID最大的微博）
+    // 取出最后面的数据（最新的数据，ID最大的数据）
     HLStatusFrame *lastStatusF = [self.statusFrames lastObject];
     if (lastStatusF) {
-        // 若指定此参数，则返回ID小于或等于max_id的微博，默认为0。
-        // id这种数据一般都是比较大的，一般转成整数的话，最好是long long类型
 
+        // id这种数据一般都是比较大的，一般转成整数的话，最好是long long类型
         long long minId = lastStatusF.status.posts.pid.longLongValue;
         params[@"minid"] = @(minId);
          HLLog(@"params[@minid] %@",params[@"maxid"]);
@@ -228,9 +227,9 @@
 
 - (void)setNav{
     /* 设置导航栏上面的内容 */
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
-    
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) image:@"navigationbar_pop" highImage:@"navigationbar_pop_highlighted"];
+//    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch" highImage:@"navigationbar_friendsearch_highlighted"];
+//    
+//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) image:@"navigationbar_pop" highImage:@"navigationbar_pop_highlighted"];
     
     /* 中间的标题按钮 */
     //    UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
