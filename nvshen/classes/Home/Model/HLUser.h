@@ -10,13 +10,10 @@
 
 typedef enum {
     HLUserVerifiedTypeNone = -1, // 没有任何认证
-    
     HLUserVerifiedPersonal = 0,  // 个人认证
-    
     HLUserVerifiedOrgEnterprice = 2, // 企业官方：CSDN、EOE、搜狐新闻客户端
     HLUserVerifiedOrgMedia = 3, // 媒体官方：程序员杂志、苹果汇
     HLUserVerifiedOrgWebsite = 5, // 网站官方：猫扑
-    
     HLUserVerifiedDaren = 220 // 微博达人
 } HLUserVerifiedType;
 

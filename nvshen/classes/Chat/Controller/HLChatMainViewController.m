@@ -55,7 +55,7 @@ HLChatListVCDelegate
     self.chatListVC.delegate = self;
     [self.view addSubview:self.chatListVC.view];
 
-    
+    // 添加子控制器
     self.viewsControllers = @[self.recentVC, self.chatListVC];
     
     segmentedControl.selectedSegmentIndex = 0;
@@ -84,6 +84,7 @@ HLChatListVCDelegate
 
 
 -(void)transitionFrom:(NSInteger)from to:(NSInteger)to{
+    
     CATransition *transition = [[CATransition alloc] init];
     transition.type = kCATransitionPush;
     transition.subtype = from > to ? kCATransitionFromLeft : kCATransitionFromRight;
@@ -144,10 +145,13 @@ HLChatListVCDelegate
     HLLog(@"%s", __func__);
     
     int badges = 0;
+    // 获取好友请求数
     NSArray *array = [HLChatsTool newSubscriptions];
+    // 获取消息数
     NSArray *messages = [HLChatsTool loadMessages];
     
     for (HLUser *user in messages) {
+        // 此时的sex表示消息数
         badges += [user.sex intValue];
     }
     
@@ -157,7 +161,7 @@ HLChatListVCDelegate
     if (badges > 0) { // 如果是0，得清空数字
         self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", badges];
         [UIApplication sharedApplication].applicationIconBadgeNumber = badges;
-    } else { // badges = 0
+    } else { // badges = 0, 清空数字
         self.tabBarItem.badgeValue = nil;
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     }

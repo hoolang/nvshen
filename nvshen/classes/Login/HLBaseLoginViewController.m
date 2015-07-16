@@ -78,12 +78,6 @@
     
     // 登录成功来到主界面
     // 此方法是在子线程补调用，所以在主线程刷新UI
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    
-//    UIWindow *window = self.view.window;
-//    window.rootViewController = storyboard.instantiateInitialViewController;
-    [UIStoryboard showInitialVCWithName:@"Main"];
-    
     [UIApplication sharedApplication].keyWindow.rootViewController = [[HLTabBarViewController alloc] init];
 }
 

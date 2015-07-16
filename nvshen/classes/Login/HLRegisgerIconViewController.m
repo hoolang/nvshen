@@ -14,6 +14,7 @@
 #import "XMPPvCardTemp.h"
 #import "HLLoginViewController.h"
 #import "UIImage+Circle.h"
+#import "UIImage+Circle.h"
 
 #define HLPickFromAlum @"相册"
 #define HLPickFromCamera @"拍照"
@@ -273,7 +274,7 @@ UINavigationControllerDelegate
     
     HLImageCrop *imageCrop = [[HLImageCrop alloc]init];
     imageCrop.ratioOfWidthAndHeight = 500.0f/500.0f;
-    imageCrop.image = image;
+    imageCrop.image = [image scaleToSize:CGSizeMake(350, 350)];
     imageCrop.delegate = self;
     
     [picker pushViewController:imageCrop animated:YES];

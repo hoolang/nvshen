@@ -127,7 +127,7 @@ HLComposeToolbarDelegate>
     
 }
 -(void)keyboardWillShow:(NSNotification *)noti{
-    NSLog(@"%@",noti);
+    HLLog(@"%@",noti);
     // 获取键盘的高度
     CGRect kbEndFrm = [noti.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
@@ -238,6 +238,7 @@ HLComposeToolbarDelegate>
     
     return frames;
 }
+
 #pragma mark -添加好友
 - (void)friendSubscript
 {
@@ -308,7 +309,7 @@ HLComposeToolbarDelegate>
         
         [self sendMsgWithText:text bodyType:@"text"];
         //清空数据
-        textView.text = nil;
+        textView.text = @"";
         
         // 发送完消息 把inputView的高度改回来
 //        self.inputViewHeightConstraint.constant = 50;
@@ -472,11 +473,13 @@ HLComposeToolbarDelegate>
         }
     }];
 }
+
 #pragma mark - UITextViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
 }
+
 #pragma mark - HLComposeToolbarDelegate
 - (void)composeToolbar:(HLComposeToolbar *)toolbar didClickButton:(HLComposeToolbarButtonType)buttonType
 {

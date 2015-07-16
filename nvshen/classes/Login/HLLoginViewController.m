@@ -42,6 +42,7 @@
     userField.frame = CGRectMake(x, y, w, h);
     userField.backgroundColor = [UIColor whiteColor];
     userField.font = [UIFont systemFontOfSize:12];
+    userField.keyboardType = UIKeyboardTypeNamePhonePad;
     [self.view addSubview:userField];
     [userField addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     self.userField =  userField;
@@ -79,7 +80,6 @@
     [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
     [registerBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     registerBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-
 
     registerBtn.frame = CGRectMake(CGRectGetMaxX(pwdField.frame) - width, loginY, width, h);
     [registerBtn addTarget:self action:@selector(registerBtnClick) forControlEvents:UIControlEventTouchUpInside];

@@ -205,8 +205,6 @@ UIPickerViewDelegate
     // 如果文本的宽度大于cell的宽度
     CGFloat y = cellHeight > height ? (cellHeight - height) * 0.5 : 0;
     
-    
-    
     label.frame = CGRectMake(100, y, width , height);
     
     return label;
