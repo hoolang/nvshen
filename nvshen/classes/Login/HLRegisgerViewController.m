@@ -80,6 +80,7 @@ UIActionSheetDelegate
     userField.backgroundColor = [UIColor whiteColor];
     userField.placeholder = @"（*）请输入用户名";
     userField.font = [UIFont systemFontOfSize:12];
+    userField.keyboardType = UIKeyboardTypeNamePhonePad;
     self.userField = userField;
     self.userField.inputView = self.pickerV;
     [userField addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
