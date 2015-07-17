@@ -187,7 +187,7 @@ static NSString *const ID = @"cell";
     commentVC.title = viewDetailTitle;
     [self.navigationController pushViewController:commentVC animated:YES];
 }
-//返回这个UICollectionView是否可以被选择
+///返回这个UICollectionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;

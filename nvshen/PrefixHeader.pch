@@ -36,6 +36,8 @@
 #define CollectionWidth ((ScreenWidth - 10) * 0.5)
 //友盟
 #define UmengAppkey @"555bf86967e58ea877004d2d"
+// 检查软件版本
+#define CHECK_VERSION_URL @"http://itunes.apple.com/lookup?id=1020606711"
 
 //=============================================================
 // 头像图片存放路径

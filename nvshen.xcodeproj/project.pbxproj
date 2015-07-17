@@ -87,10 +87,7 @@
 		E013BCD71B29BA350068CEE8 /* HLRegisgerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013BCD21B29BA350068CEE8 /* HLRegisgerViewController.m */; };
 		E013C6D41B2A035C0068CEE8 /* HLAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6BB1B2A035C0068CEE8 /* HLAddFriendViewController.m */; };
 		E013C6D51B2A035C0068CEE8 /* HLChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6BD1B2A035C0068CEE8 /* HLChatViewController.m */; };
-		E013C6D61B2A035C0068CEE8 /* HLContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6BF1B2A035C0068CEE8 /* HLContactsViewController.m */; };
 		E013C6D71B2A035C0068CEE8 /* HLEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6C11B2A035C0068CEE8 /* HLEditProfileViewController.m */; };
-		E013C6D81B2A035C0068CEE8 /* HLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6C31B2A035C0068CEE8 /* HLHistoryViewController.m */; };
-		E013C6DB1B2A035C0068CEE8 /* HLMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6C81B2A035C0068CEE8 /* HLMeViewController.m */; };
 		E013C6DC1B2A035C0068CEE8 /* HLChatNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6CA1B2A035C0068CEE8 /* HLChatNavigationController.m */; };
 		E013C6DD1B2A035C0068CEE8 /* HLChatProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6CC1B2A035C0068CEE8 /* HLChatProfileViewController.m */; };
 		E013C6DE1B2A035C0068CEE8 /* HLUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6CE1B2A035C0068CEE8 /* HLUserInfo.m */; };
@@ -555,14 +552,8 @@
 		E013C6BB1B2A035C0068CEE8 /* HLAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLAddFriendViewController.m; path = ../HLAddFriendViewController.m; sourceTree = "<group>"; };
 		E013C6BC1B2A035C0068CEE8 /* HLChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLChatViewController.h; path = ../HLChatViewController.h; sourceTree = "<group>"; };
 		E013C6BD1B2A035C0068CEE8 /* HLChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLChatViewController.m; path = ../HLChatViewController.m; sourceTree = "<group>"; };
-		E013C6BE1B2A035C0068CEE8 /* HLContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLContactsViewController.h; sourceTree = "<group>"; };
-		E013C6BF1B2A035C0068CEE8 /* HLContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLContactsViewController.m; sourceTree = "<group>"; };
 		E013C6C01B2A035C0068CEE8 /* HLEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditProfileViewController.h; sourceTree = "<group>"; };
 		E013C6C11B2A035C0068CEE8 /* HLEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditProfileViewController.m; sourceTree = "<group>"; };
-		E013C6C21B2A035C0068CEE8 /* HLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHistoryViewController.h; sourceTree = "<group>"; };
-		E013C6C31B2A035C0068CEE8 /* HLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHistoryViewController.m; sourceTree = "<group>"; };
-		E013C6C71B2A035C0068CEE8 /* HLMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMeViewController.h; sourceTree = "<group>"; };
-		E013C6C81B2A035C0068CEE8 /* HLMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMeViewController.m; sourceTree = "<group>"; };
 		E013C6C91B2A035C0068CEE8 /* HLChatNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLChatNavigationController.h; sourceTree = "<group>"; };
 		E013C6CA1B2A035C0068CEE8 /* HLChatNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLChatNavigationController.m; sourceTree = "<group>"; };
 		E013C6CB1B2A035C0068CEE8 /* HLChatProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLChatProfileViewController.h; path = ../HLChatProfileViewController.h; sourceTree = "<group>"; };
@@ -1417,14 +1408,8 @@
 				E013C8CA1B2A1DCF0068CEE8 /* Model */,
 				E013C8CB1B2A1DCF0068CEE8 /* View */,
 				E082824E1B2ACE73001FB9F1 /* other */,
-				E013C6BE1B2A035C0068CEE8 /* HLContactsViewController.h */,
-				E013C6BF1B2A035C0068CEE8 /* HLContactsViewController.m */,
 				E013C6C01B2A035C0068CEE8 /* HLEditProfileViewController.h */,
 				E013C6C11B2A035C0068CEE8 /* HLEditProfileViewController.m */,
-				E013C6C21B2A035C0068CEE8 /* HLHistoryViewController.h */,
-				E013C6C31B2A035C0068CEE8 /* HLHistoryViewController.m */,
-				E013C6C71B2A035C0068CEE8 /* HLMeViewController.h */,
-				E013C6C81B2A035C0068CEE8 /* HLMeViewController.m */,
 				E013C6C91B2A035C0068CEE8 /* HLChatNavigationController.h */,
 				E013C6CA1B2A035C0068CEE8 /* HLChatNavigationController.m */,
 				E013C6CD1B2A035C0068CEE8 /* HLUserInfo.h */,
@@ -3312,7 +3297,6 @@
 				E0072EE11B123BA100AAC6F5 /* NSObject+MJKeyValue.m in Sources */,
 				E05469481B4A3C3700CBEC6A /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				E09DCE7C1AFEEE7900C5145E /* HLDiscoverViewController.m in Sources */,
-				E013C6D61B2A035C0068CEE8 /* HLContactsViewController.m in Sources */,
 				E05469821B4A3C3700CBEC6A /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				E0B5EA2E1B04A1CB0086BC03 /* AssetHelper.m in Sources */,
 				E0546AF31B4AD8DC00CBEC6A /* SegmentedControl.m in Sources */,
@@ -3400,7 +3384,6 @@
 				E0234E531B333E97002F1966 /* MJRefreshFooterView.m in Sources */,
 				E05469981B4A3C3700CBEC6A /* XMPPMessage+XEP_0085.m in Sources */,
 				E095D56C1B16E21A002B07E2 /* HLStatus.m in Sources */,
-				E013C6DB1B2A035C0068CEE8 /* HLMeViewController.m in Sources */,
 				E0038E9B1B12346800E4924F /* HLSettingCell.m in Sources */,
 				E0072E991B123B7900AAC6F5 /* HLScoreNoticeViewController.m in Sources */,
 				E0072F061B123BA800AAC6F5 /* NSData+ImageContentType.m in Sources */,
@@ -3413,7 +3396,6 @@
 				E07D3F481B4CECB700968259 /* HLChatListSubscriptionsViewController.m in Sources */,
 				E0546B101B4AF45D00CBEC6A /* FMDatabase.m in Sources */,
 				E0072EBF1B123B9800AAC6F5 /* MBProgressHUD.m in Sources */,
-				E013C6D81B2A035C0068CEE8 /* HLHistoryViewController.m in Sources */,
 				E0234E521B333E97002F1966 /* MJRefreshConst.m in Sources */,
 				E0DD72EF1B2494D200989489 /* HLTopCommentsPostsCell.m in Sources */,
 				E054699A1B4A3C3700CBEC6A /* XMPPTransports.m in Sources */,

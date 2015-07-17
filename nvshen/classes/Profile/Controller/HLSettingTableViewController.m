@@ -7,29 +7,19 @@
 //
 
 #import "HLSettingTableViewController.h"
-
 #import "HLSettingCell.h"
-
 #import "HLSettingItem.h"
-
 #import "HLSettingArrowItem.h"
 #import "HLSettingSwitchItem.h"
-
 #import "HLSettingGroup.h"
-
 #import "HLTestViewController.h"
-
 #import "MBProgressHUD+MJ.h"
-
 #import "HLProductViewController.h"
-
 #import "HLPushNoticeController.h"
-
 #import "HLHelpViewController.h"
-
 #import "HLShareViewController.h"
-
 #import "HLAboutViewController.h"
+#import "HLHttpTool.h"
 
 @interface HLSettingTableViewController ()
 
@@ -54,19 +44,29 @@
     HLSettingItem *newVersion = [HLSettingArrowItem itemWithIcon:@"MoreUpdate" title:@"检查新版本"];
     // 保存了一段检查更新的功能
     newVersion.option = ^{
-        // 1.显示蒙板
-        [MBProgressHUD showMessage:@"正在检查ing......."];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            // 2.隐藏蒙板
-            [MBProgressHUD hideHUD];
-            
-            // 3.提示用户
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"有更新版本" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"立即更新", nil];
-            // 显示UIAlertView
-            [alert show];
-            
-        });
+//        // 1.显示蒙板
+//        [MBProgressHUD showMessage:@"正在检查ing......."];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            // 2.隐藏蒙板
+//            [MBProgressHUD hideHUD];
+//            
+//            // 3.提示用户
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"有更新版本" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"立即更新", nil];
+//            // 显示UIAlertView
+//            [alert show];
+//            
+//        });
         
+        // 2.发送请求
+//        [HLHttpTool get:CHECK_VERSION_URL
+//                 params:nil success:^(id json) {
+//                     
+//                     HLLog(@"version json:%@", json);
+//                     
+//                 } failure:^(NSError *error) {
+//                     HLLog(@"请求失败-%@", error);
+//                     [MBProgressHUD showError:@"网络异常，请稍微再试！"];
+//                 }];
         
     };
 //    HLSettingItem *help = [HLSettingArrowItem itemWithIcon:@"MoreHelp" title:@"帮助" destVcClass:[HLHelpViewController class]];
@@ -101,4 +101,22 @@
     [self.dataList addObject:group0];
 }
 
+/**
+ *  检查新版本
+ */
+- (void)checkVersion:(NSString *)result
+{
+
+    //"version":"1.0"
+//    NSRange substr = [result rangeOfString:@"\"version\":\""];
+//    NSRange substr2 =[result rangeOfString:@"\"" options:NULL range:NSRange{substr.location+substr.length,10}];
+//    NSRange range = {substr.location+substr.length,substr2.location-substr.location-substr.length};
+//    NSString *newVersion =[file substringWithRange:range];
+//    if([nowVersion isEqualToString:newVersion]==NO)
+//    {
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"版本有更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"更新", nil];
+//        [alert show];
+//    }
+    
+}
 @end

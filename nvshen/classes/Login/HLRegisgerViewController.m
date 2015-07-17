@@ -25,14 +25,14 @@ UIPickerViewDelegate,
 UIActionSheetDelegate
 >
 
-@property (weak, nonatomic) UITextField *userField;
-@property (weak, nonatomic) UIButton *localLable;
-@property (weak, nonatomic) UIButton *sexLabel;
-@property (weak, nonatomic) UIButton *registerBtn;
+@property (nonatomic, weak) UITextField *userField;
+@property (nonatomic, weak) UIButton *localLable;
+@property (nonatomic, weak) UIButton *sexLabel;
+@property (nonatomic, weak) UIButton *registerBtn;
 @property (nonatomic, strong) NSArray *provinces; // 省份
 @property (nonatomic, strong) NSArray *cities;
-@property (nonatomic,assign) NSInteger provinceIndex;  // 选中城市索引 ProvinceName
-@property (strong, nonatomic) UIPickerView *pickerV;
+@property (nonatomic, assign) NSInteger provinceIndex;  // 选中城市索引 ProvinceName
+@property (nonatomic, strong) UIPickerView *pickerV;
 
 
 @end
@@ -40,6 +40,7 @@ UIActionSheetDelegate
 @implementation HLRegisgerViewController
 
 -(NSArray *)provinces{
+    
     if (_provinces == nil) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"provinces" ofType:@"plist"];
         
@@ -90,7 +91,7 @@ UIActionSheetDelegate
     /** 所在地*/
     UIButton *localLable = [[UIButton alloc] init];
     localLable.frame = CGRectMake(borderW, CGRectGetMaxY(userField.frame) + 10, ScreenWidth - borderW * 2, height);
-    [localLable setTitle:@"广东-广州" forState:UIControlStateNormal];
+    [localLable setTitle:@"广东省-广州市" forState:UIControlStateNormal];
     [localLable setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     localLable.titleLabel.font = [UIFont systemFontOfSize:12];
     localLable.backgroundColor = [UIColor whiteColor];
