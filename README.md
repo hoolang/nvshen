@@ -4,6 +4,8 @@
 
 目前比较简陋。 望大家多多指教。有问题，请与我联系 企鹅：7283380
 
+测试账号 用户名：yyyy 密码：111111
+
 ![image](https://github.com/hoolang/nsimages/blob/master/1.png)
 
 ![image](https://github.com/hoolang/nsimages/blob/master/2.png)
