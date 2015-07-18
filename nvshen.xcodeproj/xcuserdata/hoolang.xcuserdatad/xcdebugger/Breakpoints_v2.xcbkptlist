@@ -232,11 +232,11 @@
                   moduleName = "nvshen"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hoolang/Projects/nvshen/nvshen/classes/Main/Tool/HLChatsTool.m"
-                  timestampString = "458402650.358738"
+                  timestampString = "458837045.268869"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "344"
-                  endingLineNumber = "344"
+                  startingLineNumber = "349"
+                  endingLineNumber = "349"
                   offsetFromSymbolStart = "909">
                </Location>
                <Location
@@ -247,26 +247,26 @@
                   moduleName = "nvshen"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hoolang/Projects/nvshen/nvshen/classes/Main/Tool/HLChatsTool.m"
-                  timestampString = "458402650.358921"
+                  timestampString = "458837045.269093"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "344"
-                  endingLineNumber = "344"
+                  startingLineNumber = "349"
+                  endingLineNumber = "349"
                   offsetFromSymbolStart = "973">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__37+[HLChatsTool saveMessage:isCurrent:]_block_invoke170"
+                  symbolName = "__37+[HLChatsTool saveMessage:isCurrent:]_block_invoke172"
                   moduleName = "nvshen"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hoolang/Projects/nvshen/nvshen/classes/Main/Tool/HLChatsTool.m"
-                  timestampString = "458402650.35909"
+                  timestampString = "458837045.269278"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "344"
-                  endingLineNumber = "344"
+                  startingLineNumber = "349"
+                  endingLineNumber = "349"
                   offsetFromSymbolStart = "43">
                </Location>
             </Locations>

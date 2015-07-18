@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E00156951B31517C00851105 /* HLMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E00156941B31517C00851105 /* HLMD5.m */; };
-		E0038E301B12325000E4924F /* setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = E0038E251B12325000E4924F /* setting.plist */; };
 		E0038E651B12342F00E4924F /* HLAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0038E4B1B12342F00E4924F /* HLAboutViewController.m */; };
 		E0038E661B12342F00E4924F /* HLHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0038E4E1B12342F00E4924F /* HLHelpViewController.m */; };
 		E0038E671B12342F00E4924F /* HLHtmlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0038E501B12342F00E4924F /* HLHtmlViewController.m */; };
@@ -402,7 +401,6 @@
 		E001568A1B313CFF00851105 /* HLRegisgerIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLRegisgerIconViewController.h; sourceTree = "<group>"; };
 		E00156931B31517C00851105 /* HLMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMD5.h; sourceTree = "<group>"; };
 		E00156941B31517C00851105 /* HLMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMD5.m; sourceTree = "<group>"; };
-		E0038E251B12325000E4924F /* setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = setting.plist; path = "../../../../../../视频教程/第2版第二期/UI高级/0912-彩票第三天/代码/ItheimaLottery01-帮助/ItheimaLottery/Classes/Setting(设置)/Controllre/setting.plist"; sourceTree = "<group>"; };
 		E0038E4A1B12342F00E4924F /* HLAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLAboutViewController.h; sourceTree = "<group>"; };
 		E0038E4B1B12342F00E4924F /* HLAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLAboutViewController.m; sourceTree = "<group>"; };
 		E0038E4D1B12342F00E4924F /* HLHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHelpViewController.h; sourceTree = "<group>"; };
@@ -2589,7 +2587,6 @@
 				E0A789AD1AFE2822004F3511 /* HLHomeViewController.m */,
 				E0A53EF01B1CCC18007321CD /* HLCommentViewContrller.h */,
 				E0A53EF11B1CCC18007321CD /* HLCommentViewContrller.m */,
-				E0038E251B12325000E4924F /* setting.plist */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3103,7 +3100,6 @@
 				E0546B001B4ADB4400CBEC6A /* recordButtonBgActive.png in Resources */,
 				E0038E9A1B12346800E4924F /* HLProductCell.xib in Resources */,
 				E0B5EA4C1B04A1E20086BC03 /* up@2x.png in Resources */,
-				E0038E301B12325000E4924F /* setting.plist in Resources */,
 				E0B5EA321B04A1CB0086BC03 /* DoImagePickerController.xib in Resources */,
 				E0072F371B124C4C00AAC6F5 /* cywt.json in Resources */,
 				E0B5EA301B04A1CB0086BC03 /* DoAlbumCell.xib in Resources */,
