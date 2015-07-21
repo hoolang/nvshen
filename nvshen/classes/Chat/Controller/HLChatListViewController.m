@@ -255,6 +255,9 @@ NSFetchedResultsControllerDelegate
     // 在聊天界面为YES
     self.isChating = YES;
     //[self.navigationController pushViewController:chatView animated:YES];
+    
+    // 更新消息状态为已读
+    [HLChatsTool updateMessage:friend.jid.user];
 }
 
 -(void)dealloc
