@@ -158,13 +158,18 @@ HLChatListVCDelegate
     badges += array.count;
     
     HLLog(@"setupChatBadge array.count %d", badges);
-    if (badges > 0) { // 如果是0，得清空数字
-        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", badges];
-        [UIApplication sharedApplication].applicationIconBadgeNumber = badges;
-    } else { // badges = 0, 清空数字
-        self.tabBarItem.badgeValue = nil;
-        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    }
+    
+    // 回到主线程刷新badges
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (badges > 0) { // 如果是0，得清空数字
+            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", badges];
+            [UIApplication sharedApplication].applicationIconBadgeNumber = badges;
+        } else { // badges = 0, 清空数字
+            self.tabBarItem.badgeValue = nil;
+            [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        }
+    });
+
     
     HLLog(@"设置Badge完成： %s", __func__);
 }
