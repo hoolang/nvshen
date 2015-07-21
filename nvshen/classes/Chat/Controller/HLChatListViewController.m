@@ -189,8 +189,7 @@ NSFetchedResultsControllerDelegate
         
         // 如果昵称为空就截取jid
         if (name == nil) {
-             NSRange rang = [friend.jidStr rangeOfString:@"@"];
-            name = [friend.jidStr substringToIndex:rang.location];
+            name = friend.jid.user;
         }
     }
 
@@ -215,9 +214,7 @@ NSFetchedResultsControllerDelegate
         [[HLXMPPTool sharedHLXMPPTool].roster removeUser:freindJid];
         
         // 删除沙盒中的数据
-        NSRange rang = [friend.jidStr rangeOfString:@"@"];
-        NSString *username = [friend.jidStr substringToIndex:rang.location];
-        [HLChatsTool updateSubscriptionFromUsername:username Status:@"已删除"];
+        [HLChatsTool updateSubscriptionFromUsername:friend.jid.user Status:@"已删除"];
     }
 }
 
