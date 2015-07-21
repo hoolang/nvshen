@@ -128,15 +128,6 @@ static NSString *const ID = @"cell";
     }
     return frames;
 }
-#pragma mark - <HMWaterflowLayoutDelegate>
-//- (CGFloat)waterflowLayout:(HLWaterflowLayout *)waterflowLayout heightForWidth:(CGFloat)width atIndexPath:(NSIndexPath *)indexPath
-//{
-//    //HLTopPosts *shop = self.[indexPath.item];
-//    HLLog(@"waterflowLayout width ----------------------00000000000>>>>>>>%f", width);
-//    
-//    
-//    return width;
-//}
 
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
