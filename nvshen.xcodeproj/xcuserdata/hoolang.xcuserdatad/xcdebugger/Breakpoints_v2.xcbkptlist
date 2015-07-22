@@ -87,22 +87,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "nvshen/classes/Chat/Controller/HLChatRecentViewController.m"
-            timestampString = "458404663.641227"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "-loadDataSources"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "nvshen/classes/Main/Tool/HLChatsTool.m"
             timestampString = "458743870.303668"
             startingColumnNumber = "9223372036854775807"
@@ -232,7 +216,7 @@
                   moduleName = "nvshen"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hoolang/Projects/nvshen/nvshen/classes/Main/Tool/HLChatsTool.m"
-                  timestampString = "458837045.268869"
+                  timestampString = "458908989.080212"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "349"
@@ -247,7 +231,7 @@
                   moduleName = "nvshen"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hoolang/Projects/nvshen/nvshen/classes/Main/Tool/HLChatsTool.m"
-                  timestampString = "458837045.269093"
+                  timestampString = "458908989.080344"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "349"
@@ -262,7 +246,7 @@
                   moduleName = "nvshen"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hoolang/Projects/nvshen/nvshen/classes/Main/Tool/HLChatsTool.m"
-                  timestampString = "458837045.269278"
+                  timestampString = "458908989.080453"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "349"

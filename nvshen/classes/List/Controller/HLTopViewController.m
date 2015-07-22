@@ -116,8 +116,10 @@ HLTopPostsCellDelegate
                  self.mostCommentsFrame = mostCommentsFrame;
                  self.mostLikeFrame = mostLikesPostsFrame;
                  
-                 // 刷新表格
-                 [self.tableView reloadData];
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     // 刷新表格
+                     [self.tableView reloadData];
+                 });
                  // 结束刷新(隐藏footer)
                  [self.tableView headerEndRefreshing];
                  
