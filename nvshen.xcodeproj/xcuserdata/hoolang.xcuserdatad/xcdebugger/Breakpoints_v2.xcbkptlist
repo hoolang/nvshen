@@ -311,11 +311,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nvshen/classes/Chat/HLChatViewController.m"
-            timestampString = "458743551.302567"
+            timestampString = "459241426.393772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
             landmarkName = "-sendMsgWithText:bodyType:"
             landmarkType = "5">
          </BreakpointContent>
@@ -327,11 +327,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nvshen/classes/Chat/HLChatViewController.m"
-            timestampString = "458743551.302567"
+            timestampString = "459241426.393772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "-sendTextMsg"
             landmarkType = "5">
          </BreakpointContent>
@@ -343,11 +343,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nvshen/classes/Chat/HLChatViewController.m"
-            timestampString = "458743551.302567"
+            timestampString = "459241426.393772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
             landmarkName = "-sendTextMsg"
             landmarkType = "5">
          </BreakpointContent>

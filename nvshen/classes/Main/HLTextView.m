@@ -1,9 +1,9 @@
 //
-//  HWTextView.m
-//  黑马微博2期
+//  HLTextView.m
+//  nvshen
 //
-//  Created by apple on 14-10-20.
-//  Copyright (c) 2014年 heima. All rights reserved.
+//  Created by hoolang on 14-10-20.
+//  Copyright (c) 2014年 Hoolang. All rights reserved.
 //
 
 #import "HLTextView.h"

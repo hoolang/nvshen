@@ -6,7 +6,6 @@
 //
 
 #import "HLChatViewController.h"
-#import "HttpTool.h"
 #import "UIImageView+WebCache.h"
 #import "HLMessageCell.h"
 #import "HLMessageFrame.h"
@@ -33,7 +32,6 @@ HLComposeToolbarDelegate>
 @property (nonatomic, weak) UITableView *tableView;
 /** 自己的头像 */
 @property (nonatomic, strong) UIImage *selfAvatar;
-@property (nonatomic, strong) HttpTool *httpTool;
 /** 输入控件 */
 @property (nonatomic, weak) HLEmotionTextView *textView;
 /** 键盘顶部的工具条 */
@@ -72,13 +70,6 @@ HLComposeToolbarDelegate>
         self.emotionKeyboard.height = 216;
     }
     return _emotionKeyboard;
-}
--(HttpTool *)httpTool{
-    if (!_httpTool) {
-        _httpTool = [[HttpTool alloc] init];
-    }
-    
-    return _httpTool;
 }
 
 -(void)viewDidLoad{
@@ -417,14 +408,13 @@ HLComposeToolbarDelegate>
     
     
     // 3.使用HTTP put 上传
-#warning 图片上传请使用jpg格式 因为我写的服务器只接接收jpg
-    [self.httpTool uploadData:UIImageJPEGRepresentation(image, 0.75) url:[NSURL URLWithString:uploadUrl] progressBlock:nil completion:^(NSError *error) {
-       
-        if (!error) {
-            NSLog(@"上传成功");
-            [self sendMsgWithText:uploadUrl bodyType:@"image"];
-        }
-    }];
+//    [self.httpTool uploadData:UIImageJPEGRepresentation(image, 0.75) url:[NSURL URLWithString:uploadUrl] progressBlock:nil completion:^(NSError *error) {
+//       
+//        if (!error) {
+//            NSLog(@"上传成功");
+//            [self sendMsgWithText:uploadUrl bodyType:@"image"];
+//        }
+//    }];
     
     
     // 图片发送成功，把图片的URL传Openfire的服务

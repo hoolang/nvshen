@@ -91,7 +91,6 @@
 		E013C6DD1B2A035C0068CEE8 /* HLChatProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6CC1B2A035C0068CEE8 /* HLChatProfileViewController.m */; };
 		E013C6DE1B2A035C0068CEE8 /* HLUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6CE1B2A035C0068CEE8 /* HLUserInfo.m */; };
 		E013C6DF1B2A035C0068CEE8 /* HLXMPPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6D01B2A035C0068CEE8 /* HLXMPPTool.m */; };
-		E013C6E01B2A035C0068CEE8 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6D21B2A035C0068CEE8 /* HttpTool.m */; };
 		E013C6E21B2A07F50068CEE8 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E013C6E11B2A07F50068CEE8 /* libresolv.dylib */; };
 		E013C8C21B2A0BF10068CEE8 /* UIButton+WF.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C8B71B2A0BF10068CEE8 /* UIButton+WF.m */; };
 		E013C8C31B2A0BF10068CEE8 /* UIImage+WF.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C8B91B2A0BF10068CEE8 /* UIImage+WF.m */; };
@@ -372,7 +371,6 @@
 		E0D9227C1AFC9C5A00AE9948 /* nvshenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9227B1AFC9C5A00AE9948 /* nvshenTests.m */; };
 		E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229C1AFCA97000AE9948 /* AppDelegate.m */; };
 		E0D922A41AFCA97000AE9948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D9229D1AFCA97000AE9948 /* main.m */; };
-		E0D922A51AFCA97000AE9948 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D922A01AFCA97000AE9948 /* ViewController.m */; };
 		E0DD72EF1B2494D200989489 /* HLTopCommentsPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DD72EE1B2494D200989489 /* HLTopCommentsPostsCell.m */; };
 		E0DD72F21B2499F300989489 /* HLTopLikesPotsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DD72F11B2499F300989489 /* HLTopLikesPotsCell.m */; };
 		E0DD72F51B249A2A00989489 /* HLLatestUserPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DD72F41B249A2A00989489 /* HLLatestUserPostsCell.m */; };
@@ -560,8 +558,6 @@
 		E013C6CE1B2A035C0068CEE8 /* HLUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLUserInfo.m; sourceTree = "<group>"; };
 		E013C6CF1B2A035C0068CEE8 /* HLXMPPTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLXMPPTool.h; sourceTree = "<group>"; };
 		E013C6D01B2A035C0068CEE8 /* HLXMPPTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLXMPPTool.m; sourceTree = "<group>"; };
-		E013C6D11B2A035C0068CEE8 /* HttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
-		E013C6D21B2A035C0068CEE8 /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		E013C6D31B2A035C0068CEE8 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		E013C6E11B2A07F50068CEE8 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		E013C6E31B2A081F0068CEE8 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1094,8 +1090,6 @@
 		E0D9229B1AFCA97000AE9948 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E0D9229C1AFCA97000AE9948 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E0D9229D1AFCA97000AE9948 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E0D9229F1AFCA97000AE9948 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E0D922A01AFCA97000AE9948 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E0D922AF1AFCAE7000AE9948 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		E0DD72ED1B2494D200989489 /* HLTopCommentsPostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTopCommentsPostsCell.h; sourceTree = "<group>"; };
 		E0DD72EE1B2494D200989489 /* HLTopCommentsPostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTopCommentsPostsCell.m; sourceTree = "<group>"; };
@@ -1414,8 +1408,6 @@
 				E013C6CE1B2A035C0068CEE8 /* HLUserInfo.m */,
 				E013C6CF1B2A035C0068CEE8 /* HLXMPPTool.h */,
 				E013C6D01B2A035C0068CEE8 /* HLXMPPTool.m */,
-				E013C6D11B2A035C0068CEE8 /* HttpTool.h */,
-				E013C6D21B2A035C0068CEE8 /* HttpTool.m */,
 				E013C6D31B2A035C0068CEE8 /* Singleton.h */,
 			);
 			name = "Chat（私聊）";
@@ -2828,8 +2820,6 @@
 				E0D922991AFCA97000AE9948 /* Model */,
 				E0D9229A1AFCA97000AE9948 /* Other */,
 				E0D9229E1AFCA97000AE9948 /* View */,
-				E0D9229F1AFCA97000AE9948 /* ViewController.h */,
-				E0D922A01AFCA97000AE9948 /* ViewController.m */,
 			);
 			name = "Main(主要)";
 			path = Main;
@@ -3161,7 +3151,6 @@
 				E05469921B4A3C3700CBEC6A /* TURNSocket.m in Sources */,
 				E0234E511B333E97002F1966 /* MJRefreshBaseView.m in Sources */,
 				E05469C21B4A3C3700CBEC6A /* XMPPIDTracker.m in Sources */,
-				E0D922A51AFCA97000AE9948 /* ViewController.m in Sources */,
 				E0072F0D1B123BA800AAC6F5 /* SDWebImagePrefetcher.m in Sources */,
 				E030277A1B3C50C0000A4934 /* HLProfileEditTextViewController.m in Sources */,
 				E0A53EE61B1C6215007321CD /* HLComposePhotosView.m in Sources */,
@@ -3344,7 +3333,6 @@
 				E0D922A31AFCA97000AE9948 /* AppDelegate.m in Sources */,
 				E013BCD61B29BA350068CEE8 /* HLOtherLoginViewController.m in Sources */,
 				E054694A1B4A3C3700CBEC6A /* XMPPPlainAuthentication.m in Sources */,
-				E013C6E01B2A035C0068CEE8 /* HttpTool.m in Sources */,
 				E013C8C71B2A0BF10068CEE8 /* UIView+WF.m in Sources */,
 				E0B5EA331B04A1CB0086BC03 /* DoPhotoCell.m in Sources */,
 				E05469BB1B4A3C3700CBEC6A /* XMPPMessage+XEP_0308.m in Sources */,
