@@ -7,13 +7,17 @@
 
 #import "HLChatProfileViewController.h"
 #import "XMPPvCardTemp.h"
-#import "HLEditProfileViewController.h"
 #import "HLHttpTool.h"
 #import "HLUser.h"
 #import "MJExtension.h"
 #import "UIImageView+WebCache.h"
 
-@interface HLChatProfileViewController()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,HLEditProfileViewControllerDelegate>
+@interface HLChatProfileViewController()
+<
+UIActionSheetDelegate,
+UINavigationControllerDelegate,
+UIImagePickerControllerDelegate
+>
 @property (weak, nonatomic) UIImageView *icon;      //头像
 @property (weak, nonatomic) UILabel *nicknameLabel; //昵称
 @property (weak, nonatomic) UILabel *sexLabel;      //性别

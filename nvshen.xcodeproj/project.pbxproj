@@ -86,8 +86,6 @@
 		E013BCD71B29BA350068CEE8 /* HLRegisgerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013BCD21B29BA350068CEE8 /* HLRegisgerViewController.m */; };
 		E013C6D41B2A035C0068CEE8 /* HLAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6BB1B2A035C0068CEE8 /* HLAddFriendViewController.m */; };
 		E013C6D51B2A035C0068CEE8 /* HLChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6BD1B2A035C0068CEE8 /* HLChatViewController.m */; };
-		E013C6D71B2A035C0068CEE8 /* HLEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6C11B2A035C0068CEE8 /* HLEditProfileViewController.m */; };
-		E013C6DC1B2A035C0068CEE8 /* HLChatNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6CA1B2A035C0068CEE8 /* HLChatNavigationController.m */; };
 		E013C6DD1B2A035C0068CEE8 /* HLChatProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6CC1B2A035C0068CEE8 /* HLChatProfileViewController.m */; };
 		E013C6DE1B2A035C0068CEE8 /* HLUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6CE1B2A035C0068CEE8 /* HLUserInfo.m */; };
 		E013C6DF1B2A035C0068CEE8 /* HLXMPPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C6D01B2A035C0068CEE8 /* HLXMPPTool.m */; };
@@ -548,10 +546,6 @@
 		E013C6BB1B2A035C0068CEE8 /* HLAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLAddFriendViewController.m; path = ../HLAddFriendViewController.m; sourceTree = "<group>"; };
 		E013C6BC1B2A035C0068CEE8 /* HLChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLChatViewController.h; path = ../HLChatViewController.h; sourceTree = "<group>"; };
 		E013C6BD1B2A035C0068CEE8 /* HLChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLChatViewController.m; path = ../HLChatViewController.m; sourceTree = "<group>"; };
-		E013C6C01B2A035C0068CEE8 /* HLEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditProfileViewController.h; sourceTree = "<group>"; };
-		E013C6C11B2A035C0068CEE8 /* HLEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditProfileViewController.m; sourceTree = "<group>"; };
-		E013C6C91B2A035C0068CEE8 /* HLChatNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLChatNavigationController.h; sourceTree = "<group>"; };
-		E013C6CA1B2A035C0068CEE8 /* HLChatNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLChatNavigationController.m; sourceTree = "<group>"; };
 		E013C6CB1B2A035C0068CEE8 /* HLChatProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLChatProfileViewController.h; path = ../HLChatProfileViewController.h; sourceTree = "<group>"; };
 		E013C6CC1B2A035C0068CEE8 /* HLChatProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLChatProfileViewController.m; path = ../HLChatProfileViewController.m; sourceTree = "<group>"; };
 		E013C6CD1B2A035C0068CEE8 /* HLUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLUserInfo.h; sourceTree = "<group>"; };
@@ -1400,10 +1394,6 @@
 				E013C8CA1B2A1DCF0068CEE8 /* Model */,
 				E013C8CB1B2A1DCF0068CEE8 /* View */,
 				E082824E1B2ACE73001FB9F1 /* other */,
-				E013C6C01B2A035C0068CEE8 /* HLEditProfileViewController.h */,
-				E013C6C11B2A035C0068CEE8 /* HLEditProfileViewController.m */,
-				E013C6C91B2A035C0068CEE8 /* HLChatNavigationController.h */,
-				E013C6CA1B2A035C0068CEE8 /* HLChatNavigationController.m */,
 				E013C6CD1B2A035C0068CEE8 /* HLUserInfo.h */,
 				E013C6CE1B2A035C0068CEE8 /* HLUserInfo.m */,
 				E013C6CF1B2A035C0068CEE8 /* HLXMPPTool.h */,
@@ -2693,11 +2683,11 @@
 		E0D922531AFC9C5A00AE9948 = {
 			isa = PBXGroup;
 			children = (
-				E013C6E51B2A090F0068CEE8 /* libxml2.2.dylib */,
-				E013C6E31B2A081F0068CEE8 /* libxml2.dylib */,
-				E013C6E11B2A07F50068CEE8 /* libresolv.dylib */,
 				E0D9225E1AFC9C5A00AE9948 /* nvshen */,
 				E0A304481B0D9AFF001BBEF8 /* libz.dylib */,
+				E013C6E11B2A07F50068CEE8 /* libresolv.dylib */,
+				E013C6E51B2A090F0068CEE8 /* libxml2.2.dylib */,
+				E013C6E31B2A081F0068CEE8 /* libxml2.dylib */,
 				E0A304461B0D9AEF001BBEF8 /* libstdc++.dylib */,
 				E0A304441B0D9AE0001BBEF8 /* CoreTelephony.framework */,
 				E0A304421B0D9ACF001BBEF8 /* libsqlite3.dylib */,
@@ -3163,7 +3153,6 @@
 				E095D57E1B16F303002B07E2 /* NSString+Extension.m in Sources */,
 				E0072F101B123BA800AAC6F5 /* UIImage+MultiFormat.m in Sources */,
 				E05469811B4A3C3700CBEC6A /* XMPPvCard.xcdatamodeld in Sources */,
-				E013C6D71B2A035C0068CEE8 /* HLEditProfileViewController.m in Sources */,
 				E05469D11B4A3C3700CBEC6A /* DDXMLDocument.m in Sources */,
 				E05469A31B4A3C3700CBEC6A /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */,
 				E05469BC1B4A3C3700CBEC6A /* XMPPMessage+XEP_0333.m in Sources */,
@@ -3326,7 +3315,6 @@
 				E0A789BB1AFE2F6F004F3511 /* UIBarButtonItem+Extension.m in Sources */,
 				E054696E1B4A3C3700CBEC6A /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				E05469B31B4A3C3700CBEC6A /* XMPPTime.m in Sources */,
-				E013C6DC1B2A035C0068CEE8 /* HLChatNavigationController.m in Sources */,
 				E003C4CD1B1A180A006BDEDE /* HLCommentCell.m in Sources */,
 				E013C6DF1B2A035C0068CEE8 /* HLXMPPTool.m in Sources */,
 				E05469C61B4A3C3700CBEC6A /* GCDAsyncSocket.m in Sources */,

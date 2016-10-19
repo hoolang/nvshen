@@ -9,7 +9,6 @@
 #import "HLProfileViewController.h"
 #import "HLSettingTableViewController.h"
 #import "XMPPvCardTemp.h"
-#import "HLEditProfileViewController.h"
 #import "HLHttpTool.h"
 #import "MJExtension.h"
 #import "UIImageView+WebCache.h"
